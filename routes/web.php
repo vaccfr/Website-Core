@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Landingpage\MainController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth:web', 'prefix' => '/app'], function() {
+    Route::get('/', 'App\MainController@index')->name('home');
+});
+
+// Route::get('/home', 'HomeController@index')->name('home');
