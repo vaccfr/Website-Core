@@ -11,4 +11,19 @@ class MainController extends Controller
     {
         return view('landingpage.index');
     }
+
+    public function atctraining()
+    {
+        return view('landingpage.index');
+    }
+
+    public function atcrequest()
+    {
+        return view('landingpage.index');
+    }
+
+    public function pilottraining()
+    {
+        return view('landingpage.index');
+    }
 }
