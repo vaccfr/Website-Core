@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Staff;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'vatsim_id', 'fname', 'lname', 'atc_rating', 'pilot_rating', 
+        'region_code', 'region_name', 'division_code', 'division_name', 'subdivision_name',
+        'email', 'password',
     ];
 
     /**
@@ -36,4 +39,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relationships
+
+    public function staff()
+    {
+        return $this->hasOne(Staff::class, 'vatsim_id', 'vatsim_id');
+    }
 }
