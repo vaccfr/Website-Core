@@ -33,7 +33,7 @@ class AuthController extends Controller
     public function validateLogin(Request $request)
     {
         try {
-            $response = (new Client)->post('https://auth-dev.vatsim.net/oauth/token', [
+            $response = (new Client)->post('https://auth.vatsim.net/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'authorization_code',
                     'client_id' => config('vatsimsso.client_id'),
@@ -50,7 +50,7 @@ class AuthController extends Controller
         session()->put('token', json_decode((string) $response->getBody(), true));
 
         try {
-            $response = (new Client)->get('https://auth-dev.vatsim.net/api/user', [
+            $response = (new Client)->get('https://auth.vatsim.net/api/user', [
                 'headers' => [
                     'Accept' => 'application/json',
                     'Authorization' => 'Bearer '.session()->get('token.access_token')
