@@ -21,7 +21,7 @@ Route::get('/pilottraining', 'Landingpage\MainController@pilottraining')->name('
 
 // Policies
 Route::group(['prefix' => '/policies'], function() {
-    Route::get('/', function() {
+    Route::get('/privacy', function() {
         return view('policies.privacy');
     })->name('policy.privacy');
 });
