@@ -14,7 +14,7 @@ class MainController extends Controller
 
     public function atctraining()
     {
-        return view('landingpage.index');
+        return view('landingpage.atctraining');
     }
 
     public function atcrequest()

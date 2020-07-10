@@ -16,6 +16,8 @@
 
 		@yield('hero')
 
+		@yield('content')
+
 		@yield('aboutus')
 
 		@yield('stats')

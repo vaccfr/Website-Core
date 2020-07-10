@@ -11283,7 +11283,106 @@ h2,
   /* Add a dark-grey background on hover */
 }
 
+/* Training banner*/
+
+.training-banner img {
+  width: 100%;
+  height: auto;
+}
+
+.bluediv {
+  background-color: #486994;
+  padding-top: 60px;
+}
+
+/*Devenir ATC*/
+
+.atc-fr {
+  height: 450px;
+  background-color: #ffffff;
+}
+
+.atc-fr h1 {
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.legend-radar {
+  width: 420px;
+  float: right;
+  padding-top: 30px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.legend-radar img {
+  width: 80%;
+  height: auto;
+}
+
+.legend-radar h6 {
+  padding-top: 10px;
+  font-size: 18px;
+}
+
+.description-atc {
+  float: left;
+  padding-left: 20px;
+  padding-top: 30px;
+  text-align: justify;
+}
+
+.description-atc p {
+  font-size: 18px;
+}
+
 /*MEDIA QUERIES*/
+
+@media screen and (max-width: 1497px) {
+  .description-atc {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+  }
+
+  .section1-atc {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .atc-fr {
+    height: 710px;
+  }
+
+  .legend-radar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .atc-fr h1 {
+    font-size: 25px;
+  }
+
+  .description-atc p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 910px) and (max-width: 1103px) {
+  .description-atc p {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .description-atc p {
+    font-size: 13px;
+  }
+}
 
 @media screen and (min-width: 992px) {
   .nav-elem::after {
@@ -11294,12 +11393,22 @@ h2,
     background: #7bcdba;
     transition: width 0.3s;
   }
+}
 
+@media screen and (min-width: 992px) and (max-width: 400px) {
+  .description-atc p {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 992px) {
   .nav-elem:hover::after {
     width: 100%;
     transition: width 0.3s;
   }
+}
 
+@media screen and (min-width: 992px) {
   .navbar-light .navbar-nav .nav-link:focus,
   .navbar-light .navbar-nav .nav-link:hover {
     color: #7bcdba;
@@ -11325,6 +11434,11 @@ h2,
   .aboutus p {
     font-size: 15px;
     padding-left: 20px;
+  }
+
+  .bluediv {
+    background-color: #486994;
+    height: 90px;
   }
 }
 
@@ -11359,6 +11473,12 @@ h2,
     padding-left: 5px;
     font-size: 13px;
     text-align: center;
+  }
+
+  .bluediv {
+    visibility: visible;
+    background-color: #486994;
+    height: 80px;
   }
 }
 
