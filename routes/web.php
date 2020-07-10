@@ -19,6 +19,13 @@ Route::get('/atctraining', 'Landingpage\MainController@atctraining')->name('land
 Route::get('/atcrequest', 'Landingpage\MainController@atcrequest')->name('landingpage.atc.request');
 Route::get('/pilottraining', 'Landingpage\MainController@pilottraining')->name('landingpage.pilot.training');
 
+// Policies
+Route::group(['prefix' => '/policies'], function() {
+    Route::get('/', function() {
+        return view('policies.privacy');
+    })->name('policy.privacy');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth:web', 'prefix' => '/app'], function() {
