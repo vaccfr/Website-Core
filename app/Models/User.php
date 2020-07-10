@@ -11,15 +11,17 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = "users";
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'vatsim_id', 'fname', 'lname', 'atc_rating', 'pilot_rating', 
-        'region_code', 'region_name', 'division_code', 'division_name', 'subdivision_name',
-        'email', 'password',
+        'vatsim_id', 'fname', 'lname', 'email', 
+        'atc_rating', 'atc_rating_short', 'atc_rating_long', 'pilot_rating', 
+        'division_id', 'division_name', 'region_id', 'region_name', 'subdiv_id', 'subdiv_name',
     ];
 
     /**
@@ -28,16 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+        'remember_token',
     ];
 
     // Relationships

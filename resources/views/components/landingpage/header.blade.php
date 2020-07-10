@@ -34,9 +34,12 @@
           <li class="nav-item">
             <a class="nav-link nav-elem" href="#">About us</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link nav-elem" href="#">Login</a>
-          </li>
+          @if (Auth::check())
+            <a class="nav-link nav-elem" href="{{ route('auth.logout') }}">Logout</a>
+            <a class="nav-link nav-elem" href="#">Home - {{ Auth::user()->fname}}</a>
+          @else
+            <a class="nav-link nav-elem" href="{{ route('auth.login') }}">Login</a>
+          @endif
         </ul>
       </div>
     </div>

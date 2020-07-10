@@ -26,7 +26,12 @@ Route::group(['prefix' => '/policies'], function() {
     })->name('policy.privacy');
 });
 
-Auth::routes();
+// Auth::routes();
+
+// Authentication routes
+Route::get('/login', 'SSO\AuthController@login')->name('auth.login');
+Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
+Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
 Route::group(['middleware' => 'auth:web', 'prefix' => '/app'], function() {
     Route::get('/', 'App\MainController@index')->name('home');
