@@ -33,7 +33,7 @@
     <p>Our objective is to provide ATC services, organizing events, train controllers and pilots in the French vACC.</p>
     <p id="thirdp">Want to join us as a visitor member ? Do not hesitate and join our Teamspeak server here</p>
     <p>Our watchword: seriousness and good mood/humour. We French are waiting for you!</p>
-    <p id="dataptc"><a class="dphp" href="#">Data Protection and Handling Policy</a></p>
+    <p id="dataptc"><a class="dphp" href="{{ route('policy.privacy') }}" target="_blank">Data Protection and Handling Policy</a></p>
   </div>
 </section>
 @endsection
