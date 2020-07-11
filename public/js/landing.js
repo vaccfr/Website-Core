@@ -37301,14 +37301,6 @@ function scrollFunction() {
   } else {
     mybutton.style.display = "none";
   }
-} // When the user clicks on the button, scroll to the top of the document
-
-
-function topFunction() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
 }
 
 $(function () {
@@ -37330,7 +37322,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/peter/CodingProjects/vatfrance/resources/js/landing.js */"./resources/js/landing.js");
+module.exports = __webpack_require__(/*! /home/peter/CodingProjects/vatfrance-workfiles/website/resources/js/landing.js */"./resources/js/landing.js");
 
 
 /***/ })
