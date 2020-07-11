@@ -31,7 +31,7 @@ Route::group(['prefix' => '/policies'], function() {
 // Authentication routes
 Route::get('/login', 'SSO\AuthController@login')->name('auth.login');
 Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
-Route::post('/logout', 'SSO\AuthController@logout')->name('auth.logout');
+Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
 // Member dashboard routes
 Route::group(['middleware' => 'auth:web', 'prefix' => '/app'], function() {
