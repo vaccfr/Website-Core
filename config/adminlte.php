@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => env('APP_NAME'),
+    'title' => 'VatFrance',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>Vat</b>France',
-    'logo_img' => asset('media/img/logo.png'),
+    'logo_img' => 'public/media/img/logo.png',
     'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
