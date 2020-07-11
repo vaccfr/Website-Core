@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => env('APP_NAME'),
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Vat</b>France',
+    'logo_img' => asset('media/img/logo.png'),
+    'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'VatFrance',
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'usermenu_enabled' => true,
+    'usermenu_enabled' => false,
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
@@ -188,17 +188,17 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'app',
 
     'logout_url' => 'logout',
 
     'login_url' => 'login',
 
-    'register_url' => 'register',
+    'register_url' => 'app',
 
-    'password_reset_url' => 'password/reset',
+    'password_reset_url' => 'app',
 
-    'password_email_url' => 'password/email',
+    'password_email_url' => 'app',
 
     'profile_url' => false,
 
@@ -231,11 +231,69 @@ return [
     */
 
     'menu' => [
+        ['header' => 'General'],
         [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
+            'text' => 'Vatfrance',
+            'submenu' => [
+                [
+                    'text' => 'Staff',
+                    'url' => '#',
+                ],
+                [
+                    'text' => 'Official documents',
+                    'url' => '#',
+                ]
+            ]
         ],
+        [
+            'text' => 'Forum',
+            'url' => '#'
+        ],
+        ['header' => 'ATC'],
+        [
+            'text' => 'Bookings',
+            'submenu' => [
+                [
+                    'text' => 'All bookings',
+                    'url' => '#',
+                ],
+                [
+                    'text' => 'My Bookings',
+                    'url' => '#',
+                ],
+            ]
+        ],
+        [
+            'text' => 'LOAs',
+            'submenu' => [
+                [
+                    'text' => 'Belgium',
+                    'url' => '#',
+                ],
+                [
+                    'text' => 'Spain',
+                    'url' => '#',
+                ],
+                [
+                    'text' => 'Switzerland',
+                    'url' => '#',
+                ],
+                [
+                    'text' => 'UK',
+                    'url' => '#',
+                ],
+            ]
+        ],
+        [
+            'text' => 'Tutorials',
+            'url' => '#'
+        ],
+        [
+            'text' => 'Downloads',
+            'url' => '#'
+        ],
+        ['header' => 'Pilots'],
+        ['header' => 'Staff', 'can' => 'be-staff'],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -258,44 +316,6 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
         ],
         ['header' => 'labels'],
         [

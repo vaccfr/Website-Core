@@ -18,6 +18,9 @@ class AuthController extends Controller
 
     public function login()
     {
+        if (Auth::check()) {
+            return redirect('/');
+        }
         // session()->put('state', $state = Str::random(40));
         session()->forget('token');
 
