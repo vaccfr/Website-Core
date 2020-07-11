@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SSO;
 
 use App\Http\Controllers\Controller;
+use App\Models\ATC\AtcRosterMember;
 use App\Models\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -77,8 +78,24 @@ class AuthController extends Controller
             'subdiv_id' => $response->data->vatsim->subdivision->id,
             'subdiv_name' => $response->data->vatsim->subdivision->name,
         ]);
-
         $user = User::where('vatsim_id', $response->data->cid)->first();
+        
+        $rosterMember = AtcRosterMember::where('vatsim_id', $response->data->cid)->first();
+
+        if ($user->subdiv_id == "FRA") {
+            AtcRosterMember::updateOrCreate(['vatsim_id' => $response->data->cid], [
+                'id' => $user->id,
+                'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
+                'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
+                'rating' => $response->data->vatsim->rating->id,
+                'rating_short' => $response->data->vatsim->rating->short,
+                'rating_long' => $response->data->vatsim->rating->long,
+                'approved_flag' => false,
+            ]);
+        } elseif (!is_null($rosterMember)) {
+            $rosterMember->delete();
+        }
+
         Auth::login($user, true);
 
         return redirect('/');

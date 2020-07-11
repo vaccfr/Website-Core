@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models\ATC;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Staff extends Model
+class AtcRosterMember extends Model
 {
-    protected $table = "staff";
+    protected $table = "atc_roster_members";
 
     protected $fillable = [
-        'vatsim_id', 'staff_level', 'atc_dpt', 'pilot_dpt', 'executive', 'events',
+        'id', 'vatsim_id', 'fname', 'lname', 'rating', 'rating_short', 'rating_long', 'approved_flag',
     ];
 
     // Relationships

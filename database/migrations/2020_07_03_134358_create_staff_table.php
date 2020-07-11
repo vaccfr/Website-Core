@@ -19,6 +19,7 @@ class CreateStaffTable extends Migration
             $table->boolean('atc_dpt');
             $table->boolean('pilot_dpt');
             $table->boolean('executive');
+            $table->boolean('events');
             $table->timestamps();
         });
     }

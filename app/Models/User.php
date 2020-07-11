@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Admin\Staff;
+use App\Models\ATC\AtcRosterMember;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,5 +39,10 @@ class User extends Authenticatable
     public function staff()
     {
         return $this->hasOne(Staff::class, 'vatsim_id', 'vatsim_id');
+    }
+
+    public function atcroster()
+    {
+        return $this->hasOne(AtcRosterMember::class, 'vatsim_id', 'vatsim_id');
     }
 }
