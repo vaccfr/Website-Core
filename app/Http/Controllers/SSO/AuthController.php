@@ -82,7 +82,7 @@ class AuthController extends Controller
         
         $rosterMember = AtcRosterMember::where('vatsim_id', $response->data->cid)->first();
 
-        if ($user->subdiv_id == "FRA") {
+        if ($user->subdiv_id == "FRA" && $user->atc_rating > 1) {
             AtcRosterMember::updateOrCreate(['vatsim_id' => $response->data->cid], [
                 'id' => $user->id,
                 'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
