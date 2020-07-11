@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Blank Page</h1>
+          <h1>Home page</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -19,7 +19,7 @@
   <!-- Default box -->
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Title</h3>
+      <h3 class="card-title">Home</h3>
 
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -29,11 +29,11 @@
       </div>
     </div>
     <div class="card-body">
-      Start creating your amazing application!
+      Example card I can work with rn
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
-      Footer
+      Card footer (if needed)
     </div>
     <!-- /.card-footer-->
   </div>
