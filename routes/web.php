@@ -33,8 +33,9 @@ Route::get('/login', 'SSO\AuthController@login')->name('auth.login');
 Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
 Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
+// Member dashboard routes
 Route::group(['middleware' => 'auth:web', 'prefix' => '/app'], function() {
-    Route::get('/', 'App\MainController@index')->name('home');
+    Route::get('/', 'App\MainController@index')->name('app.index');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

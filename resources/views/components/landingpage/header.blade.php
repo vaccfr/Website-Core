@@ -36,7 +36,7 @@
           </li>
           @if (Auth::check())
             <a class="nav-link nav-elem" href="{{ route('auth.logout') }}">Logout</a>
-            <a class="nav-link nav-elem" href="#">Home - {{ Auth::user()->fname}}</a>
+            <a class="nav-link nav-elem" href="{{ route('app.index') }}">Home - {{ Auth::user()->fname}}</a>
           @else
             <a class="nav-link nav-elem" href="{{ route('auth.login') }}">Login</a>
           @endif
