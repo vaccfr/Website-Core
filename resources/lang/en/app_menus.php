@@ -16,7 +16,7 @@ return [
   'es' => 'Spain',
   'ch' => 'Switzerland',
   'uk' => 'United Kingdom',
-  'atc_ressources' => 'Ressources',
+  'atc_ressources' => 'Resources',
   'atc_dl' => 'Downloads',
   'pilots_header' => 'Pilots',
   'pilots_bookings' => 'Bookings',
