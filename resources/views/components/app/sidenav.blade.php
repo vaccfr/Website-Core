@@ -23,6 +23,12 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+            <i class="nav-icon fa fa-comments"></i>
+            <p>{{__('app_menus.forum')}}</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fa fa-bullhorn"></i>
             <p>{{ __('app_menus.events') }}</p>
           </a>
@@ -55,6 +61,20 @@
               </a>
             </li>
           </ul>
+        </li>
+        {{-- My Profile section --}}
+        <li class="nav-header">{{__('app_menus.profile_header')}}</li>
+        <li class="nav-item">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+            <i class="nav-icon fa fa-user-circle"></i>
+            <p>{{__('app_menus.profile_my_profile')}}</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+            <i class="nav-icon fa fa-graduation-cap"></i>
+            <p>{{__('app_menus.profile_my_career')}}</p>
+          </a>
         </li>
 
         {{-- ATC Section of the menu --}}
@@ -158,6 +178,52 @@
 
         {{-- Staff section --}}
         <li class="nav-header">{{__('app_menus.staff_header')}}</li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-graduation-cap"></i>
+            <p>
+              {{__('app_menus.staff_atc_mentoring')}}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>{{__('app_menus.staff_atc_mentoring_overview')}}</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>{{__('app_menus.staff_atc_mentoring_my_students')}}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-graduation-cap"></i>
+            <p>
+              {{__('app_menus.staff_pil_ment')}}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>{{__('app_menus.staff_pil_ment_overview')}}</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>{{__('app_menus.staff_pil_ment_my_students')}}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
