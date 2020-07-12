@@ -14,12 +14,11 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
         {{-- Top Section of the menu --}}
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fa fa-home"></i>
-            <p>Home</p>
+            <p>{{__('app_menus.home')}}</p>
           </a>
         </li>
         <li class="nav-item">
@@ -32,7 +31,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
             <p>
-              General
+              {{__('app_menus.general')}}
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -40,31 +39,31 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Staff</p>
+                <p>{{__('app_menus.staff_org')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Statutes</p>
+                <p>{{__('app_menus.statutes')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Policies</p>
+                <p>{{__('app_menus.policies')}}</p>
               </a>
             </li>
           </ul>
         </li>
 
         {{-- ATC Section of the menu --}}
-        <li class="nav-header">ATC</li>
+        <li class="nav-header">{{__('app_menus.atc_header')}}</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-headphones"></i>
             <p>
-              Bookings
+              {{__('app_menus.atc_bookings')}}
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -72,13 +71,13 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>All ATC Bookings</p>
+                <p>{{__('app_menus.atc_all_bookings')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>My ATC Bookings</p>
+                <p>{{__('app_menus.atc_my_bookings')}}</p>
               </a>
             </li>
           </ul>
@@ -87,7 +86,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-sticky-note"></i>
             <p>
-              LOAs
+              {{__('app_menus.loas')}}
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -95,25 +94,25 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Belgium</p>
+                <p>{{__('app_menus.be')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Spain</p>
+                <p>{{__('app_menus.es')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Switzerland</p>
+                <p>{{__('app_menus.ch')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>United Kingdom</p>
+                <p>{{__('app_menus.uk')}}</p>
               </a>
             </li>
           </ul>
@@ -121,23 +120,23 @@
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fas fa-question-circle"></i>
-            <p>Tutorials</p>
+            <p>{{__('app_menus.atc_ressources')}}</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fas fa-download"></i>
-            <p>Downloads</p>
+            <p>{{__('app_menus.atc_dl')}}</p>
           </a>
         </li>
 
         {{-- Pilot Section of the menu --}}
-        <li class="nav-header">Pilot</li>
+        <li class="nav-header">{{__('app_menus.pilots_header')}}</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-paper-plane"></i>
             <p>
-              Bookings
+              {{__('app_menus.pilots_bookings')}}
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -145,20 +144,20 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>All Pilot Bookings</p>
+                <p>{{__('app_menus.pilots_all_bookings')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>My Pilot Bookings</p>
+                <p>{{__('app_menus.pilots_my_bookings')}}</p>
               </a>
             </li>
           </ul>
         </li>
 
         {{-- Staff section --}}
-        <li class="nav-header">Staff</li>
+        <li class="nav-header">{{__('app_menus.staff_header')}}</li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

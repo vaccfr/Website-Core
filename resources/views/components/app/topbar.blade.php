@@ -8,7 +8,7 @@
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link">
         <span>
-          Local time: 
+          {{__('app_menus.local_time')}}:
         </span>
         <span id="local_time"></span>
       </a>
@@ -16,7 +16,7 @@
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link">
         <span>
-          UTC: 
+          {{__('app_menus.utc_time')}}: 
         </span>
         <span id="utc_time"></span>
       </a>
@@ -31,8 +31,11 @@
         <i class="far fa-user"></i> {{ Auth::user()->fname}} {{ Auth::user()->lname }}
       </a>
       <div class="dropdown-menu">
+        <a href="{{ route('app.index', app()->getLocale()) }}" class="dropdown-item">
+          {{__('app_menus.my_profile')}}
+        </a>
         <a href="{{ route('auth.logout') }}" class="dropdown-item">
-          Log out
+          {{__('app_menus.logout')}}
         </a>
       </div>
     </li>
