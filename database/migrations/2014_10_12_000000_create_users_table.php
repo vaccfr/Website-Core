@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('region_name')->nullable();
             $table->string('subdiv_id')->nullable();
             $table->string('subdiv_name')->nullable();
+            $table->boolean('is_staff')->default(false);
+            $table->integer('staff_level')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
