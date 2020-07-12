@@ -6,10 +6,20 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Local time here</a>
+      <a href="#" class="nav-link">
+        <span>
+          Local time: 
+        </span>
+        <span id="local_time"></span>
+      </a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">UTC time here</a>
+      <a href="#" class="nav-link">
+        <span>
+          UTC: 
+        </span>
+        <span id="utc_time"></span>
+      </a>
     </li>
   </ul>
 
@@ -29,3 +39,27 @@
   </ul>
 </nav>
 <!-- /.navbar -->
+
+<script>
+  // Local and UTC time scripts
+  function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var uh = today.getUTCHours();
+    var um = today.getUTCMinutes();
+    var us = today.getUTCSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    um = checkTime(um);
+    us = checkTime(us);
+    document.getElementById('local_time').innerHTML = h + ":" + m + ":" + s;
+    document.getElementById('utc_time').innerHTML = uh + ":" + um + ":" + us;
+    var t = setTimeout(startTime, 500);
+  };
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+  };
+</script>
