@@ -35,8 +35,15 @@
             <a class="nav-link nav-elem" href="{{ route('landingpage.home', app()->getLocale()) }}#aboutus">{{__('lp_menu.aboutus')}}</a>
           </li>
           @if (Auth::check())
-            <a class="nav-link nav-elem" href="{{ route('auth.logout') }}">{{__('lp_menu.logout')}}</a>
-            <a class="nav-link nav-elem" href="{{ route('app.index', app()->getLocale()) }}">{{__('lp_menu.homebtn', ['fname' => Auth::user()->fname])}}</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{__('lp_menu.home_title', ['fname' => Auth::user()->fname])}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('app.index', app()->getLocale()) }}">{{__('lp_menu.homebtn')}}</a>
+                <a class="dropdown-item" href="{{ route('auth.logout') }}">{{__('lp_menu.logout')}}</a>
+              </div>
+            </li>
           @else
             <a class="nav-link nav-elem" href="{{ route('auth.login') }}">{{__('lp_menu.login')}}</a>
           @endif

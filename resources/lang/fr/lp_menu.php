@@ -10,5 +10,6 @@ return [
   'aboutus' => 'A propos',
   'login' => 'Connexion',
   'logout' => 'Deconnexion',
-  'homebtn' => 'Portail - :fname',
+  'home_title' => 'Portail - :fname',
+  'homebtn' => 'Espace membre',
 ];

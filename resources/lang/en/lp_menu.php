@@ -10,5 +10,6 @@ return [
   'aboutus' => 'About Us',
   'login' => 'Login',
   'logout' => 'Logout',
-  'homebtn' => 'Home - :fname',
+  'home_title' => 'Home - :fname',
+  'homebtn' => 'My Dashboard',
 ];
