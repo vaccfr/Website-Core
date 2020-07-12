@@ -12,6 +12,8 @@
 
 	<body>
 
+		@yield('page-styling')
+
     @include('components.landingpage.header')
 
 		@yield('hero')
