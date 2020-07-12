@@ -27,6 +27,19 @@
   <ul class="navbar-nav ml-auto">
     <!-- Messages Dropdown Menu -->
     <li class="nav-item dropdown">
+      <a href="#" data-toggle="dropdown" class="nav-link">
+        {{ strtoupper(app()->getLocale()) }}
+      </a>
+      <div class="dropdown-menu">
+        @foreach (config('app.available_locales') as $locale)
+          <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}" class="dropdown-item"
+            @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>
+            {{ strtoupper($locale) }}
+          </a>
+        @endforeach
+      </div>
+    </li>
+    <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-user"></i> {{ Auth::user()->fname}} {{ Auth::user()->lname }}
       </a>
