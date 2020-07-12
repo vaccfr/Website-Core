@@ -41,11 +41,11 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('app.index', app()->getLocale()) }}">{{__('lp_menu.homebtn')}}</a>
-                <a class="dropdown-item" href="{{ route('auth.logout') }}">{{__('lp_menu.logout')}}</a>
+                <a class="dropdown-item" href="{{ route('auth.logout', app()->getLocale()) }}">{{__('lp_menu.logout')}}</a>
               </div>
             </li>
           @else
-            <a class="nav-link nav-elem" href="{{ route('auth.login') }}">{{__('lp_menu.login')}}</a>
+            <a class="nav-link nav-elem" href="{{ route('auth.login', app()->getLocale()) }}">{{__('lp_menu.login')}}</a>
           @endif
         </ul>
       </div>

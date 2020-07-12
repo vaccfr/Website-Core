@@ -2,7 +2,7 @@
 
 namespace App\Models\ATC;
 
-use App\Models\User;
+use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Model;
 
 class AtcRosterMember extends Model

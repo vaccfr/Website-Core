@@ -47,7 +47,7 @@
         <a href="{{ route('app.index', app()->getLocale()) }}" class="dropdown-item">
           {{__('app_menus.my_profile')}}
         </a>
-        <a href="{{ route('auth.logout') }}" class="dropdown-item">
+        <a href="{{ route('auth.logout', app()->getLocale()) }}" class="dropdown-item">
           {{__('app_menus.logout')}}
         </a>
       </div>

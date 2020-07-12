@@ -2,7 +2,7 @@
 
 namespace App\Models\Admin;
 
-use App\Models\User;
+use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model

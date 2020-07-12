@@ -23,12 +23,16 @@ Route::get('/', function () {
 Route::group([
     'middleware' => 'setlocale',
     'prefix' => '{locale}',
-    'where' => ['locale' => '[a-zA-Z]{2}'],
 ], function() {
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
     Route::get('/atctraining', 'Landingpage\MainController@atctraining')->name('landingpage.atc.training');
     Route::get('/atcrequest', 'Landingpage\MainController@atcrequest')->name('landingpage.atc.request');
     Route::get('/pilottraining', 'Landingpage\MainController@pilottraining')->name('landingpage.pilot.training');
+
+    // Authentication routes
+    Route::get('/access', 'SSO\AuthController@login')->name('auth.login');
+    Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
+    Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
     // Policies
     Route::group(['prefix' => '/policies'], function() {
@@ -47,10 +51,5 @@ Route::group([
 });
 
 // Auth::routes();
-
-// Authentication routes
-Route::get('/login', 'SSO\AuthController@login')->name('auth.login');
-Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
-Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
 // Route::get('/home', 'HomeController@index')->name('home');

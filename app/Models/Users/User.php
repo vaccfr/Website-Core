@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Users;
 
 use App\Models\Admin\Staff;
 use App\Models\ATC\AtcRosterMember;
@@ -35,6 +35,11 @@ class User extends Authenticatable
     ];
 
     // Relationships
+
+    public function settings()
+    {
+        return $this->hasOne(UserSetting::class, 'vatsim_id', 'vatsim_id');
+    }
 
     public function staff()
     {

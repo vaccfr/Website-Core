@@ -4,7 +4,8 @@ namespace App\Http\Controllers\SSO;
 
 use App\Http\Controllers\Controller;
 use App\Models\ATC\AtcRosterMember;
-use App\Models\User;
+use App\Models\Users\User;
+use App\Models\Users\UserSetting;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Str;
@@ -82,6 +83,10 @@ class AuthController extends Controller
             'subdiv_name' => $response->data->vatsim->subdivision->name,
         ]);
         $user = User::where('vatsim_id', $response->data->cid)->first();
+
+        UserSetting::updateOrCreate(['vatsim_id' => $response->data->cid], [
+            'id' =>$user->id
+        ]);
         
         $rosterMember = AtcRosterMember::where('vatsim_id', $response->data->cid)->first();
 
@@ -98,6 +103,10 @@ class AuthController extends Controller
         } elseif (!is_null($rosterMember)) {
             $rosterMember->delete();
         }
+
+        $lang = UserSetting::where('vatsim_id', $response->data->cid)->first();
+        $lang = $lang->lang;
+        app()->setLocale($lang);
 
         Auth::login($user, true);
 

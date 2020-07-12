@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Users\UserSetting;
 use Closure;
 
 class SetLocale
@@ -15,7 +16,16 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
-        app()->setLocale($request->segment(1));
-        return $next($request);
+        $locale = $request->segment(1);
+        if (in_array($locale, config('app.available_locales'))) {
+            app()->setLocale($locale);
+            if (auth()->check()) {
+                $lang = UserSetting::where('vatsim_id', auth()->user()->vatsim_id)->first();
+                $lang->update(['lang' => $locale]);
+            }
+            return $next($request);
+        } else {
+            return redirect()->back()->with(app()->getLocale());
+        }
     }
 }
