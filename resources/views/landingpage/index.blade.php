@@ -15,9 +15,9 @@
       <div class="container h-100">
         <div class="d-flex h-100 text-center align-items-center">
           <div id="textabovevid"class="w-100 text-white">
-            <h1 class="display-3">Welcome to VatFrance</h1>
-            <p id="scdline" class="lead mb-0">French branch of VATSIM network</p>
-            <button id="btnjoin" type="button" class="btn btn-primary-spacing btn-lg">Join us</button>
+            <h1 class="display-3">{{__('lp_titles.welcome_to_vatfrance')}}</h1>
+            <p id="scdline" class="lead mb-0">{{__('lp_titles.french_branch')}}</p>
+            <button id="btnjoin" type="button" class="btn btn-primary-spacing btn-lg">{{__('lp_titles.join_us')}}</button>
           </div>
         </div>
     </div>
@@ -28,12 +28,12 @@
 @section('aboutus')
 <section name="about" id="aboutus">
   <div class="aboutus">
-    <h1>About us</h1>
+    <h1>{{__('lp_titles.about_us')}}</h1>
     <p id="welcomep">Welcome to VatFrance! The french place for virtual pilots and ATC members of the VATSIM Network !</p>
     <p>Our objective is to provide ATC services, organizing events, train controllers and pilots in the French vACC.</p>
     <p id="thirdp">Want to join us as a visitor member ? Do not hesitate and join our Teamspeak server here</p>
     <p>Our watchword: seriousness and good mood/humour. We French are waiting for you!</p>
-    <p id="dataptc"><a class="dphp" href="{{ route('policy.privacy') }}" target="_blank">Data Protection and Handling Policy</a></p>
+    <p id="dataptc"><a class="dphp" href="{{ route('policy.privacy', app()->getLocale()) }}" target="_blank">Data Protection and Handling Policy</a></p>
   </div>
 </section>
 @endsection
@@ -41,7 +41,7 @@
 @section('stats')
 <section name="statistics">
   <div class="stats">
-    <h1>Statistics</h1>
+    <h1>{{__('lp_titles.stats')}}</h1>
     <h3 class="desc">VatFrance in figures</h3>
 
       <div class="row">
@@ -94,7 +94,7 @@
       <div class="row justify-content-center">
         <!-- Column -->
         <div class="col-md-8 text-center">
-          <h3 id="titlesection" class="my-3">Upcoming Events</h3>
+          <h3 id="titlesection" class="my-3">{{__('lp_titles.upcoming_events')}}</h3>
           <h3 class="subtitle">You will find here all the upcoming events within the French division of Vatsim! This is the perfect opportunity to liven up the blue white red sky !</h3>
         </div>
         <!-- Column -->

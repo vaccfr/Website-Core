@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect('/');
+            return redirect()->route('landingpage.home', app()->getLocale());
         }
         // session()->put('state', $state = Str::random(40));
         session()->forget('token');
@@ -61,7 +61,7 @@ class AuthController extends Controller
                 ]
             ]);
         } catch(ClientException $e){
-            return redirect('/');
+            return redirect()->route('landingpage.home', app()->getLocale());
         }
         
         $response = json_decode($response->getBody());
@@ -101,12 +101,12 @@ class AuthController extends Controller
 
         Auth::login($user, true);
 
-        return redirect('/');
+        return redirect()->route('landingpage.home', app()->getLocale());
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect()->route('landingpage.home', app()->getLocale());
     }
 }

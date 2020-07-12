@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="{{ route('app.index') }}" class="brand-link">
+  <a href="{{ route('app.index', app()->getLocale()) }}" class="brand-link">
     <img src="{{ asset('media/img/logo.png') }}"
          alt="VFLogo"
          class="brand-image"
@@ -17,15 +17,15 @@
 
         {{-- Top Section of the menu --}}
         <li class="nav-item">
-          <a href="{{ route('app.index') }}" class="nav-link">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fa fa-home"></i>
             <p>Home</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('app.index') }}" class="nav-link">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fa fa-bullhorn"></i>
-            <p>Events</p>
+            <p>{{ __('app_menus.events') }}</p>
           </a>
         </li>
         <li class="nav-item has-treeview">
@@ -119,13 +119,13 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('app.index') }}" class="nav-link">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fas fa-question-circle"></i>
             <p>Tutorials</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('app.index') }}" class="nav-link">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fas fa-download"></i>
             <p>Downloads</p>
           </a>
