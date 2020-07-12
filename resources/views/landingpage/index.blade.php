@@ -26,7 +26,7 @@
 @endsection
 
 @section('aboutus')
-<section name="about">
+<section name="about" id="aboutus">
   <div class="aboutus">
     <h1>About us</h1>
     <p id="welcomep">Welcome to VatFrance! The french place for virtual pilots and ATC members of the VATSIM Network !</p>

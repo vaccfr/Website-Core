@@ -32,7 +32,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-elem" href="#">About us</a>
+            <a class="nav-link nav-elem" href="{{ route('landingpage.home') }}#aboutus">About us</a>
           </li>
           @if (Auth::check())
             <a class="nav-link nav-elem" href="{{ route('auth.logout') }}">Logout</a>
