@@ -41,6 +41,7 @@ return [
   'local_time' => 'Heure locale',
   'utc_time' => 'UTC',
 
+  'return_lp' => 'Page d\'accueil',
   'my_profile' => 'Mon Profil',
   'logout' => 'Deconnexion',
 ];

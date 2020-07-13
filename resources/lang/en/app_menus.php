@@ -41,6 +41,7 @@ return [
   'local_time' => 'Local time',
   'utc_time' => 'UTC',
 
+  'return_lp' => 'Go to Landing Page',
   'my_profile' => 'My Profile',
   'logout' => 'Logout',
 ];

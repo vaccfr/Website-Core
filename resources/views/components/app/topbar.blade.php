@@ -39,6 +39,11 @@
         @endforeach
       </div>
     </li>
+    <li class="nav-item">
+      <a href="{{ route('landingpage.home', app()->getLocale()) }}" class="nav-link">
+        {{__('app_menus.return_lp')}}
+      </a>
+    </li>
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-user"></i> {{ Auth::user()->fname}} {{ Auth::user()->lname }}
