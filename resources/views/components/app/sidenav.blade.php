@@ -62,20 +62,6 @@
             </li>
           </ul>
         </li>
-        {{-- My Profile section --}}
-        <li class="nav-header">{{__('app_menus.profile_header')}}</li>
-        <li class="nav-item">
-          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
-            <i class="nav-icon fa fa-user-circle"></i>
-            <p>{{__('app_menus.profile_my_profile')}}</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
-            <i class="nav-icon fa fa-graduation-cap"></i>
-            <p>{{__('app_menus.profile_my_career')}}</p>
-          </a>
-        </li>
 
         {{-- ATC Section of the menu --}}
         <li class="nav-header">{{__('app_menus.atc_header')}}</li>

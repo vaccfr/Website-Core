@@ -9,10 +9,6 @@ return [
   'statutes' => 'Statuts VatFrance',
   'policies' => 'Politiques',
 
-  'profile_header' => 'Espace Personnel',
-  'profile_my_profile' => 'Mon Profil',
-  'profile_my_career' => 'Ma Carrière',
-
   'atc_header' => 'ATC',
   'atc_bookings' => 'Bookings',
   'atc_all_bookings' => 'Tous les Bookings ATC',
@@ -42,6 +38,6 @@ return [
   'utc_time' => 'UTC',
 
   'return_lp' => 'Page d\'accueil',
-  'my_profile' => 'Mon Profil',
+  'my_settings' => 'Reglages',
   'logout' => 'Deconnexion',
 ];

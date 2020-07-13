@@ -9,10 +9,6 @@ return [
   'statutes' => 'vACC statutes',
   'policies' => 'Policies',
 
-  'profile_header' => 'User Area',
-  'profile_my_profile' => 'My Profile',
-  'profile_my_career' => 'My Career',
-
   'atc_header' => 'ATC',
   'atc_bookings' => 'Bookings',
   'atc_all_bookings' => 'All ATC Bookings',
@@ -42,6 +38,6 @@ return [
   'utc_time' => 'UTC',
 
   'return_lp' => 'Go to Landing Page',
-  'my_profile' => 'My Profile',
+  'my_settings' => 'Account Settings',
   'logout' => 'Logout',
 ];
