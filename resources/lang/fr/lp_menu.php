@@ -14,4 +14,6 @@ return [
   'homebtn' => 'Espace membre',
   'events' => 'Évènements',
   'feedback' => 'Feedback',
+
+  'dashboard' => 'Tableau de bord',
 ];

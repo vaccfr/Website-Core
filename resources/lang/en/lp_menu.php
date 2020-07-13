@@ -14,4 +14,6 @@ return [
   'homebtn' => 'My Dashboard',
   'events' => 'Events',
   'feedback' => 'Feedback',
+
+  'dashboard' => 'Dashboard',
 ];

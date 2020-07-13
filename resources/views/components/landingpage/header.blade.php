@@ -109,33 +109,34 @@
           <a class="nav-link" href="#">{{__('lp_menu.feedback')}}</a>
         </li>
         @if (Auth::check())
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                {{__('lp_menu.home_title', ['fname' => Auth::user()->fname])}}
-              </a>
-              <div
-                class="dropdown-menu dropdown-menu-right animate slideIn"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <a class="dropdown-item" href="{{ route('app.index', app()->getLocale()) }}">{{__('lp_menu.homebtn')}}</a>
-                <a class="dropdown-item" href="{{ route('auth.logout', app()->getLocale()) }}">{{__('lp_menu.logout')}}</a>
-              </div>
-            </li>
-          @else
-            <li class="nav-item">
-              <a href="{{ route('auth.login', app()->getLocale()) }}" class="nav-link">
-                <i class="fas fa-user text-white d-mobile-none"></i>
-                <span class="d-tablet-none">{{__('lp_menu.login')}}</span>
-              </a>
-            </li>
-          @endif
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-user text-white d-mobile-none"></i>
+              <span class="d-tablet-none">{{ Auth::user()->fname }}</span>
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right animate slideIn"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
+              <a class="dropdown-item" href="{{ route('app.index', app()->getLocale()) }}">{{__('lp_menu.homebtn')}}</a>
+              <a class="dropdown-item" href="{{ route('auth.logout', app()->getLocale()) }}">{{__('lp_menu.logout')}}</a>
+            </div>
+          </li>
+        @else
+          <li class="nav-item">
+            <a href="{{ route('auth.login', app()->getLocale()) }}" class="nav-link">
+              <i class="fas fa-user text-white d-mobile-none"></i>
+              <span class="d-tablet-none">{{__('lp_menu.login')}}</span>
+            </a>
+          </li>
+        @endif
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"

@@ -8,10 +8,10 @@
 <header class="masthead text-center text-white">
   <div class="masthead-content">
     <div class="container bg-overlay">
-      <h1 class="masthead-heading mb-2 mt-5">{{__('lp_titles.welcome_to_vatfrance')}}!</h1>
+      <h1 class="masthead-heading mb-2 mt-5">{{__('lp_titles.welcome_to_vatfrance')}}@if (Auth::check()), {{ Auth::user()->fname }}@endif!</h1>
       <h2 class="masthead-subheading mb-2">{{__('lp_titles.french_branch')}}</h2>
       <a href="#" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
-        >{{__('lp_titles.join_us')}}!</a
+        >@if (!Auth::check()) {{__('lp_titles.join_us')}}! @else {{__('lp_menu.dashboard')}} @endif</a
       >
     </div>
   </div>
