@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SSO;
 
 use App\Http\Controllers\Controller;
 use App\Models\ATC\AtcRosterMember;
+use App\Models\SSO\SSOToken;
 use App\Models\Users\User;
 use App\Models\Users\UserSetting;
 use GuzzleHttp\Client;
@@ -52,7 +53,9 @@ class AuthController extends Controller
             return redirect()->route('landingpage.home');
         }
 
-        session()->put('token', json_decode((string) $response->getBody(), true));
+        $tokens = json_decode((string) $response->getBody(), true);
+
+        session()->put('token', $tokens);
 
         try {
             $response = (new Client)->get('https://auth.vatsim.net/api/user', [
@@ -66,7 +69,7 @@ class AuthController extends Controller
         }
         
         $response = json_decode($response->getBody());
-        // dd($response);
+
         User::updateOrCreate(['vatsim_id' => $response->data->cid], [
             'email' => isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org',
             'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
@@ -85,7 +88,13 @@ class AuthController extends Controller
         $user = User::where('vatsim_id', $response->data->cid)->first();
 
         UserSetting::updateOrCreate(['vatsim_id' => $response->data->cid], [
-            'id' =>$user->id
+            'id' => $user->id
+        ]);
+
+        SSOToken::updateOrCreate(['vatsim_id' => $response->data->cid], [
+            'id' => $user->id,
+            'access_token' => $tokens['access_token'],
+            'refresh_token' => $tokens['refresh_token'],
         ]);
         
         $rosterMember = AtcRosterMember::where('vatsim_id', $response->data->cid)->first();
