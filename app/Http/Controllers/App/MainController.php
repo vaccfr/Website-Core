@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
@@ -18,14 +19,24 @@ class MainController extends Controller
                     'Accepts' => 'application/json',
                 ]
             ]);
+            $response = json_decode((string) $response->getBody(), true);
+            $sessions = $response['results'];
         } catch(ClientException $e) {
-            dd($e);
+            $sessions = [];
         }
-        $response = json_decode((string) $response->getBody(), true);
-        $sessions = $response['results'];
-        // dd($sessions);
+
+        $times = Auth::user()->totalTimes();
+
+        // $sessions = [
+        //     0 => [
+        //         'callsign' => 'Placeholder',
+        //         'minutes_on_callsign' => 'Placeholder',
+        //     ]
+        // ];
         return view('app.index', [
             'sessions' => $sessions,
+            'atcTimes' => $times['atc'],
+            'pilotTimes' => $times['pilot'],
         ]);
     }
 }

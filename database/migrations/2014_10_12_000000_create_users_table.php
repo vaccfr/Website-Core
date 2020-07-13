@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('fname')->nullable();
             $table->string('lname')->nullable();
             $table->string('email')->unique();
+            $table->string('account_type')->default('Guest');
             $table->string('atc_rating');
             $table->string('atc_rating_short');
             $table->string('atc_rating_long');
