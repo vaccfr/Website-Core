@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <link rel="icon" type="image/png" href="{{ asset('media/img/favicon.png') }}" />
 
     <title>{{ config('app.name') }} | @yield('page-title')</title>
 
