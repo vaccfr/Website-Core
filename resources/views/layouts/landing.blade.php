@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>VatFrance | French vACC | @yield('pagetitle')</title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
-	<link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
 
-</head>
+    <title>{{ config('app.name') }} | @yield('page-title')</title>
 
-	<body>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 
-		@yield('page-styling')
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/995ae00442.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $('.dropdown, .btn-group').hover(function () {
+          var dropdownMenu = $(this).children('.dropdown-menu');
+          if (dropdownMenu.is(':visible')) {
+            dropdownMenu.parent().toggleClass('open');
+          }
+        });
+      });
+    </script>
 
+    <!-- Custom fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles-->
+    <link href="{{ asset('lp/css/main.css') }}" rel="stylesheet" />
+  </head>
+
+  <body>
     @include('components.landingpage.header')
 
-		@yield('hero')
+    @yield('page-masthead')
 
-		@yield('content')
+    @yield('page-content')
 
-		@yield('aboutus')
+		@include('components.landingpage.footer')
 
-		@yield('stats')
-
-		@yield('upcoming')
-
-	<script>
-		// When the user clicks on the button, scroll to the top of the document
-		function topFunction() {
-			window.scrollTo({top: 0, behavior: 'smooth'});
-		}
-	</script>
-	<button onclick="topFunction()" id="myBtn" title="Go to top">&#8593;</button>
-
-	@include('components.landingpage.footer')
-
-
-		<!-- Optional JavaScript -->
-
-		<script src="{{ asset('js/landing.js') }}"></script>
-
-
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-		<script>
-		$(window).scroll(function(){
-			$('nav').toggleClass('scrolled', $(this).scrollTop() > 100);
-		});
-	</script>
-
-
-	</body>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
+  </body>
 </html>

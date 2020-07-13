@@ -12,4 +12,6 @@ return [
   'logout' => 'Logout',
   'home_title' => 'Home - :fname',
   'homebtn' => 'My Dashboard',
+  'events' => 'Events',
+  'feedback' => 'Feedback',
 ];

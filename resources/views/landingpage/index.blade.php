@@ -1,170 +1,45 @@
 @extends('layouts.landing')
 
-@section('pagetitle')
-    Home
+@section('page-title')
+  Home
 @endsection
 
-@section('hero')
-<!-- vid container -->
-<section name="video">
-  <div class="vidcontainer">
-    <div class="overlay"></div>
-      <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-        <source src="{{ asset('media/videos/lpagehome.mp4') }}" type="video/mp4">
-      </video>
-      <div class="container h-100">
-        <div class="d-flex h-100 text-center align-items-center">
-          <div id="textabovevid"class="w-100 text-white">
-            <h1 class="display-3">{{__('lp_titles.welcome_to_vatfrance')}}</h1>
-            <p id="scdline" class="lead mb-0">{{__('lp_titles.french_branch')}}</p>
-            <button id="btnjoin" type="button" class="btn btn-primary-spacing btn-lg">{{__('lp_titles.join_us')}}</button>
-          </div>
-        </div>
+@section('page-masthead')
+<header class="masthead text-center text-white">
+  <div class="masthead-content">
+    <div class="container bg-overlay">
+      <h1 class="masthead-heading mb-2 mt-5">{{__('lp_titles.welcome_to_vatfrance')}}!</h1>
+      <h2 class="masthead-subheading mb-2">{{__('lp_titles.french_branch')}}</h2>
+      <a href="#" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
+        >{{__('lp_titles.join_us')}}!</a
+      >
     </div>
   </div>
-</section>
+</header>
 @endsection
 
-@section('aboutus')
-<section name="about" id="aboutus">
-  <div class="aboutus">
-    <h1>{{__('lp_titles.about_us')}}</h1>
-    <p id="welcomep">Welcome to VatFrance! The french place for virtual pilots and ATC members of the VATSIM Network !</p>
-    <p>Our objective is to provide ATC services, organizing events, train controllers and pilots in the French vACC.</p>
-    <p id="thirdp">Want to join us as a visitor member ? Do not hesitate and join our Teamspeak server here</p>
-    <p>Our watchword: seriousness and good mood/humour. We French are waiting for you!</p>
-    <p id="dataptc"><a class="dphp" href="{{ route('policy.privacy', app()->getLocale()) }}" target="_blank">Data Protection and Handling Policy</a></p>
-  </div>
-</section>
-@endsection
-
-@section('stats')
-<section name="statistics">
-  <div class="stats">
-    <h1>{{__('lp_titles.stats')}}</h1>
-    <h3 class="desc">VatFrance in figures</h3>
-
-      <div class="row">
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-12 mb-4">
-          <div class="text-center">
-            <h2 class="h1 mb-0">465</h2>
-            <p>Pilots Inbound or Outbound of French Airports</p>
-          </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="text-center">
-            <h2 class="h1 mb-0">4</h2>
-            <p>Online ATC</p>
-          </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="text-center">
-            <h2 class="h1 mb-0">LFPG</h2>
-            <p>Busiest airport at the moment</p>
-          </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="text-center">
-            <h2 class="h1 mb-0">LFLL</h2>
-            <p>Busiest airport at the moment (with ATC online)</p>
-          </div>
-        </div>
-        <!--Grid column-->
-    </div>
-  <!--Grid row-->
-  </div>
-</section>
-@endsection
-
-@section('upcoming')
-<section name="upcoming">
-  <div class="blog-home2 py-5">
-    <div class="container">
-      <!-- Row  -->
-      <div class="row justify-content-center">
-        <!-- Column -->
-        <div class="col-md-8 text-center">
-          <h3 id="titlesection" class="my-3">{{__('lp_titles.upcoming_events')}}</h3>
-          <h3 class="subtitle">You will find here all the upcoming events within the French division of Vatsim! This is the perfect opportunity to liven up the blue white red sky !</h3>
-        </div>
-        <!-- Column -->
-        <!-- Column -->
-      </div>
-      <div class="row mt-4">
-        <!-- Column -->
-        <div class="col-md-4 on-hover">
-          <div class="card border-0 mb-4">
-            <a href="#"><img class="card-img-top" src="{{ asset('media/img/events/occitanie.jpg') }}" alt="wrappixel kit"></a>
-            <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">July<span class="d-block">07</span></div>
-            <h5 class="font-weight-medium mt-3"><a href="#" class="text-decoration-none link">Venez atterrir en Occitanie !</a></h5>
-            <p class="mt-3">Come and fly to Occitania ! LFMT, LFCR, LFBO and many more platforms will be staffed just for you</p>
-            <a href="#" class="text-decoration-none linking text-themecolor mt-2">Learn More</a>
-          </div>
-        </div>
-        <!-- Column -->
-        <div class="col-md-4 on-hover">
-          <div class="card border-0 mb-4">
-            <a href="#"><img class="card-img-top" src="{{ asset('media/img/events/friday.jpg') }}" alt="wrappixel kit"></a>
-            <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">July<span class="d-block">10</span></div>
-            <h5 class="font-weight-medium mt-3"><a href="#" class="text-decoration-none link">Friday Online Day</a></h5>
-            <p class="mt-3">Friday French Online Day ! Come to France to have the chance to see many french positions staffed this day !</p>
-            <a href="#" class="text-decoration-none linking text-themecolor mt-2">Learn More</a>
-          </div>
-        </div>
-        <!-- Column -->
-        <div class="col-md-4 on-hover">
-          <div class="card border-0 mb-4">
-            <a href="#"><img class="card-img-top" src="{{ asset('media/img/events/shuttle.jpg') }}" alt="wrappixel kit"></a>
-            <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">July<span class="d-block">16</span></div>
-            <h5 class="font-weight-medium mt-3"><a href="#" class="text-decoration-none link">Shuttle Bordeaux-Lyon (LFBD-LFLL)</a></h5>
-            <p class="mt-3">Come and fly from/to Bordeaux or Lyon. Both platforms including centers will be staffed for you !</p>
-            <a href="#" class="text-decoration-none linking text-themecolor mt-2">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <!-- Column -->
-        <div class="col-md-4 on-hover">
-          <div class="card border-0 mb-4">
-            <a href="#"><img class="card-img-top" src="{{ asset('media/img/events/citylink.jpg') }}" alt="wrappixel kit"></a>
-            <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">July<span class="d-block">17</span></div>
-            <h5 class="font-weight-medium mt-3"><a href="#" class="text-decoration-none link">Citylink LFMN-LIRN</a></h5>
-            <p class="mt-3">Citylink between Nice And Naples. Enjoy full coverage between these two airports today!</p>
-            <a href="#" class="text-decoration-none linking text-themecolor mt-2">Learn More</a>
-          </div>
-        </div>
-        <!-- Column -->
-        <div class="col-md-4 on-hover">
-          <div class="card border-0 mb-4">
-            <a href="#"><img class="card-img-top" src="{{ asset('media/img/events/yet2come.jpg') }}" alt="wrappixel kit"></a>
-            <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">Aug<span class="d-block">10</span></div>
-            <h5 class="font-weight-medium mt-3"><a href="#" class="text-decoration-none link">To come</a></h5>
-            <p class="mt-3">The best is yet to come!</p>
-            <a href="#" class="text-decoration-none linking text-themecolor mt-2">Learn More</a>
-          </div>
-        </div>
-        <!-- Column -->
-        <div class="col-md-4 on-hover">
-          <div class="card border-0 mb-4">
-            <a href="#"><img class="card-img-top" src="{{ asset('media/img/events/yet2come.jpg') }}" alt="wrappixel kit"></a>
-            <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">Aug<span class="d-block">16</span></div>
-            <h5 class="font-weight-medium mt-3"><a href="#" class="text-decoration-none link">To come</a></h5>
-            <p class="mt-3">The best is yet to come!</p>
-            <a href="#" class="text-decoration-none linking text-themecolor mt-2">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </div>
+@section('page-content')
+  <!-- Page Content -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="font-weight-medium">{{__('lp_titles.welcome')}}!</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus
+      ab nulla dolorum autem nisi officiis blanditiis voluptatem hic,
+      assumenda aspernatur facere ipsam nemo ratione cumque magnam enim
+      fugiat reprehenderit expedita, Lorem ipsum dolor sit amet, consectetur
+      adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis
+      blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo
+      ratione cumque magnam enim fugiat reprehenderit expedita. Lorem ipsum
+      dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla
+      dolorum autem nisi officiis blanditiis voluptatem hic, assumenda
+      aspernatur facere ipsam nemo ratione cumque magnam enim fugiat
+      reprehenderit expedita
+    </p>
+    <p class="text-right">
+      John Doe <br />
+      {{__('lp_titles.vacc_director')}}
+    </p>
   </div>
 </section>
 @endsection

@@ -7,4 +7,6 @@ return [
   'about_us' => 'About us',
   'stats' => 'Statistics',
   'upcoming_events' => 'Upcoming Events',
+  'welcome' => 'Welcome',
+  'vacc_director' => 'VATFrance Division Director',
 ];

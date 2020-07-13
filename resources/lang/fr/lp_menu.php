@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'home' => 'Home',
+  'home' => 'Accueil',
   'atc' => 'ATC',
   'training_atc' => 'Entrainement ATC',
   'request_atc' => 'Demandes d\'ATC',
@@ -12,4 +12,6 @@ return [
   'logout' => 'Deconnexion',
   'home_title' => 'Portail - :fname',
   'homebtn' => 'Espace membre',
+  'events' => 'Évènements',
+  'feedback' => 'Feedback',
 ];
