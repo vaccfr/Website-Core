@@ -55,18 +55,25 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="example2" class="table table-bordered table-hover">
+            <table
+              id="atc_sessions_table"
+              class="table table-bordered table-hover"
+              data-order='[[ 2, "desc" ]]'>
               <thead>
               <tr>
                 <th>{{__('app_indexpage.callsign')}}</th>
                 <th>{{__('app_indexpage.sess_time')}}</th>
+                <th>{{__('app_indexpage.sess_start')}}</th>
+                <th>{{__('app_indexpage.sess_end')}}</th>
               </tr>
               </thead>
               <tbody>
                 @foreach ($sessions as $sess)
                   <tr>
                     <td>{{ $sess['callsign'] }}</td>
-                    <td>{{ $sess['minutes_on_callsign'] }}</td>
+                    <td>{{ $sess['duration'] }}</td>
+                    <td>{{ $sess['start_time'] }}</td>
+                    <td>{{ $sess['end_time'] }}</td>
                   </tr>
                 @endforeach
               </tbody>
@@ -81,14 +88,13 @@
   <script src="{{ asset('dashboard/adminlte/dist/js/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
   <script>
-    $('#example2').DataTable({
+    $('#atc_sessions_table').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
-      "ordering": true,
-      "info": true,
+      "ordering": false,
       "autoWidth": false,
-      "responsive": true,
+      "scrollY": 400,
     });
   </script>
 @endsection
