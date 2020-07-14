@@ -68,27 +68,4 @@ class User extends Authenticatable
         $fullrank = $this->atc_rating_short." (".$this->atc_rating_long.")";
         return $fullrank;
     }
-    
-    public function totalTimes()
-    {
-        $cid = $this->vatsim_id;
-        try {
-            $response = (new Client)->get('https://api.vatsim.net/api/ratings/'.$cid.'/rating_times', [
-                'header' => [
-                    'Accept' => 'application/json',
-                ]
-            ]);
-            $response = json_decode((string) $response->getBody(), true);
-            $return = [
-                'atc' => $response['atc'],
-                'pilot' => $response['pilot'],
-            ];
-        } catch(ClientException $e) {
-            $return = [
-                'atc' => 'Api Error',
-                'pilot' => 'Api Error',
-            ];
-        }
-        return $return;
-    }
 }
