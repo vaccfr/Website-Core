@@ -38,6 +38,10 @@ Route::group([
         'prefix' => '/app',
     ], function() {
         Route::get('/', 'App\MainController@index')->name('app.index');
+
+        Route::group(['prefix' => 'atc'], function() {
+            Route::get('/mybookings', 'App\MainController@mybookings')->name('app.atc.mybookings');
+        });
     });
 });
 

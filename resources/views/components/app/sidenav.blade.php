@@ -81,7 +81,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('app.atc.mybookings', app()->getLocale()) }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>{{__('app_menus.atc_my_bookings')}}</p>
               </a>
