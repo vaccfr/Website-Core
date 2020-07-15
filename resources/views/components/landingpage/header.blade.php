@@ -36,9 +36,8 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Staff </a>
+            <a class="dropdown-item" href="{{ route('landingpage.home.policies', app()->getLocale()) }}">Statutes and Policies</a>
           </div>
         </li>
 
@@ -57,9 +56,8 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Charts</a>
+            <a class="dropdown-item" href="#">Pilot training</a>
           </div>
         </li>
 
@@ -78,9 +76,9 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">ATC training</a>
+            <a class="dropdown-item" href="#">Bookings</a>
+            <a class="dropdown-item" href="#">Visiting Controllers</a>
           </div>
         </li>
 
@@ -99,9 +97,7 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Upcoming Events</a>
           </div>
         </li>
 

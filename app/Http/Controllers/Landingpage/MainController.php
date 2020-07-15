@@ -12,18 +12,8 @@ class MainController extends Controller
         return view('landingpage.index');
     }
 
-    public function atctraining()
+    public function policies()
     {
-        return view('landingpage.atctraining');
-    }
-
-    public function atcrequest()
-    {
-        return view('landingpage.index');
-    }
-
-    public function pilottraining()
-    {
-        return view('landingpage.index');
+        return view('landingpage.statutes_policies');
     }
 }

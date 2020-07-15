@@ -4,11 +4,12 @@
   </div>
 </footer> --}}
 <!-- Footer -->
-<footer class="py-5 bg-black">
-  <div class="container">
-    <p class="m-1 text-center text-white small">
-      VATFrance 2020
-    </p>
-  </div>
-  <!-- /.container -->
+<footer id="footer">
+  <ul class="btn btn-link">
+    <!--					<li><a href="#">FAQ</a></li>-->
+    <li><b href="#" id="contact" class="link">Contact us</b></li>
+  </ul>
+  <br />
+  <!-- <p class="copyright">made with<br />♥</p>-->
+  <span class="copyright">&copy; VatFrance. All rights reserved.</span>
 </footer>

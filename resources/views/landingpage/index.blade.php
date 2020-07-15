@@ -32,20 +32,14 @@
       <div class="col-sm">
         <h2 class="font-weight-medium">{{__('lp_titles.welcome')}}!</h2>
         <p class="mt-4">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Repellendus ab nulla dolorum autem nisi officiis blanditiis
-          voluptatem hic, assumenda aspernatur facere ipsam nemo ratione
-          cumque magnam enim fugiat reprehenderit expedita, Lorem ipsum
-          dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla
-          dolorum autem nisi officiis blanditiis voluptatem hic, assumenda
-          aspernatur facere ipsam nemo ratione cumque magnam enim fugiat
-          reprehenderit expedita. Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis
-          blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo
-          ratione cumque magnam enim fugiat reprehenderit expedita
+          Soyez les bienvenus chez Vatfrance ! Nous avons le privilège d'être accueillis par Vatsim.
+          Notre but est de vous initier au contrôle aérien. Si vous êtes pilotes, vous apprendrez la phraséologie,
+          qui vous permettra de voler dans un espace contrôlé.
+          Nous ne sommes qu'une petite équipe constituée de passionnés de l'aviation.
+          Au plaisir de vous rencontrer.
         </p>
         <p class="text-right">
-          John Doe <br />
+          Patrick Fuchez <br />
           {{__('lp_titles.vacc_director')}}
         </p>
       </div>
