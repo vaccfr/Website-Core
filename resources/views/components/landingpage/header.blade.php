@@ -137,7 +137,7 @@
             </a>
           </li>
         @endif
-        <li class="nav-item dropdown">
+        <li class="nav-item dropright">
           <a
             class="nav-link dropdown-toggle"
             href="#"

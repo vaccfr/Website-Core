@@ -28,24 +28,110 @@
   <!-- Page Content -->
 <section class="py-5">
   <div class="container">
-    <h2 class="font-weight-medium">{{__('lp_titles.welcome')}}!</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus
-      ab nulla dolorum autem nisi officiis blanditiis voluptatem hic,
-      assumenda aspernatur facere ipsam nemo ratione cumque magnam enim
-      fugiat reprehenderit expedita, Lorem ipsum dolor sit amet, consectetur
-      adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis
-      blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo
-      ratione cumque magnam enim fugiat reprehenderit expedita. Lorem ipsum
-      dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla
-      dolorum autem nisi officiis blanditiis voluptatem hic, assumenda
-      aspernatur facere ipsam nemo ratione cumque magnam enim fugiat
-      reprehenderit expedita
-    </p>
-    <p class="text-right">
-      John Doe <br />
-      {{__('lp_titles.vacc_director')}}
-    </p>
+    <div class="row">
+      <div class="col-sm">
+        <h2 class="font-weight-medium">{{__('lp_titles.welcome')}}!</h2>
+        <p class="mt-4">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Repellendus ab nulla dolorum autem nisi officiis blanditiis
+          voluptatem hic, assumenda aspernatur facere ipsam nemo ratione
+          cumque magnam enim fugiat reprehenderit expedita, Lorem ipsum
+          dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla
+          dolorum autem nisi officiis blanditiis voluptatem hic, assumenda
+          aspernatur facere ipsam nemo ratione cumque magnam enim fugiat
+          reprehenderit expedita. Lorem ipsum dolor sit amet, consectetur
+          adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis
+          blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo
+          ratione cumque magnam enim fugiat reprehenderit expedita
+        </p>
+        <p class="text-right">
+          John Doe <br />
+          {{__('lp_titles.vacc_director')}}
+        </p>
+      </div>
+      <div class="col-sm">
+        <h2 class="font-weight-medium">{{__('lp_titles.atc_bookings')}}</h2>
+        <div class="card text-center mt-4">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#atc-tab-1" data-toggle="tab">Mon. 01/01</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#atc-tab-2" data-toggle="tab">Tue. 01/02</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#atc-tab-3" data-toggle="tab">Wed. 01/03</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane active" role="tabpanel" id="atc-tab-1">
+                <table class="table">
+                  <thead class="thead">
+                    <tr>
+                      <th scope="col">{{__('lp_atcbookings.position')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.name')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.hours')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.rating')}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">LFLL_TWR</th>
+                      <td>Jacob Doe (1458754)</td>
+                      <td>09:00z - 15:00z</td>
+                      <td>S1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane" role="tabpanel" id="atc-tab-2">
+                <table class="table">
+                  <thead class="thead">
+                    <tr>
+                      <th scope="col">{{__('lp_atcbookings.position')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.name')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.hours')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.rating')}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">LSGG_APP</th>
+                      <td>Jacob Doe (1458754)</td>
+                      <td>09:00z - 15:00z</td>
+                      <td>S1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane" role="tabpanel" id="atc-tab-3">
+                <table class="table">
+                  <thead class="thead">
+                    <tr>
+                      <th scope="col">{{__('lp_atcbookings.position')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.name')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.hours')}}</th>
+                      <th scope="col">{{__('lp_atcbookings.rating')}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">LSGG_APP</th>
+                      <td>Jacob Doe (1458754)</td>
+                      <td>09:00z - 15:00z</td>
+                      <td>S1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 @endsection

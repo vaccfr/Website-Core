@@ -1,9 +1,3 @@
-/*!
- * Start Bootstrap - One Page Wonder v5.0.8 (https://startbootstrap.com/template-overviews/one-page-wonder)
- * Copyright 2013-2020 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-one-page-wonder/blob/master/LICENSE)
- */
-
 body {
   font-family: 'Open Sans', sans-serif;
   text-rendering: optimizeLegibility;
@@ -14,21 +8,25 @@ body {
   line-height: 1.9;
   color: #425466;
   text-align: left;
-  background-color: #f2f2ff;
+  background-color: #f2f2f2;
 }
 a {
-  color: #8898f2;
+  color: #262626;
+  font-size: 0.9375rem;
+  font-weight: 500;
   text-decoration: none;
-  background-color: transparent;
 }
 a:hover {
   color: #5068f2;
   text-decoration: underline;
 }
-b{
-  color: #3552f2;
+b {
+  color: #f2f2f2;
 }
-h1 ,
+b:hover {
+  color: #f2f2f2;
+}
+h1,
 h2,
 h3,
 h4,
@@ -37,6 +35,16 @@ h6 {
   font-family: 'Open Sans';
   font-weight: 600 !important;
 }
+th,
+td {
+  font-size: 0.8rem;
+}
+
+.thead{
+  color: #5068f2;
+
+}
+
 
 .btn {
   font-size: 11px;
@@ -109,7 +117,7 @@ header.masthead {
   padding-bottom: 7rem;
   /* background: linear-gradient(0deg, #e2e2e9 0%, #64a19d 100%); */
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('../../media/img/lp/fr.jpg');
+    url('/img/fr.jpg');
   background-color: #000;
   background-size: cover;
   background-position: center;
@@ -159,21 +167,27 @@ header.masthead .masthead-content .masthead-subheading {
 }
 
 .btn-secondary {
-  background-color: #ff6a00;
-  border-color: #ff6a00;
+  background-color: #5068f2;
+  border-color: #5068f2;
 }
 
 .btn-secondary:active,
 .btn-secondary:focus,
 .btn-secondary:hover {
-  background-color: #cc5500 !important;
-  border-color: #cc5500 !important;
+  background-color: #253aac !important;
+  border-color: #253aac !important;
 }
 
-.btn-secondary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
+.dropdown-item {
+  font-size: 0.85rem;
+  text-align: left;
 }
-
+.dropdown-item:hover {
+  color: #5068f2 !important;
+}
+.dropdown-item:active {
+  background-color: #f2f2f2;
+}
 @media screen and (min-width: 768px) {
   .dropdown:hover .dropdown-menu,
   .btn-group:hover .dropdown-menu {
@@ -189,6 +203,22 @@ header.masthead .masthead-content .masthead-subheading {
   .nav-tabs .dropdown-toggle {
     margin-bottom: 0;
   }
+}
+
+.text-muted {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.contact_header {
+  color: #f2f2f2;
+  background-color: #262626;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.display-4 {
+  text-transform: uppercase;
 }
 
 /* Change this breakpoint if you change the breakpoint of the navbar */
@@ -246,4 +276,23 @@ header.masthead .masthead-content .masthead-subheading {
   #vatfrancelogo {
     margin-left: 10px;
   }
+}
+
+/* Footer */
+#footer {
+  background-color: #262626;
+  color: #f2f2f2;
+  padding: 4em 0;
+  text-align: center;
+}
+#footer .icons {
+  margin: 0 0 4em 0;
+}
+#footer .menu a {
+  color: inherit;
+}
+#footer .copyright {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
 }

@@ -9,4 +9,5 @@ return [
   'upcoming_events' => 'Upcoming Events',
   'welcome' => 'Welcome',
   'vacc_director' => 'VATFrance Division Director',
+  'atc_bookings' => 'ATC Bookings',
 ];
