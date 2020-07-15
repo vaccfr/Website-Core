@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'vatsim_id', 'fname', 'lname', 'email', 'account_type', 
+        'id', 'vatsim_id', 'fname', 'lname', 'email', 'account_type', 
         'atc_rating', 'atc_rating_short', 'atc_rating_long', 'pilot_rating', 
         'division_id', 'division_name', 'region_id', 'region_name', 'subdiv_id', 'subdiv_name',
         'is_staff', 'staff_level',

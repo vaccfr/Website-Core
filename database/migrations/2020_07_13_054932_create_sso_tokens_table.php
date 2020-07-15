@@ -14,7 +14,7 @@ class CreateSSOTokensTable extends Migration
     public function up()
     {
         Schema::create('sso_tokens', function (Blueprint $table) {
-            $table->integer('id');
+            $table->bigInteger('id');
             $table->integer('vatsim_id')->unique();
             $table->longText('access_token')->nullable();
             $table->longText('refresh_token')->nullable();

@@ -7,6 +7,7 @@ use App\Models\ATC\AtcRosterMember;
 use App\Models\SSO\SSOToken;
 use App\Models\Users\User;
 use App\Models\Users\UserSetting;
+use Godruoyi\Snowflake\Snowflake;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Str;
@@ -69,8 +70,9 @@ class AuthController extends Controller
         }
         
         $response = json_decode($response->getBody());
-
+        $userid = (new Snowflake)->id();
         User::updateOrCreate(['vatsim_id' => $response->data->cid], [
+            'id' => $userid,
             'email' => isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org',
             'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
             'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
@@ -88,11 +90,11 @@ class AuthController extends Controller
         $user = User::where('vatsim_id', $response->data->cid)->first();
 
         UserSetting::updateOrCreate(['vatsim_id' => $response->data->cid], [
-            'id' => $user->id
+            'id' => $userid,
         ]);
 
         SSOToken::updateOrCreate(['vatsim_id' => $response->data->cid], [
-            'id' => $user->id,
+            'id' => $userid,
             'access_token' => $tokens['access_token'],
             'refresh_token' => $tokens['refresh_token'],
         ]);
@@ -101,7 +103,7 @@ class AuthController extends Controller
 
         if ($user->subdiv_id == "FRA" && $user->atc_rating > 1) {
             AtcRosterMember::updateOrCreate(['vatsim_id' => $response->data->cid], [
-                'id' => $user->id,
+                'id' => $userid,
                 'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
                 'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
                 'rating' => $response->data->vatsim->rating->id,

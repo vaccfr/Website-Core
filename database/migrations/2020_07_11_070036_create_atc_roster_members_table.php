@@ -14,7 +14,7 @@ class CreateAtcRosterMembersTable extends Migration
     public function up()
     {
         Schema::create('atc_roster_members', function (Blueprint $table) {
-            $table->integer('id')->unique();
+            $table->bigInteger('id')->unique();
             $table->integer('vatsim_id');
             $table->string('fname');
             $table->string('lname');
