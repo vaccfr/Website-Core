@@ -22,17 +22,4 @@ class MainController extends Controller
             'pilotTimes' => $times['pilot'],
         ]);
     }
-
-    // ATC
-    public function mybookings()
-    {
-        $sessions = app(VatsimDataController::class)->getATCSessions();
-        $times = app(VatsimDataController::class)->getUserHours();
-
-        return view('app.atc.mybookings', [
-            'sessions' => $sessions,
-            'atcTimes' => $times['atc'],
-            'pilotTimes' => $times['pilot'],
-        ]);
-    }
 }

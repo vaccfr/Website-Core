@@ -32,9 +32,6 @@ Route::group([
     Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
     Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
-    // DEV ROUTES
-    Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
-
     // Member dashboard routes with locales
     Route::group([
         'middleware' => 'auth:web',
@@ -43,9 +40,12 @@ Route::group([
         Route::get('/', 'App\MainController@index')->name('app.index');
 
         Route::group(['prefix' => 'atc'], function() {
-            Route::get('/mybookings', 'App\MainController@mybookings')->name('app.atc.mybookings');
+            Route::get('/mybookings', 'ATC\BookingController@MyBookingsPage')->name('app.atc.mybookings');
         });
     });
+
+    // DEV ROUTES
+    // Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
 });
 
 // Auth::routes();

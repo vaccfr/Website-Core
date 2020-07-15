@@ -3,12 +3,26 @@
 namespace App\Http\Controllers\ATC;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\Utilities;
+use App\Models\ATC\ATCStation;
 use App\Models\ATC\Booking;
+use Exception;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+    public function MyBookingsPage()
+    {
+        $allowedRanks = app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short);
+        $stations = ATCStation::orderBy('code', 'ASC')
+        ->whereIn('rank', $allowedRanks)
+        ->get();
+        
+        return view('app.atc.mybookings', [
+            'stations' => $stations,
+            ]);
+    }
     public function book(Request $request)
     {
         $redirectURI = env('APP_URL').'/'.app()->getLocale().'atc/validateBooking';

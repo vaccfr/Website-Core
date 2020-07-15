@@ -16,7 +16,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         {{-- Top Section of the menu --}}
         <li class="nav-item">
-          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link @if (Route::is('app.index')) active @endif">
             <i class="nav-icon fa fa-home"></i>
             <p>{{__('app_menus.home')}}</p>
           </a>
@@ -65,7 +65,7 @@
 
         {{-- ATC Section of the menu --}}
         <li class="nav-header">{{__('app_menus.atc_header')}}</li>
-        <li class="nav-item has-treeview">
+        <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-headphones"></i>
             <p>
@@ -81,7 +81,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('app.atc.mybookings', app()->getLocale()) }}" class="nav-link">
+              <a href="{{ route('app.atc.mybookings', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.mybookings')) active @endif">
                 <i class="far fa-circle nav-icon"></i>
                 <p>{{__('app_menus.atc_my_bookings')}}</p>
               </a>

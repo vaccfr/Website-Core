@@ -47,4 +47,21 @@ class Utilities extends Controller
         $format = 'Y/m/d - H:i:s';
         return date_format(date_create($data), $format);
     }
+
+    public function getAuthedRanks($userrank)
+    {
+        if ($userrank == "OBS") {
+            return ["OBS"];
+        } elseif ($userrank == "S1") {
+            return ["S1"];
+        } elseif ($userrank == "S2") {
+            return ["S1", "S2"];
+        } elseif ($userrank == "S3") {
+            return ["S1", "S2", "S3"];
+        } elseif ($userrank == "C1") {
+            return ["S1", "S2", "S3", "C1"];
+        } else {
+            return ["S1", "S2", "S3", "C1"];
+        }
+    }
 }
