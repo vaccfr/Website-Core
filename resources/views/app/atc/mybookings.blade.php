@@ -35,7 +35,7 @@
                 <label>Position</label>
                 <select class="form-control">
                   @foreach ($stations as $s)
-                      <option value="{{ $s['code'] }}">{{ $s['code'] }}</option>
+                      <option value="{{ $s['code'] }}">{{ $s['code'] }} ({{ $s['parent']['city'] }} {{ $s['parent']['airport'] }})</option>
                   @endforeach
                 </select>
               </div>
@@ -92,6 +92,7 @@
     });
   </script>
   <script>
+    d = new Date();
     flatpickr("#booking-date", {
         enableTime: false,
         dateFormat: "d.m.Y",
@@ -103,19 +104,21 @@
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",
-        defaultHour: null,
-        defaultMinute: null,
+        defaultHour: d.getUTCHours(),
+        defaultMinute: 00,
         allowInput: true,
         time_24hr: true,
+        minuteIncrement: 15
     });
     flatpickr("#endtime", {
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",
-        defaultHour: null,
-        defaultMinute: null,
+        defaultHour: d.getUTCHours()+1,
+        defaultMinute: 00,
         allowInput: true,
         time_24hr: true,
+        minuteIncrement: 15
     });
 </script>
 @endsection

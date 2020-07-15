@@ -17,8 +17,11 @@ class BookingController extends Controller
         $allowedRanks = app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short);
         $stations = ATCStation::orderBy('code', 'ASC')
         ->whereIn('rank', $allowedRanks)
+        ->with('parent')
         ->get();
-        
+        // foreach ($stations as $s) {
+        //     dd($s['parent']);
+        // }
         return view('app.atc.mybookings', [
             'stations' => $stations,
             ]);

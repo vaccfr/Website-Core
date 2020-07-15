@@ -16,6 +16,6 @@ class ATCStation extends Model
 
     public function parent()
     {
-        return $this->hasOne(Airport::class, 'airport_id', 'id');
+        return $this->hasOne(Airport::class, 'id', 'airport_id');
     }
 }
