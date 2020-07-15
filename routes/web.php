@@ -32,6 +32,9 @@ Route::group([
     Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
     Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
+    // DEV ROUTES
+    Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
+
     // Member dashboard routes with locales
     Route::group([
         'middleware' => 'auth:web',

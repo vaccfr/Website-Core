@@ -1,0 +1,2485 @@
+[
+  {
+    "id": "1",
+    "icao": "LFBD",
+    "fir": "18",
+    "city": "Bordeaux",
+    "airport": "Merignac",
+    "atis": "131.150",
+    "positions": [
+      {
+        "code": "LFBD_APP",
+        "frequency": "119.270",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBD_GND",
+        "frequency": "121.900",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFBD_I_APP",
+        "frequency": "120.570",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFBD_TWR",
+        "frequency": "118.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "icao": "LFBA",
+    "fir": "18",
+    "city": "Agen",
+    "airport": "La Garenne",
+    "atis": "129.600",
+    "positions": [
+      {
+        "code": "LFBA_TWR",
+        "frequency": "119.15",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "icao": "LFBE",
+    "fir": "18",
+    "city": "Bergerac",
+    "airport": "",
+    "atis": "127.475",
+    "positions": [
+      {
+        "code": "LFBE_TWR",
+        "frequency": "119.800",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "icao": "LFBF",
+    "fir": "18",
+    "city": "Toulouse",
+    "airport": "Francazal",
+    "atis": "",
+    "positions": []
+  },
+  {
+    "id": "5",
+    "icao": "LFBG",
+    "fir": "18",
+    "city": "Cognac",
+    "airport": "Chateau Bernard",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFBG_APP",
+        "frequency": "122.550",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBG_TWR",
+        "frequency": "120.070",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "icao": "LFBH",
+    "fir": "18",
+    "city": "La Rochelle",
+    "airport": "",
+    "atis": "126.875",
+    "positions": [
+      {
+        "code": "LFBH_APP",
+        "frequency": "124.200",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBH_TWR",
+        "frequency": "118.000",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "icao": "LFBI",
+    "fir": "18",
+    "city": "Poitiers",
+    "airport": "Biard",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFBI_APP",
+        "frequency": "130.900",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBI_TWR",
+        "frequency": "118.500",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFBI_I_APP",
+        "frequency": "120.770",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "icao": "LFBL",
+    "fir": "18",
+    "city": "Limoge",
+    "airport": "Bellegarde",
+    "atis": "128.075",
+    "positions": [
+      {
+        "code": "LFBL_APP",
+        "frequency": "119.200",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBL_TWR",
+        "frequency": "118.700",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "icao": "LFBM",
+    "fir": "18",
+    "city": "Mont de Marsan",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFBM_TWR",
+        "frequency": "122.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "icao": "LFBO",
+    "fir": "18",
+    "city": "Toulouse",
+    "airport": "Blagnac",
+    "atis": "118.020",
+    "positions": [
+      {
+        "code": "LFBO_APP",
+        "frequency": "129.300",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBO_W_APP",
+        "frequency": "125.170",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFBO_TWR",
+        "frequency": "118.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFBO_DEL",
+        "frequency": "121.700",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFBO_GND",
+        "frequency": "121.900",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFBO_I_APP",
+        "frequency": "121.250",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "icao": "LFBP",
+    "fir": "18",
+    "city": "Pau",
+    "airport": "Pyrénées",
+    "atis": "128.475",
+    "positions": [
+      {
+        "code": "LFBP_I_APP",
+        "frequency": "126.520",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFBP_TWR",
+        "frequency": "124.150",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFBP_APP",
+        "frequency": "128.800",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBP_GND",
+        "frequency": "121.750",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "icao": "LFBT",
+    "fir": "18",
+    "city": "Tarbes",
+    "airport": "",
+    "atis": "125.95",
+    "positions": [
+      {
+        "code": "LFBT_APP",
+        "frequency": "120.300",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBT_TWR",
+        "frequency": "119.050",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFBT_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "icao": "LFBZ",
+    "fir": "18",
+    "city": "Biarritz",
+    "airport": "Bayonne Anglet",
+    "atis": "128.220",
+    "positions": [
+      {
+        "code": "LFBZ_APP",
+        "frequency": "125.600",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFBZ_TWR",
+        "frequency": "118.700",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFBZ_GND",
+        "frequency": "121.950",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "icao": "LFCH",
+    "fir": "18",
+    "city": "Arcachon",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFCH_I_TWR",
+        "frequency": "118.750",
+        "type": "AFIS",
+        "rank": "",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "icao": "LFCI",
+    "fir": "18",
+    "city": "Albi",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFCI_I_TWR",
+        "frequency": "118.950",
+        "type": "AFIS",
+        "rank": "",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "icao": "LFCL",
+    "fir": "18",
+    "city": "Toulouse",
+    "airport": "Lasbordes",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFCL_TWR",
+        "frequency": "122.700",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "icao": "LFCR",
+    "fir": "18",
+    "city": "Rodez",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFCR_APP",
+        "frequency": "125.370",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFCR_TWR",
+        "frequency": "118.120",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "icao": "LFBB",
+    "fir": "0",
+    "city": "Bordeaux",
+    "airport": "CENTRE",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFBB_CTR",
+        "frequency": "125.100",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "S3"
+      },
+      {
+        "code": "LFBB_U_CTR",
+        "frequency": "135.900",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "C1"
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "icao": "LFFF",
+    "fir": "0",
+    "city": "Paris",
+    "airport": "CENTRE",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFFF_CTR",
+        "frequency": "128.100",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "S3"
+      },
+      {
+        "code": "LFFF_E_CTR",
+        "frequency": "132.100",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFFF_U_CTR",
+        "frequency": "124.720",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "C1"
+      },
+      {
+        "code": "LFFF_W_CTR",
+        "frequency": "128.870",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "icao": "LFMM",
+    "fir": "0",
+    "city": "Marseille",
+    "airport": "CENTRE",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFMM_CTR",
+        "frequency": "126.150",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "S3"
+      },
+      {
+        "code": "LFMM_W_CTR",
+        "frequency": "128.320",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFMM_U_CTR",
+        "frequency": "125.850",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "C1"
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "icao": "LFRR",
+    "fir": "0",
+    "city": "Brest",
+    "airport": "CENTRE",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFRR_CTR",
+        "frequency": "125.500",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "S3"
+      },
+      {
+        "code": "LFRR_U_CTR",
+        "frequency": "132.120",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "C1"
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "icao": "LFEE",
+    "fir": "0",
+    "city": "Reims",
+    "airport": "CENTRE",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFEE_CTR",
+        "frequency": "128.300",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "S3"
+      },
+      {
+        "code": "LFEE_U_CTR",
+        "frequency": "127.550",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "C1"
+      }
+    ]
+  },
+  {
+    "id": "24",
+    "icao": "LFGJ",
+    "fir": "22",
+    "city": "Dole",
+    "airport": "Tavaux",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFGJ_TWR",
+        "frequency": "119.400",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "26",
+    "icao": "LFKB",
+    "fir": "20",
+    "city": "Bastia",
+    "airport": "Poretta",
+    "atis": "125.920",
+    "positions": [
+      {
+        "code": "LFKB_APP",
+        "frequency": "123.820",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFKB_GND",
+        "frequency": "121.820",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFKB_I_APP",
+        "frequency": "124.720",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFKB_TWR",
+        "frequency": "118.000",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "25",
+    "icao": "LFJL",
+    "fir": "22",
+    "city": "Metz",
+    "airport": "Nancy Lorraine",
+    "atis": "128.570",
+    "positions": [
+      {
+        "code": "LFJL_APP",
+        "frequency": "119.120",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFJL_TWR",
+        "frequency": "118.200",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFJL_GND",
+        "frequency": "121.700",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "23",
+    "icao": "LFSB",
+    "fir": "22",
+    "city": "Bâle",
+    "airport": "Mulhouse",
+    "atis": "127.870",
+    "positions": [
+      {
+        "code": "LFSB_TWR",
+        "frequency": "118.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFSB_APP",
+        "frequency": "119.350",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFSB_GND",
+        "frequency": "121.600",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFSB_DEL",
+        "frequency": "120.500",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "27",
+    "icao": "LFKF",
+    "fir": "20",
+    "city": "Figari",
+    "airport": "Sud Corse",
+    "atis": "118.725",
+    "positions": [
+      {
+        "code": "LFKF_TWR",
+        "frequency": "120.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFKF_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "28",
+    "icao": "LFKJ",
+    "fir": "20",
+    "city": "Ajaccio",
+    "airport": "Napoleon Bonaparte",
+    "atis": "126.920",
+    "positions": [
+      {
+        "code": "LFKJ_APP",
+        "frequency": "121.050",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFKJ_I_APP",
+        "frequency": "119.820",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFKJ_TWR",
+        "frequency": "118.070",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFKJ_GND",
+        "frequency": "121.700",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "29",
+    "icao": "LFLB",
+    "fir": "20",
+    "city": "Chambery",
+    "airport": "Aix -Les-Bains",
+    "atis": "127.100",
+    "positions": [
+      {
+        "code": "LFLB_TWR",
+        "frequency": "118.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFLB_APP",
+        "frequency": "123.700",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      }
+    ]
+  },
+  {
+    "id": "30",
+    "icao": "LFLC",
+    "fir": "20",
+    "city": "Clermont Ferrand",
+    "airport": "Auvergne",
+    "atis": "126.400",
+    "positions": [
+      {
+        "code": "LFLC_APP",
+        "frequency": "128.620",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFLC_GND",
+        "frequency": "121.950",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFLC_I_APP",
+        "frequency": "122.220",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFLC_TWR",
+        "frequency": "118.620",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "31",
+    "icao": "LFLD",
+    "fir": "20",
+    "city": "Bourges",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFLD_I_TWR",
+        "frequency": "119.600",
+        "type": "AFIS",
+        "rank": "",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "32",
+    "icao": "LFLG",
+    "fir": "20",
+    "city": "Grenoble",
+    "airport": "Le Versoud",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFLG_TWR",
+        "frequency": "121.000",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFLG_GND",
+        "frequency": "121.650",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "33",
+    "icao": "LFLL",
+    "fir": "20",
+    "city": "Lyon",
+    "airport": "St Exupery",
+    "atis": "135.220",
+    "positions": [
+      {
+        "code": "LFLL_DEL",
+        "frequency": "121.700",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFLL_DEP",
+        "frequency": "133.150",
+        "type": "Depart",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFLL_GND",
+        "frequency": "121.820",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFLL_TWR",
+        "frequency": "120.450",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFLL_APP",
+        "frequency": "125.800",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      }
+    ]
+  },
+  {
+    "id": "34",
+    "icao": "LFLS",
+    "fir": "20",
+    "city": "Grenoble",
+    "airport": "Isere",
+    "atis": "133.850",
+    "positions": [
+      {
+        "code": "LFLS_TWR",
+        "frequency": "119.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFLS_GND",
+        "frequency": "121.920",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "35",
+    "icao": "LFLU",
+    "fir": "20",
+    "city": "Valence",
+    "airport": "Chabeuil",
+    "atis": "",
+    "positions": []
+  },
+  {
+    "id": "36",
+    "icao": "LFLV",
+    "fir": "20",
+    "city": "Vichy",
+    "airport": "Charmeil",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFLV_I_TWR",
+        "frequency": "121.400",
+        "type": "AFIS",
+        "rank": "",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "37",
+    "icao": "LFLX",
+    "fir": "18",
+    "city": "Chateauroux",
+    "airport": "Deols",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFLX_TWR",
+        "frequency": "125.870",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "38",
+    "icao": "LFMA",
+    "fir": "20",
+    "city": "Aix les Milles",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFMA_TWR",
+        "frequency": "118.750",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "94",
+    "icao": "LFQT",
+    "fir": "19",
+    "city": "Merville",
+    "airport": "Calonne",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFQT_TWR",
+        "frequency": "119.070",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "40",
+    "icao": "LFMI",
+    "fir": "20",
+    "city": "Istres",
+    "airport": "Le Tube",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFMI_TWR",
+        "frequency": "123.600",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "41",
+    "icao": "LFMK",
+    "fir": "18",
+    "city": "Carcassonne",
+    "airport": "Salvaza",
+    "atis": "120.020",
+    "positions": [
+      {
+        "code": "LFMK_TWR",
+        "frequency": "121.000",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "42",
+    "icao": "LFML",
+    "fir": "20",
+    "city": "Marseille",
+    "airport": "Provence",
+    "atis": "125.350",
+    "positions": [
+      {
+        "code": "LFML_APP",
+        "frequency": "131.220",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFML_DEL",
+        "frequency": "121.720",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFML_GND",
+        "frequency": "121.900",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFML_I_APP",
+        "frequency": "127.720",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFML_S_APP",
+        "frequency": "120.200",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFML_TWR",
+        "frequency": "119.500",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "43",
+    "icao": "LFMN",
+    "fir": "20",
+    "city": "Nice",
+    "airport": "",
+    "atis": "129.600",
+    "positions": [
+      {
+        "code": "LFMN_APP",
+        "frequency": "134.470",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFMN_DEL",
+        "frequency": "121.700",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFMN_DEP",
+        "frequency": "130.820",
+        "type": "Depart",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFMN_F_APP",
+        "frequency": "124.170",
+        "type": "Arrivee",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFMN_GND",
+        "frequency": "121.770",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFMN_I_APP",
+        "frequency": "120.850",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFMN_TWR",
+        "frequency": "118.700",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "44",
+    "icao": "LFMO",
+    "fir": "20",
+    "city": "Orange",
+    "airport": "Caritat",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFMO_TWR",
+        "frequency": "122.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "45",
+    "icao": "LFMP",
+    "fir": "20",
+    "city": "Perpignan",
+    "airport": "Rivesaltes",
+    "atis": "127.670",
+    "positions": [
+      {
+        "code": "LFMP_TWR",
+        "frequency": "118.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "46",
+    "icao": "LFMT",
+    "fir": "20",
+    "city": "Montpellier",
+    "airport": "Mediterranee",
+    "atis": "124.120",
+    "positions": [
+      {
+        "code": "LFMT_S_APP",
+        "frequency": "120.750",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFMT_APP",
+        "frequency": "133.770",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFMT_GND",
+        "frequency": "121.950",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFMT_TWR",
+        "frequency": "118.200",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFMT_I_APP",
+        "frequency": "119.700",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "47",
+    "icao": "LFMU",
+    "fir": "20",
+    "city": "Beziers",
+    "airport": "Vias",
+    "atis": "127.530",
+    "positions": [
+      {
+        "code": "LFMU_TWR",
+        "frequency": "120.170",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "48",
+    "icao": "LFMV",
+    "fir": "20",
+    "city": "Avignon",
+    "airport": "Caumont",
+    "atis": "120.825",
+    "positions": [
+      {
+        "code": "LFMV_TWR",
+        "frequency": "122.600",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFMV_GND",
+        "frequency": "121.750",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "49",
+    "icao": "LFOA",
+    "fir": "19",
+    "city": "Avord",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFOA_TWR",
+        "frequency": "122.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFOA_APP",
+        "frequency": "119.7",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      }
+    ]
+  },
+  {
+    "id": "50",
+    "icao": "LFOB",
+    "fir": "19",
+    "city": "Beauvais",
+    "airport": "Tille",
+    "atis": "118.375",
+    "positions": [
+      {
+        "code": "LFOB_APP",
+        "frequency": "119.900",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFOB_TWR",
+        "frequency": "121.400",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "51",
+    "icao": "LFOC",
+    "fir": "19",
+    "city": "Chateaudun",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFOC_TWR",
+        "frequency": "122.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "52",
+    "icao": "LFOJ",
+    "fir": "19",
+    "city": "Orleans",
+    "airport": "Bricy",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFOJ_TWR",
+        "frequency": "124.800",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFOJ_APP",
+        "frequency": "122.7",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      }
+    ]
+  },
+  {
+    "id": "53",
+    "icao": "LFOP",
+    "fir": "19",
+    "city": "Rouen",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFOP_APP",
+        "frequency": "118.570",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFOP_TWR",
+        "frequency": "120.200",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "54",
+    "icao": "LFOT",
+    "fir": "19",
+    "city": "Tours",
+    "airport": "Saint-Symphorien",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFOT_TWR",
+        "frequency": "118.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFOT_APP",
+        "frequency": "121.000",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      }
+    ]
+  },
+  {
+    "id": "55",
+    "icao": "LFPB",
+    "fir": "19",
+    "city": "Le Bourget",
+    "airport": "",
+    "atis": "120.000",
+    "positions": [
+      {
+        "code": "LFPB_TWR",
+        "frequency": "118.920",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFPB_DEL",
+        "frequency": "121.950",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "56",
+    "icao": "LFPG",
+    "fir": "19",
+    "city": "Paris",
+    "airport": "CDG",
+    "atis": "127.120",
+    "positions": [
+      {
+        "code": "LFPG_F_APP",
+        "frequency": "119.850",
+        "type": "Arrivee",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPG_APP",
+        "frequency": "125.82",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFPG_DEL",
+        "frequency": "126.650",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPG_DEP",
+        "frequency": "133.370",
+        "type": "Depart",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPG_GND",
+        "frequency": "121.600",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFPG_N_DEP",
+        "frequency": "124.500",
+        "type": "Depart",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPG_S_APP",
+        "frequency": "126.420",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPG_S_DEL",
+        "frequency": "121.720",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPG_S_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPG_S_TWR",
+        "frequency": "120.900",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPG_TWR",
+        "frequency": "119.250",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "57",
+    "icao": "LFPN",
+    "fir": "19",
+    "city": "Toussus-Le-Noble",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFPN_TWR",
+        "frequency": "119.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "58",
+    "icao": "LFPO",
+    "fir": "19",
+    "city": "Paris",
+    "airport": "Orly",
+    "atis": "128.500",
+    "positions": [
+      {
+        "code": "LFPO_APP",
+        "frequency": "124.450",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFPO_DEL",
+        "frequency": "121.050",
+        "type": "Prevol",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPO_DEP",
+        "frequency": "127.750",
+        "type": "Depart",
+        "rank": "S3",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFPO_GND",
+        "frequency": "121.700",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFPO_TWR",
+        "frequency": "118.700",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "59",
+    "icao": "LFQQ",
+    "fir": "19",
+    "city": "Lille",
+    "airport": "Lesquin",
+    "atis": "119.320",
+    "positions": [
+      {
+        "code": "LFQQ_APP",
+        "frequency": "126.470",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFQQ_TWR",
+        "frequency": "118.550",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFQQ_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "60",
+    "icao": "LFRA",
+    "fir": "21",
+    "city": "Angers",
+    "airport": "Avrille",
+    "atis": "",
+    "positions": []
+  },
+  {
+    "id": "61",
+    "icao": "LFRB",
+    "fir": "21",
+    "city": "Brest",
+    "airport": "Bretagne",
+    "atis": "129.350",
+    "positions": [
+      {
+        "code": "LFRB_APP",
+        "frequency": "135.820",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFRB_TWR",
+        "frequency": "120.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "62",
+    "icao": "LFRC",
+    "fir": "21",
+    "city": "Cherbourg",
+    "airport": "Maupertus",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFRC_TWR",
+        "frequency": "119.620",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "63",
+    "icao": "LFRD",
+    "fir": "21",
+    "city": "Dinard",
+    "airport": "Pleurtuit",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFRD_TWR",
+        "frequency": "120.150",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "64",
+    "icao": "LFRG",
+    "fir": "21",
+    "city": "Deauville",
+    "airport": "Saint Gatien",
+    "atis": "119.170",
+    "positions": [
+      {
+        "code": "LFRG_APP",
+        "frequency": "120.350",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFRG_TWR",
+        "frequency": "118.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "65",
+    "icao": "LFRH",
+    "fir": "21",
+    "city": "Lann-Bihoue",
+    "airport": "Navy ",
+    "atis": "129.120",
+    "positions": [
+      {
+        "code": "LFRH_APP",
+        "frequency": "123.000",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFRH_GND",
+        "frequency": "119.700",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFRH_TWR",
+        "frequency": "122.700",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "66",
+    "icao": "LFRK",
+    "fir": "21",
+    "city": "Caen",
+    "airport": "Carpiquet",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFRK_TWR",
+        "frequency": "124.420",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "67",
+    "icao": "LFRN",
+    "fir": "21",
+    "city": "Rennes",
+    "airport": "Saint Jacques",
+    "atis": "126.400",
+    "positions": [
+      {
+        "code": "LFRN_APP",
+        "frequency": "134.000",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFRN_TWR",
+        "frequency": "126.250",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFRN_GND",
+        "frequency": "121.725",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "68",
+    "icao": "LFRO",
+    "fir": "21",
+    "city": "Lannion",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFRO_TWR",
+        "frequency": "118.400",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "69",
+    "icao": "LFRQ",
+    "fir": "21",
+    "city": "Quimper",
+    "airport": "Pluguffan",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFRQ_TWR",
+        "frequency": "118.620",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "70",
+    "icao": "LFRS",
+    "fir": "21",
+    "city": "Nantes",
+    "airport": "Atlantique",
+    "atis": "128.920",
+    "positions": [
+      {
+        "code": "LFRS_APP",
+        "frequency": "123.750",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFRS_I_APP",
+        "frequency": "129.870",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      },
+      {
+        "code": "LFRS_TWR",
+        "frequency": "118.650",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFRS_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "71",
+    "icao": "LFSD",
+    "fir": "22",
+    "city": "Dijon",
+    "airport": "Longvic",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFSD_APP",
+        "frequency": "129.020",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFSD_TWR",
+        "frequency": "118.320",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "72",
+    "icao": "LFSF",
+    "fir": "22",
+    "city": "Metz",
+    "airport": "Frescaty",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFSF_TWR",
+        "frequency": "119.700",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "73",
+    "icao": "LFSO",
+    "fir": "22",
+    "city": "Nancy",
+    "airport": "Ochey",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFSO_TWR",
+        "frequency": "133.200",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "74",
+    "icao": "LFSR",
+    "fir": "19",
+    "city": "Reims",
+    "airport": "Champagne",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFSR_APP",
+        "frequency": "119.800",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFSR_TWR",
+        "frequency": "118.270",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "75",
+    "icao": "LFST",
+    "fir": "22",
+    "city": "Strasbourg",
+    "airport": "Entzheim",
+    "atis": "128.920",
+    "positions": [
+      {
+        "code": "LFST_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFST_APP",
+        "frequency": "119.450",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFST_TWR",
+        "frequency": "126.870",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "76",
+    "icao": "LFTH",
+    "fir": "20",
+    "city": "Hyeres",
+    "airport": "Le Palyvestre",
+    "atis": "129.650",
+    "positions": [
+      {
+        "code": "LFTH_APP",
+        "frequency": "126.320",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFTH_TWR",
+        "frequency": "121.000",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFTH_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "77",
+    "icao": "LFTW",
+    "fir": "20",
+    "city": "Nimes",
+    "airport": "Garons",
+    "atis": "129.350",
+    "positions": [
+      {
+        "code": "LFTW_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFTW_TWR",
+        "frequency": "123.200",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "78",
+    "icao": "LFXB",
+    "fir": "20",
+    "city": "Saintes",
+    "airport": "Thenac",
+    "atis": "",
+    "positions": []
+  },
+  {
+    "id": "79",
+    "icao": "LFYR",
+    "fir": "20",
+    "city": "Romorantin",
+    "airport": "Pruniers",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFYR_TWR",
+        "frequency": "122.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "80",
+    "icao": "LNMC",
+    "fir": "20",
+    "city": "Monaco",
+    "airport": "Monte Carlo",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LNMC_TWR",
+        "frequency": "123.020",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "81",
+    "icao": "LFKA",
+    "fir": "20",
+    "city": "Alberville",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFKA_I_APP",
+        "frequency": "123.500",
+        "type": "Information VFR",
+        "rank": "",
+        "solo_rank": ""
+      }
+    ]
+  },
+  {
+    "id": "82",
+    "icao": "LFMD",
+    "fir": "20",
+    "city": "Cannes",
+    "airport": "Mandelieu",
+    "atis": "126.470",
+    "positions": [
+      {
+        "code": "LFMD_TWR",
+        "frequency": "118.300",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFMD_GND",
+        "frequency": "121.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "83",
+    "icao": "LFUP",
+    "fir": "0",
+    "city": "France",
+    "airport": "CONTROLE",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFUP_CTR",
+        "frequency": "130.950",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "S3"
+      }
+    ]
+  },
+  {
+    "id": "84",
+    "icao": "LFFM",
+    "fir": "0",
+    "city": "France Military",
+    "airport": "CONTROLE",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFFM_CTR",
+        "frequency": "128.370",
+        "type": "Controle",
+        "rank": "C1",
+        "solo_rank": "S3"
+      }
+    ]
+  },
+  {
+    "id": "85",
+    "icao": "LFOH",
+    "fir": "21",
+    "city": "Le Havre",
+    "airport": "Octeville",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFOH_TWR",
+        "frequency": "119.150",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "86",
+    "icao": "LFAT",
+    "fir": "19",
+    "city": "Le Touquet",
+    "airport": "Côte d'Opale",
+    "atis": "123.120",
+    "positions": [
+      {
+        "code": "LFAT_TWR",
+        "frequency": "118.450",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "87",
+    "icao": "LFAC",
+    "fir": "19",
+    "city": "Calais",
+    "airport": "CALAIS DUNKERQUE",
+    "atis": "",
+    "positions": []
+  },
+  {
+    "id": "88",
+    "icao": "LFJR",
+    "fir": "21",
+    "city": "Angers",
+    "airport": "Marcé",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFJR_TWR",
+        "frequency": "119.000",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "89",
+    "icao": "LFAQ",
+    "fir": "19",
+    "city": "Albert",
+    "airport": "Bray",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFAQ_TWR",
+        "frequency": "119.650",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "90",
+    "icao": "LFBR",
+    "fir": "18",
+    "city": "Muret",
+    "airport": "Lherm",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFBR_TWR",
+        "frequency": "123.200",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "91",
+    "icao": "LFBU",
+    "fir": "18",
+    "city": "Angoulême",
+    "airport": "Brie Champniers",
+    "atis": "",
+    "positions": []
+  },
+  {
+    "id": "92",
+    "icao": "LFKC",
+    "fir": "20",
+    "city": "Calvi",
+    "airport": "Sainte Catherine",
+    "atis": "131.180",
+    "positions": [
+      {
+        "code": "LFKC_TWR",
+        "frequency": "123.200",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFKC_GND",
+        "frequency": "120.800",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "93",
+    "icao": "LFLY",
+    "fir": "20",
+    "city": "Lyon",
+    "airport": "Bron",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFLY_TWR",
+        "frequency": "118.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      },
+      {
+        "code": "LFLY_GND",
+        "frequency": "121.850",
+        "type": "Sol",
+        "rank": "S1",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "95",
+    "icao": "LFRZ",
+    "fir": "21",
+    "city": "Saint Nazaire",
+    "airport": "Montoir",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFRZ_TWR",
+        "frequency": "118.950",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "96",
+    "icao": "LFSI",
+    "fir": "22",
+    "city": "Saint Dizier",
+    "airport": "Robinson",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFSI_TWR",
+        "frequency": "122.100",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "97",
+    "icao": "LFQI",
+    "fir": "19",
+    "city": "Cambrai",
+    "airport": "Epinoy",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFQI_APP",
+        "frequency": "118.52",
+        "type": "Approche",
+        "rank": "S3",
+        "solo_rank": "S2"
+      },
+      {
+        "code": "LFQI_TWR",
+        "frequency": "119.7",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "98",
+    "icao": "LFRJ",
+    "fir": "21",
+    "city": "Landivisiau",
+    "airport": "",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFRJ_TWR",
+        "frequency": "119.2",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "99",
+    "icao": "LFSX",
+    "fir": "22",
+    "city": "Luxeuil",
+    "airport": "Saint Sauveur",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFSX_TWR",
+        "frequency": "122.1",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "100",
+    "icao": "LFGA",
+    "fir": "22",
+    "city": "Colmar",
+    "airport": "Houssen",
+    "atis": "121.875",
+    "positions": [
+      {
+        "code": "LFGA_TWR",
+        "frequency": "119.000",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "101",
+    "icao": "LFSL",
+    "fir": "18",
+    "city": "Brive ",
+    "airport": "Brive Souillac",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFSL_TWR",
+        "frequency": "121.120",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "104",
+    "icao": "LFLP",
+    "fir": "20",
+    "city": "Annecy",
+    "airport": "Annecy Meythet",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFLP_TWR",
+        "frequency": "118.200",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "105",
+    "icao": "LFOK",
+    "fir": "19",
+    "city": "Châlons en Champagne",
+    "airport": "Châlons Vatry",
+    "atis": "136.375",
+    "positions": [
+      {
+        "code": "LFOK_TWR",
+        "frequency": "129.400",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "106",
+    "icao": "LFBS",
+    "fir": "18",
+    "city": "Biscarrosse",
+    "airport": "Parentis",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFBS_TWR",
+        "frequency": "118.950",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  },
+  {
+    "id": "107",
+    "icao": "LFTF",
+    "fir": "20",
+    "city": "Cuers",
+    "airport": "Cuers Pierrefeu",
+    "atis": "",
+    "positions": [
+      {
+        "code": "LFTF_TWR",
+        "frequency": "122.700",
+        "type": "Tour",
+        "rank": "S2",
+        "solo_rank": "S1"
+      }
+    ]
+  }
+]
