@@ -39,7 +39,10 @@ Route::group([
     ], function() {
         Route::get('/', 'App\MainController@index')->name('app.index');
 
-        Route::group(['prefix' => 'atc'], function() {
+        Route::group([
+            'prefix' => '/atc',
+            'middleware' => 'ATC',
+        ], function() {
             Route::get('/mybookings', 'ATC\BookingController@MyBookingsPage')->name('app.atc.mybookings');
         });
 

@@ -80,12 +80,14 @@
                 <p>{{__('app_menus.atc_all_bookings')}}</p>
               </a>
             </li>
+            @if (Auth::user()->isApprovedATC() == true)
             <li class="nav-item">
               <a href="{{ route('app.atc.mybookings', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.mybookings')) active @endif">
                 <i class="far fa-circle nav-icon"></i>
                 <p>{{__('app_menus.atc_my_bookings')}}</p>
               </a>
             </li>
+            @endif
           </ul>
         </li>
         <li class="nav-item has-treeview">
