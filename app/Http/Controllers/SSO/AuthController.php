@@ -111,6 +111,7 @@ class AuthController extends Controller
 
         UserSetting::updateOrCreate(['vatsim_id' => $response->data->cid], [
             'id' => $userid,
+            'lang' => app()->getLocale(),
         ]);
 
         SSOToken::updateOrCreate(['vatsim_id' => $response->data->cid], [
