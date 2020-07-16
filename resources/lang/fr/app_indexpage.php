@@ -7,6 +7,9 @@ return [
   'atc_hours' => 'Heures ATC',
   'pilot_hours' => 'Heures de vol',
   'your_last_atc' => 'Vos dernières sessions ATC',
+  'approved_atc' => 'Statut ATC',
+  'approved' => 'Approuvé',
+  'not_approved' => 'Non approuvé',
 
   'callsign' => 'Position',
   'sess_time' => 'Durée de la session',

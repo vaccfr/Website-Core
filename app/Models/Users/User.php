@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'vatsim_id', 'fname', 'lname', 'email', 'account_type', 
+        'id', 'vatsim_id', 'fname', 'lname', 'email', 'account_type', 'is_approved_atc',
         'atc_rating', 'atc_rating_short', 'atc_rating_long', 'pilot_rating', 
         'division_id', 'division_name', 'region_id', 'region_name', 'subdiv_id', 'subdiv_name',
         'is_staff', 'staff_level',
@@ -73,5 +73,23 @@ class User extends Authenticatable
     {
         $fullrank = $this->atc_rating_short." (".$this->atc_rating_long.")";
         return $fullrank;
+    }
+
+    public function isATC()
+    {
+        $rep = false;
+        if (strpos($this->account_type, 'ATC')) {
+            $rep = true;
+        }
+        return $rep;
+    }
+
+    public function isApprovedAtc()
+    {
+        $rep = false;
+        if ($this->is_approved_atc == true) {
+            $rep = true;
+        }
+        return $rep;
     }
 }

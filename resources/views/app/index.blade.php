@@ -41,6 +41,13 @@
               <li class="list-group-item">
                 <b>{{__('app_indexpage.pilot_hours')}}</b> <a class="float-right">{{ $pilotTimes }}</a>
               </li>
+              <li class="list-group-item">
+                <b>{{__('app_indexpage.approved_atc')}}</b> <a class="float-right">@if (Auth::user()->isApprovedAtc() == true)
+                  {{__('app_indexpage.approved')}}
+                @else
+                  {{__('app_indexpage.not_approved')}}
+                @endif</a>
+              </li>
             </ul>
           </div>
           <!-- /.card-body -->
