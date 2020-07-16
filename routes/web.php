@@ -42,10 +42,21 @@ Route::group([
         Route::group(['prefix' => 'atc'], function() {
             Route::get('/mybookings', 'ATC\BookingController@MyBookingsPage')->name('app.atc.mybookings');
         });
+
+        // Authenticated POST routes
+        // Post and Action Routes
+        Route::group(['prefix' => '/do'], function() {
+            Route::group(['prefix' => '/atc'], function() {
+                Route::post('/booking/add', 'ATC\BookingController@book')->name('do.atc.booking.add');
+                Route::get('/booking/add/validate', 'ATC\BookingController@validateBooking')->name('do.atc.booking.validate');
+                Route::get('/booking/{unique_id}/delete', 'ATC\BookingController@deleteBooking')->name('do.atc.booking.delete');
+                Route::get('/booking/del/validate', 'ATC\BookingController@validateDelete')->name('do.atc.bookingdel.validate');
+            });
+        });
     });
 
     // DEV ROUTES
-    // Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
+    Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
 });
 
 // Auth::routes();
