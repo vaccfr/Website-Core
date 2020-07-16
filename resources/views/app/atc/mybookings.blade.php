@@ -32,12 +32,27 @@
           <form role="form" id="atc-booking-form" method="POST" action="{{ route('do.atc.booking.add', app()->getLocale()) }}">
             @csrf
             <div class="card-body">
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label>Position</label>
                 <select class="form-control" id="position-select" name="positionselect">
                   <option value="" disabled selected>Select your option</option>
                   @foreach ($stations as $s)
                     <option value="{{ $s['code'] }}">{{ $s['code'] }} ({{ $s['parent']['city'] }} {{ $s['parent']['airport'] }})</option>
+                  @endforeach
+                </select>
+              </div> --}}
+              <div class="form-group">
+                <label>Position</label>
+                <select class="form-control" id="position-select" name="positionselect">
+                  <option value="" disabled selected>Select your option</option>
+                  @foreach ($positions as $p)
+                    @if (count($p['positions']) > 0)
+                      <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
+                      @foreach ($p['positions'] as $s)
+                        <option value="{{ $s['code'] }}">{{ $s['code'] }}</option>
+                      @endforeach
+                      <optgroup label=""></optgroup>
+                    @endif
                   @endforeach
                 </select>
               </div>

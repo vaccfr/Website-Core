@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ATC;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
+use App\Models\ATC\Airport;
 use App\Models\ATC\ATCStation;
 use App\Models\ATC\Booking;
 use Exception;
@@ -17,17 +18,22 @@ class BookingController extends Controller
 {
     public function MyBookingsPage()
     {
-        $allowedRanks = app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short);
-        $stations = ATCStation::orderBy('code', 'ASC')
-        ->whereIn('rank', $allowedRanks)
-        ->with('parent')
+        // $allowedRanks = app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short);
+        // $stations = ATCStation::orderBy('code', 'ASC')
+        // ->whereIn('rank', $allowedRanks)
+        // ->with('parent')
+        // ->get();
+
+        $positions = Airport::orderBy('icao', 'ASC')
+        ->with(['positions' => function($q) {
+            $q->whereIn('rank', app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short));
+        }])
         ->get();
-        // foreach ($stations as $s) {
-        //     dd($s['parent']);
-        // }
+
         $bookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)->get();
         return view('app.atc.mybookings', [
-            'stations' => $stations,
+            'positions' => $positions,
+            // 'stations' => $stations,
             'bookings' => $bookings,
             ]);
     }
