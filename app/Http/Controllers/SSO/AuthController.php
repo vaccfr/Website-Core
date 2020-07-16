@@ -27,12 +27,21 @@ class AuthController extends Controller
         // session()->put('state', $state = Str::random(40));
         session()->forget('token');
 
-        $query = http_build_query([
-            'client_id' => config('vatsimsso.client_id'),
-            'redirect_uri' => config('vatsimsso.redirect'),
-            'response_type' => 'code',
-            'scope' => 'full_name vatsim_details email',
-        ]);
+        if (app()->getLocale() == "en") {
+            $query = http_build_query([
+                'client_id' => config('vatsimsso.en_client_id'),
+                'redirect_uri' => config('vatsimsso.en_redirect'),
+                'response_type' => 'code',
+                'scope' => 'full_name vatsim_details email',
+            ]);
+        } else {
+            $query = http_build_query([
+                'client_id' => config('vatsimsso.fr_client_id'),
+                'redirect_uri' => config('vatsimsso.fr_redirect'),
+                'response_type' => 'code',
+                'scope' => 'full_name vatsim_details email',
+            ]);
+        }
         
         return redirect(config('vatsimsso.url')."?".$query);
     }
@@ -40,18 +49,29 @@ class AuthController extends Controller
     public function validateLogin(Request $request)
     {
         try {
-            $response = (new Client)->post('https://auth.vatsim.net/oauth/token', [
-                'form_params' => [
-                    'grant_type' => 'authorization_code',
-                    'client_id' => config('vatsimsso.client_id'),
-                    'client_secret' => config('vatsimsso.secret'),
-                    'redirect_uri' => config('vatsimsso.redirect'),
-                    'code' => $request->code,
-                ],
-            ]);
+            if (app()->getLocale() == "en") {
+                $response = (new Client)->post('https://auth.vatsim.net/oauth/token', [
+                    'form_params' => [
+                        'grant_type' => 'authorization_code',
+                        'client_id' => config('vatsimsso.en_client_id'),
+                        'client_secret' => config('vatsimsso.en_secret'),
+                        'redirect_uri' => config('vatsimsso.en_redirect'),
+                        'code' => $request->code,
+                    ],
+                ]);
+            } else {
+                $response = (new Client)->post('https://auth.vatsim.net/oauth/token', [
+                    'form_params' => [
+                        'grant_type' => 'authorization_code',
+                        'client_id' => config('vatsimsso.fr_client_id'),
+                        'client_secret' => config('vatsimsso.fr_secret'),
+                        'redirect_uri' => config('vatsimsso.fr_redirect'),
+                        'code' => $request->code,
+                    ],
+                ]);
+            }
         } catch(ClientException $e) {
-            dd($e);
-            return redirect()->route('landingpage.home');
+            return redirect()->route('landingpage.home', app()->getLocale());
         }
 
         $tokens = json_decode((string) $response->getBody(), true);
