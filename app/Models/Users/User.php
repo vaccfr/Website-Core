@@ -4,6 +4,7 @@ namespace App\Models\Users;
 
 use App\Models\Admin\Staff;
 use App\Models\ATC\AtcRosterMember;
+use App\Models\ATC\Booking;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -54,6 +55,11 @@ class User extends Authenticatable
     public function atcroster()
     {
         return $this->hasOne(AtcRosterMember::class, 'vatsim_id', 'vatsim_id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'vatsim_id', 'vatsim_id');
     }
 
     // Utility Functions

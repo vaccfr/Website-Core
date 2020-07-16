@@ -45,6 +45,6 @@ class AirportsController extends Controller
                 dd($e);
             }
         }
-        dd($airports);
+        return redirect()->back();
     }
 }

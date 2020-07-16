@@ -49,13 +49,13 @@
           <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
               <li class="nav-item">
-                <a class="nav-link active" href="#atc-tab-1" data-toggle="tab">Mon. 01/01</a>
+                <a class="nav-link active" href="#atc-tab-1" data-toggle="tab">{{ $day0 }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#atc-tab-2" data-toggle="tab">Tue. 01/02</a>
+                <a class="nav-link" href="#atc-tab-2" data-toggle="tab">{{ $day1 }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#atc-tab-3" data-toggle="tab">Wed. 01/03</a>
+                <a class="nav-link" href="#atc-tab-3" data-toggle="tab">{{ $day2 }}</a>
               </li>
             </ul>
           </div>
@@ -72,12 +72,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">LFLL_TWR</th>
-                      <td>Jacob Doe (1458754)</td>
-                      <td>09:00z - 15:00z</td>
-                      <td>S1</td>
-                    </tr>
+                    @foreach ($book0 as $b)
+                    <th scope="row">{{$b['position']}}</th>
+                    <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                    <td>{{$b['time']}}</td>
+                    <td>{{$b['user']['atc_rating_short']}}</td>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -92,12 +92,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">LSGG_APP</th>
-                      <td>Jacob Doe (1458754)</td>
-                      <td>09:00z - 15:00z</td>
-                      <td>S1</td>
-                    </tr>
+                    @foreach ($book1 as $b)
+                    <th scope="row">{{$b['position']}}</th>
+                    <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                    <td>{{$b['time']}}</td>
+                    <td>{{$b['user']['atc_rating_short']}}</td>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -112,12 +112,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">LSGG_APP</th>
-                      <td>Jacob Doe (1458754)</td>
-                      <td>09:00z - 15:00z</td>
-                      <td>S1</td>
-                    </tr>
+                    @foreach ($book2 as $b)
+                    <th scope="row">{{$b['position']}}</th>
+                    <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                    <td>{{$b['time']}}</td>
+                    <td>{{$b['user']['atc_rating_short']}}</td>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

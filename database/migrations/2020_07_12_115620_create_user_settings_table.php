@@ -14,7 +14,7 @@ class CreateUserSettingsTable extends Migration
     public function up()
     {
         Schema::create('user_settings', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->bigInteger('id')->unique();
             $table->integer('vatsim_id');
             $table->string('lang')->default('en');
             $table->timestamps();
