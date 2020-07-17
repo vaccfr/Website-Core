@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>{{__('app_indexpage.welcomeback')}}, {{ Auth::user()->fname }}!</h1>
+          <h1>ATC - {{ Auth::user()->fname}}'s Bookings</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->

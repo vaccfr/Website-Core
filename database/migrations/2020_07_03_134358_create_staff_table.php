@@ -14,12 +14,14 @@ class CreateStaffTable extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
+            $table->bigInteger('id')->default()->unique();
             $table->integer('vatsim_id');
-            $table->string('staff_level');
-            $table->boolean('atc_dpt');
-            $table->boolean('pilot_dpt');
-            $table->boolean('executive');
-            $table->boolean('events');
+            $table->integer('staff_level');
+            $table->boolean('admin')->default(false);
+            $table->boolean('atc_dpt')->default(false);
+            $table->boolean('pilot_dpt')->default(false);
+            $table->boolean('executive')->default(false);
+            $table->boolean('events')->default(false);
             $table->timestamps();
         });
     }

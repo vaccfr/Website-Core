@@ -167,6 +167,14 @@
         {{-- Staff section --}}
         @if (Auth::user()->is_staff == true)
           <li class="nav-header">{{__('app_menus.staff_header')}}</li>
+          @if (Auth::user()->isAdmin() == true)
+            <li class="nav-item">
+              <a href="{{ route('app.staff.admin', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.admin')) active @endif">
+                <i class="nav-icon fa fa-home"></i>
+                <p>Admin</p>
+              </a>
+            </li>
+          @endif
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>

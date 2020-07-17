@@ -39,11 +39,35 @@ Route::group([
     ], function() {
         Route::get('/', 'App\MainController@index')->name('app.index');
 
+        // ATC Routes
         Route::group([
             'prefix' => '/atc',
-            'middleware' => 'ATC',
         ], function() {
-            Route::get('/mybookings', 'ATC\BookingController@MyBookingsPage')->name('app.atc.mybookings');
+            Route::group(['middleware' => 'ATC', 'prefix' => '/verified'], function() {
+                Route::get('/mybookings', 'ATC\BookingController@MyBookingsPage')->name('app.atc.mybookings');
+            });
+        });
+
+        // Staff Routes
+        Route::group([
+            'middleware' => 'STAFF',
+            'prefix' => '/staff'
+        ], function() {
+            Route::group(['prefix' => '/admin', 'middleware' => 'ADMIN'], function() {
+                Route::get('/', 'Staff\AdminController@index')->name('app.staff.admin');
+            });
+            Route::group(['prefix' => '/atc'], function() {
+                
+            });
+            Route::group(['prefix' => '/pilot'], function() {
+                
+            });
+            Route::group(['prefix' => '/exec'], function() {
+                
+            });
+            Route::group(['prefix' => '/events'], function() {
+                
+            });
         });
 
         // Authenticated POST routes
