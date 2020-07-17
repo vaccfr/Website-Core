@@ -13,7 +13,7 @@ class AirportsController extends Controller
 {
     public function retrieveFromJson()
     {
-        $airportsFile = file_get_contents(asset('assets/airports.json'));
+        $airportsFile = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/assets/airports.json');
         $airports = json_decode($airportsFile, true);
         foreach ($airports as $a) {
             try {
