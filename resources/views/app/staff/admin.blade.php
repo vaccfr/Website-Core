@@ -59,9 +59,13 @@
               <tr>
                 <th>Name</th>
                 <th>Vatsim ID</th>
-                <th>Member type</th>
+                <th>Region</th>
+                <th>Account</th>
+                <th>Staff</th>
+                <th>ATC Approval</th>
                 <th>ATC Rank</th>
-                <th>Action</th>
+                <th>Pilot Rank</th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody>
@@ -69,8 +73,12 @@
                   <tr>
                     <td>{{ $m['fname'] }} {{ $m['lname'] }}</td>
                     <td>{{ $m['vatsim_id'] }}</td>
+                    <td>{{ $m['subdiv_id'] }} ({{ $m['subdiv_name'] }})</td>
                     <td>{{ $m['account_type'] }}</td>
+                    <td>@if($m['is_staff'] == true) Yes @else No @endif</td>
+                    <td>@if($m['is_approved_atc'] == true) Yes @else No @endif</td>
                     <td>{{ $m['atc_rating_short'] }}</td>
+                    <td>P{{ $m['pilot_rating'] }}</td>
                     <td>
                       <div class="row">
                         <div class="col-sm-6">
@@ -82,7 +90,7 @@
                           </form>
                         </div>
                         <div class="col-sm-6">
-                          <button type="button" class="btn btn-block btn-danger btn-flat">Ban</button>
+                          <button type="button" class="btn btn-block btn-warning btn-flat">Restrict</button>
                         </div>
                       </div>
                     </td>
