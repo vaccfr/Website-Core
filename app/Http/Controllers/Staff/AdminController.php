@@ -82,7 +82,7 @@ class AdminController extends Controller
         // Edit Staff Status
         switch ($currentUser->is_staff) {
             case false:
-                if (!is_null($request->get('approved-staff-switch'))) {
+                if (!is_null($request->get('staffswitch'))) {
                     Staff::updateOrCreate(['vatsim_id', $currentUser->vatsim_id], [
                         'vatsim_id' => $currentUser->vatsim_id,
                         'staff_level' => 0,
@@ -93,7 +93,7 @@ class AdminController extends Controller
                 break;
             
             case true:
-                if (is_null($request->get('approved-staff-switch'))) {
+                if (is_null($request->get('staffswitch'))) {
                     $todel = Staff::where('vatsim_id', $currentUser->vatsim_id)->firstOrFail();
                     $todel->delete();
                     $currentUser->is_staff = false;
