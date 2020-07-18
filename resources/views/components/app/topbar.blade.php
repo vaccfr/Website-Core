@@ -49,7 +49,7 @@
         <i class="far fa-user"></i> {{ Auth::user()->fname}} {{ Auth::user()->lname }}
       </a>
       <div class="dropdown-menu">
-        <a href="{{ route('app.index', app()->getLocale()) }}" class="dropdown-item">
+        <a href="{{ route('app.user.settings', app()->getLocale()) }}" class="dropdown-item">
           {{__('app_menus.my_settings')}}
         </a>
         <a href="{{ route('auth.logout', app()->getLocale()) }}" class="dropdown-item">

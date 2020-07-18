@@ -39,6 +39,9 @@ Route::group([
     ], function() {
         Route::get('/', 'App\MainController@index')->name('app.index');
 
+        Route::get('/user/settings', 'App\MainController@usersettings')->name('app.user.settings');
+        Route::post('/user/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');
+
         // ATC Routes
         Route::group([
             'prefix' => '/atc',

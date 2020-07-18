@@ -75,7 +75,7 @@
               </div>
             @endif
             <div class="form-group">
-              <label>Select</label>
+              <label>Modify User Type</label>
                 <select class="form-control" name="editusertype">
                   @foreach ($usertypes as $ut)
                     @if ($ut == $user->account_type)
