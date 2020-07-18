@@ -31,8 +31,13 @@ class MainController extends Controller
         if (!is_null(Auth::user()->custom_email)) {
             $useremail = Auth::user()->custom_email." (custom)";
         }
+        if (Auth::user()->subdiv_id == "FRA") {
+            $utypes = config('vatfrance.usertypes');
+        } else {
+            $utypes = config('vatfrance.visiting_usertypes');
+        }
         return view('app.usersettings', [
-            'usertypes' => config('vatfrance.usertypes'),
+            'usertypes' => $utypes,
             'useremail' => $useremail,
         ]);
     }
@@ -55,10 +60,20 @@ class MainController extends Controller
             $currentUser->custom_email = null;
             $currentUser->save();
         }
-
-        if (in_array($request->get('editusertype'), config('vatfrance.usertypes'))) {
-            $currentUser->account_type = $request->get('editusertype');
-            $currentUser->save();
+        switch (Auth::user()->subdiv_id) {
+            case 'FRA':
+                if (in_array($request->get('editusertype'), config('vatfrance.usertypes'))) {
+                    $currentUser->account_type = $request->get('editusertype');
+                    $currentUser->save();
+                }
+                break;
+            
+            default:
+                if (in_array($request->get('editusertype'), config('vatfrance.visiting_usertypes'))) {
+                    $currentUser->account_type = $request->get('editusertype');
+                    $currentUser->save();
+                }
+                break;
         }
 
         return redirect()->route('app.user.settings', app()->getLocale());

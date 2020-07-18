@@ -41,9 +41,15 @@ class AdminController extends Controller
 
         $user = User::where('id', $request->get('userid'))->firstOrFail();
 
+        if ($user->subdiv_id == "FRA") {
+            $utypes = config('vatfrance.usertypes');
+        } else {
+            $utypes = config('vatfrance.visiting_usertypes');
+        }
+
         return view('app.staff.admin-edit', [
             'user' => $user,
-            'usertypes' => config('vatfrance.usertypes'),
+            'usertypes' => $utypes,
         ]);
     }
 
@@ -70,12 +76,22 @@ class AdminController extends Controller
                 break;
         }
 
-        if (in_array($request->get('editusertype'), config('vatfrance.usertypes'))) {
-            $currentUser->account_type = $request->get('editusertype');
-            $currentUser->save();
+        switch ($currentUser->subdiv_id) {
+            case 'FRA':
+                if (in_array($request->get('editusertype'), config('vatfrance.usertypes'))) {
+                    $currentUser->account_type = $request->get('editusertype');
+                    $currentUser->save();
+                }
+                break;
+            
+            default:
+                if (in_array($request->get('editusertype'), config('vatfrance.visiting_usertypes'))) {
+                    $currentUser->account_type = $request->get('editusertype');
+                    $currentUser->save();
+                }
+                break;
         }
 
-        $newUser = User::where('id', $request->get('userid'))->firstOrFail();
         return redirect()->route('app.staff.admin.edit', app()->getLocale());
     }
 
