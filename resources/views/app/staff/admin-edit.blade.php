@@ -55,6 +55,7 @@
       </div>
       <!-- /.card -->
     </div>
+
     <div class="col-md-4">
       <div class="card card-primary">
         <div class="card-header">
@@ -65,11 +66,25 @@
         <form role="form" action="{{ route('app.staff.admin.edit.details', app()->getLocale()) }}" method="POST">
           @csrf
           <div class="card-body">
-            <div class="form-group">
-              <div class="custom-control custom-switch custom-switch-on-success">
-                <input type="checkbox" class="custom-control-input" id="approved-atc-switch" name="approveatc" @if ($user->isApprovedAtc() == true) checked @endif>
-                <label class="custom-control-label" for="approved-atc-switch">Approved ATC</label>
+            @if (strpos($user->account_type, 'ATC') !== False)
+              <div class="form-group">
+                <div class="custom-control custom-switch custom-switch-on-success">
+                  <input type="checkbox" class="custom-control-input" id="approved-atc-switch" name="approveatc" @if ($user->isApprovedAtc() == true) checked @endif>
+                  <label class="custom-control-label" for="approved-atc-switch">Approved ATC</label>
+                </div>
               </div>
+            @endif
+            <div class="form-group">
+              <label>Select</label>
+                <select class="form-control" name="editusertype">
+                  @foreach ($usertypes as $ut)
+                    @if ($ut == $user->account_type)
+                      <option value="{{ $ut }}" selected>{{ $ut }}</option>
+                    @else
+                      <option value="{{ $ut }}">{{ $ut }}</option>
+                    @endif
+                  @endforeach
+                </select>
             </div>
           </div>
           <!-- /.card-body -->
@@ -80,6 +95,7 @@
         </form>
       </div>
     </div>
+
     <div class="col-md-4">
       <div class="card card-primary">
         <div class="card-header">

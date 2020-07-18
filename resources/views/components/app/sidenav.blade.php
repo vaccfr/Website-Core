@@ -64,6 +64,7 @@
         </li>
 
         {{-- ATC Section of the menu --}}
+        @if (strpos(Auth::user()->account_type, 'ATC') !== False)
         <li class="nav-header">{{__('app_menus.atc_header')}}</li>
         <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc')) menu-open @endif">
           <a href="#" class="nav-link">
@@ -137,8 +138,10 @@
             <p>{{__('app_menus.atc_dl')}}</p>
           </a>
         </li>
+        @endif
 
         {{-- Pilot Section of the menu --}}
+        @if (strpos(Auth::user()->account_type, 'Pilot') !== False)
         <li class="nav-header">{{__('app_menus.pilots_header')}}</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
@@ -163,6 +166,7 @@
             </li>
           </ul>
         </li>
+        @endif
 
         {{-- Staff section --}}
         @if (Auth::user()->is_staff == true)

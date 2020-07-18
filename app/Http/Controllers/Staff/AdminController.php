@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
+    public $availableTypes = [
+        'Guest',
+        'Pilot',
+        'ATC',
+        'Pilot & ATC'
+    ];
     public function index()
     {
         $members = User::get();
@@ -43,6 +49,7 @@ class AdminController extends Controller
 
         return view('app.staff.admin-edit', [
             'user' => $user,
+            'usertypes' => $this->availableTypes,
         ]);
     }
 
@@ -69,10 +76,13 @@ class AdminController extends Controller
                 break;
         }
 
+        if (in_array($request->get('editusertype'), $this->availableTypes)) {
+            $currentUser->account_type = $request->get('editusertype');
+            $currentUser->save();
+        }
+
         $newUser = User::where('id', $request->get('userid'))->firstOrFail();
-        return view('app.staff.admin-edit', [
-            'user' => $newUser,
-        ]);
+        return redirect()->route('app.staff.admin.edit', app()->getLocale());
     }
 
     public function editUserFormStaff(Request $request)
@@ -107,8 +117,6 @@ class AdminController extends Controller
 
 
         $newUser = User::where('id', $request->get('userid'))->firstOrFail();
-        return view('app.staff.admin-edit', [
-            'user' => $newUser,
-        ]);
+        return redirect()->route('app.staff.admin.edit', app()->getLocale());
     }
 }
