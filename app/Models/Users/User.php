@@ -93,6 +93,15 @@ class User extends Authenticatable
         return $rep;
     }
 
+    public function isStaff()
+    {
+        if ($this->is_staff == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function isAdmin()
     {
         $user = Staff::where('vatsim_id', auth()->user()->vatsim_id)->first();

@@ -37,7 +37,7 @@ return [
   'local_time' => 'Local time',
   'utc_time' => 'UTC',
 
-  'return_lp' => 'Go to Landing Page',
+  'return_lp' => 'Landing Page',
   'my_settings' => 'Account Settings',
   'logout' => 'Logout',
 ];

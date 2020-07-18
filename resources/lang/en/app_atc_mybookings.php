@@ -3,7 +3,7 @@
 return [
   'book_a_pos' => 'Book a position',
   'pos_label' => 'ATC Position',
-  'pos_select' => 'Choose an position',
+  'pos_select' => 'Choose a position',
   'date_label' => 'Date',
   'date_placeholder' => 'Date',
   'st_time_label' => 'Start time (zulu)',

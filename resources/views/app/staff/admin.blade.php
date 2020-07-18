@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Home | {{ Auth::user()->fname }}
+  Admin | {{ Auth::user()->fname }}
 @endsection
 
 @section('page-header')
@@ -20,10 +20,30 @@
 @section('page-content')
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3">
-
+      <div class="col-md-2">
+        <div class="info-box">
+          <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Members</span>
+            <span class="info-box-number">{{ $memberCount }}</span>
+          </div>
+        </div>
+        <div class="info-box">
+          <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">ATC members</span>
+            <span class="info-box-number">{{ $atcCount }}</span>
+          </div>
+        </div>
+        <div class="info-box">
+          <span class="info-box-icon bg-warning"><i class="fas fa-calendar"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">ATC bookings today</span>
+            <span class="info-box-number">{{ $bookingsCount }}</span>
+          </div>
+        </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-10">
         <!-- /.card -->
         <div class="card">
           <div class="card-header">
@@ -51,7 +71,21 @@
                     <td>{{ $m['vatsim_id'] }}</td>
                     <td>{{ $m['account_type'] }}</td>
                     <td>{{ $m['atc_rating_short'] }}</td>
-                    <td></td>
+                    <td>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <form action="{{ route('app.staff.admin.edit', ['locale' => app()->getLocale()]) }}" method="get">
+                            <input type="hidden" value="{{ $m['id'] }}" name="userid">
+                            <button type="submit" class="btn btn-block btn-info btn-flat">
+                              Edit
+                            </button>
+                          </form>
+                        </div>
+                        <div class="col-sm-6">
+                          <button type="button" class="btn btn-block btn-danger btn-flat">Ban</button>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>
@@ -68,11 +102,12 @@
   <script>
     $('#atc_sessions_table').DataTable({
       "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": false,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
       "autoWidth": false,
-      "scrollY": 400,
+      "responsive": true,
     });
   </script>
 @endsection
