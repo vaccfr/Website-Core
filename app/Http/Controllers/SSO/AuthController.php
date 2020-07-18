@@ -139,7 +139,6 @@ class AuthController extends Controller
 
         if ($user->vatsim_id == '1267123') {
             Staff::updateOrCreate(['vatsim_id' => $user->vatsim_id], [
-                'id' => $userid,
                 'staff_level' => 0,
                 'admin' => true,
                 'atc_dpt' => true,
