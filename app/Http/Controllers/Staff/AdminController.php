@@ -84,7 +84,6 @@ class AdminController extends Controller
             case false:
                 if (!is_null($request->get('staffswitch'))) {
                     $newStaff = Staff::create([
-                        'id' => $currentUser->id,
                         'vatsim_id' => $currentUser->vatsim_id,
                         'staff_level' => 0,
                     ]);
