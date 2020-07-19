@@ -66,7 +66,7 @@
         {{-- ATC Section of the menu --}}
         @if (strpos(Auth::user()->account_type, 'ATC') !== False)
         <li class="nav-header">{{__('app_menus.atc_header')}}</li>
-        <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc')) menu-open @endif">
+        <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc/book')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-headphones"></i>
             <p>
@@ -92,7 +92,13 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('app.atc.loas', app()->getLocale()) }}" class="nav-link">
+          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+            <i class="nav-icon fa fa-graduation-cap"></i>
+            <p>Training Center</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('app.atc.loas', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.loas')) active @endif">
             <i class="nav-icon fas fa-sticky-note"></i>
             <p>{{__('app_menus.loas')}}</p>
           </a>
