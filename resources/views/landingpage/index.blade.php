@@ -8,15 +8,15 @@
 <header class="masthead text-center text-white">
   <div class="masthead-content">
     <div class="container bg-overlay">
-      <h1 class="masthead-heading mb-2 mt-5">{{__('lp_titles.welcome_to_vatfrance')}}@if (Auth::check()), {{ Auth::user()->fname }}@endif!</h1>
-      <h2 class="masthead-subheading mb-2">{{__('lp_titles.french_branch')}}</h2>
+      <h1 class="masthead-heading mb-2 mt-5">{{__('lp/lp_titles.welcome_to_vatfrance')}}@if (Auth::check()), {{ Auth::user()->fname }}@endif!</h1>
+      <h2 class="masthead-subheading mb-2">{{__('lp/lp_titles.french_branch')}}</h2>
       @if (Auth::check())
       <a href="{{ route('app.index', app()->getLocale()) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
-        >{{__('lp_menu.dashboard')}}</a
+        >{{__('lp/lp_menu.dashboard')}}</a
       >
       @else
       <a href="#" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
-        >{{__('lp_titles.join_us')}}!</a
+        >{{__('lp/lp_titles.join_us')}}!</a
       >
       @endif
     </div>
@@ -30,7 +30,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm">
-        <h2 class="font-weight-medium">{{__('lp_titles.welcome')}}!</h2>
+        <h2 class="font-weight-medium">{{__('lp/lp_titles.welcome')}}!</h2>
         <p class="mt-4">
           Soyez les bienvenus chez Vatfrance ! Nous avons le privilège d'être accueillis par Vatsim.
           Notre but est de vous initier au contrôle aérien. Si vous êtes pilotes, vous apprendrez la phraséologie,
@@ -40,11 +40,11 @@
         </p>
         <p class="text-right">
           Patrick Fuchez <br />
-          {{__('lp_titles.vacc_director')}}
+          {{__('lp/lp_titles.vacc_director')}}
         </p>
       </div>
       <div class="col-sm">
-        <h2 class="font-weight-medium">{{__('lp_titles.atc_bookings')}}</h2>
+        <h2 class="font-weight-medium">{{__('lp/lp_titles.atc_bookings')}}</h2>
         <div class="card text-center mt-4">
           <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
@@ -68,10 +68,10 @@
                 <table class="table">
                   <thead class="thead">
                     <tr>
-                      <th scope="col">{{__('lp_atcbookings.position')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.name')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.hours')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.rating')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.position')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.name')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.hours')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.rating')}}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,10 +92,10 @@
                 <table class="table">
                   <thead class="thead">
                     <tr>
-                      <th scope="col">{{__('lp_atcbookings.position')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.name')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.hours')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.rating')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.position')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.name')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.hours')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.rating')}}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -116,10 +116,10 @@
                 <table class="table">
                   <thead class="thead">
                     <tr>
-                      <th scope="col">{{__('lp_atcbookings.position')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.name')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.hours')}}</th>
-                      <th scope="col">{{__('lp_atcbookings.rating')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.position')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.name')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.hours')}}</th>
+                      <th scope="col">{{__('lp/lp_atcbookings.rating')}}</th>
                     </tr>
                   </thead>
                   <tbody>

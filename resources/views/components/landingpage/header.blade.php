@@ -30,7 +30,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {{__('lp_menu.home')}}
+            {{__('lp/lp_menu.home')}}
           </a>
           <div
             class="dropdown-menu dropdown-menu-right animate slideIn"
@@ -50,7 +50,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {{__('lp_menu.pilots')}}
+            {{__('lp/lp_menu.pilots')}}
           </a>
           <div
             class="dropdown-menu dropdown-menu-right animate slideIn"
@@ -70,7 +70,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {{__('lp_menu.atc')}}
+            {{__('lp/lp_menu.atc')}}
           </a>
           <div
             class="dropdown-menu dropdown-menu-right animate slideIn"
@@ -91,7 +91,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {{__('lp_menu.events')}}
+            {{__('lp/lp_menu.events')}}
           </a>
           <div
             class="dropdown-menu dropdown-menu-right animate slideIn"
@@ -102,7 +102,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">{{__('lp_menu.feedback')}}</a>
+          <a class="nav-link" href="#">{{__('lp/lp_menu.feedback')}}</a>
         </li>
         @if (Auth::check())
           <li class="nav-item dropdown">
@@ -121,15 +121,15 @@
               class="dropdown-menu dropdown-menu-right animate slideIn"
               aria-labelledby="navbarDropdownMenuLink"
             >
-              <a class="dropdown-item" href="{{ route('app.index', app()->getLocale()) }}">{{__('lp_menu.dashboard')}}</a>
-              <a class="dropdown-item" href="{{ route('auth.logout', app()->getLocale()) }}">{{__('lp_menu.logout')}}</a>
+              <a class="dropdown-item" href="{{ route('app.index', app()->getLocale()) }}">{{__('lp/lp_menu.dashboard')}}</a>
+              <a class="dropdown-item" href="{{ route('auth.logout', app()->getLocale()) }}">{{__('lp/lp_menu.logout')}}</a>
             </div>
           </li>
         @else
           <li class="nav-item">
             <a href="{{ route('auth.login', app()->getLocale()) }}" class="nav-link">
               <i class="fas fa-user text-white d-mobile-none"></i>
-              <span class="d-tablet-none">{{__('lp_menu.login')}}</span>
+              <span class="d-tablet-none">{{__('lp/lp_menu.login')}}</span>
             </a>
           </li>
         @endif

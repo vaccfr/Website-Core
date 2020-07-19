@@ -18,26 +18,26 @@
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link @if (Route::is('app.index')) active @endif">
             <i class="nav-icon fa fa-home"></i>
-            <p>{{__('app_menus.home')}}</p>
+            <p>{{__('app/app_menus.home')}}</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fa fa-comments"></i>
-            <p>{{__('app_menus.forum')}}</p>
+            <p>{{__('app/app_menus.forum')}}</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fa fa-bullhorn"></i>
-            <p>{{ __('app_menus.events') }}</p>
+            <p>{{ __('app/app_menus.events') }}</p>
           </a>
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
             <p>
-              {{__('app_menus.general')}}
+              {{__('app/app_menus.general')}}
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -45,19 +45,19 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.staff_org')}}</p>
+                <p>{{__('app/app_menus.staff_org')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.statutes')}}</p>
+                <p>{{__('app/app_menus.statutes')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.policies')}}</p>
+                <p>{{__('app/app_menus.policies')}}</p>
               </a>
             </li>
           </ul>
@@ -65,12 +65,12 @@
 
         {{-- ATC Section of the menu --}}
         @if (strpos(Auth::user()->account_type, 'ATC') !== False)
-        <li class="nav-header">{{__('app_menus.atc_header')}}</li>
+        <li class="nav-header">{{__('app/app_menus.atc_header')}}</li>
         <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc/book')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-headphones"></i>
             <p>
-              {{__('app_menus.atc_bookings')}}
+              {{__('app/app_menus.atc_bookings')}}
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -78,14 +78,14 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.atc_all_bookings')}}</p>
+                <p>{{__('app/app_menus.atc_all_bookings')}}</p>
               </a>
             </li>
             @if (Auth::user()->isApprovedATC() == true)
             <li class="nav-item">
               <a href="{{ route('app.atc.mybookings', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.mybookings')) active @endif">
                 <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.atc_my_bookings')}}</p>
+                <p>{{__('app/app_menus.atc_my_bookings')}}</p>
               </a>
             </li>
             @endif
@@ -100,31 +100,31 @@
         <li class="nav-item">
           <a href="{{ route('app.atc.loas', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.loas')) active @endif">
             <i class="nav-icon fas fa-sticky-note"></i>
-            <p>{{__('app_menus.loas')}}</p>
+            <p>{{__('app/app_menus.loas')}}</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fas fa-question-circle"></i>
-            <p>{{__('app_menus.atc_ressources')}}</p>
+            <p>{{__('app/app_menus.atc_ressources')}}</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fas fa-download"></i>
-            <p>{{__('app_menus.atc_dl')}}</p>
+            <p>{{__('app/app_menus.atc_dl')}}</p>
           </a>
         </li>
         @endif
 
         {{-- Pilot Section of the menu --}}
         @if (strpos(Auth::user()->account_type, 'Pilot') !== False)
-        <li class="nav-header">{{__('app_menus.pilots_header')}}</li>
+        <li class="nav-header">{{__('app/app_menus.pilots_header')}}</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-paper-plane"></i>
             <p>
-              {{__('app_menus.pilots_bookings')}}
+              {{__('app/app_menus.pilots_bookings')}}
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -132,13 +132,13 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.pilots_all_bookings')}}</p>
+                <p>{{__('app/app_menus.pilots_all_bookings')}}</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.pilots_my_bookings')}}</p>
+                <p>{{__('app/app_menus.pilots_my_bookings')}}</p>
               </a>
             </li>
           </ul>
@@ -147,7 +147,7 @@
 
         {{-- Staff section --}}
         @if (Auth::user()->is_staff == true)
-          <li class="nav-header">{{__('app_menus.staff_header')}}</li>
+          <li class="nav-header">{{__('app/app_menus.staff_header')}}</li>
           @if (Auth::user()->isAdmin() == true)
             <li class="nav-item">
               <a href="{{ route('app.staff.admin', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.admin')) active @endif">
@@ -160,7 +160,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
-                {{__('app_menus.staff_atc_mentoring')}}
+                {{__('app/app_menus.staff_atc_mentoring')}}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -168,13 +168,13 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{{__('app_menus.staff_atc_mentoring_overview')}}</p>
+                  <p>{{__('app/app_menus.staff_atc_mentoring_overview')}}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{{__('app_menus.staff_atc_mentoring_my_students')}}</p>
+                  <p>{{__('app/app_menus.staff_atc_mentoring_my_students')}}</p>
                 </a>
               </li>
             </ul>
@@ -183,7 +183,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
-                {{__('app_menus.staff_pil_ment')}}
+                {{__('app/app_menus.staff_pil_ment')}}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -191,13 +191,13 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{{__('app_menus.staff_pil_ment_overview')}}</p>
+                  <p>{{__('app/app_menus.staff_pil_ment_overview')}}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{{__('app_menus.staff_pil_ment_my_students')}}</p>
+                  <p>{{__('app/app_menus.staff_pil_ment_my_students')}}</p>
                 </a>
               </li>
             </ul>

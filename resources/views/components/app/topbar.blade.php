@@ -8,7 +8,7 @@
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link">
         <span>
-          {{__('app_menus.local_time')}}:
+          {{__('app/app_menus.local_time')}}:
         </span>
         <span id="local_time"></span>
       </a>
@@ -16,7 +16,7 @@
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link">
         <span>
-          {{__('app_menus.utc_time')}}: 
+          {{__('app/app_menus.utc_time')}}: 
         </span>
         <span id="utc_time"></span>
       </a>
@@ -41,7 +41,7 @@
     </li>
     <li class="nav-item">
       <a href="{{ route('landingpage.home', app()->getLocale()) }}" class="nav-link">
-        {{__('app_menus.return_lp')}}
+        {{__('app/app_menus.return_lp')}}
       </a>
     </li>
     <li class="nav-item dropdown">
@@ -50,10 +50,10 @@
       </a>
       <div class="dropdown-menu">
         <a href="{{ route('app.user.settings', app()->getLocale()) }}" class="dropdown-item">
-          {{__('app_menus.my_settings')}}
+          {{__('app/app_menus.my_settings')}}
         </a>
         <a href="{{ route('auth.logout', app()->getLocale()) }}" class="dropdown-item">
-          {{__('app_menus.logout')}}
+          {{__('app/app_menus.logout')}}
         </a>
       </div>
     </li>
