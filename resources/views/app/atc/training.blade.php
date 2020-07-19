@@ -22,7 +22,7 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
       {{-- Upcoming training sessions table --}}
       <div class="card card-secondary">
         <div class="card-header">
@@ -40,6 +40,7 @@
               <th>When</th>
               <th>Mentor</th>
               <th>Proposed by</th>
+              <th>Status</th>
               <th>Options</th>
             </tr>
             </thead>
@@ -47,8 +48,9 @@
               <tr>
                 <td>LFMN_APP</td>
                 <td>DATE - TIME</td>
-                <td>John Doe (1234567)</td>
-                <td>Mentor (John Doe)</td>
+                <td>Peter Paré (1267123)</td>
+                <td>Mentor (Peter Paré)</td>
+                <td>Awaiting your approval</td>
                 <td>
                   <form action="" method="GET">
                     @csrf
@@ -59,8 +61,9 @@
               <tr>
                 <td>LFMN_TWR</td>
                 <td>DATE - TIME</td>
-                <td>John Doe (1234567)</td>
+                <td>Peter Paré (1267123)</td>
                 <td>You</td>
+                <td>Awaiting mentor approval</td>
                 <td>
                   <form action="" method="GET">
                     @csrf
@@ -74,10 +77,10 @@
         <!-- /.card-body -->
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Request Training Session with {MENTOR NAME HERE}</h3>
+          <h3 class="card-title">Request Training Session with Peter Paré</h3>
         </div>
         <form action="" method="post">
           <div class="card-body">
@@ -88,16 +91,22 @@
               </select>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label for="session-date">Date</label>
                   <input type="text" class="form-control" id="session-date" name="sessiondate" placeholder="Date">
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label for="starttime">Start time (UTC)</label>
                   <input type="text" class="form-control" id="starttime" name="starttime" placeholder="Start time">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="endtime">End time (UTC)</label>
+                  <input type="text" class="form-control" id="endtime" name="endtime" placeholder="End time">
                 </div>
               </div>
             </div>
@@ -114,7 +123,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
       {{-- Past training sessions table --}}
       <div class="card card-secondary">
         <div class="card-header">
@@ -139,7 +148,7 @@
               <tr>
                 <td>LFMN_TWR</td>
                 <td>DATE - TIME</td>
-                <td>John Doe (1234567)</td>
+                <td>Peter Paré (1267123)</td>
                 <td>Successful</td>
                 <td>
                   <form action="" method="GET">
@@ -152,6 +161,60 @@
           </table>
         </div>
         <!-- /.card-body -->
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>23</h3>
+
+              <p>Mentoring sessions</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-headphones"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>25:34</h3>
+
+              <p>Class hours</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>LFMN</h3>
+
+              <p>Teaching platform</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-plane-departure"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>Peter Paré</h3>
+
+              <p>Your current mentor</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -194,6 +257,16 @@
       noCalendar: true,
       dateFormat: "H:i",
       defaultHour: d.getUTCHours(),
+      defaultMinute: 00,
+      allowInput: true,
+      time_24hr: true,
+      minuteIncrement: 15
+  });
+  flatpickr("#endtime", {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      defaultHour: d.getUTCHours()+1,
       defaultMinute: 00,
       allowInput: true,
       time_24hr: true,
