@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC Training Center</h1>
+          <h1>{{__('app/atc/atc_training_center.header_title', ['FNAME' => Auth::user()->fname])}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -26,22 +26,22 @@
       {{-- Upcoming training sessions table --}}
       <div class="card card-secondary">
         <div class="card-header">
-          <h3 class="card-title">Upcoming sessions</h3>
+          <h3 class="card-title">{{__('app/atc/atc_training_center.upcoming_sess')}}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
           <table
             id="upcoming_sessions"
             class="table table-bordered table-hover"
-            data-order='[[ 2, "desc" ]]'>
+            data-order='[[ 1, "desc" ]]'>
             <thead>
             <tr>
-              <th>Callsign</th>
-              <th>When</th>
-              <th>Mentor</th>
-              <th>Proposed by</th>
-              <th>Status</th>
-              <th>Options</th>
+              <th>{{__('app/atc/atc_training_center.callsign')}}</th>
+              <th>{{__('app/atc/atc_training_center.when')}}</th>
+              <th>{{__('app/atc/atc_training_center.mentor')}}</th>
+              <th>{{__('app/atc/atc_training_center.prop_by')}}</th>
+              <th>{{__('app/atc/atc_training_center.status')}}</th>
+              <th>{{__('app/atc/atc_training_center.options')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -80,43 +80,43 @@
     <div class="col-md-5">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Request Training Session with Peter Paré</h3>
+          <h3 class="card-title">{{__('app/atc/atc_training_center.sess_req', ['MENTOR' => 'Peter Paré'])}}</h3>
         </div>
         <form action="" method="post">
           <div class="card-body">
             <div class="form-group">
-              <label for="reqposition">Position</label>
+              <label for="reqposition">{{__('app/atc/atc_training_center.pos')}}</label>
               <select class="form-control" name="reqposition" id="reqposition">
-                <option value="" disabled selected>Select...</option>
+                <option value="" disabled selected>{{__('app/atc/atc_training_center.select')}}...</option>
               </select>
             </div>
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="session-date">Date</label>
-                  <input type="text" class="form-control" id="session-date" name="sessiondate" placeholder="Date">
+                  <label for="session-date">{{__('app/atc/atc_training_center.date')}}</label>
+                  <input type="text" class="form-control" id="session-date" name="sessiondate" placeholder="{{__('app/atc/atc_training_center.date')}}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="starttime">Start time (UTC)</label>
-                  <input type="text" class="form-control" id="starttime" name="starttime" placeholder="Start time">
+                  <label for="starttime">{{__('app/atc/atc_training_center.st_time')}} (UTC)</label>
+                  <input type="text" class="form-control" id="starttime" name="starttime" placeholder="{{__('app/atc/atc_training_center.st_time')}}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="endtime">End time (UTC)</label>
-                  <input type="text" class="form-control" id="endtime" name="endtime" placeholder="End time">
+                  <label for="endtime">{{__('app/atc/atc_training_center.end_time')}} (UTC)</label>
+                  <input type="text" class="form-control" id="endtime" name="endtime" placeholder="{{__('app/atc/atc_training_center.end_time')}}">
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="reqcomment">Comment for your mentor</label>
-              <textarea class="form-control" rows="3" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="Comment..."></textarea>
+              <label for="reqcomment">{{__('app/atc/atc_training_center.comment_for')}}</label>
+              <textarea class="form-control" rows="3" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="..."></textarea>
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success">{{__('app/atc/atc_training_center.submit')}}</button>
           </div>
         </form>
       </div>
@@ -127,7 +127,7 @@
       {{-- Past training sessions table --}}
       <div class="card card-secondary">
         <div class="card-header">
-          <h3 class="card-title">Past sessions</h3>
+          <h3 class="card-title">{{__('app/atc/atc_training_center.past_sess')}}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -137,11 +137,11 @@
             data-order='[[ 2, "desc" ]]'>
             <thead>
             <tr>
-              <th>Callsign</th>
-              <th>When</th>
-              <th>Mentor</th>
-              <th>Outcome</th>
-              <th>Options</th>
+              <th>{{__('app/atc/atc_training_center.callsign')}}</th>
+              <th>{{__('app/atc/atc_training_center.when')}}</th>
+              <th>{{__('app/atc/atc_training_center.mentor')}}</th>
+              <th>{{__('app/atc/atc_training_center.outcome')}}</th>
+              <th>{{__('app/atc/atc_training_center.options')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -153,7 +153,7 @@
                 <td>
                   <form action="" method="GET">
                     @csrf
-                    <button type="submit" class="btn btn-block btn-info btn-flat">Report</button>
+                    <button type="submit" class="btn btn-block btn-info btn-flat">{{__('app/atc/atc_training_center.report')}}</button>
                   </form>
                 </td>
               </tr>
@@ -170,7 +170,7 @@
             <div class="inner">
               <h3>23</h3>
 
-              <p>Mentoring sessions</p>
+              <p>{{__('app/atc/atc_training_center.ment_sessions')}}</p>
             </div>
             <div class="icon">
               <i class="fas fa-headphones"></i>
@@ -182,7 +182,7 @@
             <div class="inner">
               <h3>25:34</h3>
 
-              <p>Class hours</p>
+              <p>{{__('app/atc/atc_training_center.class_h')}}</p>
             </div>
             <div class="icon">
               <i class="fas fa-clock"></i>
@@ -196,7 +196,7 @@
             <div class="inner">
               <h3>LFMN</h3>
 
-              <p>Teaching platform</p>
+              <p>{{__('app/atc/atc_training_center.teaching_p')}}</p>
             </div>
             <div class="icon">
               <i class="fas fa-plane-departure"></i>
@@ -208,7 +208,7 @@
             <div class="inner">
               <h3>Peter Paré</h3>
 
-              <p>Your current mentor</p>
+              <p>{{__('app/atc/atc_training_center.curr_ment')}}</p>
             </div>
             <div class="icon">
               <i class="fas fa-chalkboard-teacher"></i>

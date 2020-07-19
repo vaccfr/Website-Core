@@ -25,7 +25,7 @@
       <div class="col-md-6">
         <div class="card card-secondary">
           <div class="card-header">
-            <h3 class="card-title">{{__('app_atc_mybookings.book_a_pos')}}</h3>
+            <h3 class="card-title">{{__('app/atc/atc_mybookings.book_a_pos')}}</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -42,9 +42,9 @@
                 </select>
               </div> --}}
               <div class="form-group">
-                <label>{{__('app_atc_mybookings.pos_label')}}</label>
+                <label>{{__('app/atc/atc_mybookings.pos_label')}}</label>
                 <select class="form-control" id="position-select" name="positionselect">
-                  <option value="" disabled selected>{{__('app_atc_mybookings.pos_select')}}</option>
+                  <option value="" disabled selected>{{__('app/atc/atc_mybookings.pos_select')}}</option>
                   @foreach ($positions as $p)
                     @if (count($p['positions']) > 0)
                       <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
@@ -67,32 +67,32 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <label for="date">{{__('app_atc_mybookings.date_label')}}</label>
-                    <input type="text" class="form-control" id="booking-date" name="bookingdate" placeholder="{{__('app_atc_mybookings.date_placeholder')}}">
+                    <label for="date">{{__('app/atc/atc_mybookings.date_label')}}</label>
+                    <input type="text" class="form-control" id="booking-date" name="bookingdate" placeholder="{{__('app/atc/atc_mybookings.date_placeholder')}}">
                   </div>
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <label for="starttime">{{__('app_atc_mybookings.st_time_label')}}</label>
-                    <input type="text" class="form-control" id="starttime" name="starttime" placeholder="{{__('app_atc_mybookings.st_time_placeholder')}}">
+                    <label for="starttime">{{__('app/atc/atc_mybookings.st_time_label')}}</label>
+                    <input type="text" class="form-control" id="starttime" name="starttime" placeholder="{{__('app/atc/atc_mybookings.st_time_placeholder')}}">
                   </div>
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <label for="endtime">{{__('app_atc_mybookings.en_time_label')}}</label>
-                    <input type="text" class="form-control" id="endtime" name="endtime" placeholder="{{__('app_atc_mybookings.en_time_placeholder')}}">
+                    <label for="endtime">{{__('app/atc/atc_mybookings.en_time_label')}}</label>
+                    <input type="text" class="form-control" id="endtime" name="endtime" placeholder="{{__('app/atc/atc_mybookings.en_time_placeholder')}}">
                   </div>
                 </div>
               </div>
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="is-mentoring">
-                <label class="form-check-label" for="is-mentoring">{{__('app_atc_mybookings.mentor_checkbox', ['NAME' => '{MENTOR HERE}'])}}</label>
+                <label class="form-check-label" for="is-mentoring">{{__('app/atc/atc_mybookings.mentor_checkbox', ['NAME' => '{MENTOR HERE}'])}}</label>
               </div>
             </div>
             <!-- /.card-body -->
 
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary">{{__('app_atc_mybookings.submit_btn')}}</button>
+              <button type="submit" class="btn btn-primary">{{__('app/atc/atc_mybookings.submit_btn')}}</button>
             </div>
           </form>
         </div>
@@ -100,7 +100,7 @@
       <div class="col-md-6">
         <div class="card card-secondary">
           <div class="card-header">
-            <h3 class="card-title">{{__('app_atc_mybookings.your_bk_title')}}</h3>
+            <h3 class="card-title">{{__('app/atc/atc_mybookings.your_bk_title')}}</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -110,9 +110,9 @@
               data-order='[[ 1, "asc" ]]'>
               <thead>
               <tr>
-                <th>{{__('app_atc_mybookings.callsign')}}</th>
-                <th>{{__('app_atc_mybookings.when_date')}}</th>
-                <th>{{__('app_atc_mybookings.actions_col')}}</th>
+                <th>{{__('app/atc/atc_mybookings.callsign')}}</th>
+                <th>{{__('app/atc/atc_mybookings.when_date')}}</th>
+                <th>{{__('app/atc/atc_mybookings.actions_col')}}</th>
               </tr>
               </thead>
               <tbody>
@@ -123,7 +123,7 @@
                     <td>
                       <form action="{{ route('do.atc.booking.delete', ['locale' => app()->getLocale(), 'unique_id' => $b['unique_id']]) }}" method="GET">
                         @csrf
-                        <button type="submit" class="btn btn-block btn-danger btn-flat">{{__('app_atc_mybookings.del_btn')}}</button>
+                        <button type="submit" class="btn btn-block btn-danger btn-flat">{{__('app/atc/atc_mybookings.del_btn')}}</button>
                       </form>
                     </td>
                   </tr>
