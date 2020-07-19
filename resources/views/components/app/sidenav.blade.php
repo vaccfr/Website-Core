@@ -92,7 +92,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+          <a href="{{ route('app.atc.training', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.training')) active @endif">
             <i class="nav-icon fa fa-graduation-cap"></i>
             <p>Training Center</p>
           </a>

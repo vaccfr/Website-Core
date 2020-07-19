@@ -107,7 +107,7 @@
             <table
               id="atc_sessions_table"
               class="table table-bordered table-hover"
-              data-order='[[ 2, "desc" ]]'>
+              data-order='[[ 1, "asc" ]]'>
               <thead>
               <tr>
                 <th>{{__('app_atc_mybookings.callsign')}}</th>

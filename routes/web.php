@@ -47,6 +47,7 @@ Route::group([
             'prefix' => '/atc',
         ], function() {
             Route::get('/loas', 'ATC\ATCPagesController@loas')->name('app.atc.loas');
+            Route::get('/training', 'ATC\ATCPagesController@training')->name('app.atc.training');
             
             Route::group(['middleware' => 'ATC', 'prefix' => '/book/verified'], function() {
                 Route::get('/mybookings', 'ATC\BookingController@MyBookingsPage')->name('app.atc.mybookings');

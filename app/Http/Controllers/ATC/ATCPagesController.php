@@ -11,4 +11,9 @@ class ATCPagesController extends Controller
     {
         return view('app.atc.loas');
     }
+
+    public function training()
+    {
+        return view('app.atc.training');
+    }
 }
