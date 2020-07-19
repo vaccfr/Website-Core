@@ -62,6 +62,9 @@
           <div class="card-body">
             <div class="tab-content">
               <div class="tab-pane active" role="tabpanel" id="atc-tab-1">
+                @if (count($book0) == 0)
+                  No bookings today
+                @else
                 <table class="table">
                   <thead class="thead">
                     <tr>
@@ -80,8 +83,12 @@
                     @endforeach
                   </tbody>
                 </table>
+                @endif
               </div>
               <div class="tab-pane" role="tabpanel" id="atc-tab-2">
+                @if (count($book1) == 0)
+                  No bookings tomorrow
+                @else
                 <table class="table">
                   <thead class="thead">
                     <tr>
@@ -100,8 +107,12 @@
                     @endforeach
                   </tbody>
                 </table>
+                @endif
               </div>
               <div class="tab-pane" role="tabpanel" id="atc-tab-3">
+                @if (count($book2) == 0)
+                  No bookings after tomorrow
+                @else
                 <table class="table">
                   <thead class="thead">
                     <tr>
@@ -120,6 +131,7 @@
                     @endforeach
                   </tbody>
                 </table>
+                @endif
               </div>
             </div>
           </div>
