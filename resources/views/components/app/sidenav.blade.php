@@ -91,40 +91,11 @@
             @endif
           </ul>
         </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item">
+          <a href="{{ route('app.atc.loas', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fas fa-sticky-note"></i>
-            <p>
-              {{__('app_menus.loas')}}
-              <i class="right fas fa-angle-left"></i>
-            </p>
+            <p>{{__('app_menus.loas')}}</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.be')}}</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.es')}}</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.ch')}}</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app_menus.uk')}}</p>
-              </a>
-            </li>
-          </ul>
         </li>
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
