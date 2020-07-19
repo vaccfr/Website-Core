@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAtcStudentsTable extends Migration
+class CreateMentoringRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateAtcStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('atc_students', function (Blueprint $table) {
+        Schema::create('mentoring_requests', function (Blueprint $table) {
             $table->bigInteger('id')->unique();
-            $table->integer('vatsim_id');
+            $table->bigInteger('student_id');
+            $table->string('icao');
+            $table->longText('motivation');
+            $table->boolean('taken')->default(false);
             $table->bigInteger('mentor_id')->nullable();
-            $table->boolean('active')->default(false);
-            $table->string('status')->default('waiting');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateAtcStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('atc_students');
+        Schema::dropIfExists('mentoring_requests');
     }
 }

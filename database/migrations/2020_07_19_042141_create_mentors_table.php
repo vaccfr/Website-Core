@@ -17,6 +17,7 @@ class CreateMentorsTable extends Migration
             $table->bigInteger('id')->unique();
             $table->integer('vatsim_id');
             $table->string('allowed_rank');
+            $table->integer('student_count');
             $table->timestamps();
         });
     }

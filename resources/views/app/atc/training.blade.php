@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  ATC Training | {{ Auth::user()->fname }}
+  ATC Training Center | {{ Auth::user()->fname }}
 @endsection
 
 @section('page-header')

@@ -24,5 +24,11 @@ return [
     '10' => 'I3',
     '11' => 'SUP',
     '12' => 'ADM',
+  ],
+  'excluded_mentoring_airports' => [
+    'LFPG',
+    'LFPO',
+    'LFPB',
+    'LFMN',
   ]
 ];

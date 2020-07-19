@@ -10,7 +10,7 @@ class Mentor extends Model
     protected $table = "mentors";
 
     protected $fillable = [
-        'id', 'vatsim_id', 'allowed_rank',
+        'id', 'vatsim_id', 'allowed_rank', 'student_count',
     ];
 
     // Relationships

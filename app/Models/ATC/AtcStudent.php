@@ -10,7 +10,7 @@ class AtcStudent extends Model
     protected $table = "atc_students";
 
     protected $fillable = [
-        'id', 'vatsim_id', 'mentor_id', 'active',
+        'id', 'vatsim_id', 'mentor_id', 'active', 'status',
     ];
 
     // Relationships
