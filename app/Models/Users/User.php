@@ -5,6 +5,7 @@ namespace App\Models\Users;
 use App\Models\Admin\Staff;
 use App\Models\ATC\AtcRosterMember;
 use App\Models\ATC\Booking;
+use App\Models\ATC\Mentor;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -62,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Booking::class, 'vatsim_id', 'vatsim_id');
     }
 
+    public function atcmentor()
+    {
+        return $this->hasOne(Mentor::class, 'id', 'id');
+    }
+
     // Utility Functions
     
     public function fullname()
@@ -104,11 +110,20 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        $user = Staff::where('vatsim_id', auth()->user()->vatsim_id)->first();
+        $user = Staff::where('vatsim_id', $this->vatsim_id)->first();
         if (is_null($user)) {
             return false;
         }
         if ($user->admin == false) {
+            return false;
+        }
+        return true;
+    }
+
+    public function isAtcMentor()
+    {
+        $user = Mentor::where('vatsim_id', $this->vatsim_id)->first();
+        if (is_null($user)) {
             return false;
         }
         return true;

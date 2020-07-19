@@ -49,6 +49,13 @@
                 {{__('app_indexpage.not_approved')}}
               @endif</a>
             </li>
+            <li class="list-group-item">
+              <b>ATC Mentor Status</b> <a class="float-right">@if ($user->isAtcMentor() == true)
+                {{__('app_indexpage.approved')}}
+              @else
+                {{__('app_indexpage.not_approved')}}
+              @endif</a>
+            </li>
           </ul>
         </div>
         <!-- /.card-body -->
@@ -111,6 +118,24 @@
                 <input type="checkbox" class="custom-control-input" id="approved-staff-switch" name="staffswitch" @if ($user->isStaff() == true) checked @endif>
                 <label class="custom-control-label" for="approved-staff-switch">Make Staff</label>
               </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="atcmentorswitch" name="atcmentorswitch" @if ($user->isAtcMentor() == true) checked @endif>
+                <label class="custom-control-label" for="atcmentorswitch">Make ATC mentor</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Allowed ATC Mentoring level</label>
+                <select class="form-control" name="allowedrank" id="allowedrank">
+                  @foreach ($mentoring_ranks as $r)
+                    @if ($r == $curr_mentor_rank)
+                      <option value="{{ $r }}" selected>{{ $r }}</option>
+                    @else
+                      <option value="{{ $r }}">{{ $r }}</option>
+                    @endif
+                  @endforeach
+                </select>
             </div>
           </div>
           <!-- /.card-body -->

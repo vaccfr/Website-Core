@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStaffTable extends Migration
+class CreateMentorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateStaffTable extends Migration
      */
     public function up()
     {
-        Schema::create('staff', function (Blueprint $table) {
+        Schema::create('mentors', function (Blueprint $table) {
             $table->bigInteger('id')->unique();
             $table->integer('vatsim_id');
-            $table->integer('staff_level');
-            $table->boolean('admin')->default(false);
-            $table->boolean('atc_dpt')->default(false);
-            $table->boolean('pilot_dpt')->default(false);
-            $table->boolean('executive')->default(false);
-            $table->boolean('events')->default(false);
+            $table->string('allowed_rank');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreateStaffTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff');
+        Schema::dropIfExists('mentors');
     }
 }
