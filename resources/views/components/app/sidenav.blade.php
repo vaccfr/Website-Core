@@ -27,12 +27,6 @@
             <p>{{__('app/app_menus.forum')}}</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
-            <i class="nav-icon fa fa-bullhorn"></i>
-            <p>{{ __('app/app_menus.events') }}</p>
-          </a>
-        </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-info"></i>

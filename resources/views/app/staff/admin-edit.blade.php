@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Admin Dashboard - Edit {{ $user->fname }}</h1>
+          <h1>{{__('app/admin/useredit.header_title', ['FNAME' => $user->fname])}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -30,30 +30,30 @@
 
           <ul class="list-group list-group-unbordered mb-3">
             <li class="list-group-item">
-              <b>{{__('app_indexpage.atc_rank')}}</b> <a class="float-right">{{ $user->fullAtcRank() }}</a>
+              <b>{{__('app/admin/useredit.atc_rank')}}</b> <a class="float-right">{{ $user->fullAtcRank() }}</a>
             </li>
             <li class="list-group-item">
-              <b>{{__('app_indexpage.pilot_rank')}}</b> <a class="float-right">{{ $user->pilot_rating }}</a>
+              <b>{{__('app/admin/useredit.pilot_rank')}}</b> <a class="float-right">P{{ $user->pilot_rating }}</a>
             </li>
             <li class="list-group-item">
-              <b>{{__('app_indexpage.approved_atc')}}</b> <a class="float-right">@if ($user->isApprovedAtc() == true)
-                {{__('app_indexpage.approved')}}
+              <b>{{__('app/admin/useredit.approved_atc')}}</b> <a class="float-right">@if ($user->isApprovedAtc() == true)
+                {{__('app/admin/useredit.approved')}}
               @else
-                {{__('app_indexpage.not_approved')}}
+                {{__('app/admin/useredit.not_approved')}}
               @endif</a>
             </li>
             <li class="list-group-item">
-              <b>Staff Status</b> <a class="float-right">@if ($user->isStaff() == true)
-                {{__('app_indexpage.approved')}}
+              <b>{{__('app/admin/useredit.staff_status')}}</b> <a class="float-right">@if ($user->isStaff() == true)
+                {{__('app/admin/useredit.approved')}}
               @else
-                {{__('app_indexpage.not_approved')}}
+                {{__('app/admin/useredit.not_approved')}}
               @endif</a>
             </li>
             <li class="list-group-item">
-              <b>ATC Mentor Status</b> <a class="float-right">@if ($user->isAtcMentor() == true)
-                {{__('app_indexpage.approved')}}
+              <b>{{__('app/admin/useredit.mentor_status')}}</b> <a class="float-right">@if ($user->isAtcMentor() == true)
+                {{__('app/admin/useredit.approved')}}
               @else
-                {{__('app_indexpage.not_approved')}}
+                {{__('app/admin/useredit.not_approved')}}
               @endif</a>
             </li>
           </ul>
@@ -66,7 +66,7 @@
     <div class="col-md-4">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Edit User Details</h3>
+          <h3 class="card-title">{{__('app/admin/useredit.edit_details', ['FNAME' => $user->fname])}}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -77,12 +77,12 @@
               <div class="form-group">
                 <div class="custom-control custom-switch custom-switch-on-success">
                   <input type="checkbox" class="custom-control-input" id="approved-atc-switch" name="approveatc" @if ($user->isApprovedAtc() == true) checked @endif>
-                  <label class="custom-control-label" for="approved-atc-switch">Approved ATC</label>
+                  <label class="custom-control-label" for="approved-atc-switch">{{__('app/admin/useredit.approve_atc')}}</label>
                 </div>
               </div>
             @endif
             <div class="form-group">
-              <label>Modify User Type</label>
+              <label>{{__('app/admin/useredit.mod_usertype')}}</label>
                 <select class="form-control" name="editusertype">
                   @foreach ($usertypes as $ut)
                     @if ($ut == $user->account_type)
@@ -97,7 +97,7 @@
           <!-- /.card-body -->
           <div class="card-footer">
             <input type="hidden" name="userid" value="{{ $user->id }}">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{__('app/admin/useredit.submit')}}</button>
           </div>
         </form>
       </div>
@@ -106,7 +106,7 @@
     <div class="col-md-4">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Edit User Staff Access</h3>
+          <h3 class="card-title">{{__('app/admin/useredit.edit_staff', ['FNAME' => $user->fname])}}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -116,17 +116,17 @@
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="approved-staff-switch" name="staffswitch" @if ($user->isStaff() == true) checked @endif>
-                <label class="custom-control-label" for="approved-staff-switch">Make Staff</label>
+                <label class="custom-control-label" for="approved-staff-switch">{{__('app/admin/useredit.make_staff')}}</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="atcmentorswitch" name="atcmentorswitch" @if ($user->isAtcMentor() == true) checked @endif>
-                <label class="custom-control-label" for="atcmentorswitch">Make ATC mentor</label>
+                <label class="custom-control-label" for="atcmentorswitch">{{__('app/admin/useredit.make_atc_mentor')}}</label>
               </div>
             </div>
             <div class="form-group">
-              <label>Allowed ATC Mentoring level</label>
+              <label>{{__('app/admin/useredit.allowed_mentor_lvl')}}</label>
                 <select class="form-control" name="allowedrank" id="allowedrank">
                   @foreach ($mentoring_ranks as $r)
                     @if ($r == $curr_mentor_rank)
@@ -141,7 +141,7 @@
           <!-- /.card-body -->
           <div class="card-footer">
             <input type="hidden" name="userid" value="{{ $user->id }}">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{__('app/admin/useredit.submit')}}</button>
           </div>
         </form>
       </div>

@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Admin Dashboard</h1>
+          <h1>{{__('app/admin/dashboard.header_title')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -24,21 +24,21 @@
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Members</span>
+            <span class="info-box-text">{{__('app/admin/dashboard.members')}}</span>
             <span class="info-box-number">{{ $memberCount }}</span>
           </div>
         </div>
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">ATC members</span>
+            <span class="info-box-text">{{__('app/admin/dashboard.atc_members')}}</span>
             <span class="info-box-number">{{ $atcCount }}</span>
           </div>
         </div>
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-calendar"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">ATC bookings today</span>
+            <span class="info-box-text">{{__('app/admin/dashboard.atc_book_tod')}}</span>
             <span class="info-box-number">{{ $bookingsCount }}</span>
           </div>
         </div>
@@ -47,7 +47,7 @@
         <!-- /.card -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Members</h3>
+            <h3 class="card-title">{{__('app/admin/dashboard.members')}}</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -57,15 +57,15 @@
               data-order='[[ 2, "desc" ]]'>
               <thead>
               <tr>
-                <th>Name</th>
-                <th>Vatsim ID</th>
-                <th>Region</th>
-                <th>Account</th>
-                <th>Staff</th>
-                <th>ATC Approval</th>
-                <th>ATC Rank</th>
-                <th>Pilot Rank</th>
-                <th>Actions</th>
+                <th>{{__('app/admin/dashboard.name')}}</th>
+                <th>{{__('app/admin/dashboard.cid')}}</th>
+                <th>{{__('app/admin/dashboard.region')}}</th>
+                <th>{{__('app/admin/dashboard.account')}}</th>
+                <th>{{__('app/admin/dashboard.staff')}}</th>
+                <th>{{__('app/admin/dashboard.atc_approv')}}</th>
+                <th>{{__('app/admin/dashboard.atc_rank')}}</th>
+                <th>{{__('app/admin/dashboard.pil_rank')}}</th>
+                <th>{{__('app/admin/dashboard.actions')}}</th>
               </tr>
               </thead>
               <tbody>
@@ -85,12 +85,12 @@
                           <form action="{{ route('app.staff.admin.edit', ['locale' => app()->getLocale()]) }}" method="get">
                             <input type="hidden" value="{{ $m['id'] }}" name="userid">
                             <button type="submit" class="btn btn-block btn-info btn-flat">
-                              Edit
+                              {{__('app/admin/dashboard.edit')}}
                             </button>
                           </form>
                         </div>
                         <div class="col-sm-6">
-                          <button type="button" class="btn btn-block btn-warning btn-flat">Restrict</button>
+                          <button type="button" class="btn btn-block btn-warning btn-flat">{{__('app/admin/dashboard.restrict')}}</button>
                         </div>
                       </div>
                     </td>
