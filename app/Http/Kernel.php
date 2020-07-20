@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'ATC' => \App\Http\Middleware\Users\ATC::class,
         'STAFF' => \App\Http\Middleware\Users\Staff::class,
         'ADMIN' => \App\Http\Middleware\Users\Admin::class,
+        'ATCMENTOR' => \App\Http\Middleware\Users\ATCMentor::class,
     ];
 }
