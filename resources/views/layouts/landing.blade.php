@@ -37,7 +37,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      href="https://fonts.googleapis.com/css?family=Space+Moon:100,100i,300,300i,400,400i,700,700i,900,900i"
       rel="stylesheet"
     />
 
@@ -52,7 +52,7 @@
 
     @yield('page-content')
 
-		@include('components.landingpage.footer')
+		{{-- @include('components.landingpage.footer') --}}
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>

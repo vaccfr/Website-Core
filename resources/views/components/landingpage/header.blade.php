@@ -3,7 +3,7 @@
   <div class="container">
     <a class="navbar-brand" href="{{ route('landingpage.home', app()->getLocale()) }}"
       ><img
-        style="height: 40px; width: auto;"
+        style="height: 2rem; width: auto;"
         id="vatfrancelogo"
         src="{{ asset('media/img/lp/logo.png') }}"
         alt=""
