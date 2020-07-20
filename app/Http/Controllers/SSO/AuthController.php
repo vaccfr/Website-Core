@@ -147,13 +147,9 @@ class AuthController extends Controller
             ]);
         }
 
-        $lang = UserSetting::where('vatsim_id', $response->data->cid)->first();
-        $lang = $lang->lang;
-        app()->setLocale($lang);
-
         Auth::login($user, true);
 
-        return redirect()->back()->with("toast-success", trans('app/alerts.logged_in'));
+        return redirect()->route('app.index', app()->getLocale())->with("toast-success", trans('app/alerts.logged_in'));
     }
 
     public function logout()
