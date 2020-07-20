@@ -90,6 +90,7 @@
                 </table>
                 @endif
               </div>
+              
               <div class="tab-pane" role="tabpanel" id="atc-tab-2">
                 @if (count($book1) == 0)
                   No bookings tomorrow
@@ -114,6 +115,7 @@
                 </table>
                 @endif
               </div>
+
               <div class="tab-pane" role="tabpanel" id="atc-tab-3">
                 @if (count($book2) == 0)
                   No bookings after tomorrow

@@ -63,6 +63,6 @@ class ATCMentorController extends Controller
         $student->status = "taken";
         $student->save();
 
-        return redirect()->route('app.staff.atc.all', app()->getLocale());
+        return redirect()->route('app.staff.atc.all', app()->getLocale())->with('toast-info', trans('app/alerts.training_accepted'));
     }
 }

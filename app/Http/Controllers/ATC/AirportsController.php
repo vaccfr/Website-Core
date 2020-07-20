@@ -45,6 +45,6 @@ class AirportsController extends Controller
                 dd($e);
             }
         }
-        return redirect()->back();
+        return redirect()->back()->with('toast-info', 'Airports imported');
     }
 }

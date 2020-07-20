@@ -32,14 +32,6 @@ class AdminController extends Controller
 
     public function editUser(Request $request)
     {
-        $validated = Validator::make($request->all(), [
-            'userid' => 'required',
-        ]);
-
-        if ($validated->fails()) {
-            return redirect()->back();
-        }
-
         $user = User::where('id', $request->get('userid'))->firstOrFail();
 
         if ($user->subdiv_id == "FRA") {
@@ -106,7 +98,10 @@ class AdminController extends Controller
                 break;
         }
 
-        return redirect()->route('app.staff.admin.edit', app()->getLocale());
+        return redirect()->route('app.staff.admin.edit', [
+            'locale' => app()->getLocale(),
+            'userid' => $currentUser->id,
+        ])->with('toast-info', trans('app/alerts.details_edited'));
     }
 
     public function editUserFormStaff(Request $request)
@@ -162,8 +157,9 @@ class AdminController extends Controller
                 break;
         }
 
-
-        $newUser = User::where('id', $request->get('userid'))->firstOrFail();
-        return redirect()->route('app.staff.admin.edit', app()->getLocale());
+        return redirect()->route('app.staff.admin.edit', [
+            'locale' => app()->getLocale(),
+            'userid' => $currentUser->id,
+        ])->with('toast-info', trans('app/alerts.staff_edited'));
     }
 }

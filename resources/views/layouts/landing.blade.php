@@ -68,50 +68,70 @@
       });
     </script>
     @if (session()->has("toast-success"))
-      <script lang="javascript">
-        Toast.fire({
-          icon: 'success',
-          title: '{{ session("toast-success") }}'
-        });
-      </script>
-    @endif
-    
-    @if (session()->has("toast-error"))
-      <script lang="javascript">
-        Toast.fire({
-          icon: 'success',
-          title: '{{ session("toast-error") }}'
-        });
-      </script>
-    @endif
-    @if (session()->has("pop-success"))
-      <script lang="javascript">
-        Swal.fire(
-          'Success!',
-          "{{ session('pop-success') }}",
-          'success'
-        )
-      </script>
-    @endif
-    
-    @if (session()->has("pop-error"))
-      <script lang="javascript">
-        Swal.fire(
-          'Error!',
-          "{{ session('pop-error') }}",
-          'error'
-        )
-      </script>
-    @endif
-    
-    @if (App::environment() == 'livedev')
     <script lang="javascript">
-        Swal.fire(
-            'Warning!',
-            "This is a development version, not a working website!",
-            'info'
-        )
+      Toast.fire({
+        icon: 'success',
+        title: '{{ session("toast-success") }}'
+      });
     </script>
-    @endif
+  @endif
+  
+  @if (session()->has("toast-error"))
+    <script lang="javascript">
+      Toast.fire({
+        icon: 'error',
+        title: '{{ session("toast-error") }}'
+      });
+    </script>
+  @endif
+  
+  @if (session()->has("toast-info"))
+    <script lang="javascript">
+      Toast.fire({
+        icon: 'info',
+        title: '{{ session("toast-info") }}'
+      });
+    </script>
+  @endif
+  
+  @if (session()->has("pop-success"))
+    <script lang="javascript">
+      Swal.fire(
+        'Success!',
+        "{{ session('pop-success') }}",
+        'success'
+      )
+    </script>
+  @endif
+  
+  @if (session()->has("pop-info"))
+    <script lang="javascript">
+      Swal.fire(
+        'Information',
+        "{{ session('pop-info') }}",
+        'info'
+      )
+    </script>
+  @endif
+  
+  @if (session()->has("pop-error"))
+    <script lang="javascript">
+      Swal.fire(
+        'Error!',
+        "{{ session('pop-error') }}",
+        'error'
+      )
+    </script>
+  @endif
+    
+  @if (App::environment() == 'livedev')
+  <script lang="javascript">
+      Swal.fire(
+          'Warning!',
+          "This is a development version, not a working website!",
+          'info'
+      )
+  </script>
+  @endif
   </body>
 </html>

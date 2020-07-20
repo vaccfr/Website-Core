@@ -76,6 +76,6 @@ class MainController extends Controller
                 break;
         }
 
-        return redirect()->route('app.user.settings', app()->getLocale());
+        return redirect()->route('app.user.settings', app()->getLocale())->with('toast-success', trans('app/alerts.settings_edited'));
     }
 }

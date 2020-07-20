@@ -72,7 +72,7 @@ class AuthController extends Controller
                 ]);
             }
         } catch(ClientException $e) {
-            return redirect()->route('landingpage.home', app()->getLocale())->with("toast-error", "Error occured with SSO login");
+            return redirect()->route('landingpage.home', app()->getLocale())->with("toast-error", trans('app/alerts.sso_error'));
         }
 
         $tokens = json_decode((string) $response->getBody(), true);
@@ -87,7 +87,7 @@ class AuthController extends Controller
                 ]
             ]);
         } catch(ClientException $e){
-            return redirect()->route('landingpage.home', app()->getLocale())->with("toast-error", "Error occured with SSO login");
+            return redirect()->route('landingpage.home', app()->getLocale())->with("toast-error", trans('app/alerts.sso_error'));
         }
         
         $response = json_decode($response->getBody());
@@ -153,12 +153,12 @@ class AuthController extends Controller
 
         Auth::login($user, true);
 
-        return redirect()->back()->with("toast-success", "You are logged in");
+        return redirect()->back()->with("toast-success", trans('app/alerts.logged_in'));
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('landingpage.home', app()->getLocale())->with("toast-success", "You are logged out");
+        return redirect()->route('landingpage.home', app()->getLocale())->with("toast-success", trans('app/alerts.logged_out'));
     }
 }

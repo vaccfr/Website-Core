@@ -29,7 +29,7 @@ class MainController extends Controller
         $dayAfterTomorrow = Carbon::now()->addDays(2)->format('D. d/m');
         return view('landingpage.index', [
             'book0' => $bookingsToday,
-            'book1' => $bookingsAfterTomorrow,
+            'book1' => $bookingsTomorrow,
             'book2' => $bookingsAfterTomorrow,
             'day0' => $dayToday,
             'day1' => $dayTomorrow,

@@ -69,6 +69,6 @@ class ATCTrainingController extends Controller
             'vatsim_id' => auth()->user()->vatsim_id,
         ]);
 
-        return redirect()->route('app.atc.training', app()->getLocale());
+        return redirect()->route('app.atc.training', app()->getLocale())->with('pop-success', trans('app/alerts.success_application'));
     }
 }

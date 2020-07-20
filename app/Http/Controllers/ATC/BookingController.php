@@ -75,7 +75,7 @@ class BookingController extends Controller
         $booking->vatbook_id = $request->EU_ID;
         $booking->save();
 
-        return redirect()->route('app.atc.mybookings', app()->getLocale());
+        return redirect()->route('app.atc.mybookings', app()->getLocale())->with('toast-success', trans('app/alerts.success_book', ['POSITION' => $booking->position]));
     }
 
     public function deleteBooking($locale, $bid)
@@ -95,6 +95,6 @@ class BookingController extends Controller
         ->where('id', $request->Local_ID)
         ->delete();
 
-        return redirect()->route('app.atc.mybookings', app()->getLocale());
+        return redirect()->route('app.atc.mybookings', app()->getLocale())->with('toast-success', trans('app/alerts.success_del'));
     }
 }
