@@ -33,23 +33,23 @@
               <b>Contact email</b> <a class="float-right">{{ $useremail }}</a>
             </li>
             <li class="list-group-item">
-              <b>{{__('app_indexpage.atc_rank')}}</b> <a class="float-right">{{ Auth::user()->fullAtcRank() }}</a>
+              <b>{{__('app/app_indexpage.atc_rank')}}</b> <a class="float-right">{{ Auth::user()->fullAtcRank() }}</a>
             </li>
             <li class="list-group-item">
-              <b>{{__('app_indexpage.pilot_rank')}}</b> <a class="float-right">{{ Auth::user()->pilot_rating }}</a>
+              <b>{{__('app/app_indexpage.pilot_rank')}}</b> <a class="float-right">{{ Auth::user()->pilot_rating }}</a>
             </li>
             <li class="list-group-item">
-              <b>{{__('app_indexpage.approved_atc')}}</b> <a class="float-right">@if (Auth::user()->isApprovedAtc() == true)
-                {{__('app_indexpage.approved')}}
+              <b>{{__('app/app_indexpage.approved_atc')}}</b> <a class="float-right">@if (Auth::user()->isApprovedAtc() == true)
+                {{__('app/app_indexpage.approved')}}
               @else
-                {{__('app_indexpage.not_approved')}}
+                {{__('app/app_indexpage.not_approved')}}
               @endif</a>
             </li>
             <li class="list-group-item">
               <b>Staff Status</b> <a class="float-right">@if (Auth::user()->isStaff() == true)
-                {{__('app_indexpage.approved')}}
+                {{__('app/app_indexpage.approved')}}
               @else
-                {{__('app_indexpage.not_approved')}}
+                {{__('app/app_indexpage.not_approved')}}
               @endif</a>
             </li>
           </ul>
