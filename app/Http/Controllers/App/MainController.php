@@ -15,6 +15,7 @@ class MainController extends Controller
 {
     public function index()
     {
+        $connections = app(VatsimDataController::class)->getConnections();
         $sessions = app(VatsimDataController::class)->getATCSessions();
         $times = app(VatsimDataController::class)->getUserHours();
 
