@@ -71,7 +71,9 @@ Route::group([
                 Route::post('/edit/staffstatus', 'Staff\AdminController@editUserFormStaff')->name('app.staff.admin.edit.staffstatus');
             });
             Route::group(['prefix' => '/atc'], function() {
-                
+                Route::get('/all', 'Staff\ATCMentorController@allview')->name('app.staff.atc.all');
+
+                Route::post('/all/take', 'Staff\ATCMentorController@takeTraining')->name('app.staff.atc.all.take');
             });
             Route::group(['prefix' => '/pilot'], function() {
                 

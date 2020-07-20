@@ -17,11 +17,11 @@ class MentoringRequest extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'student_id', 'id');
+        return $this->hasOne(User::class, 'id', 'student_id');
     }
 
     public function mentor()
     {
-        return $this->hasOne(Mentor::class, 'mentor_id', 'id');
+        return $this->hasOne(Mentor::class, 'id', 'mentor_id');
     }
 }
