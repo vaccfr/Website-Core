@@ -78,7 +78,7 @@
                 <p class="text-danger" style="font-weight: bolder;">You must be affiliated to the French Region with your Vatsim Account before you can request mentoring.</p>
               </div>
               @break
-            @case("DONE")
+            @case("APPLIED")
               <div class="card-body">
                 <p class="text-danger" style="font-weight: bolder;">You have already requested training. Please wait for a response</p>
               </div>

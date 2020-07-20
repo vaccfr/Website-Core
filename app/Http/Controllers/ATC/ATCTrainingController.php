@@ -14,33 +14,34 @@ class ATCTrainingController extends Controller
 {
     public function index()
     {
-        // THIS NEEDS MASSIVE REWORKING AND RETHINKING
-        if (auth()->user()->subdiv_id !== "FRA") {
-            return view('app.atc.training_req', [
-                'show' => "NOREGION",
-            ]);
-        }
         $activeStudent = AtcStudent::where('vatsim_id', auth()->user()->vatsim_id)->first();
         $existingRequest = MentoringRequest::where('student_id', auth()->user()->id)->first();
-        if (is_null($activeStudent)) {
+        if (!is_null($activeStudent)) {
+            if ($activeStudent->active == true) {
+                return view('app.atc.training');
+            } else {
+                return view('app.atc.training_req', [
+                    'show' => "APPLIED",
+                ]);
+            }
+        } else {
             $platforms = Airport::orderBy('icao', 'ASC')->get();
             return view('app.atc.training_req', [
                 'platforms' => $platforms,
                 'excl' => config('vatfrance.excluded_mentoring_airports'),
                 'show' => "NORMAL",
             ]);
-        } elseif (!is_null($activeStudent) && $activeStudent->active == false) {
+        }
+        
+        if (auth()->user()->subdiv_id !== "FRA") {
             return view('app.atc.training_req', [
-                'show' => "DONE",
-            ]);
-        } elseif ($activeStudent->active == true) {
-            return view('app.atc.training');
-        } else {
-            return view('app.atc.training_req', [
-                'show' => "ERROR",
+                'show' => "NOREGION",
             ]);
         }
 
+        return view('app.atc.training_req', [
+            'show' => "ERROR",
+        ]);
     }
 
     public function mentoringRequest(Request $request)
