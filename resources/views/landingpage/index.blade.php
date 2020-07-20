@@ -5,20 +5,22 @@
 @endsection
 
 @section('page-masthead')
-<header class="masthead text-center text-white">
-  <div class="masthead-content">
-    <div class="container bg-overlay justify-content-center">
-      <h1 class="masthead-heading mb-2 mt-5">{{__('lp/lp_titles.welcome_to_vatfrance')}}@if (Auth::check()), {{ Auth::user()->fname }}@endif!</h1>
-      <h2 class="masthead-subheading mb-2">{{__('lp/lp_titles.french_branch')}}</h2>
-      @if (Auth::check())
-      <a href="{{ route('app.index', app()->getLocale()) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
-        >{{__('lp/lp_menu.dashboard')}}</a
-      >
-      @else
-      <a href="{{ route('auth.login', app()->getLocale()) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
-        >{{__('lp/lp_titles.join_us')}}!</a
-      >
-      @endif
+<header class="masthead">
+  <div class="container h-100 bg-overlay justify-content-center">
+    <div class="row h-75 align-items-center ">
+      <div class="col-12 text-center">
+        <h1 class="masthead-heading">{{__('lp/lp_titles.welcome_to_vatfrance')}}@if (Auth::check()), {{ Auth::user()->fname }}@endif!</h1>
+        <h2 class="masthead-subheading">{{__('lp/lp_titles.french_branch')}}</h2>
+        @if (Auth::check())
+        <a href="{{ route('app.index', app()->getLocale()) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
+          >{{__('lp/lp_menu.dashboard')}}</a
+        >
+        @else
+        <a href="{{ route('auth.login', app()->getLocale()) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
+          >{{__('lp/lp_titles.join_us')}}!</a
+        >
+        @endif
+      </div>
     </div>
   </div>
 </header>
@@ -30,7 +32,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm">
-        <h2 class="font-weight-medium">{{__('lp/lp_titles.welcome')}}!</h2>
+        <h3 class="font-weight-medium">{{__('lp/lp_titles.welcome')}}!</h3>
         <p class="mt-4">
           Soyez les bienvenus chez Vatfrance ! Nous avons le privilège d'être accueillis par Vatsim.
           Notre but est de vous initier au contrôle aérien. Si vous êtes pilotes, vous apprendrez la phraséologie,

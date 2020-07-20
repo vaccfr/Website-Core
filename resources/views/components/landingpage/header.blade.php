@@ -3,7 +3,7 @@
   <div class="container">
     <a class="navbar-brand" href="{{ route('landingpage.home', app()->getLocale()) }}"
       ><img
-        style="height: 2rem; width: auto;"
+        style="height: 2.5rem; width: auto;"
         id="vatfrancelogo"
         src="{{ asset('media/img/lp/logo.png') }}"
         alt=""
@@ -145,7 +145,7 @@
             {{ strtoupper(app()->getLocale()) }}
           </a>
           <div
-            class="dropdown-menu dropdown-menu-right animate slideIn"
+            class="dropdown-menu animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
             @foreach (config('app.available_locales') as $locale)
