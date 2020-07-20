@@ -57,5 +57,61 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>
     {{-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script>
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+    </script>
+    @if (session()->has("toast-success"))
+      <script lang="javascript">
+        Toast.fire({
+          icon: 'success',
+          title: '{{ session("toast-success") }}'
+        });
+      </script>
+    @endif
+    
+    @if (session()->has("toast-error"))
+      <script lang="javascript">
+        Toast.fire({
+          icon: 'success',
+          title: '{{ session("toast-error") }}'
+        });
+      </script>
+    @endif
+    @if (session()->has("pop-success"))
+      <script lang="javascript">
+        Swal.fire(
+          'Success!',
+          "{{ session('pop-success') }}",
+          'success'
+        )
+      </script>
+    @endif
+    
+    @if (session()->has("pop-error"))
+      <script lang="javascript">
+        Swal.fire(
+          'Error!',
+          "{{ session('pop-error') }}",
+          'error'
+        )
+      </script>
+    @endif
+    
+    @if (App::environment() == 'livedev')
+    <script lang="javascript">
+        Swal.fire(
+            'Warning!',
+            "This is a development version, not a working website!",
+            'info'
+        )
+    </script>
+    @endif
   </body>
 </html>

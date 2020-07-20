@@ -56,5 +56,52 @@
 <script src="{{ asset('dashboard/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dashboard/adminlte/dist/js/adminlte.min.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script>
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });
+</script>
+@if (session()->has("toast-success"))
+  <script lang="javascript">
+    Toast.fire({
+      icon: 'success',
+      title: '{{ session("success") }}'
+    });
+  </script>
+@endif
+
+@if (session()->has("toast-error"))
+  <script lang="javascript">
+    Toast.fire({
+      icon: 'success',
+      title: '{{ session("error") }}'
+    });
+  </script>
+@endif
+@if (session()->has("pop-success"))
+  <script lang="javascript">
+    Swal.fire(
+      'Success!',
+      "{{ session('success') }}",
+      'success'
+    )
+  </script>
+@endif
+
+@if (session()->has("pop-error"))
+  <script lang="javascript">
+    Swal.fire(
+      'Error!',
+      "{{ session('error') }}",
+      'error'
+    )
+  </script>
+@endif
 </body>
 </html>
