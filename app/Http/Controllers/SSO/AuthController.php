@@ -33,7 +33,7 @@ class AuthController extends Controller
         // session()->put('state', $state = Str::random(40));
         session()->forget('token');
 
-        if (app()->getLocale() == "en") {
+        if (app()->getLocale() == "gb") {
             $query = http_build_query([
                 'client_id' => config('vatsimsso.en_client_id'),
                 'redirect_uri' => config('vatsimsso.en_redirect'),
@@ -62,7 +62,7 @@ class AuthController extends Controller
     public function computeLogin($locale, $code)
     {
         try {
-            if (app()->getLocale() == "en") {
+            if (app()->getLocale() == "gb") {
                 $response = (new Client)->post('https://auth.vatsim.net/oauth/token', [
                     'form_params' => [
                         'grant_type' => 'authorization_code',
