@@ -3,6 +3,7 @@
 return [
   'header_title' => 'Dashboard Administrateur - Editer :FNAME',
   'edit_details' => 'Editer Compte de :FNAME',
+  'edit_atc_mentor' => 'Editer statut mentor ATC de :FNAME',
   'edit_staff' => 'Editer les accès Staff de :FNAME',
 
   // Fields
@@ -19,6 +20,8 @@ return [
   'mod_usertype' => 'Modifier type de compte',
 
   'make_staff' => 'Donner autorisations staff',
+  'make_admin' => 'Donner permissions Administrateur',
+  'make_exec' => 'Donner permissions Staff Executif (moderateur)',
   'make_atc_mentor' => 'Donner autorisations Mentor ATC',
   'allowed_mentor_lvl' => 'Grade ATC maximal d\'enseignement',
 

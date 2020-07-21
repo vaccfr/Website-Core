@@ -63,87 +63,131 @@
       <!-- /.card -->
     </div>
 
-    <div class="col-md-4">
-      <div class="card card-primary">
-        <div class="card-header">
-          <h3 class="card-title">{{__('app/admin/useredit.edit_details', ['FNAME' => $user->fname])}}</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form role="form" action="{{ route('app.staff.admin.edit.details', app()->getLocale()) }}" method="POST">
-          @csrf
-          <div class="card-body">
-            @if (strpos($user->account_type, 'ATC') !== False)
-              <div class="form-group">
-                <div class="custom-control custom-switch custom-switch-on-success">
-                  <input type="checkbox" class="custom-control-input" id="approved-atc-switch" name="approveatc" @if ($user->isApprovedAtc() == true) checked @endif>
-                  <label class="custom-control-label" for="approved-atc-switch">{{__('app/admin/useredit.approve_atc')}}</label>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-6">
+          {{-- Edit User details --}}
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">{{__('app/admin/useredit.edit_details', ['FNAME' => $user->fname])}}</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" action="{{ route('app.staff.admin.edit.details', app()->getLocale()) }}" method="POST">
+              @csrf
+              <div class="card-body">
+                @if (strpos($user->account_type, 'ATC') !== False)
+                  <div class="form-group">
+                    <div class="custom-control custom-switch custom-switch-on-success">
+                      <input type="checkbox" class="custom-control-input" id="approved-atc-switch" name="approveatc" @if ($user->isApprovedAtc() == true) checked @endif>
+                      <label class="custom-control-label" for="approved-atc-switch">{{__('app/admin/useredit.approve_atc')}}</label>
+                    </div>
+                  </div>
+                @endif
+                <div class="form-group">
+                  <label>{{__('app/admin/useredit.mod_usertype')}}</label>
+                    <select class="form-control" name="editusertype">
+                      @foreach ($usertypes as $ut)
+                        @if ($ut == $user->account_type)
+                          <option value="{{ $ut }}" selected>{{ $ut }}</option>
+                        @else
+                          <option value="{{ $ut }}">{{ $ut }}</option>
+                        @endif
+                      @endforeach
+                    </select>
                 </div>
               </div>
-            @endif
-            <div class="form-group">
-              <label>{{__('app/admin/useredit.mod_usertype')}}</label>
-                <select class="form-control" name="editusertype">
-                  @foreach ($usertypes as $ut)
-                    @if ($ut == $user->account_type)
-                      <option value="{{ $ut }}" selected>{{ $ut }}</option>
-                    @else
-                      <option value="{{ $ut }}">{{ $ut }}</option>
-                    @endif
-                  @endforeach
-                </select>
-            </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <input type="hidden" name="userid" value="{{ $user->id }}">
+                <button type="submit" class="btn btn-primary">{{__('app/admin/useredit.submit')}}</button>
+              </div>
+            </form>
           </div>
-          <!-- /.card-body -->
-          <div class="card-footer">
-            <input type="hidden" name="userid" value="{{ $user->id }}">
-            <button type="submit" class="btn btn-primary">{{__('app/admin/useredit.submit')}}</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card card-primary">
-        <div class="card-header">
-          <h3 class="card-title">{{__('app/admin/useredit.edit_staff', ['FNAME' => $user->fname])}}</h3>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form role="form" action="{{ route('app.staff.admin.edit.staffstatus', app()->getLocale()) }}" method="POST">
-          @csrf
-          <div class="card-body">
-            <div class="form-group">
-              <div class="custom-control custom-switch custom-switch-on-success">
-                <input type="checkbox" class="custom-control-input" id="approved-staff-switch" name="staffswitch" @if ($user->isStaff() == true) checked @endif>
-                <label class="custom-control-label" for="approved-staff-switch">{{__('app/admin/useredit.make_staff')}}</label>
+        <div class="col-md-6">
+          {{-- Edit ATC Mentor status --}}
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">{{__('app/admin/useredit.edit_atc_mentor', ['FNAME' => $user->fname])}}</h3>
+            </div>
+            <form role="form" action="{{ route('app.staff.admin.edit.atcmentor', app()->getLocale()) }}" method="POST">
+              @csrf
+              <div class="card-body">
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="atcmentorswitch" name="atcmentorswitch" @if ($user->isAtcMentor() == true) checked @endif>
+                    <label class="custom-control-label" for="atcmentorswitch">{{__('app/admin/useredit.make_atc_mentor')}}</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>{{__('app/admin/useredit.allowed_mentor_lvl')}}</label>
+                    <select class="form-control" name="allowedrank" id="allowedrank">
+                      @foreach ($mentoring_ranks as $r)
+                        @if ($r == $curr_mentor_rank)
+                          <option value="{{ $r }}" selected>{{ $r }}</option>
+                        @else
+                          <option value="{{ $r }}">{{ $r }}</option>
+                        @endif
+                      @endforeach
+                    </select>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="custom-control custom-switch custom-switch-on-success">
-                <input type="checkbox" class="custom-control-input" id="atcmentorswitch" name="atcmentorswitch" @if ($user->isAtcMentor() == true) checked @endif>
-                <label class="custom-control-label" for="atcmentorswitch">{{__('app/admin/useredit.make_atc_mentor')}}</label>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <input type="hidden" name="userid" value="{{ $user->id }}">
+                <button type="submit" class="btn btn-primary">{{__('app/admin/useredit.submit')}}</button>
               </div>
-            </div>
-            <div class="form-group">
-              <label>{{__('app/admin/useredit.allowed_mentor_lvl')}}</label>
-                <select class="form-control" name="allowedrank" id="allowedrank">
-                  @foreach ($mentoring_ranks as $r)
-                    @if ($r == $curr_mentor_rank)
-                      <option value="{{ $r }}" selected>{{ $r }}</option>
-                    @else
-                      <option value="{{ $r }}">{{ $r }}</option>
-                    @endif
-                  @endforeach
-                </select>
-            </div>
+            </form>
           </div>
-          <!-- /.card-body -->
-          <div class="card-footer">
-            <input type="hidden" name="userid" value="{{ $user->id }}">
-            <button type="submit" class="btn btn-primary">{{__('app/admin/useredit.submit')}}</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          {{-- Edit User staff access --}}
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">{{__('app/admin/useredit.edit_staff', ['FNAME' => $user->fname])}}</h3>
+            </div>
+            @if (Auth::user()->isAdmin() == true)
+            <form role="form" action="{{ route('app.staff.admin.edit.staffstatus', app()->getLocale()) }}" method="POST">
+              @csrf
+              <div class="card-body">
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="approved-staff-switch" name="staffswitch" @if ($user->isStaff() == true) checked @endif>
+                    <label class="custom-control-label" for="approved-staff-switch">{{__('app/admin/useredit.make_staff')}}</label>
+                  </div>
+                </div>
+                @if ($user->isStaff() == true)
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="admin-rights-switch" name="adminswitch" @if ($user->isAdmin() == true) checked @endif>
+                    <label class="custom-control-label" for="admin-rights-switch">{{__('app/admin/useredit.make_admin')}}</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="exec-rights-switch" name="execswitch" @if ($user->isExecStaff() == true) checked @endif>
+                    <label class="custom-control-label" for="exec-rights-switch">{{__('app/admin/useredit.make_exec')}}</label>
+                  </div>
+                </div>               
+                @endif
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <input type="hidden" name="userid" value="{{ $user->id }}">
+                <button type="submit" class="btn btn-primary">{{__('app/admin/useredit.submit')}}</button>
+              </div>
+            </form>
+            @else
+            <div class="card-body">
+              <i>Vous n'êtes pas administrateur</i>
+            </div>
+            @endif
           </div>
-        </form>
+        </div>
+        <div class="col-md-6"></div>
       </div>
     </div>
   </div>

@@ -5,6 +5,7 @@ return [
   '404_content' => 'Vous pouvez retourner à la page d\'accueil.<br />
   Si vous pensez que c\'est une erreur, signalez-le nous',
   '404_goto_lp' => 'Page d\'accueil',
+  '404_goto_app' => 'Tableau de bord',
   '404_report' => 'Signaler un problème',
 
   '500_title' => 'Une erreur du serveur est survenue.',

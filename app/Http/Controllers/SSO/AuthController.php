@@ -149,6 +149,8 @@ class AuthController extends Controller
                 'atc_dpt' => true,
                 'executive' => true,
             ]);
+            $user->is_staff = true;
+            $user->save();
         }
 
         Auth::login($user, true);

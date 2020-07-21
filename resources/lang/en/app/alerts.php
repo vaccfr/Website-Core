@@ -18,6 +18,7 @@ return [
 
   // Admin Controller
   'details_edited' => 'User details edited',
+  'atc_mentor_edited' => 'User ATC Mentor status edited',
   'staff_edited' => 'User staff access edited',
 
   // ATC Mentor Controller

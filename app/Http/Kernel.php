@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'setlocale' => \App\Http\Middleware\SetLocale::class,
         'ATC' => \App\Http\Middleware\Users\ATC::class,
         'STAFF' => \App\Http\Middleware\Users\Staff::class,
+        'EXECSTAFF' => \App\Http\Middleware\Users\ExecStaff::class,
         'ADMIN' => \App\Http\Middleware\Users\Admin::class,
         'ATCMENTOR' => \App\Http\Middleware\Users\ATCMentor::class,
     ];

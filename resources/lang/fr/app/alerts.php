@@ -18,6 +18,7 @@ return [
 
   // Admin Controller
   'details_edited' => 'Details d\'utilisateur mis à jour',
+  'atc_mentor_edited' => 'Accès et statut mentor ATC de l\'utilisateur mis à jour',
   'staff_edited' => 'Accès staff de l\'utilisateur mis à jour',
 
   // ATC Mentor Controller

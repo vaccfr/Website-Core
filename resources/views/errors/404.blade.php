@@ -296,9 +296,15 @@
         </p>
       </div>
       <div class="buttons-container">
+        @if (Auth::check())
+        <a class="border-button" href="{{ route('app.index', app()->getLocale()) }}" target="_blank"
+          >{{__('errorpage.404_goto_app')}}</a
+        >
+        @else
         <a class="border-button" href="{{ route('landingpage.home', app()->getLocale()) }}" target="_blank"
           >{{__('errorpage.404_goto_lp')}}</a
         >
+        @endif
         <a class="border-button" href="#" target="_blank"
           >{{__('errorpage.404_report')}}</a
         >

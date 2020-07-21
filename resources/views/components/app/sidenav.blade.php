@@ -142,7 +142,7 @@
         {{-- Staff section --}}
         @if (Auth::user()->is_staff == true)
           <li class="nav-header">{{__('app/app_menus.staff_header')}}</li>
-          @if (Auth::user()->isAdmin() == true)
+          @if (Auth::user()->isExecStaff() == true || Auth::user()->isAdmin() == true)
             <li class="nav-item">
               <a href="{{ route('app.staff.admin', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.admin')) active @endif">
                 <i class="nav-icon fa fa-home"></i>
@@ -150,7 +150,7 @@
               </a>
             </li>
           @endif
-          @if (Auth::user()->isAtcMentor() == true)
+          @if (Auth::user()->isAtcMentor() == true  || Auth::user()->isAdmin() == true)
             <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/staff/atc')) menu-open @endif">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-graduation-cap"></i>
@@ -175,29 +175,31 @@
               </ul>
             </li>
           @endif
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-graduation-cap"></i>
-              <p>
-                {{__('app/app_menus.staff_pil_ment')}}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>{{__('app/app_menus.staff_pil_ment_overview')}}</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>{{__('app/app_menus.staff_pil_ment_my_students')}}</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          @if (Auth::user()->isPilotMentor() == true || Auth::user()->isAdmin() == true)
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-graduation-cap"></i>
+                <p>
+                  {{__('app/app_menus.staff_pil_ment')}}
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{__('app/app_menus.staff_pil_ment_overview')}}</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{__('app/app_menus.staff_pil_ment_my_students')}}</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          @endif
         @endif
       </ul>
     </nav>

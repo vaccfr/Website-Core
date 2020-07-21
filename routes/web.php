@@ -63,11 +63,12 @@ Route::group([
             'middleware' => 'STAFF',
             'prefix' => '/staff'
         ], function() {
-            Route::group(['prefix' => '/admin', 'middleware' => 'ADMIN'], function() {
+            Route::group(['prefix' => '/admin', 'middleware' => 'EXECSTAFF'], function() {
                 Route::get('/', 'Staff\AdminController@index')->name('app.staff.admin');
                 Route::get('/edit', 'Staff\AdminController@editUser')->name('app.staff.admin.edit');
 
                 Route::post('/edit/details', 'Staff\AdminController@editUserFormDetails')->name('app.staff.admin.edit.details');
+                Route::post('/edit/atcmentor', 'Staff\AdminController@editUserAtcMentor')->name('app.staff.admin.edit.atcmentor');
                 Route::post('/edit/staffstatus', 'Staff\AdminController@editUserFormStaff')->name('app.staff.admin.edit.staffstatus');
             });
             Route::group(['prefix' => '/atc', 'middleware' => 'ATCMENTOR'], function() {

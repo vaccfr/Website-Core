@@ -120,6 +120,18 @@ class User extends Authenticatable
         return true;
     }
 
+    public function isExecStaff()
+    {
+        $user = Staff::where('vatsim_id', $this->vatsim_id)->first();
+        if (is_null($user)) {
+            return false;
+        }
+        if ($user->executive == false) {
+            return false;
+        }
+        return true;
+    }
+
     public function isAtcMentor()
     {
         $user = Mentor::where('vatsim_id', $this->vatsim_id)->first();
@@ -127,5 +139,16 @@ class User extends Authenticatable
             return false;
         }
         return true;
+    }
+
+    public function isPilotMentor()
+    {
+        $user = Staff::where('vatsim_id', $this->vatsim_id)->first();
+        if (is_null($user)) {
+            return false;
+        } elseif ($user->pilot_dpt == 1) {
+            return true;
+        }
+        return false;
     }
 }

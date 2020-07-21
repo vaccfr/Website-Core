@@ -104,6 +104,44 @@ class AdminController extends Controller
         ])->with('toast-info', trans('app/alerts.details_edited'));
     }
 
+    public function editUserAtcMentor(Request $request)
+    {
+        $currentUser = User::where('id', $request->get('userid'))->firstOrFail();
+
+        switch ($currentUser->isAtcMentor()) {
+            case false:
+                if (!is_null($request->get('atcmentorswitch'))) {
+                    Mentor::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
+                        'allowed_rank' => $request->get('allowedrank'),
+                    ]);
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'atc_dpt' => 1,
+                    ]);
+                }
+                break;
+            
+            case true:
+                if (is_null($request->get('atcmentorswitch'))) {
+                    $todel = Mentor::where('vatsim_id', $currentUser->vatsim_id)->firstOrFail();
+                    $todel->delete();
+                    $currentUser->save();
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'atc_dpt' => 0,
+                    ]);
+                }
+                break;
+            
+            default:
+                break;
+        }
+
+        return redirect()->route('app.staff.admin.edit', [
+            'locale' => app()->getLocale(),
+            'userid' => $currentUser->id,
+        ])->with('toast-info', trans('app/alerts.atc_mentor_edited'));
+    }
+
     public function editUserFormStaff(Request $request)
     {
         $currentUser = User::where('id', $request->get('userid'))->firstOrFail();
@@ -134,22 +172,41 @@ class AdminController extends Controller
                 break;
         }
 
-        switch ($currentUser->isAtcMentor()) {
+        switch ($currentUser->isExecStaff()) {
             case false:
-                if (!is_null($request->get('atcmentorswitch'))) {
-                    Mentor::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
-                        'id' => $currentUser->id,
-                        'allowed_rank' => $request->get('allowedrank'),
+                if (!is_null($request->get('execswitch'))) {
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'executive' => 1,
                     ]);
-                    $currentUser->save();
                 }
                 break;
             
             case true:
-                if (is_null($request->get('atcmentorswitch'))) {
-                    $todel = Mentor::where('vatsim_id', $currentUser->vatsim_id)->firstOrFail();
-                    $todel->delete();
-                    $currentUser->save();
+                if (is_null($request->get('execswitch'))) {
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'executive' => 0,
+                    ]);
+                }
+                break;
+            
+            default:
+                break;
+        }
+
+        switch ($currentUser->isAdmin()) {
+            case false:
+                if (!is_null($request->get('adminswitch'))) {
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'admin' => 1,
+                    ]);
+                }
+                break;
+            
+            case true:
+                if (is_null($request->get('adminswitch'))) {
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'admin' => 0,
+                    ]);
                 }
                 break;
             

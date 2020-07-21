@@ -3,6 +3,7 @@
 return [
   'header_title' => 'Admin Dashboard - Edit :FNAME',
   'edit_details' => 'Edit :FNAME\'s Details',
+  'edit_atc_mentor' => 'Edit :FNAME\'s ATC Mentor status',
   'edit_staff' => 'Edit :FNAME\'s Staff access',
 
   // Fields
@@ -19,6 +20,8 @@ return [
   'mod_usertype' => 'Modify User Type',
 
   'make_staff' => 'Make Staff',
+  'make_admin' => 'Give Admin rights',
+  'make_exec' => 'Give Executive staff rights (moderator)',
   'make_atc_mentor' => 'Make ATC Mentor',
   'allowed_mentor_lvl' => 'Allows ATC Mentoring Rating',
 
