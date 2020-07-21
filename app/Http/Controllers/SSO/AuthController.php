@@ -178,103 +178,68 @@ class AuthController extends Controller
         foreach ($allConnections as $ac) {
             $ac->delete();
         }
-        $sessions = [];
+
         try {
             $response = (new Client())->get("https://api.vatsim.net/api/ratings/".$cid."/atcsessions", [
                 'headers' => [
                     'Accepts' => 'application/json',
                 ]
             ]);
-            $response = json_decode((string) $response->getBody(), true);
-            array_push($sessions, $response['results']);
-            $continuePing = true;
-            while ($continuePing == true) {
-                if (!is_null($response['next'])) {
-                    $response = (new Client)->get((string)$response['next'], [
-                        'header' => [
-                            'Accept' => 'application/json',
-                        ]
-                    ]);
-                    $response = json_decode((string) $response->getBody(), true);
-                    array_push($sessions, $response['results']);
-                } else {
-                    $continuePing = false;
-                }
-            }
+            $sessions = json_decode((string) $response->getBody(), true);
         } catch(ClientException $e) {
             $sessions = [];
         }
 
-        $all = [];
         try {
             $response = (new Client)->get('https://api.vatsim.net/api/ratings/'.$cid.'/connections', [
                 'header' => [
                     'Accept' => 'application/json',
                 ]
             ]);
-            $response = json_decode((string) $response->getBody(), true);
-            array_push($all, $response['results']);
-            $continuePing = true;
-            while ($continuePing == true) {
-                if (!is_null($response['next'])) {
-                    $response = (new Client)->get((string)$response['next'], [
-                        'header' => [
-                            'Accept' => 'application/json',
-                        ]
-                    ]);
-                    $response = json_decode((string) $response->getBody(), true);
-                    array_push($all, $response['results']);
-                } else {
-                    $continuePing = false;
-                }
-            }
+            $all = json_decode((string) $response->getBody(), true);
         } catch (ClientException $e) {
             $all = [
                 0 => []
             ];
         }
 
-        foreach ($sessions as $nsessions) {
-            foreach ($nsessions as $s) {
-                UserAtcSession::create([
-                    'id' => $s['connection_id'],
-                    'start' => $s['start'],
-                    'end' => $s['end'],
-                    'server' => $s['server'],
-                    'vatsim_id' => $s['vatsim_id'],
-                    'type' => $s['type'],
-                    'rating' => $s['rating'],
-                    'callsign' => $s['callsign'],
-                    'times_held_callsign' => $s['times_held_callsign'],
-                    'minutes_on_callsign' => $s['minutes_on_callsign'],
-                    'total_minutes_on_callsign' => $s['total_minutes_on_callsign'],
-                    'aircrafttracked' => $s['aircrafttracked'],
-                    'aircraftseen' => $s['aircraftseen'],
-                    'flightsamended' => $s['flightsamended'],
-                    'handoffsinitiated' => $s['handoffsinitiated'],
-                    'handoffsreceived' => $s['handoffsreceived'],
-                    'handoffsrefused' => $s['handoffsrefused'],
-                    'squawksassigned' => $s['squawksassigned'],
-                    'cruisealtsmodified' => $s['cruisealtsmodified'],
-                    'tempaltsmodified' => $s['tempaltsmodified'],
-                    'scratchpadmods' => $s['scratchpadmods'],
-                ]);
-            }
+        foreach ($sessions['results'] as $s) {
+            UserAtcSession::create([
+                'id' => $s['connection_id'],
+                'start' => $s['start'],
+                'end' => $s['end'],
+                'server' => $s['server'],
+                'vatsim_id' => $s['vatsim_id'],
+                'type' => $s['type'],
+                'rating' => $s['rating'],
+                'callsign' => $s['callsign'],
+                'times_held_callsign' => $s['times_held_callsign'],
+                'minutes_on_callsign' => $s['minutes_on_callsign'],
+                'total_minutes_on_callsign' => $s['total_minutes_on_callsign'],
+                'aircrafttracked' => $s['aircrafttracked'],
+                'aircraftseen' => $s['aircraftseen'],
+                'flightsamended' => $s['flightsamended'],
+                'handoffsinitiated' => $s['handoffsinitiated'],
+                'handoffsreceived' => $s['handoffsreceived'],
+                'handoffsrefused' => $s['handoffsrefused'],
+                'squawksassigned' => $s['squawksassigned'],
+                'cruisealtsmodified' => $s['cruisealtsmodified'],
+                'tempaltsmodified' => $s['tempaltsmodified'],
+                'scratchpadmods' => $s['scratchpadmods'],
+            ]);
         }
 
-        foreach ($all as $connections) {
-            foreach ($connections as $c) {
-                UserConnections::create([
-                    'id' => $c['id'],
-                    'vatsim_id' => $c['vatsim_id'],
-                    'type' => $c['type'],
-                    'rating' => $c['rating'],
-                    'callsign' => $c['callsign'],
-                    'start' => $c['start'],
-                    'end' => $c['end'],
-                    'server' => $c['server'],
-                ]);
-            }
+        foreach ($all['results'] as $c) {
+            UserConnections::create([
+                'id' => $c['id'],
+                'vatsim_id' => $c['vatsim_id'],
+                'type' => $c['type'],
+                'rating' => $c['rating'],
+                'callsign' => $c['callsign'],
+                'start' => $c['start'],
+                'end' => $c['end'],
+                'server' => $c['server'],
+            ]);
         }
 
         $user = User::where('vatsim_id', $cid)->first();
