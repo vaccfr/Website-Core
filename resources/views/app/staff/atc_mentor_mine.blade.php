@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{ asset('dashboard/stepbar.css') }}">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-10">
         <div class="card card-outline @if(true) card-success @else card-danger @endif">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">Emmanuel Macron - S2 - LFMN</h3>

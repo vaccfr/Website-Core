@@ -68,10 +68,10 @@ class ATCMentorController extends Controller
 
     public function myStudents()
     {
-        // $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
-        $studySessions = config('vatfrance.student_progress_gb');
+        $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
+        // $studySessions = config('vatfrance.student_progress_gb');
         $stepsEach = 100/(int)count($studySessions);
-        $currentProgress = 3;
+        $currentProgress = 1;
         $stepsCurrent = $currentProgress * $stepsEach;
         
         return view('app.staff.atc_mentor_mine', [

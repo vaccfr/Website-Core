@@ -31,11 +31,11 @@
 }
 
 .steps .steps-container li .step {
-  padding: 0 50px;
+  padding: 0 30px;
 }
 
 .steps .steps-container li .step .step-image {
-  margin: -14px 0 0 0;
+  margin: -14px 0 0 -15px;
 }
 
 .steps .steps-container li .step .step-image span {
@@ -51,14 +51,14 @@
 }
 
 .steps .steps-container li .step .step-current {
-  font-size: 11px;
+  font-size: 9px;
   font-style: italic;
   color: #999;
   margin: 8px 0 0 0;
 }
 
 .steps .steps-container li .step .step-description {
-  font-size: 13px;
+  font-size: 11px;
   font-style: italic;
   color: #538897;
 }
