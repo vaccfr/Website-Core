@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\Utilities;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\Users\User;
+use App\Models\Vatsim\UserAtcSession;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
@@ -18,11 +20,37 @@ class MainController extends Controller
         $connections = app(VatsimDataController::class)->getConnections();
         $sessions = app(VatsimDataController::class)->getATCSessions();
         $times = app(VatsimDataController::class)->getUserHours();
+        $mostControlled = UserAtcSession::select('callsign')
+        ->selectRaw('COUNT(*) AS count')
+        ->groupBy('callsign')
+        ->orderByDesc('count')
+        ->limit(1)
+        ->get();
+
+        $allFlights = [];
+        foreach ($connections as $conn) {
+            foreach ($conn as $c) {
+                if ($c['type'] == 1) {
+                    $sesh = [
+                        'epoch_start' => date("U", strtotime($c['start'])),
+                        'start_time' => app(Utilities::class)->iso2datetime($c['start']),
+                        'end_time' => app(Utilities::class)->iso2datetime($c['end']),
+                        'callsign' => $c['callsign'],
+                        'duration' => "N/A",
+                    ];
+                    array_push($allFlights, $sesh);
+                }
+            }
+        }
+        $columns = array_column($allFlights, 'epoch_start');
+        array_multisort($columns, SORT_DESC, $allFlights);
 
         return view('app.index', [
             'sessions' => $sessions,
             'atcTimes' => $times['atc'],
             'pilotTimes' => $times['pilot'],
+            'mostControlled' => $mostControlled[0]['callsign'],
+            'flights' => $allFlights,
         ]);
     }
 
