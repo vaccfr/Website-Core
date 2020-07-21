@@ -87,39 +87,39 @@ return [
       'type' => 'Exam',
     ],
     3 => [
-      'title' => 'TWR Intro',
-      'type' => 'Study',
+      'title' => 'Intro TWR',
+      'type' => 'Etude',
     ],
     4 => [
-      'title' => 'S2 Theory',
+      'title' => 'S2 Theorique',
       'type' => 'Exam',
     ],
     5 => [
-      'title' => 'S2 CPT',
+      'title' => 'CPT S2',
       'type' => 'Exam',
     ],
     6 => [
-      'title' => 'APP Intro',
-      'type' => 'Study',
+      'title' => 'Intro APP',
+      'type' => 'Etude',
     ],
     7 => [
-      'title' => 'S3 Theory',
+      'title' => 'S3 Theorique',
       'type' => 'Exam',
     ],
     8 => [
-      'title' => 'S3 CPT',
+      'title' => 'CPT S3',
       'type' => 'Exam',
     ],
     9 => [
-      'title' => 'CTR Intro',
-      'type' => 'Study',
+      'title' => 'Intro CTR',
+      'type' => 'Etude',
     ],
     10 => [
-      'title' => 'C1 Theory',
+      'title' => 'C1 Theorique',
       'type' => 'Exam',
     ],
     11 => [
-      'title' => 'C1 CPT',
+      'title' => 'CPT C1',
       'type' => 'Exam',
     ],
   ],

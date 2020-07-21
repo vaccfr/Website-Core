@@ -19,6 +19,7 @@ class CreateATCStudentsTable extends Migration
             $table->bigInteger('mentor_id')->nullable();
             $table->boolean('active')->default(false);
             $table->string('status')->default('waiting');
+            $table->integer('progress')->default(0);
             $table->timestamps();
         });
     }

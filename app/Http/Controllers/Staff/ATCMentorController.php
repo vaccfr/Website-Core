@@ -69,15 +69,23 @@ class ATCMentorController extends Controller
     public function myStudents()
     {
         $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
-        // $studySessions = config('vatfrance.student_progress_gb');
-        $stepsEach = 100/(int)count($studySessions);
+        $progSteps = 100/(int)count($studySessions);
         $currentProgress = 1;
-        $stepsCurrent = $currentProgress * $stepsEach;
+        $progCurrent = $currentProgress * $progSteps;
+
+        $students = ATCStudent::where('mentor_id', auth()->user()->id)
+        ->with('user')
+        ->with('sessions')
+        ->with('mentoringRequest')
+        ->get();
+
+        // dd($students[0]['mentoringRequest']);
         
         return view('app.staff.atc_mentor_mine', [
             'steps' => $studySessions,
-            'progSteps' => $stepsEach,
-            'progCurrent' => $stepsCurrent,
+            'progSteps' => $progSteps,
+            'progCurrent' => $progCurrent,
+            'students' => $students,
         ]);
     }
 }

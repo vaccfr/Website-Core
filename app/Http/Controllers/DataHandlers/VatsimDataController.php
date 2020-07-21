@@ -218,7 +218,7 @@ class VatsimDataController extends Controller
     {
         $url = "http://cluster.data.vatsim.net/vatsim-data.json";
 
-        if (app(CacheController::class)->checkCache('onlineatc', true)) {
+        if (app(CacheController::class)->checkCache('onlineatc', false)) {
             $clients = app(CacheController::class)->getCache('onlineatc', false);
         } else {
             $flightsList = [];

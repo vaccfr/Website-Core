@@ -60,9 +60,10 @@
         </div>
       </div>
       <div class="col-md-10">
+        @foreach ($students as $s)
         <div class="card card-outline @if(true) card-success @else card-danger @endif">
           <div class="card-header" data-card-widget="collapse">
-            <h3 class="card-title">Emmanuel Macron - S2 - LFMN</h3>
+            <h3 class="card-title">{{ $s['user']['fname'] }} {{ $s['user']['lname'] }} - {{ $s['user']['atc_rating_short'] }} - {{ $s['mentoringRequest']['icao'] }}</h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
               </button>
@@ -71,11 +72,12 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">
-                <h4>Student progress</h4>
+                <h4>{{ $s['user']['fname'] }}'s progress</h4>
                 <div class="steps">
                   <ul class="steps-container">
-                    @foreach ($steps as $s)
+                    @foreach ($steps as $step)
                     @php
+                      $progCurrent = $s['progress'] * $progSteps;
                       $now = ($loop->index + 1)*$progSteps;
                       if ($now > $progCurrent) {
                         $now = false;
@@ -86,8 +88,8 @@
                     <li style="width:{{ $progSteps }}%;" @if ($now) class="activated" @endif>
                       <div class="step">
                         <div class="step-image"><span></span></div>
-                        <div class="step-current">{{ $s['type'] }}</div>
-                        <div class="step-description">{{ $s['title'] }}</div>
+                        <div class="step-current">{{ $step['type'] }}</div>
+                        <div class="step-description">{{ $step['title'] }}</div>
                       </div>
                     </li>
                     @endforeach
@@ -97,7 +99,7 @@
               </div>
             </div>
             <div class="row mt-3">
-              <div class="col-md-9 border-right">
+              <div class="col-md-7 border-right">
                 <h4>Upcoming sessions</h4>
                 <table
                   id="upcoming_sessions"
@@ -137,17 +139,58 @@
                         </form>
                       </td>
                     </tr>
+                    <tr>
+                      <td>LFMN_TWR</td>
+                      <td>DATE - TIME</td>
+                      <td>You</td>
+                      <td>Awaiting report</td>
+                      <td>
+                        <form action="" method="GET">
+                          @csrf
+                          <button type="submit" class="btn btn-block btn-info btn-flat"><i class="fa fa-edit"></i></button>
+                        </form>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="col-md-3">
-                <h4>Actions</h4>
-                <button type="button" class="btn btn-block btn-info btn-flat">Book Session</button>
-                <button type="button" class="btn btn-block btn-danger btn-flat">Terminate Mentoring</button>
+              <div class="col-md-5">
+                <h4>Past sessions</h4>
+                <table
+                  id="upcoming_sessions"
+                  class="table table-bordered table-hover"
+                  data-order='[[ 1, "desc" ]]'>
+                  <thead>
+                  <tr>
+                    <th>Position</th>
+                    <th>When</th>
+                    <th>Outcome</th>
+                    <th>Options</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>LFMN_TWR</td>
+                      <td>DATE - TIME</td>
+                      <td>Successful</td>
+                      <td>
+                        <form action="" method="GET">
+                          @csrf
+                          <button type="submit" class="btn btn-block btn-info btn-flat">See Report</button>
+                        </form>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
+          <div class="card-footer">
+            <button type="button" class="btn btn-info btn-flat">Book Session</button>
+            <button type="button" class="btn btn-danger btn-flat">Terminate Mentoring</button>
+          </div>
         </div>
+        @endforeach
       </div>
     </div>
   </div>
