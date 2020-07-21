@@ -74,6 +74,7 @@ Route::group([
             });
             Route::group(['prefix' => '/atc', 'middleware' => 'ATCMENTOR'], function() {
                 Route::get('/all', 'Staff\ATCMentorController@allview')->name('app.staff.atc.all');
+                Route::get('/mystudents', 'Staff\ATCMentorController@myStudents')->name('app.staff.atc.mine');
 
                 Route::post('/all/take', 'Staff\ATCMentorController@takeTraining')->name('app.staff.atc.all.take');
             });

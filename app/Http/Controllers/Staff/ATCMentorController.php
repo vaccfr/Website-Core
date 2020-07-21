@@ -65,4 +65,9 @@ class ATCMentorController extends Controller
 
         return redirect()->route('app.staff.atc.all', app()->getLocale())->with('toast-info', trans('app/alerts.training_accepted'));
     }
+
+    public function myStudents()
+    {
+        return view('app.staff.atc_mentor_mine');
+    }
 }

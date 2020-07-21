@@ -25,24 +25,23 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-    <!-- Messages Dropdown Menu -->
-    <li class="nav-item dropdown">
-      <a href="#" data-toggle="dropdown" class="nav-link">
-        {{ strtoupper(app()->getLocale()) }}
-      </a>
-      <div class="dropdown-menu">
-        @foreach (config('app.available_locales') as $locale)
-          <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}" class="dropdown-item"
-            @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>
-            {{ strtoupper($locale) }}
-          </a>
-        @endforeach
-      </div>
-    </li>
     <li class="nav-item">
       <a href="{{ route('landingpage.home', app()->getLocale()) }}" class="nav-link">
         {{__('app/app_menus.return_lp')}}
       </a>
+    </li>
+    <li class="nav-item dropdown">
+      <a href="#" data-toggle="dropdown" class="nav-link">
+        <i class="flag-icon flag-icon-{{app()->getLocale()}}"></i>
+      </a>
+      <div class="dropdown-menu">
+        @foreach (config('app.available_locales') as $locale)
+          <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}" class="dropdown-item"
+            @if (app()->getLocale() == $locale) style="font-weight: bold" @endif>
+            <i class="flag-icon flag-icon-{{$locale}}"></i> {{ strtoupper($locale) }}
+          </a>
+        @endforeach
+      </div>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Admin | {{ Auth::user()->fname }}
+  ATC Mentoring | Overview
 @endsection
 
 @section('page-header')
@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC Mentoring Overview</h1>
+          <h1>ATC Mentoring - Overview</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->

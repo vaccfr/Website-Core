@@ -18,9 +18,79 @@
 @endsection
 
 @section('page-content')
+<link rel="stylesheet" href="{{ asset('dashboard/stepbar.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="steps">
+            <ul class="steps-container">
+              <li style="width:12.5%;" class="activated">
+                <div class="step">
+                  <div class="step-image"><span></span></div>
+                  <div class="step-current">Exam</div>
+                  <div class="step-description">S1 Theory</div>
+                </div>
+              </li>
+              <li style="width:12.5%;" class="activated">
+                <div class="step">
+                  <div class="step-image"><span></span></div>
+                  <div class="step-current">Exam</div>
+                  <div class="step-description">S1 CPT</div>
+                </div>
+              </li>
+              <li style="width:12.5%;" class="activated">
+                <div class="step">
+                  <div class="step-image"><span></span></div>
+                  <div class="step-current">Exam</div>
+                  <div class="step-description">S2 Theory</div>
+                </div>
+              </li>
+              <li style="width:12.5%;" class="activated">
+                <div class="step">
+                  <div class="step-image"><span></span></div>
+                  <div class="step-current">Exam</div>
+                  <div class="step-description">S2 CPT</div>
+                </div>
+              </li>
+              <li style="width:12.5%;">
+                <div class="step">
+                  <div class="step-image"><span></span></div>
+                  <div class="step-current">Exam</div>
+                  <div class="step-description">S3 Theory</div>
+                </div>
+              </li>
+              <li style="width:12.5%;">
+                <div class="step">
+                  <div class="step-image"><span></span></div>
+                  <div class="step-current">Exam</div>
+                  <div class="step-description">S3 CPT</div>
+                </div>
+              </li>
+              <li style="width:12.5%;">
+                <div class="step">
+                  <div class="step-image"><span></span></div>
+                  <div class="step-current">Exam</div>
+                  <div class="step-description">C1 Theory</div>
+                </div>
+              </li>
+              <li style="width:12.5%;">
+                <div class="step">
+                  <div class="step-image"><span></span></div>
+                  <div class="step-current">Exam</div>
+                  <div class="step-description">C1 CPT</div>
+                </div>
+              </li>
+            </ul>
+            <div class="step-bar" style="width: 50%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-7">
       {{-- Upcoming training sessions table --}}

@@ -84,7 +84,7 @@ return [
 
     'available_locales' => [
         'fr',
-        'en',
+        'gb',
     ],
 
     /*
@@ -98,7 +98,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'gb',
 
     /*
     |--------------------------------------------------------------------------

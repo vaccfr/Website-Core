@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="{{ route('app.index', app()->getLocale()) }}" class="brand-link">
-    <img src="{{ asset('media/img/logo.png') }}"
+    <img src="{{ asset('media/img/logo_medium.png') }}"
          alt="VFLogo"
          class="brand-image"
          style="opacity: .9">
@@ -167,7 +167,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('app.staff.atc.mine', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.atc.mine')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__('app/app_menus.staff_atc_mentoring_my_students')}}</p>
                   </a>

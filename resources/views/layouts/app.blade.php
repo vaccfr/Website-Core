@@ -6,7 +6,7 @@
   <title>{{ config('app.name') }} | @yield('page-title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="{{ asset('media/img/favicon.png') }}" />
+  <link rel="icon" type="image/png" href="{{ asset('media/img/logo_small.png') }}" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('dashboard/fontawesome-free/css/all.min.css') }}">
@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="{{ asset('dashboard/adminlte/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- flag-icon-css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
 </head>
 <body class="hold-transition sidebar-mini" onload="startTime()">
 <!-- Site wrapper -->

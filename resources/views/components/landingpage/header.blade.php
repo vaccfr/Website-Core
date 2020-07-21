@@ -5,7 +5,7 @@
       ><img
         style="height: 2.5rem; width: auto;"
         id="vatfrancelogo"
-        src="{{ asset('media/img/lp/logo.png') }}"
+        src="{{ asset('media/img/logo_large.png') }}"
         alt=""
     /></a>
     <button
