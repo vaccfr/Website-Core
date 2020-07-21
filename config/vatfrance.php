@@ -30,5 +30,27 @@ return [
     'LFPO',
     'LFPB',
     'LFMN',
-  ]
+  ],
+  'student_progress_gb' => [
+    1 => [
+      'title' => 'Intro session',
+      'type' => 'Study',
+    ],
+    2 => [
+      'title' => 'S1 Theory',
+      'type' => 'Exam',
+    ],
+    3 => [
+      'title' => 'TWR Intro',
+      'type' => 'Study',
+    ],
+    4 => [
+      'title' => 'S2 Theory',
+      'type' => 'Exam',
+    ],
+    5 => [
+      'title' => 'S2 CPT',
+      'type' => 'Exam',
+    ],
+  ],
 ];

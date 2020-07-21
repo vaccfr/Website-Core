@@ -74,64 +74,25 @@
                 <h4>Student progress</h4>
                 <div class="steps">
                   <ul class="steps-container">
-                    <li style="width:12.5%;" class="activated">
+                    @foreach ($steps as $s)
+                    @php
+                      $now = ($loop->index + 1)*$progSteps;
+                      if ($now > $progCurrent) {
+                        $now = false;
+                      } else {
+                        $now = true;
+                      }
+                    @endphp
+                    <li style="width:{{ $progSteps }}%;" @if ($now) class="activated" @endif>
                       <div class="step">
                         <div class="step-image"><span></span></div>
-                        <div class="step-current">Exam</div>
-                        <div class="step-description">S1 Theory</div>
+                        <div class="step-current">{{ $s['type'] }}</div>
+                        <div class="step-description">{{ $s['title'] }}</div>
                       </div>
                     </li>
-                    <li style="width:12.5%;" class="activated">
-                      <div class="step">
-                        <div class="step-image"><span></span></div>
-                        <div class="step-current">Exam</div>
-                        <div class="step-description">S1 CPT</div>
-                      </div>
-                    </li>
-                    <li style="width:12.5%;" class="activated">
-                      <div class="step">
-                        <div class="step-image"><span></span></div>
-                        <div class="step-current">Exam</div>
-                        <div class="step-description">S2 Theory</div>
-                      </div>
-                    </li>
-                    <li style="width:12.5%;" class="activated">
-                      <div class="step">
-                        <div class="step-image"><span></span></div>
-                        <div class="step-current">Exam</div>
-                        <div class="step-description">S2 CPT</div>
-                      </div>
-                    </li>
-                    <li style="width:12.5%;">
-                      <div class="step">
-                        <div class="step-image"><span></span></div>
-                        <div class="step-current">Exam</div>
-                        <div class="step-description">S3 Theory</div>
-                      </div>
-                    </li>
-                    <li style="width:12.5%;">
-                      <div class="step">
-                        <div class="step-image"><span></span></div>
-                        <div class="step-current">Exam</div>
-                        <div class="step-description">S3 CPT</div>
-                      </div>
-                    </li>
-                    <li style="width:12.5%;">
-                      <div class="step">
-                        <div class="step-image"><span></span></div>
-                        <div class="step-current">Exam</div>
-                        <div class="step-description">C1 Theory</div>
-                      </div>
-                    </li>
-                    <li style="width:12.5%;">
-                      <div class="step">
-                        <div class="step-image"><span></span></div>
-                        <div class="step-current">Exam</div>
-                        <div class="step-description">C1 CPT</div>
-                      </div>
-                    </li>
+                    @endforeach
                   </ul>
-                  <div class="step-bar" style="width: 50%;"></div>
+                  <div class="step-bar" style="width: {{ $progCurrent }}%;"></div>
                 </div>
               </div>
             </div>

@@ -5,7 +5,7 @@ namespace App\Models\ATC;
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Model;
 
-class AtcStudent extends Model
+class ATCStudent extends Model
 {
     protected $table = "atc_students";
 

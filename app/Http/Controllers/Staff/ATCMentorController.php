@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
-use App\Models\ATC\AtcStudent;
+use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Mentor;
 use App\Models\ATC\MentoringRequest;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class ATCMentorController extends Controller
             }
         }
 
-        $activeStudents = AtcStudent::where('active', true)->get();
+        $activeStudents = ATCStudent::where('active', true)->get();
 
         return view('app.staff.atc_mentor_all', [
             'apps' => $applications,
@@ -57,7 +57,7 @@ class ATCMentorController extends Controller
         $request->mentor_id = auth()->user()->id;
         $request->save();
 
-        $student = AtcStudent::where('id', $request->student_id)->firstOrFail();
+        $student = ATCStudent::where('id', $request->student_id)->firstOrFail();
         $student->mentor_id = auth()->user()->id;
         $student->active = true;
         $student->status = "taken";
@@ -68,6 +68,16 @@ class ATCMentorController extends Controller
 
     public function myStudents()
     {
-        return view('app.staff.atc_mentor_mine');
+        // $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
+        $studySessions = config('vatfrance.student_progress_gb');
+        $stepsEach = 100/(int)count($studySessions);
+        $currentProgress = 3;
+        $stepsCurrent = $currentProgress * $stepsEach;
+        
+        return view('app.staff.atc_mentor_mine', [
+            'steps' => $studySessions,
+            'progSteps' => $stepsEach,
+            'progCurrent' => $stepsCurrent,
+        ]);
     }
 }

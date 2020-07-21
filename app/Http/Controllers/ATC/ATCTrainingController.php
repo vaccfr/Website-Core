@@ -4,7 +4,7 @@ namespace App\Http\Controllers\ATC;
 
 use App\Http\Controllers\Controller;
 use App\Models\ATC\Airport;
-use App\Models\ATC\AtcStudent;
+use App\Models\ATC\ATCStudent;
 use App\Models\ATC\MentoringRequest;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class ATCTrainingController extends Controller
 {
     public function index()
     {
-        $activeStudent = AtcStudent::where('vatsim_id', auth()->user()->vatsim_id)->first();
+        $activeStudent = ATCStudent::where('vatsim_id', auth()->user()->vatsim_id)->first();
         $existingRequest = MentoringRequest::where('student_id', auth()->user()->id)->first();
         if (!is_null($activeStudent)) {
             if ($activeStudent->active == true) {
@@ -64,7 +64,7 @@ class ATCTrainingController extends Controller
             'motivation' => $request->get('reqmotivation'),
         ]);
 
-        AtcStudent::create([
+        ATCStudent::create([
             'id' => auth()->user()->id,
             'vatsim_id' => auth()->user()->vatsim_id,
         ]);
