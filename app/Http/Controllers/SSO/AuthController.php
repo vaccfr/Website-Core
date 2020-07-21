@@ -104,7 +104,12 @@ class AuthController extends Controller
         }
         
         $response = json_decode($response->getBody());
-        $userid = (new Snowflake)->id();
+        $existingUser = User::where('vatsim_id', $response->data->cid)->first();
+        if (is_null($existingUser)) {
+            $userid = (new Snowflake)->id();
+        } else {
+            $userid = $existingUser->id;
+        }
         User::updateOrCreate(['vatsim_id' => $response->data->cid], [
             'id' => $userid,
             'email' => isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org',
@@ -312,4 +317,6 @@ class AuthController extends Controller
         app(CacheController::class)->putCache('connections', 'true', $this->expiryTime, true);
         app(CacheController::class)->putCache('flights', 'true', $this->expiryTime, true);
     }
+    
+    public $expiryTime = 300; // Time in seconds for data to expire in cache
 }
