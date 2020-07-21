@@ -150,7 +150,7 @@ class VatsimDataController extends Controller
                 $connections = UserConnections::where('vatsim_id', $cid)->get();
                 app(CacheController::class)->putCache('connections', 'true', $this->expiryTime, true);
             } catch(ClientException $e) {
-                $sessions = [];
+                $connections = [];
             }
         }
         return $connections;
