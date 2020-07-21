@@ -18,6 +18,7 @@ class MainController extends Controller
     public function index()
     {
         $connections = app(VatsimDataController::class)->getConnections();
+        $flights = app(VatsimDataController::class)->getFlights();
         $sessions = app(VatsimDataController::class)->getATCSessions();
         $times = app(VatsimDataController::class)->getUserHours();
         $mostControlled = UserAtcSession::select('callsign')
@@ -28,17 +29,15 @@ class MainController extends Controller
         ->get();
 
         $allFlights = [];
-        foreach ($connections as $c) {
-            if ($c['type'] == 1) {
-                $sesh = [
-                    'epoch_start' => date("U", strtotime($c['start'])),
-                    'start_time' => app(Utilities::class)->iso2datetime($c['start']),
-                    'end_time' => app(Utilities::class)->iso2datetime($c['end']),
-                    'callsign' => $c['callsign'],
-                    'duration' => "N/A",
-                ];
-                array_push($allFlights, $sesh);
-            }
+        foreach ($flights as $c) {
+            $fl = [
+                'epoch_start' => date("U", strtotime($c['start'])),
+                'start_time' => app(Utilities::class)->iso2datetime($c['start']),
+                'end_time' => app(Utilities::class)->iso2datetime($c['end']),
+                'callsign' => $c['callsign'],
+                'duration' => "N/A",
+            ];
+            array_push($allFlights, $fl);
         }
         $columns = array_column($allFlights, 'epoch_start');
         array_multisort($columns, SORT_DESC, $allFlights);

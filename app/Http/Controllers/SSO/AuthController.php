@@ -11,6 +11,7 @@ use App\Models\Users\User;
 use App\Models\Users\UserSetting;
 use App\Models\Vatsim\UserAtcSession;
 use App\Models\Vatsim\UserConnections;
+use App\Models\Vatsim\UserFlight;
 use Godruoyi\Snowflake\Snowflake;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -180,6 +181,10 @@ class AuthController extends Controller
         foreach ($allConnections as $ac) {
             $ac->delete();
         }
+        $allFlights = UserFlight::where('vatsim_id', $cid)->get();
+        foreach ($allFlights as $af) {
+            $af->delete();
+        }
 
         try {
             $response = (new Client())->get("https://api.vatsim.net/api/ratings/".$cid."/atcsessions", [
@@ -200,7 +205,34 @@ class AuthController extends Controller
             ]);
             $all = json_decode((string) $response->getBody(), true);
         } catch (ClientException $e) {
-            $all = [
+            $all = [];
+        }
+
+        $flights = [];
+        try {
+            $response = (new Client)->get('https://api.vatsim.net/api/ratings/'.$cid.'/connections', [
+                'header' => [
+                    'Accept' => 'application/json',
+                ]
+            ]);
+            $response = json_decode((string) $response->getBody(), true);
+            array_push($flights, $response['results']);
+            $repeat = true;
+            while ($repeat == true) {
+                if (!is_null($response['next'])) {
+                    $response = (new Client)->get((string)$response['next'], [
+                        'header' => [
+                            'Accept' => 'application/json',
+                        ]
+                    ]);
+                    $response = json_decode((string) $response->getBody(), true);
+                    array_push($flights, $response['results']);
+                } else {
+                    $repeat = false;
+                }
+            }
+        } catch (ClientException $e) {
+            $flights = [
                 0 => []
             ];
         }
@@ -242,6 +274,26 @@ class AuthController extends Controller
                 'end' => $c['end'],
                 'server' => $c['server'],
             ]);
+        }
+
+        $repeatFlightInput = 0;
+        $done = false;
+        while ($repeatFlightInput < 100 || $done == false) {
+            foreach ($flights as $fl) {
+                foreach ($fl as $f) {
+                    if ($f['type'] == 1) {
+                        UserFlight::create([
+                            'id' => $f['id'],
+                            'vatsim_id' => $f['vatsim_id'],
+                            'callsign' => $f['callsign'],
+                            'start' => $f['start'],
+                            'end' => $f['end'],
+                        ]);
+                        $repeatFlightInput++;
+                    }
+                }
+            }
+            $done = true;
         }
 
         $user = User::where('vatsim_id', $cid)->first();
