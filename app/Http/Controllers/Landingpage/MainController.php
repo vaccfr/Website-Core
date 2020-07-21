@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Landingpage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\ATC\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -27,6 +28,7 @@ class MainController extends Controller
         $dayToday = Carbon::now()->format('D. d/m');
         $dayTomorrow = Carbon::now()->addDays(1)->format('D. d/m');
         $dayAfterTomorrow = Carbon::now()->addDays(2)->format('D. d/m');
+        $onlineATC = app(VatsimDataController::class)->getOnlineATC();
         return view('landingpage.index', [
             'book0' => $bookingsToday,
             'book1' => $bookingsTomorrow,
@@ -34,6 +36,7 @@ class MainController extends Controller
             'day0' => $dayToday,
             'day1' => $dayTomorrow,
             'day2' => $dayAfterTomorrow,
+            'atconline' => $onlineATC,
         ]);
     }
 

@@ -158,24 +158,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th class="position" scope="row">LFLL_TWR</th>
-              <td>Jacob Doe (1458754)</td>
-              <td>09:00z</td>
-              <td>S1</td>
-            </tr>
-            <tr>
-              <th class="position" scope="row">LFFF_CTR</th>
-              <td>John Thornton (1458754)</td>
-              <td>09:00z</td>
-              <td>C3</td>
-            </tr>
-            <tr>
-              <th class="position" scope="row">LFEE_CTR</th>
-              <td>(1458754)</td>
-              <td>09:00z</td>
-              <td>C3</td>
-            </tr>
+            @foreach ($atconline as $a)
+              <tr>
+                <th class="position" scope="row">{{$a['callsign']}}</th>
+                <td>{{$a['name']}}</td>
+                <td>{{$a['livesince']}}z</td>
+                <td>{{$a['rating']}}</td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

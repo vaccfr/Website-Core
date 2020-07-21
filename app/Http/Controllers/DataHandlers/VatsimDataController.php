@@ -213,4 +213,40 @@ class VatsimDataController extends Controller
         }
         return $flights;
     }
+    
+    public function getOnlineATC()
+    {
+        $url = "http://cluster.data.vatsim.net/vatsim-data.json";
+
+        if (app(CacheController::class)->checkCache('onlineatc', true)) {
+            $clients = app(CacheController::class)->getCache('onlineatc', false);
+        } else {
+            $flightsList = [];
+            try {
+                $response = (new Client)->get($url, [
+                    'header' => [
+                        'Accept' => 'application/json',
+                    ]
+                ]);
+                $response = json_decode((string) $response->getBody(), true);
+
+            } catch(ClientException $e) {
+                $clients = [];
+            }
+            $clients = [];
+            foreach ($response['clients'] as $c) {
+                if ($c['clienttype'] == "ATC" && substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) !== "_ATIS") {
+                    $add = [
+                        'callsign' => $c['callsign'],
+                        'name' => $c['realname'],
+                        'livesince' => date_format(date_create($c['time_logon']), 'H:i'),
+                        'rating' => config('vatfrance.atc_ranks')[$c['rating']],
+                    ];
+                    array_push($clients, $add);
+                }
+            }
+            app(CacheController::class)->putCache('onlineatc', $clients, 150, false);
+        }
+        return $clients;
+    }
 }
