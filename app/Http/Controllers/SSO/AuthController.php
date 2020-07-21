@@ -54,6 +54,13 @@ class AuthController extends Controller
 
     public function validateLogin(Request $request)
     {
+        return view('app.login_redirect', [
+            'code' => $request->code,
+        ]);
+    }
+
+    public function computeLogin($locale, $code)
+    {
         try {
             if (app()->getLocale() == "en") {
                 $response = (new Client)->post('https://auth.vatsim.net/oauth/token', [
@@ -62,7 +69,7 @@ class AuthController extends Controller
                         'client_id' => config('vatsimsso.en_client_id'),
                         'client_secret' => config('vatsimsso.en_secret'),
                         'redirect_uri' => config('vatsimsso.en_redirect'),
-                        'code' => $request->code,
+                        'code' => $code,
                     ],
                 ]);
             } else {
@@ -72,7 +79,7 @@ class AuthController extends Controller
                         'client_id' => config('vatsimsso.fr_client_id'),
                         'client_secret' => config('vatsimsso.fr_secret'),
                         'redirect_uri' => config('vatsimsso.fr_redirect'),
-                        'code' => $request->code,
+                        'code' => $code,
                     ],
                 ]);
             }

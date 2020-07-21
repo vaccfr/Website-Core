@@ -16,4 +16,8 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'redir_title' => 'Redirection...',
+    'redir_subtitle' => 'Nous cherchons et mettons à jour vos données',
+    'redir_content' => 'Vous allez bientôt être redirigé.<br>
+    Merci pour votre patience.'
 ];
