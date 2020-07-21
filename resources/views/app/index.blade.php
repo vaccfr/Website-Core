@@ -183,6 +183,9 @@
       "ordering": false,
       "autoWidth": false,
       "scrollY": 400,
+      "language": {
+        "emptyTable": "{{__('app/app_indexpage.no_last_atc')}}"
+      }
     });
     $('#flights_table').DataTable({
       "paging": true,
@@ -191,6 +194,9 @@
       "ordering": false,
       "autoWidth": false,
       "scrollY": 400,
+      "language": {
+        "emptyTable": "{{__('app/app_indexpage.no_last_flights')}}"
+      }
     });
   </script>
 @endsection

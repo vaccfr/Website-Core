@@ -4,7 +4,6 @@ namespace App\Http\Controllers\DataHandlers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Vatsim\UserAtcSession;
-use App\Models\Vatsim\UserConnections;
 use App\Models\Vatsim\UserFlight;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -124,37 +123,6 @@ class VatsimDataController extends Controller
             6 => "CTR",
         ];
         $excludes = [0];
-
-        $cid = auth()->user()->vatsim_id;
-        if (app(CacheController::class)->checkCache('connections', true)) {
-            $connections = UserAtcSession::where('vatsim_id', $cid)->get();
-        } else {
-            try {
-                $response = (new Client)->get('https://api.vatsim.net/api/ratings/'.$cid.'/connections', [
-                    'header' => [
-                        'Accept' => 'application/json',
-                    ]
-                ]);
-                $response = json_decode((string) $response->getBody(), true);
-                foreach ($response['results'] as $c) {
-                    UserConnections::updateOrCreate(['id' => $c['id']], [
-                        'vatsim_id' => $c['vatsim_id'],
-                        'type' => $c['type'],
-                        'rating' => $c['rating'],
-                        'callsign' => $c['callsign'],
-                        'start' => $c['start'],
-                        'end' => $c['end'],
-                        'server' => $c['server'],
-                    ]);
-                }
-
-                $connections = UserConnections::where('vatsim_id', $cid)->get();
-                app(CacheController::class)->putCache('connections', 'true', $this->expiryTime, true);
-            } catch(ClientException $e) {
-                $connections = [];
-            }
-        }
-        return $connections;
     }
 
     public function getFlights()
@@ -163,7 +131,6 @@ class VatsimDataController extends Controller
         if (app(CacheController::class)->checkCache('flights', true)) {
             $flights = UserFlight::where('vatsim_id', $cid)->get();
         } else {
-            $flightsList = [];
             try {
                 $response = (new Client)->get('https://api.vatsim.net/api/ratings/'.$cid.'/connections', [
                     'header' => [
@@ -171,38 +138,15 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
-                array_push($flightsList, $response['results']);
-                $repeat = true;
-                while ($repeat == true) {
-                    if (!is_null($response['next'])) {
-                        $response = (new Client)->get((string)$response['next'], [
-                            'header' => [
-                                'Accept' => 'application/json',
-                            ]
+                foreach ($response['results'] as $f) {
+                    if ($f['type'] == 1) {
+                        UserFlight::updateOrCreate(['id' => $f['id']], [
+                            'vatsim_id' => $f['vatsim_id'],
+                            'callsign' => $f['callsign'],
+                            'start' => $f['start'],
+                            'end' => $f['end'],
                         ]);
-                        $response = json_decode((string) $response->getBody(), true);
-                        array_push($flightsList, $response['results']);
-                    } else {
-                        $repeat = false;
                     }
-                }
-                $repeatFlightInput = 0;
-                $done = false;
-                while ($repeatFlightInput < 100 || $done == false) {
-                    foreach ($flightsList as $fl) {
-                        foreach ($fl as $f) {
-                            if ($f['type'] == 1) {
-                                UserFlight::updateOrCreate(['id' => $f['id']], [
-                                    'vatsim_id' => $f['vatsim_id'],
-                                    'callsign' => $f['callsign'],
-                                    'start' => $f['start'],
-                                    'end' => $f['end'],
-                                ]);
-                                $repeatFlightInput++;
-                            }
-                        }
-                    }
-                    $done = true;
                 }
 
                 $flights = UserFlight::where('vatsim_id', $cid)->get();
