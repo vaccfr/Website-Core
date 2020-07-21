@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SSO;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\CacheController;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\Admin\Staff;
 use App\Models\ATC\AtcRosterMember;
@@ -306,5 +307,9 @@ class AuthController extends Controller
         $user = User::where('vatsim_id', $cid)->first();
         $user->data_loaded = true;
         $user->save();
+
+        app(CacheController::class)->putCache('atc_sessions', 'true', $this->expiryTime, true);
+        app(CacheController::class)->putCache('connections', 'true', $this->expiryTime, true);
+        app(CacheController::class)->putCache('flights', 'true', $this->expiryTime, true);
     }
 }
