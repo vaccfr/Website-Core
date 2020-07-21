@@ -19,8 +19,8 @@ class CreateUserConnectionsTable extends Migration
             $table->integer('type');
             $table->integer('rating');
             $table->string('callsign');
-            $table->string('start');
-            $table->string('end');
+            $table->string('start')->nullable();
+            $table->string('end')->nullable();
             $table->string('server');
             $table->timestamps();
         });
