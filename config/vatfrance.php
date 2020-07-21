@@ -29,7 +29,6 @@ return [
     'LFPG',
     'LFPO',
     'LFPB',
-    'LFMN',
   ],
   'student_progress_gb' => [
     1 => [
