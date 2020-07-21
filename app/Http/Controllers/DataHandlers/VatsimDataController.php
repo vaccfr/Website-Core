@@ -28,8 +28,7 @@ class VatsimDataController extends Controller
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
                 foreach ($response['results'] as $s) {
-                    UserAtcSession::updateOrCreate(['vatsim_id' => $cid], [
-                        'id' => $s['connection_id'],
+                    UserAtcSession::updateOrCreate(['id' => $s['connection_id']], [
                         'start' => $s['start'],
                         'end' => $s['end'],
                         'server' => $s['server'],
@@ -137,8 +136,7 @@ class VatsimDataController extends Controller
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
                 foreach ($response['results'] as $c) {
-                    UserConnections::updateOrCreate(['vatsim_id' => $cid], [
-                        'id' => $c['id'],
+                    UserConnections::updateOrCreate(['id' => $c['id']], [
                         'vatsim_id' => $c['vatsim_id'],
                         'type' => $c['type'],
                         'rating' => $c['rating'],
