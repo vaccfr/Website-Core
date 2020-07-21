@@ -28,18 +28,16 @@ class MainController extends Controller
         ->get();
 
         $allFlights = [];
-        foreach ($connections as $conn) {
-            foreach ($conn as $c) {
-                if ($c['type'] == 1) {
-                    $sesh = [
-                        'epoch_start' => date("U", strtotime($c['start'])),
-                        'start_time' => app(Utilities::class)->iso2datetime($c['start']),
-                        'end_time' => app(Utilities::class)->iso2datetime($c['end']),
-                        'callsign' => $c['callsign'],
-                        'duration' => "N/A",
-                    ];
-                    array_push($allFlights, $sesh);
-                }
+        foreach ($connections as $c) {
+            if ($c['type'] == 1) {
+                $sesh = [
+                    'epoch_start' => date("U", strtotime($c['start'])),
+                    'start_time' => app(Utilities::class)->iso2datetime($c['start']),
+                    'end_time' => app(Utilities::class)->iso2datetime($c['end']),
+                    'callsign' => $c['callsign'],
+                    'duration' => "N/A",
+                ];
+                array_push($allFlights, $sesh);
             }
         }
         $columns = array_column($allFlights, 'epoch_start');
