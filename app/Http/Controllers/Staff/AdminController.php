@@ -127,6 +127,7 @@ class AdminController extends Controller
                     $todel->delete();
                     $currentUser->save();
                     Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
                         'atc_dpt' => 0,
                     ]);
                 }
