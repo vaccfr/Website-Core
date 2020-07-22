@@ -172,6 +172,10 @@ class AdminController extends Controller
                     $todel->delete();
                     $currentUser->is_staff = false;
                     $currentUser->save();
+                    return redirect()->route('app.staff.admin.edit', [
+                        'locale' => app()->getLocale(),
+                        'userid' => $currentUser->id,
+                    ])->with('toast-info', trans('app/alerts.staff_edited'));
                 }
                 break;
             
