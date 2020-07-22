@@ -194,6 +194,8 @@
           </div>
           <div class="card-footer">
             <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#book-session-{{ $s['user']['vatsim_id'] }}">Book Session</button>
+            <button type="button" class="btn btn-warning btn-flat">Edit Progress</button>
+            <button type="button" class="btn btn-danger btn-flat">Release Student</button>
             <button type="button" class="btn btn-danger btn-flat">Terminate Mentoring</button>
           </div>
         </div>
