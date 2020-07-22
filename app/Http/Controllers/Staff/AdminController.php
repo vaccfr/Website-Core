@@ -117,6 +117,7 @@ class AdminController extends Controller
                         'allowed_rank' => $request->get('allowedrank'),
                     ]);
                     Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
                         'atc_dpt' => 1,
                     ]);
                 }
@@ -192,6 +193,7 @@ class AdminController extends Controller
             case false:
                 if (!is_null($request->get('execswitch'))) {
                     Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
                         'executive' => 1,
                     ]);
                 }
@@ -200,6 +202,7 @@ class AdminController extends Controller
             case true:
                 if (is_null($request->get('execswitch'))) {
                     Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
                         'executive' => 0,
                     ]);
                 }
@@ -213,6 +216,7 @@ class AdminController extends Controller
             case false:
                 if (!is_null($request->get('adminswitch'))) {
                     Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
                         'admin' => 1,
                     ]);
                 }
@@ -221,6 +225,7 @@ class AdminController extends Controller
             case true:
                 if (is_null($request->get('adminswitch'))) {
                     Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
                         'admin' => 0,
                     ]);
                 }
