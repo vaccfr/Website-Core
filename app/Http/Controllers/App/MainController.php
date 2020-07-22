@@ -20,12 +20,6 @@ class MainController extends Controller
         $flights = app(VatsimDataController::class)->getFlights();
         $sessions = app(VatsimDataController::class)->getATCSessions();
         $times = app(VatsimDataController::class)->getUserHours();
-        $mostControlled = UserAtcSession::select('callsign')
-        ->selectRaw('COUNT(*) AS count')
-        ->groupBy('callsign')
-        ->orderByDesc('count')
-        ->limit(1)
-        ->get();
 
         $allFlights = [];
         foreach ($flights as $c) {
@@ -41,11 +35,23 @@ class MainController extends Controller
         $columns = array_column($allFlights, 'epoch_start');
         array_multisort($columns, SORT_DESC, $allFlights);
 
+        $allATCCallsigns = [];
+        if (!is_null($sessions)) {
+            foreach ($sessions as $s) {
+                array_push($allATCCallsigns, $s['callsign']);
+            }
+            $values = array_count_values($allATCCallsigns);
+            arsort($values);
+            $mostControlled = array_slice(array_keys($values), 0, 5, true);
+        } else {
+            $mostControlled = "N/A";
+        }
+
         return view('app.index', [
             'sessions' => $sessions,
             'atcTimes' => $times['atc'],
             'pilotTimes' => $times['pilot'],
-            'mostControlled' => $mostControlled[0]['callsign'],
+            'mostControlled' => $mostControlled[0],
             'flights' => $allFlights,
         ]);
     }

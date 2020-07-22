@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\DataHandlers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Vatsim\UserAtcSession;
-use App\Models\Vatsim\UserFlight;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
@@ -17,8 +15,8 @@ class VatsimDataController extends Controller
     {
         $cid = auth()->user()->vatsim_id;
         if (app(CacheController::class)->checkCache('atc_sessions', true)) {
-            $sessions = UserAtcSession::where('vatsim_id', $cid)->get();
-            $sessions = $this->atcSessionsSort($sessions);
+            $sessions = app(CacheController::class)->getCache('atc_sessions', true);
+            $sessions = $this->atcSessionsSort($sessions['results']);
         } else {
             try {
                 $response = (new Client())->get("https://api.vatsim.net/api/ratings/".$cid."/atcsessions", [
@@ -27,34 +25,8 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
-                foreach ($response['results'] as $s) {
-                    UserAtcSession::updateOrCreate(['id' => $s['connection_id']], [
-                        'start' => $s['start'],
-                        'end' => $s['end'],
-                        'server' => $s['server'],
-                        'vatsim_id' => $s['vatsim_id'],
-                        'type' => $s['type'],
-                        'rating' => $s['rating'],
-                        'callsign' => $s['callsign'],
-                        'times_held_callsign' => $s['times_held_callsign'],
-                        'minutes_on_callsign' => $s['minutes_on_callsign'],
-                        'total_minutes_on_callsign' => $s['total_minutes_on_callsign'],
-                        'aircrafttracked' => $s['aircrafttracked'],
-                        'aircraftseen' => $s['aircraftseen'],
-                        'flightsamended' => $s['flightsamended'],
-                        'handoffsinitiated' => $s['handoffsinitiated'],
-                        'handoffsreceived' => $s['handoffsreceived'],
-                        'handoffsrefused' => $s['handoffsrefused'],
-                        'squawksassigned' => $s['squawksassigned'],
-                        'cruisealtsmodified' => $s['cruisealtsmodified'],
-                        'tempaltsmodified' => $s['tempaltsmodified'],
-                        'scratchpadmods' => $s['scratchpadmods'],
-                    ]);
-                }
-
-                $sessions = UserAtcSession::where('vatsim_id', $cid)->get();
-                $sessions = $this->atcSessionsSort($sessions);
-                app(CacheController::class)->putCache('atc_sessions', 'true', $this->expiryTime, true);
+                $sessions = $this->atcSessionsSort($response['results']);
+                app(CacheController::class)->putCache('atc_sessions', $response, $this->expiryTime, true);
             } catch(ClientException $e) {
                 $sessions = [];
             }
@@ -111,25 +83,11 @@ class VatsimDataController extends Controller
         return $return;
     }
 
-    public function getConnections()
-    {
-        $types = [
-            0 => "Pilot/OBS",
-            1 => "FSS",
-            2 => "DEL",
-            3 => "GND",
-            4 => "TWR",
-            5 => "APP/DEP",
-            6 => "CTR",
-        ];
-        $excludes = [0];
-    }
-
     public function getFlights()
     {
         $cid = auth()->user()->vatsim_id;
         if (app(CacheController::class)->checkCache('flights', true)) {
-            $flights = UserFlight::where('vatsim_id', $cid)->get();
+            $flights = app(CacheController::class)->getCache('flights', true);
         } else {
             try {
                 $response = (new Client)->get('https://api.vatsim.net/api/ratings/'.$cid.'/connections', [
@@ -138,19 +96,20 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
+                $flights = [];
                 foreach ($response['results'] as $f) {
                     if ($f['type'] == 1) {
-                        UserFlight::updateOrCreate(['id' => $f['id']], [
+                        $new = [
                             'vatsim_id' => $f['vatsim_id'],
                             'callsign' => $f['callsign'],
                             'start' => $f['start'],
                             'end' => $f['end'],
-                        ]);
+                        ];
+                        array_push($flights, $new);
                     }
                 }
 
-                $flights = UserFlight::where('vatsim_id', $cid)->get();
-                app(CacheController::class)->putCache('flights', 'true', $this->expiryTime, true);
+                app(CacheController::class)->putCache('flights', $flights, $this->expiryTime, true);
             } catch(ClientException $e) {
                 $flights = [];
             }
@@ -165,7 +124,6 @@ class VatsimDataController extends Controller
         if (app(CacheController::class)->checkCache('onlineatc', false)) {
             $clients = app(CacheController::class)->getCache('onlineatc', false);
         } else {
-            $flightsList = [];
             try {
                 $response = (new Client)->get($url, [
                     'header' => [

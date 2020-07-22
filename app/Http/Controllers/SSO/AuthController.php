@@ -168,10 +168,6 @@ class AuthController extends Controller
 
         Auth::login($user, true);
 
-        if ($user->data_loaded == false) {
-            $this->initialDataLoad();
-        }
-
         return redirect()->route('app.index', app()->getLocale())->with("toast-success", trans('app/alerts.logged_in'));
     }
 
@@ -180,87 +176,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('landingpage.home', app()->getLocale())->with("toast-success", trans('app/alerts.logged_out'));
     }
-
-    public function initialDataLoad()
-    {
-        $cid = auth()->user()->vatsim_id;
-
-        $allSessions = UserAtcSession::where('vatsim_id', $cid)->get();
-        foreach ($allSessions as $as) {
-            $as->delete();
-        }
-        $allFlights = UserFlight::where('vatsim_id', $cid)->get();
-        foreach ($allFlights as $af) {
-            $af->delete();
-        }
-
-        try {
-            $response = (new Client())->get("https://api.vatsim.net/api/ratings/".$cid."/atcsessions", [
-                'headers' => [
-                    'Accepts' => 'application/json',
-                ]
-            ]);
-            $sessions = json_decode((string) $response->getBody(), true);
-        } catch(ClientException $e) {
-            $sessions = [];
-        }
-
-        try {
-            $response = (new Client)->get('https://api.vatsim.net/api/ratings/'.$cid.'/connections', [
-                'header' => [
-                    'Accept' => 'application/json',
-                ]
-            ]);
-            $flights = json_decode((string) $response->getBody(), true);
-        } catch (ClientException $e) {
-            $flights = [];
-        }
-
-        foreach ($sessions['results'] as $s) {
-            UserAtcSession::create([
-                'id' => $s['connection_id'],
-                'start' => $s['start'],
-                'end' => $s['end'],
-                'server' => $s['server'],
-                'vatsim_id' => $s['vatsim_id'],
-                'type' => $s['type'],
-                'rating' => $s['rating'],
-                'callsign' => $s['callsign'],
-                'times_held_callsign' => $s['times_held_callsign'],
-                'minutes_on_callsign' => $s['minutes_on_callsign'],
-                'total_minutes_on_callsign' => $s['total_minutes_on_callsign'],
-                'aircrafttracked' => $s['aircrafttracked'],
-                'aircraftseen' => $s['aircraftseen'],
-                'flightsamended' => $s['flightsamended'],
-                'handoffsinitiated' => $s['handoffsinitiated'],
-                'handoffsreceived' => $s['handoffsreceived'],
-                'handoffsrefused' => $s['handoffsrefused'],
-                'squawksassigned' => $s['squawksassigned'],
-                'cruisealtsmodified' => $s['cruisealtsmodified'],
-                'tempaltsmodified' => $s['tempaltsmodified'],
-                'scratchpadmods' => $s['scratchpadmods'],
-            ]);
-        }
-
-        foreach ($flights['results'] as $f) {
-            if ($f['type'] == 1) {
-                UserFlight::create([
-                    'id' => $f['id'],
-                    'vatsim_id' => $f['vatsim_id'],
-                    'callsign' => $f['callsign'],
-                    'start' => $f['start'],
-                    'end' => $f['end'],
-                ]);
-            }
-        }
-
-        $user = User::where('vatsim_id', $cid)->first();
-        $user->data_loaded = true;
-        $user->save();
-
-        app(CacheController::class)->putCache('atc_sessions', 'true', $this->expiryTime, true);
-        app(CacheController::class)->putCache('flights', 'true', $this->expiryTime, true);
-    }
-    
-    public $expiryTime = 300; // Time in seconds for data to expire in cache
 }
