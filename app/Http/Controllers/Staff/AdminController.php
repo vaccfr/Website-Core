@@ -120,6 +120,8 @@ class AdminController extends Controller
                         'id' => $currentUser->id,
                         'atc_dpt' => 1,
                     ]);
+                    $currentUser->is_staff = true;
+                    $currentUser->save();
                 }
                 break;
             
