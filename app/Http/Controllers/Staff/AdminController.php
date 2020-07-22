@@ -172,6 +172,11 @@ class AdminController extends Controller
                     $todel->delete();
                     $currentUser->is_staff = false;
                     $currentUser->save();
+
+                    $todelMentor = Mentor::where('id', $request->get('userid'))->first();
+                    if (!is_null($todelMentor)) {
+                        $todelMentor->delete();
+                    }
                     return redirect()->route('app.staff.admin.edit', [
                         'locale' => app()->getLocale(),
                         'userid' => $currentUser->id,
