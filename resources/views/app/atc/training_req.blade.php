@@ -56,8 +56,8 @@
                     <select class="form-control" name="reqposition" id="reqposition">
                       <option value="" disabled selected>Select...</option>
                       @foreach ($platforms as $p)
-                        @if (!in_array($p['icao'], $excl))
-                        <option value="{{ $p['icao'] }}">{{ $p['icao'] }} ({{ $p['city'] }} {{ $p['airport'] }})</option>
+                        @if (!in_array($p['icao'], $excl) && $p['airport'] != "CENTRE"))
+                          <option value="{{ $p['icao'] }}">{{ $p['icao'] }} ({{ $p['city'] }} {{ $p['airport'] }})</option>
                         @endif
                       @endforeach
                     </select>
