@@ -107,7 +107,7 @@ class AdminController extends Controller
     public function editUserAtcMentor(Request $request)
     {
         $currentUser = User::where('id', $request->get('userid'))->firstOrFail();
-        $currentUserStaff = Staff::where('id', $request->get('userid'))->first();
+        $currentMentor = Mentor::where('id', $request->get('userid'))->first();
 
         switch ($currentUser->isAtcMentor()) {
             case false:
@@ -117,7 +117,6 @@ class AdminController extends Controller
                         'allowed_rank' => $request->get('allowedrank'),
                     ]);
                     Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
-                        'id' => $currentUser->id,
                         'atc_dpt' => 1,
                     ]);
                 }
@@ -131,6 +130,11 @@ class AdminController extends Controller
                     Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
                         'id' => $currentUser->id,
                         'atc_dpt' => 0,
+                    ]);
+                } elseif ($currentMentor->allowed_rank !== $request->get('allowedrank')) {
+                    Mentor::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
+                        'allowed_rank' => $request->get('allowedrank'),
                     ]);
                 }
                 break;

@@ -16,7 +16,7 @@ class CreateStaffTable extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->bigInteger('id')->unique();
             $table->integer('vatsim_id');
-            $table->integer('staff_level');
+            $table->integer('staff_level')->default(0);
             $table->boolean('admin')->default(false);
             $table->boolean('atc_dpt')->default(false);
             $table->boolean('pilot_dpt')->default(false);
