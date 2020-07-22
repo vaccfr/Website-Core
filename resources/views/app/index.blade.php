@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-widget widget-user">
-          <div class="widget-user-header" style="background-image: url({{ asset('media/img/lp/banner3.jpg') }})">
+          <div class="widget-user-header text-white" style="background: url({{ asset('media/img/lp/banner3.jpg') }}) center center;">
             <h3 class="widget-user-username">{{ Auth::user()->fullname() }}</h3>
             <h5 class="widget-user-desc">{{ Auth::user()->account_type }}</h5>
             <div class="widget-user-image">

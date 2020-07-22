@@ -38,6 +38,6 @@ return [
   'utc_time' => 'UTC',
 
   'return_lp' => 'Page d\'accueil',
-  'my_settings' => 'Reglages',
+  'my_settings' => 'Réglages',
   'logout' => 'Deconnexion',
 ];
