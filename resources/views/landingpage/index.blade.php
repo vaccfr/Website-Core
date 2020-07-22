@@ -75,10 +75,10 @@
                 <table class="table">
                   <thead class="thead">
                     <tr>
-                      <th scope="col">{{__('lp/lp_atcbookings.position')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.name')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.hours')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.rating')}}</th>
+                      <th scope="col">{{__('lp/lp_index.position')}}</th>
+                      <th scope="col">{{__('lp/lp_index.name')}}</th>
+                      <th scope="col">{{__('lp/lp_index.hours')}}</th>
+                      <th scope="col">{{__('lp/lp_index.rating')}}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -100,10 +100,10 @@
                 <table class="table">
                   <thead class="thead">
                     <tr>
-                      <th scope="col">{{__('lp/lp_atcbookings.position')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.name')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.hours')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.rating')}}</th>
+                      <th scope="col">{{__('lp/lp_index.position')}}</th>
+                      <th scope="col">{{__('lp/lp_index.name')}}</th>
+                      <th scope="col">{{__('lp/lp_index.hours')}}</th>
+                      <th scope="col">{{__('lp/lp_index.rating')}}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -125,10 +125,10 @@
                 <table class="table">
                   <thead class="thead">
                     <tr>
-                      <th scope="col">{{__('lp/lp_atcbookings.position')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.name')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.hours')}}</th>
-                      <th scope="col">{{__('lp/lp_atcbookings.rating')}}</th>
+                      <th scope="col">{{__('lp/lp_index.position')}}</th>
+                      <th scope="col">{{__('lp/lp_index.name')}}</th>
+                      <th scope="col">{{__('lp/lp_index.hours')}}</th>
+                      <th scope="col">{{__('lp/lp_index.rating')}}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -147,14 +147,14 @@
         </div>
       </div>
       <div class="col-sm">
-        <h3 class="font-weight-medium">Online ATC</h3>
+        <h3 class="font-weight-medium">{{__('lp/lp_index.position')}}</h3>
         <table class="table mt-4">
           <thead class="thead">
             <tr>
-              <th scope="col">Position</th>
-              <th scope="col">Name (ID)</th>
-              <th scope="col">Live Since</th>
-              <th scope="col">Rating</th>
+              <th scope="col">{{__('lp/lp_index.position')}}</th>
+              <th scope="col">{{__('lp/lp_index.name')}}</th>
+              <th scope="col">{{__('lp/lp_index.livesince')}}</th>
+              <th scope="col">{{__('lp/lp_index.rating')}}</th>
             </tr>
           </thead>
           <tbody>
@@ -168,6 +168,9 @@
             @endforeach
           </tbody>
         </table>
+        @if (count($atconline) == 0)
+          <p style="vertical-align: middle; text-align: center;">{{__('lp/lp_index.noatc')}}</p>
+        @endif
       </div>
     </div>
   </div>

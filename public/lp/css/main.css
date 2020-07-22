@@ -110,6 +110,9 @@ button:focus {
 .bg-black {
   background-color: rgb(0, 0, 0) !important;
 }
+.bg-light {
+  background-color: transparent !important;
+}
 
 .btn-pill {
   border-radius: 6rem;
@@ -131,11 +134,15 @@ button:focus {
   .navbar-custom {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: rgba(0, 0, 0, 0)
-    ;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  .bg-light {
+    background-color: #f5f5f5 !important;
+  }
+  .card {
+    margin-bottom: 1.5rem;
   }
 }
-
 
 .navbar-custom .navbar-brand {
   text-transform: uppercase;
@@ -149,6 +156,13 @@ button:focus {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.15rem;
+  display: block;
+  padding: 0.5rem 0.5rem;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  text-decoration: none;
 }
 
 @media (min-width: 992px) {
@@ -239,6 +253,8 @@ header.masthead .masthead-content .masthead-subheading {
 .dropdown-item {
   font-size: 0.85rem;
   text-align: left;
+  font-weight: 400;
+  padding: 0.3rem 1rem;
 }
 .dropdown-item:hover {
   color: #5068f2 !important;
