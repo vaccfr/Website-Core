@@ -18,6 +18,7 @@
 @endsection
 
 @section('page-content')
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="{{ asset('dashboard/stepbar.css') }}">
   <div class="container-fluid">
     <div class="row">
@@ -60,6 +61,12 @@
         </div>
       </div>
       <div class="col-md-10">
+        <script src="{{ asset('dashboard/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('dashboard/jquery/jquery.validate.js') }}"></script>
+        <script src="{{ asset('dashboard/jquery/additional-methods.js') }}"></script>
+        <script src="{{ asset('dashboard/adminlte/dist/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         @foreach ($students as $s)
         <div class="card card-outline @if(true) card-success @else card-danger @endif">
           <div class="card-header" data-card-widget="collapse">
@@ -102,7 +109,7 @@
               <div class="col-md-7 border-right">
                 <h4>Upcoming sessions</h4>
                 <table
-                  id="upcoming_sessions"
+                  id="upcoming_sessions_{{ $s['user']['vatsim_id'] }}"
                   class="table table-bordered table-hover"
                   data-order='[[ 1, "desc" ]]'>
                   <thead>
@@ -157,7 +164,7 @@
               <div class="col-md-5">
                 <h4>Past sessions</h4>
                 <table
-                  id="upcoming_sessions"
+                  id="past_sessions_{{ $s['user']['vatsim_id'] }}"
                   class="table table-bordered table-hover"
                   data-order='[[ 1, "desc" ]]'>
                   <thead>
@@ -186,23 +193,111 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="button" class="btn btn-info btn-flat">Book Session</button>
+            <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#book-session-{{ $s['user']['vatsim_id'] }}">Book Session</button>
             <button type="button" class="btn btn-danger btn-flat">Terminate Mentoring</button>
           </div>
         </div>
+        <div class="modal fade" id="book-session-{{ $s['user']['vatsim_id'] }}">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Book a session with {{ $s['user']['fname'] }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form action="{{ route('app.staff.atc.mine.booksession', app()->getLocale()) }}" method="post">
+                @csrf
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="reqposition">{{__('app/atc/atc_training_center.pos')}}</label>
+                    <select class="form-control" name="reqposition" id="reqposition">
+                      <option value="" disabled selected>{{__('app/atc/atc_training_center.select')}}...</option>
+                    </select>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="session-date">{{__('app/atc/atc_training_center.date')}}</label>
+                        <input type="text" class="form-control" id="session-date-{{ $s['user']['vatsim_id'] }}" name="sessiondate" placeholder="{{__('app/atc/atc_training_center.date')}}">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="starttime">{{__('app/atc/atc_training_center.st_time')}} (UTC)</label>
+                        <input type="text" class="form-control" id="starttime-{{ $s['user']['vatsim_id'] }}" name="starttime" placeholder="{{__('app/atc/atc_training_center.st_time')}}">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="endtime">{{__('app/atc/atc_training_center.end_time')}} (UTC)</label>
+                        <input type="text" class="form-control" id="endtime-{{ $s['user']['vatsim_id'] }}" name="endtime" placeholder="{{__('app/atc/atc_training_center.end_time')}}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="reqcomment">{{__('app/atc/atc_training_center.comment_for')}}</label>
+                    <textarea class="form-control" rows="3" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="..."></textarea>
+                  </div>
+                </div>
+                <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Send request</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <script>
+          $("#upcoming_sessions_{{ $s['user']['vatsim_id'] }}").DataTable({
+            "paging": false,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "autoWidth": false,
+            "info": false,
+            "scrollY": 300,
+          });
+          $("#past_sessions_{{ $s['user']['vatsim_id'] }}").DataTable({
+            "paging": false,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "autoWidth": false,
+            "info": false,
+            "scrollY": 300,
+          });
+          flatpickr("#session-date-{{ $s['user']['vatsim_id'] }}", {
+              enableTime: false,
+              dateFormat: "d.m.Y",
+              minDate: "today",
+              allowInput: true,
+          });
+          d = new Date();
+          flatpickr("#starttime-{{ $s['user']['vatsim_id'] }}", {
+              enableTime: true,
+              noCalendar: true,
+              dateFormat: "H:i",
+              defaultHour: d.getUTCHours(),
+              defaultMinute: 00,
+              allowInput: true,
+              time_24hr: true,
+              minuteIncrement: 15
+          });
+          flatpickr("#endtime-{{ $s['user']['vatsim_id'] }}", {
+              enableTime: true,
+              noCalendar: true,
+              dateFormat: "H:i",
+              defaultHour: d.getUTCHours()+1,
+              defaultMinute: 00,
+              allowInput: true,
+              time_24hr: true,
+              minuteIncrement: 15
+          });
+        </script>
         @endforeach
       </div>
     </div>
   </div>
-  <script>
-    $('#upcoming_sessions').DataTable({
-      "paging": false,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": false,
-      "autoWidth": false,
-      "info": false,
-      "scrollY": 300,
-    });
-  </script>
 @endsection

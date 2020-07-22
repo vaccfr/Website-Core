@@ -77,6 +77,7 @@ Route::group([
                 Route::get('/mystudents', 'Staff\ATCMentorController@myStudents')->name('app.staff.atc.mine');
 
                 Route::post('/all/take', 'Staff\ATCMentorController@takeTraining')->name('app.staff.atc.all.take');
+                Route::post('/mystudents/booksession', 'Staff\ATCMentorController@bookSession')->name('app.staff.atc.mine.booksession');
             });
             Route::group(['prefix' => '/pilot'], function() {
                 

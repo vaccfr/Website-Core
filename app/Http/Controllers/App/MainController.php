@@ -36,7 +36,7 @@ class MainController extends Controller
         array_multisort($columns, SORT_DESC, $allFlights);
 
         $allATCCallsigns = [];
-        if (!is_null($sessions)) {
+        if (count($sessions) !== 0) {
             foreach ($sessions as $s) {
                 array_push($allATCCallsigns, $s['callsign']);
             }

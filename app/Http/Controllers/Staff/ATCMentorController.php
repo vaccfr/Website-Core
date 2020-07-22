@@ -7,6 +7,7 @@ use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Mentor;
 use App\Models\ATC\MentoringRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class ATCMentorController extends Controller
@@ -70,22 +71,26 @@ class ATCMentorController extends Controller
     {
         $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
         $progSteps = 100/(int)count($studySessions);
-        $currentProgress = 1;
-        $progCurrent = $currentProgress * $progSteps;
 
         $students = ATCStudent::where('mentor_id', auth()->user()->id)
         ->with('user')
-        ->with('sessions')
+        ->with(['sessions' => function($q) {
+            return $q->where('date', Carbon::now()->addMonth());
+        }])
         ->with('mentoringRequest')
         ->get();
 
-        // dd($students[0]['mentoringRequest']);
+        // dd($students[0]['sessions']);
         
         return view('app.staff.atc_mentor_mine', [
             'steps' => $studySessions,
             'progSteps' => $progSteps,
-            'progCurrent' => $progCurrent,
             'students' => $students,
         ]);
+    }
+
+    public function bookSession(Request $request)
+    {
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Mentoring session booked!');
     }
 }
