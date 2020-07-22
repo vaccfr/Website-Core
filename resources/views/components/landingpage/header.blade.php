@@ -142,7 +142,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {{ strtoupper(app()->getLocale()) }}
+            <img src="{{ asset('media/img/'.app()->getLocale().'-flag.png') }}" alt="{{ strtoupper(app()->getLocale()) }}" style="height: 24px">
           </a>
           <div
             class="dropdown-menu animate slideIn"
@@ -153,7 +153,7 @@
               class="dropdown-item"
               href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
               @if (app()->getLocale() == $locale) style="font-weight: bold;" @endif>
-              {{ strtoupper($locale) }}
+              <img src="{{ asset('media/img/'.$locale.'-flag.png') }}" alt="{{ strtoupper($locale) }}" style="height: 24px"> {{ strtoupper($locale) }}
             </a>
             @endforeach
           </div>
