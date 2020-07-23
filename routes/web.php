@@ -51,7 +51,11 @@ Route::group([
 
             Route::group(['prefix' => '/trainingcenter'], function() {
                 Route::get('/dashboard', 'ATC\ATCTrainingController@index')->name('app.atc.training'); // ATC Training route
+                
                 Route::post('/submit-application', 'ATC\ATCTrainingController@mentoringRequest')->name('app.atc.training.mentoringRequest');
+                Route::post('/acceptsession', 'ATC\ATCTrainingController@acceptSession')->name('app.atc.training.acceptsession');
+                Route::post('/cancelsession', 'ATC\ATCTrainingController@cancelSession')->name('app.atc.training.cancelsession');
+                Route::post('/requestsession', 'ATC\ATCTrainingController@requestSession')->name('app.atc.training.requestsession');
             });
             
             Route::group(['middleware' => 'ATC', 'prefix' => '/book/verified'], function() {

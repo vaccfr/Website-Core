@@ -23,141 +23,91 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <div class="card">
+    <div class="col-md-2">
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>23</h3>
+
+          <p>{{__('app/atc/atc_training_center.ment_sessions')}}</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-headphones"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>25:34</h3>
+
+          <p>{{__('app/atc/atc_training_center.class_h')}}</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-clock"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>LFMN</h3>
+
+          <p>{{__('app/atc/atc_training_center.teaching_p')}}</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-plane-departure"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{ $mentorObj->fname." ".$mentorObj->lname }}</h3>
+
+          <p>{{__('app/atc/atc_training_center.curr_ment')}}</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-outline card-info">
         <div class="card-body">
-          <div class="steps">
-            <ul class="steps-container">
-              <li style="width:12.5%;" class="activated">
-                <div class="step">
-                  <div class="step-image"><span></span></div>
-                  <div class="step-current">Exam</div>
-                  <div class="step-description">S1 Theory</div>
-                </div>
-              </li>
-              <li style="width:12.5%;" class="activated">
-                <div class="step">
-                  <div class="step-image"><span></span></div>
-                  <div class="step-current">Exam</div>
-                  <div class="step-description">S1 CPT</div>
-                </div>
-              </li>
-              <li style="width:12.5%;" class="activated">
-                <div class="step">
-                  <div class="step-image"><span></span></div>
-                  <div class="step-current">Exam</div>
-                  <div class="step-description">S2 Theory</div>
-                </div>
-              </li>
-              <li style="width:12.5%;" class="activated">
-                <div class="step">
-                  <div class="step-image"><span></span></div>
-                  <div class="step-current">Exam</div>
-                  <div class="step-description">S2 CPT</div>
-                </div>
-              </li>
-              <li style="width:12.5%;">
-                <div class="step">
-                  <div class="step-image"><span></span></div>
-                  <div class="step-current">Exam</div>
-                  <div class="step-description">S3 Theory</div>
-                </div>
-              </li>
-              <li style="width:12.5%;">
-                <div class="step">
-                  <div class="step-image"><span></span></div>
-                  <div class="step-current">Exam</div>
-                  <div class="step-description">S3 CPT</div>
-                </div>
-              </li>
-              <li style="width:12.5%;">
-                <div class="step">
-                  <div class="step-image"><span></span></div>
-                  <div class="step-current">Exam</div>
-                  <div class="step-description">C1 Theory</div>
-                </div>
-              </li>
-              <li style="width:12.5%;">
-                <div class="step">
-                  <div class="step-image"><span></span></div>
-                  <div class="step-current">Exam</div>
-                  <div class="step-description">C1 CPT</div>
-                </div>
-              </li>
-            </ul>
-            <div class="step-bar" style="width: 50%;"></div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#request_session">Request Session</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-7">
-      {{-- Upcoming training sessions table --}}
-      <div class="card card-secondary">
-        <div class="card-header">
-          <h3 class="card-title">{{__('app/atc/atc_training_center.upcoming_sess')}}</h3>
+  <div class="modal fade" id="request_session">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Request a session with {{ $mentorObj->fname." ".$mentorObj->lname }}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <table
-            id="upcoming_sessions"
-            class="table table-bordered table-hover"
-            data-order='[[ 1, "desc" ]]'>
-            <thead>
-            <tr>
-              <th>{{__('app/atc/atc_training_center.callsign')}}</th>
-              <th>{{__('app/atc/atc_training_center.when')}}</th>
-              <th>{{__('app/atc/atc_training_center.mentor')}}</th>
-              <th>{{__('app/atc/atc_training_center.prop_by')}}</th>
-              <th>{{__('app/atc/atc_training_center.status')}}</th>
-              <th>{{__('app/atc/atc_training_center.options')}}</th>
-            </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>LFMN_APP</td>
-                <td>DATE - TIME</td>
-                <td>Peter Paré (1267123)</td>
-                <td>Mentor (Peter Paré)</td>
-                <td>Awaiting your approval</td>
-                <td>
-                  <form action="" method="GET">
-                    @csrf
-                    <button type="submit" class="btn btn-block btn-success btn-flat"><i class="fa fa-check"></i></button>
-                  </form>
-                </td>
-              </tr>
-              <tr>
-                <td>LFMN_TWR</td>
-                <td>DATE - TIME</td>
-                <td>Peter Paré (1267123)</td>
-                <td>You</td>
-                <td>Awaiting mentor approval</td>
-                <td>
-                  <form action="" method="GET">
-                    @csrf
-                    <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
-                  </form>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.card-body -->
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="card card-primary">
-        <div class="card-header">
-          <h3 class="card-title">{{__('app/atc/atc_training_center.sess_req', ['MENTOR' => 'Peter Paré'])}}</h3>
-        </div>
-        <form action="" method="post">
-          <div class="card-body">
+        <form action="{{ route('app.atc.training.requestsession', app()->getLocale()) }}" method="post">
+          @csrf
+          <div class="modal-body">
             <div class="form-group">
               <label for="reqposition">{{__('app/atc/atc_training_center.pos')}}</label>
               <select class="form-control" name="reqposition" id="reqposition">
                 <option value="" disabled selected>{{__('app/atc/atc_training_center.select')}}...</option>
+                @foreach ($positions as $p)
+                  @if (count($p['positions']) > 0)
+                    <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
+                    @foreach ($p['positions'] as $pos)
+                      <option value="{{ $pos['code'] }}">{{ $pos['code'] }}</option>
+                    @endforeach
+                    <optgroup label=""></optgroup>
+                  @endif
+                @endforeach
               </select>
             </div>
             <div class="row">
@@ -185,106 +135,198 @@
               <textarea class="form-control" rows="3" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="..."></textarea>
             </div>
           </div>
-          <div class="card-footer">
-            <button type="submit" class="btn btn-success">{{__('app/atc/atc_training_center.submit')}}</button>
+          <input type="hidden" name="mentorid" value="{{ $mentorObj->id }}">
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Send request</button>
           </div>
         </form>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-7">
-      {{-- Past training sessions table --}}
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="steps">
+            <ul class="steps-container">
+              @foreach ($steps as $step)
+                @php
+                  $progCurrent = $student['progress'] * $progSteps;
+                  $now = ($loop->index + 1)*$progSteps;
+                  if ($now > $progCurrent) {
+                    $now = false;
+                  } else {
+                    $now = true;
+                  }
+                @endphp
+                <li style="width:{{ $progSteps }}%;" @if ($now) class="activated" @endif>
+                  <div class="step">
+                    <div class="step-image"><span></span></div>
+                    <div class="step-current">{{ $step['type'] }}</div>
+                    <div class="step-description">{{ $step['title'] }}</div>
+                  </div>
+                </li>
+              @endforeach
+            </ul>
+            <div class="step-bar" style="width: {{ $progCurrent }}%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      {{-- Training sessions table --}}
       <div class="card card-secondary">
         <div class="card-header">
-          <h3 class="card-title">{{__('app/atc/atc_training_center.past_sess')}}</h3>
+          <h3 class="card-title">{{__('app/atc/atc_training_center.upcoming_sess')}}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
           <table
-            id="past_sessions"
+            id="upcoming_sessions"
             class="table table-bordered table-hover"
-            data-order='[[ 2, "desc" ]]'>
+            data-order='[[ 1, "desc" ]]'>
             <thead>
             <tr>
               <th>{{__('app/atc/atc_training_center.callsign')}}</th>
               <th>{{__('app/atc/atc_training_center.when')}}</th>
               <th>{{__('app/atc/atc_training_center.mentor')}}</th>
-              <th>{{__('app/atc/atc_training_center.outcome')}}</th>
+              <th>{{__('app/atc/atc_training_center.prop_by')}}</th>
+              <th>Mentor Comment</th>
+              <th>Student Comment</th>
+              <th>{{__('app/atc/atc_training_center.status')}}</th>
               <th>{{__('app/atc/atc_training_center.options')}}</th>
             </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>LFMN_TWR</td>
-                <td>DATE - TIME</td>
-                <td>Peter Paré (1267123)</td>
-                <td>Successful</td>
-                <td>
-                  <form action="" method="GET">
-                    @csrf
-                    <button type="submit" class="btn btn-block btn-info btn-flat">{{__('app/atc/atc_training_center.report')}}</button>
-                  </form>
-                </td>
-              </tr>
+              @foreach ($sessions as $training)
+                <tr>
+                  <td>{{ $training['position'] }}</td>
+                  <td>{{ $training['date'] }} {{ $training['time'] }}</td>
+                  <td>{{ $training['mentorUser']['fname'] }} {{ $training['mentorUser']['lname'] }} ({{ $training['mentorUser']['vatsim_id'] }})</td>
+                  <td>{{ $training['requested_by'] }}</td>
+                  <td>
+                    @if (!is_null($training['mentor_comment']))
+                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment"><i class="far fa-eye"></i></button>
+                    @else
+                      (No comment)
+                    @endif
+                  </td>
+                  <td>
+                    @if (!is_null($training['student_comment']))
+                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment"><i class="far fa-eye"></i></button>
+                    @else
+                      (No comment)
+                    @endif
+                  </td>
+                  <td>{{ $training['status'] }}</td>
+                  <td>
+                    @if ($training['accepted_by_mentor'] == false && $training['accepted_by_student'] == true)
+
+                      {{-- Only accepted by student --}}
+                      <form action="{{ route('app.atc.training.cancelsession', app()->getLocale()) }}" method="POST">
+                        @csrf
+                          <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
+                          <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
+                      </form>
+
+                    @else
+
+                      @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == false)
+
+                        {{-- Only accepted by mentor --}}
+                        <form action="{{ route('app.atc.training.acceptsession', app()->getLocale()) }}" method="POST">
+                          @csrf
+                          <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
+                          <button type="submit" class="btn btn-block btn-success btn-flat"><i class="fa fa-check"></i></button>
+                        </form>
+                        <form action="{{ route('app.atc.training.cancelsession', app()->getLocale()) }}" method="POST">
+                          @csrf
+                          <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
+                          <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
+                        </form>
+
+                      @else
+
+                        @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == true && $training['completed'] == false)
+
+                          {{-- Training accepted by both --}}
+                          <form action="{{ route('app.atc.training.cancelsession', app()->getLocale()) }}" method="POST">
+                            @csrf
+                          <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
+                          <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
+                          </form>
+
+                        @else
+
+                          @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == true && $training['completed'] == true)
+
+                          @if (!is_null($training['mentor_report']))
+
+                            (No report)
+
+                          @else
+
+                            {{-- Training completed, has report --}}
+                            <form action="" method="GET">
+                              @csrf
+                              <button type="submit" class="btn btn-block btn-info btn-flat">See Report</button>
+                            </form>
+
+                          @endif
+                          @endif
+                        @endif
+                      @endif
+                    @endif
+                  </td>
+                </tr>
+                @if (!is_null($training['mentor_comment']))
+                <div class="modal fade" id="mentor_comment">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Mentor's comment</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>{{ $training['mentor_comment'] }}</p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                @endif
+                @if (!is_null($training['student_comment']))
+                <div class="modal fade" id="student_comment">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Student's comment</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>{{ $training['student_comment'] }}</p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                @endif
+              @endforeach
             </tbody>
           </table>
         </div>
         <!-- /.card-body -->
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="small-box bg-success">
-            <div class="inner">
-              <h3>23</h3>
-
-              <p>{{__('app/atc/atc_training_center.ment_sessions')}}</p>
-            </div>
-            <div class="icon">
-              <i class="fas fa-headphones"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>25:34</h3>
-
-              <p>{{__('app/atc/atc_training_center.class_h')}}</p>
-            </div>
-            <div class="icon">
-              <i class="fas fa-clock"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h3>LFMN</h3>
-
-              <p>{{__('app/atc/atc_training_center.teaching_p')}}</p>
-            </div>
-            <div class="icon">
-              <i class="fas fa-plane-departure"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h3>Peter Paré</h3>
-
-              <p>{{__('app/atc/atc_training_center.curr_ment')}}</p>
-            </div>
-            <div class="icon">
-              <i class="fas fa-chalkboard-teacher"></i>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

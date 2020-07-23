@@ -24,7 +24,12 @@ class TrainingSession extends Model
     
     public function mentor()
     {
-        return $this->hasOne(Mentor::class, 'mentor_id', 'id');
+        return $this->hasOne(Mentor::class, 'id', 'mentor_id');
+    }
+
+    public function mentorUser()
+    {
+        return $this->hasOne(User::class, 'id', 'mentor_id');
     }
 
     public function booking()

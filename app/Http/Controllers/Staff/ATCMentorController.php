@@ -130,7 +130,7 @@ class ATCMentorController extends Controller
             'mentor_comment' => htmlspecialchars($request->get('reqcomment')),
         ]);
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Mentoring session booked!');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Mentoring session requested!');
     }
 
     public function acceptSession(Request $request)

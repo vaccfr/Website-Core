@@ -118,7 +118,7 @@
                       <th>When</th>
                       <th>Scheduled by</th>
                       <th>Mentor Comment</th>
-                      <th>Mentor Comment</th>
+                      <th>Student Comment</th>
                       <th>Status</th>
                       <th>Options</th>
                     </tr>
