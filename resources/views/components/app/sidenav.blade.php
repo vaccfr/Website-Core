@@ -86,28 +86,39 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-users"></i>
+            <p>Rosters</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('app.atc.training', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.training')) active @endif">
             <i class="nav-icon fa fa-graduation-cap"></i>
             <p>Training Center</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="{{ route('app.atc.loas', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.loas')) active @endif">
-            <i class="nav-icon fas fa-sticky-note"></i>
-            <p>{{__('app/app_menus.loas')}}</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-question-circle"></i>
-            <p>{{__('app/app_menus.atc_ressources')}}</p>
+            <p>
+              {{__('app/app_menus.atc_ressources')}}
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
-            <i class="nav-icon fas fa-download"></i>
-            <p>{{__('app/app_menus.atc_dl')}}</p>
-          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('app.atc.loas', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.loas')) active @endif">
+                <i class="nav-icon fas fa-sticky-note"></i>
+                <p>{{__('app/app_menus.loas')}}</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+                <i class="nav-icon fas fa-download"></i>
+                <p>{{__('app/app_menus.atc_dl')}}</p>
+              </a>
+            </li>
+          </ul>
         </li>
         @endif
 
@@ -143,11 +154,28 @@
         @if (Auth::user()->is_staff == true)
           <li class="nav-header">{{__('app/app_menus.staff_header')}}</li>
           @if (Auth::user()->isExecStaff() == true || Auth::user()->isAdmin() == true)
-            <li class="nav-item">
-              <a href="{{ route('app.staff.admin', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.admin')) active @endif">
+            <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/staff/admin')) menu-open @endif">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-home"></i>
-                <p>Admin</p>
+                <p>
+                  Admin
+                  <i class="right fas fa-angle-left"></i>
+                </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('app.staff.admin', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.admin')) active @endif">
+                    <i class="nav-icon far fa-circle"></i>
+                    <p>Dashboard</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>ATC Admin</p>
+                  </a>
+                </li>
+              </ul>
             </li>
           @endif
           @if (Auth::user()->isAtcMentor() == true  || Auth::user()->isAdmin() == true)
