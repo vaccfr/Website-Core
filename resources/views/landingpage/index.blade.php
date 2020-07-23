@@ -51,7 +51,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm">
-        <h2 class="font-weight-medium">{{__('lp/lp_titles.atc_bookings')}}</h2>
+        <h3 class="font-weight-medium">{{__('lp/lp_titles.atc_bookings')}}</h3>
         <div class="card text-center mt-4">
           <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">

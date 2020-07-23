@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\Utilities;
+use App\Models\ATC\Airport;
 use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Mentor;
 use App\Models\ATC\MentoringRequest;
+use App\Models\ATC\TrainingSession;
+use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -74,23 +78,92 @@ class ATCMentorController extends Controller
 
         $students = ATCStudent::where('mentor_id', auth()->user()->id)
         ->with('user')
-        ->with(['sessions' => function($q) {
-            return $q->where('date', Carbon::now()->addMonth());
-        }])
+        ->with('sessions')
         ->with('mentoringRequest')
         ->get();
 
-        // dd($students[0]['sessions']);
+        $positions = Airport::orderBy('icao', 'ASC')
+        ->with(['positions' => function($q) {
+            $q->whereIn('solo_rank', app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short));
+        }])
+        ->get();
+
+        // dd($students[0]['user']);
         
         return view('app.staff.atc_mentor_mine', [
             'steps' => $studySessions,
             'progSteps' => $progSteps,
             'students' => $students,
+            'positions' => $positions,
         ]);
     }
 
     public function bookSession(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'userid' => ['required'],
+            'reqposition' => ['required'],
+            'sessiondate' => ['required', 'date_format:d.m.Y'],
+            'starttime' => ['required', 'before:endtime', 'date_format:H:i'],
+            'endtime' => ['required', 'after:starttime', 'date_format:H:i'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Session could not be requested. Please fill all required fields');
+        }
+
+        // dd(htmlspecialchars($request->get('sessiondate')));
+
+        TrainingSession::create([
+            'id' => (new Snowflake)->id(),
+            'student_id' => $request->get('userid'),
+            'mentor_id' => auth()->user()->id,
+            'position' => htmlspecialchars($request->get('reqposition')),
+            'date' => htmlspecialchars($request->get('sessiondate')),
+            'time' => htmlspecialchars($request->get('starttime')) . ' - ' . htmlspecialchars($request->get('endtime')),
+            'start_time' => htmlspecialchars($request->get('starttime')),
+            'end_time' => htmlspecialchars($request->get('endtime')),
+            'requested_by' => 'Mentor ('.auth()->user()->fname.' '.auth()->user()->lname.')',
+            'accepted_by_student' => false,
+            'accepted_by_mentor' => true,
+            'status' => 'Awaiting student approval',
+            'mentor_comment' => htmlspecialchars($request->get('reqcomment')),
+        ]);
+
         return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Mentoring session booked!');
+    }
+
+    public function acceptSession(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'sessionid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
+        $session->status = "Confirmed";
+        $session->accepted_by_mentor = true;
+        $session->save();
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Session accepted');
+    }
+
+    public function cancelSession(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'sessionid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
+        $session->delete();
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Session cancelled');
     }
 }

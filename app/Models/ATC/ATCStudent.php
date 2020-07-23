@@ -27,7 +27,7 @@ class ATCStudent extends Model
 
     public function sessions()
     {
-        return $this->hasMany(TrainingSession::class, 'id', 'student_id');
+        return $this->hasMany(TrainingSession::class, 'student_id', 'id');
     }
 
     public function mentoringRequest()

@@ -10,8 +10,8 @@ class TrainingSession extends Model
     protected $table = "training_sessions";
 
     protected $fillable = [
-        'id', 'student_id', 'mentor_id', 'position', 'time', 'start_time', 'end_time',
-        'accepted_by_student', 'accepted_by_mentor', 'completed', 'status',
+        'id', 'student_id', 'mentor_id', 'position', 'date', 'time', 'start_time', 'end_time',
+        'requested_by', 'accepted_by_student', 'accepted_by_mentor', 'completed', 'status',
         'booking_id', 'student_comment', 'mentor_comment', 'mentor_report',
     ];
 

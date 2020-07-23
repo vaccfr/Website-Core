@@ -22,6 +22,7 @@ class CreateTrainingSessionsTable extends Migration
             $table->string('time');
             $table->string('start_time');
             $table->string('end_time');
+            $table->string('requested_by');
             $table->boolean('accepted_by_student');
             $table->boolean('accepted_by_mentor');
             $table->boolean('completed')->default(false);
