@@ -10,8 +10,8 @@ return [
   'atc_rank' => 'ATC Rank',
   'pilot_rank' => 'Pilot Rank',
   'approved_atc' => 'ATC Status',
-  'approved_staff' => 'Staff Status',
-  'approved_mentor' => 'ATC Mentor Status',
+  'staff_status' => 'Staff Status',
+  'mentor_status' => 'ATC Mentor Status',
   'approved' => 'Approved',
   'not_approved' => 'Not approved',
 
