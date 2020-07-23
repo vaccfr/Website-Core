@@ -46,6 +46,7 @@
   </head>
 
   <body>
+    @include('cookieConsent::index')
     @include('components.landingpage.header')
 
     @yield('page-masthead')
