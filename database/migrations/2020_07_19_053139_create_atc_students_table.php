@@ -18,7 +18,7 @@ class CreateATCStudentsTable extends Migration
             $table->integer('vatsim_id');
             $table->bigInteger('mentor_id')->nullable();
             $table->boolean('active')->default(false);
-            $table->string('status')->default('waiting');
+            $table->string('status')->default('Waiting for Mentor');
             $table->integer('progress')->default(0);
             $table->timestamps();
         });

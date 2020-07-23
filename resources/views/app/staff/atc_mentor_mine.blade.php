@@ -256,10 +256,74 @@
             </div>
             <div class="card-footer">
               <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#book-session-{{ $s['user']['vatsim_id'] }}">Book Session</button>
-              <button type="button" class="btn btn-warning btn-flat">Edit Progress</button>
+              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-progress-{{ $s['user']['vatsim_id']}}">Edit Progress</button>
               <button type="button" class="btn btn-warning btn-flat">Approve Solo</button>
               <button type="button" class="btn btn-danger btn-flat">Release Student</button>
-              <button type="button" class="btn btn-danger btn-flat">Terminate Mentoring</button>
+              <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#terminate-{{ $s['user']['vatsim_id']}}">Terminate Mentoring</button>
+              {{-- Edit progress modal  --}}
+              <div class="modal fade" id="edit-progress-{{ $s['user']['vatsim_id']}}">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Edit {{ $s['user']['fname'] }}'s progress</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="{{ route('app.staff.atc.mine.progress', app()->getLocale()) }}" method="post">
+                      @csrf
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="reqposition">Select {{ $s['user']['fname'] }}'s latest achievement</label>
+                          <select class="form-control" name="stuprogress" id="stuprogress">
+                            @if ($s['progress'] == 0)
+                              <option value="0" disabled selected>Choose...</option>
+                            @else
+                              <option value="{{ $s['progress'] }}">{{ $steps[$s['progress']]['title'] }}</option>
+                            @endif
+                            @foreach ($steps as $step)
+                              <option value="{{ $loop->index + 1 }}">{{ $step['title'] }}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+              {{-- Termination modal  --}}
+              <div class="modal fade" id="terminate-{{ $s['user']['vatsim_id']}}">
+                <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Are you sure?</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="{{ route('app.staff.atc.mine.terminate', app()->getLocale()) }}" method="post">
+                      @csrf
+                      <div class="modal-body">
+                        <p>You are about to terminate your mentoring with {{ $s['user']['fname'] }}. This cannot be undone.</p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
             </div>
           </div>
           <div class="modal fade" id="book-session-{{ $s['user']['vatsim_id'] }}">

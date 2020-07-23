@@ -65,7 +65,7 @@ class ATCMentorController extends Controller
         $student = ATCStudent::where('id', $request->student_id)->firstOrFail();
         $student->mentor_id = auth()->user()->id;
         $student->active = true;
-        $student->status = "taken";
+        $student->status = "In Training";
         $student->save();
 
         return redirect()->route('app.staff.atc.all', app()->getLocale())->with('toast-info', trans('app/alerts.training_accepted'));
@@ -165,5 +165,48 @@ class ATCMentorController extends Controller
         $session->delete();
 
         return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Session cancelled');
+    }
+
+    public function editProgress(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'userid' => ['required'],
+            'stuprogress' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $atcstudent = ATCStudent::where('id', $request->get('userid'))->firstOrFail();
+        $atcstudent->progress = (int)$request->get('stuprogress');
+        $atcstudent->save();
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Progress edited');
+    }
+
+    public function terminate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'userid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $mentoring = MentoringRequest::where('student_id', $request->get('userid'))->firstOrFail();
+        $atcstudent = ATCStudent::where('id', $request->get('userid'))->firstOrFail();
+
+        $atcstudent->mentor_id = null;
+        $atcstudent->active = false;
+        $atcstudent->status = "Waiting for Mentor";
+        $atcstudent->save();
+
+        $mentoring->taken = false;
+        $mentoring->mentor_id = null;
+        $mentoring->save();
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', 'Mentoring terminated');
     }
 }
