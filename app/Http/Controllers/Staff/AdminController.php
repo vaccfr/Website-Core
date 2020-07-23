@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Staff;
-use App\Models\ATC\AtcRosterMember;
+use App\Models\ATC\ATCRosterMember;
 use App\Models\ATC\Booking;
 use App\Models\ATC\Mentor;
 use App\Models\Users\User;
@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         $members = User::get();
         $memberCount = count($members);
-        $atcCount = count(AtcRosterMember::get());
+        $atcCount = count(ATCRosterMember::get());
         $bookingCount = count(Booking::where('date', Carbon::now()->format('d.m.Y'))->with('user')->get());
         return view('app.staff.admin', [
             'members' => $members,
@@ -68,6 +68,11 @@ class AdminController extends Controller
                 if (is_null($request->get('approveatc'))) {
                     $currentUser->is_approved_atc = false;
                     $currentUser->save();
+                    $userATCRoster = ATCRosterMember::where('id', $request->get('userid'))->first();
+                    if (!is_null($userATCRoster)) {
+                        $userATCRoster->approved_flag = false;
+                        $userATCRoster->save();
+                    }
                 }
                 break;
             
@@ -75,6 +80,11 @@ class AdminController extends Controller
                 if (!is_null($request->get('approveatc'))) {
                     $currentUser->is_approved_atc = true;
                     $currentUser->save();
+                    $userATCRoster = ATCRosterMember::where('id', $request->get('userid'))->first();
+                    if (!is_null($userATCRoster)) {
+                        $userATCRoster->approved_flag = true;
+                        $userATCRoster->save();
+                    }
                 }
                 break;
             

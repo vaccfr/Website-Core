@@ -3,7 +3,7 @@
 namespace App\Models\Users;
 
 use App\Models\Admin\Staff;
-use App\Models\ATC\AtcRosterMember;
+use App\Models\ATC\ATCRosterMember;
 use App\Models\ATC\Booking;
 use App\Models\ATC\Mentor;
 use GuzzleHttp\Client;
@@ -29,7 +29,7 @@ class User extends Authenticatable
         'id', 'vatsim_id', 'fname', 'lname', 'email', 'custom_email', 'account_type', 'is_approved_atc',
         'atc_rating', 'atc_rating_short', 'atc_rating_long', 'pilot_rating', 
         'division_id', 'division_name', 'region_id', 'region_name', 'subdiv_id', 'subdiv_name',
-        'is_staff',
+        'is_staff', 'hide_details',
     ];
 
     /**
@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function atcroster()
     {
-        return $this->hasOne(AtcRosterMember::class, 'vatsim_id', 'vatsim_id');
+        return $this->hasOne(ATCRosterMember::class, 'vatsim_id', 'vatsim_id');
     }
 
     public function bookings()
@@ -147,6 +147,14 @@ class User extends Authenticatable
         if (is_null($user)) {
             return false;
         } elseif ($user->pilot_dpt == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public function hiddenDetails()
+    {
+        if ($this->hide_details == true) {
             return true;
         }
         return false;

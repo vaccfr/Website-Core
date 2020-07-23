@@ -47,6 +47,7 @@ Route::group([
         Route::group([
             'prefix' => '/atc',
         ], function() {
+            Route::get('/roster', 'ATC\ATCPagesController@atcRoster')->name('app.atc.roster');
             Route::get('/loas', 'ATC\ATCPagesController@loas')->name('app.atc.loas');
 
             Route::group(['prefix' => '/trainingcenter'], function() {

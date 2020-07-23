@@ -86,7 +86,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{ route('app.atc.roster', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.roster')) active @endif">
             <i class="nav-icon fa fa-users"></i>
             <p>Rosters</p>
           </a>

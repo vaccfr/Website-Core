@@ -5,12 +5,13 @@ namespace App\Models\ATC;
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Model;
 
-class AtcRosterMember extends Model
+class ATCRosterMember extends Model
 {
     protected $table = "atc_roster_members";
 
     protected $fillable = [
-        'id', 'vatsim_id', 'fname', 'lname', 'rating', 'rating_short', 'rating_long', 'approved_flag',
+        'id', 'vatsim_id', 'fname', 'lname', 'rating', 'rating_short', 'approved_flag',
+        'appr_lfpg_twr', 'appr_lfpg_app', 'appr_lfmn_twr', 'appr_lfmn_app', 
     ];
 
     // Relationships

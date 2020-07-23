@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAtcRosterMembersTable extends Migration
+class CreateATCRosterMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,8 +20,11 @@ class CreateAtcRosterMembersTable extends Migration
             $table->string('lname');
             $table->string('rating');
             $table->string('rating_short');
-            $table->string('rating_long');
             $table->boolean('approved_flag');
+            $table->boolean('appr_lfpg_twr')->default(false);
+            $table->boolean('appr_lfpg_app')->default(false);
+            $table->boolean('appr_lfmn_twr')->default(false);
+            $table->boolean('appr_lfmn_app')->default(false);
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\CacheController;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\Admin\Staff;
-use App\Models\ATC\AtcRosterMember;
+use App\Models\ATC\ATCRosterMember;
 use App\Models\SSO\SSOToken;
 use App\Models\Users\User;
 use App\Models\Users\UserSetting;
@@ -138,16 +138,15 @@ class AuthController extends Controller
             'refresh_token' => $tokens['refresh_token'],
         ]);
         
-        $rosterMember = AtcRosterMember::where('vatsim_id', $response->data->cid)->first();
+        $rosterMember = ATCRosterMember::where('vatsim_id', $response->data->cid)->first();
 
         if ($user->subdiv_id == "FRA" && $user->atc_rating > 1) {
-            AtcRosterMember::updateOrCreate(['vatsim_id' => $response->data->cid], [
+            ATCRosterMember::updateOrCreate(['vatsim_id' => $response->data->cid], [
                 'id' => $userid,
                 'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
                 'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
                 'rating' => $response->data->vatsim->rating->id,
                 'rating_short' => $response->data->vatsim->rating->short,
-                'rating_long' => $response->data->vatsim->rating->long,
                 'approved_flag' => false,
             ]);
         } elseif (!is_null($rosterMember)) {
