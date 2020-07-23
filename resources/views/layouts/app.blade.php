@@ -18,8 +18,27 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- flag-icon-css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
+  <style>
+    .js-cookie-consent {
+      position: absolute;
+      top: 0px;
+      padding: 10px;
+      text-align: center;
+      width: 100%;
+      z-index: 9999;
+      background-color: #1a1a1a;
+      border-color: #fffacc;
+      opacity: 0.8;
+      border: solid 1px;
+    }
+
+    .cookie-consent__message {
+      color: white;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini" onload="startTime()">
+  @include('cookieConsent::index')
 <!-- Site wrapper -->
 <div class="wrapper">
   
