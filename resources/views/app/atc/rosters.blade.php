@@ -136,10 +136,72 @@
               </table>
             </div>
             <div class="tab-pane fade" id="atc-mentors" role="tabpanel" aria-labelledby="atc-mentors-tab">
-               Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam. 
+              <table
+                id="atc_roster"
+                class="table table-bordered table-hover"
+                data-order='[[ 1, "desc" ]]'>
+                <thead>
+                <tr>
+                  <th>CID</th>
+                  <th>Name</th>
+                  <th>Rating</th>
+                  <th>Approved Rating</th>
+                  <th>Active</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    @foreach ($mentors as $m)
+                    <td>{{ $m['user']['vatsim_id'] }}</td>
+                    <td>{{ $m['user']['fname'] }} {{ $m['user']['lname'] }}</td>
+                    <td>{{ $m['user']['atc_rating_short'] }}</td>
+                    <td>{{ $m['allowed_rank'] }}</td>
+                    <td>
+                      @if ($m['active'])
+                        Yes
+                      @else
+                        No
+                      @endif
+                    </td>
+                    @endforeach
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="tab-pane fade" id="solo-approval" role="tabpanel" aria-labelledby="solo-approval-tab">
-               Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna. 
+              <table
+                id="atc_roster"
+                class="table table-bordered table-hover"
+                data-order='[[ 1, "desc" ]]'>
+                <thead>
+                <tr>
+                  <th>CID</th>
+                  <th>Name</th>
+                  <th>Rating</th>
+                  <th>Position</th>
+                  <th>Mentor</th>
+                  <th>Valid</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach ($soloApproved as $solo)
+                  <tr>
+                    <td>{{ $solo['user']['vatsim_id'] }}</td>
+                    <td>{{ $solo['user']['fname'] }} {{ $solo['user']['lname'] }}</td>
+                    <td>{{ $solo['user']['atc_rating_short'] }}</td>
+                    <td>{{ $solo['position'] }}</td>
+                    <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
+                    <td>
+                      @if ($solo['valid'])
+                        Yes
+                      @else
+                        No
+                      @endif
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
             <div class="tab-pane fade" id="domtom-approval" role="tabpanel" aria-labelledby="domtom-approval-tab">
                Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis. 

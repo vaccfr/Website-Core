@@ -8,6 +8,7 @@ use App\Models\ATC\Airport;
 use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Mentor;
 use App\Models\ATC\MentoringRequest;
+use App\Models\ATC\SoloApproval;
 use App\Models\ATC\TrainingSession;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ATCMentorController extends Controller
 {
+    public $soloLengths = [15, 30, 45, 60];
     public function allview()
     {
         $applications = MentoringRequest::orderBy('created_at', 'DESC')
@@ -80,9 +82,10 @@ class ATCMentorController extends Controller
         ->with('user')
         ->with('sessions')
         ->with('mentoringRequest')
+        ->with('soloApprovals')
         ->get();
 
-        $positions = Airport::orderBy('icao', 'ASC')
+        $positions = Airport::orderBy('city', 'ASC')
         ->with(['positions' => function($q) {
             $q->whereIn('solo_rank', app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short));
         }])
@@ -95,6 +98,8 @@ class ATCMentorController extends Controller
             'progSteps' => $progSteps,
             'students' => $students,
             'positions' => $positions,
+            'soloLengths' => $this->soloLengths,
+            'studentCount' => count($students),
         ]);
     }
 
@@ -183,6 +188,53 @@ class ATCMentorController extends Controller
         $atcstudent->save();
 
         return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Progress edited');
+    }
+
+    public function makeSolo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'userid' => ['required'],
+            'selectpos' => ['required'],
+            'startdate' => ['required'],
+            'length' => ['required'],
+        ]);
+
+        if ($validator->fails() or !in_array($request->get('length'), $this->soloLengths)) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $soloSession = SoloApproval::where('student_id', $request->get('userid'))
+                        ->where('position', $request->get('selectpos'))
+                        ->get();
+        // dd(count($soloSession));
+        if (!count($soloSession) == 0) {
+            return redirect()->back()->with('pop-error', 'There is already a mentoring session similar to this one. Cancel it before proceeding.');
+        }
+        SoloApproval::create([
+            'id' => (new Snowflake)->id(),
+            'student_id' => $request->get('userid'),
+            'mentor_id' => auth()->user()->id,
+            'position' => $request->get('selectpos'),
+            'start_date' => $request->get('startdate'),
+            'end_date' => Carbon::parse($request->get('startdate'))->addDays($request->get('length'))->format('d.m.Y'),
+        ]);
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', 'Solo validation added on '.$request->get('selectpos'));
+    }
+
+    public function delSolo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'soloid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $soloSession = SoloApproval::where('id', $request->get('soloid'))->delete();
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', 'Solo validation deleted');
     }
 
     public function terminate(Request $request)

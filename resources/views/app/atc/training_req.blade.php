@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>{{__('app/atc/atc_training_center.header_title', ['FNAME' => Auth::user()->fname])}}</h1>
+          <h1>{{__('app/atc/atc_training_center_req.header_title', ['FNAME' => Auth::user()->fname])}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -23,28 +23,20 @@
     <div class="col-md-6">
       <div class="card card-secondary">
         <div class="card-header">
-          <h3 class="card-title">Welcome!</h3>
+          <h3 class="card-title">{{__('app/atc/atc_training_center_req.welcome_title') }}</h3>
         </div>
         <div class="card-body">
-          Welcome to the new ATC Training Center of Vatfrance!<br>
-          This area of the site has been specially tailored by ATC mentors
-          to make your journey through learning how to become a virtual ATC
-          more pleasant and efficient.<br><br>
-
-          With a custom tailored interface and a simple yet inviting design,
-          the new Training Center will guide you through your progress.<br><br>
-          
-          To begin your mentoring, please submit your application on the right.
+          {!! __('app/atc/atc_training_center_req.welcome_msg') !!}
         </div>
         <div class="card-footer">
-          <i style="font-size: 14px">Response times may vary based on mentor availabilities. Please be patient.</i>
+          <i style="font-size: 14px">{{__('app/atc/atc_training_center_req.welcome_submsg') }}</i>
         </div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Request ATC Mentoring</h3>
+          <h3 class="card-title">{{__('app/atc/atc_training_center_req.form_title') }}</h3>
         </div>
         @switch($show)
             @case("NORMAL")
@@ -52,9 +44,9 @@
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="reqposition">Choose your position</label>
+                    <label for="reqposition">{{__('app/atc/atc_training_center_req.choose_pos') }}</label>
                     <select class="form-control" name="reqposition" id="reqposition">
-                      <option value="" disabled selected>Select...</option>
+                      <option value="" disabled selected>{{__('app/atc/atc_training_center_req.select') }}...</option>
                       @foreach ($platforms as $p)
                         @if (!in_array($p['icao'], $excl) && $p['airport'] != "CENTRE"))
                           <option value="{{ $p['icao'] }}">{{ $p['icao'] }} ({{ $p['city'] }} {{ $p['airport'] }})</option>
@@ -63,24 +55,34 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="reqmotivation">Your motivation</label>
-                    <textarea class="form-control" rows="5" name="reqmotivation" id="reqmotivation" style="resize: none;" placeholder="Start typing..."></textarea>
+                    <label for="reqmotivation">{{__('app/atc/atc_training_center_req.your_motiv') }}</label>
+                    <textarea class="form-control" rows="5" name="reqmotivation" id="reqmotivation" style="resize: none;" placeholder="{{__('app/atc/atc_training_center_req.strt_typ') }}..."></textarea>
                   </div>
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-success">Submit</button>
+                  <button type="submit" class="btn btn-success">{{__('app/atc/atc_training_center_req.submit') }}</button>
                 </div>
               </form>
               @break
             
             @case("NOREGION")
               <div class="card-body">
-                <p class="text-danger" style="font-weight: bolder;">You must be affiliated to the French Region with your Vatsim Account before you can request mentoring.</p>
+                <p class="text-danger" style="font-weight: bolder;">{{__('app/atc/atc_training_center_req.err_noregion') }}</p>
               </div>
               @break
             @case("APPLIED")
               <div class="card-body">
-                <p class="text-danger" style="font-weight: bolder;">You have already requested training. Please wait for a response</p>
+                <p class="text-danger" style="font-weight: bolder;">{{__('app/atc/atc_training_center_req.err_applied') }}</p>
+                <div class="form-group">
+                  <label for="reqposition">{{__('app/atc/atc_training_center_req.choose_pos') }}</label>
+                  <select class="form-control" name="reqposition" id="reqposition" disabled>
+                    <option value="" disabled selected>{{ $mRequest->icao }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="reqmotivation">{{__('app/atc/atc_training_center_req.your_motiv') }}</label>
+                  <textarea class="form-control" rows="5" name="reqmotivation" id="reqmotivation" style="resize: none;" placeholder="{{ $mRequest->motivation }}" disabled></textarea>
+                </div>
               </div>
               @break
             

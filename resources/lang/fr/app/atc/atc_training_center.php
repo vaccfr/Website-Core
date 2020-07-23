@@ -3,7 +3,7 @@
 return [
   // Titles
   'header_title' => 'Training Center de :FNAME',
-  'upcoming_sess' => 'Sessions à venir',
+  'upcoming_sess' => 'Sessions',
   'past_sess' => 'Sessions passées',
   'sess_req' => 'Demande de Session avec :MENTOR',
 
@@ -12,6 +12,7 @@ return [
   'class_h' => 'Heures d\'apprentissage',
   'teaching_p' => 'Plateforme d\'entraînement',
   'curr_ment' => 'Mentor actuel',
+  'req_session' => 'Demande de session',
 
   // Content
   'callsign' => 'Indicatif',

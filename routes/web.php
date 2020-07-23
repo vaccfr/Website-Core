@@ -86,6 +86,8 @@ Route::group([
                 Route::post('/mystudents/acceptsession', 'Staff\ATCMentorController@acceptSession')->name('app.staff.atc.mine.acceptsession');
                 Route::post('/mystudents/cancelsession', 'Staff\ATCMentorController@cancelSession')->name('app.staff.atc.mine.cancelsession');
                 Route::post('/mystudents/progress', 'Staff\ATCMentorController@editProgress')->name('app.staff.atc.mine.progress');
+                Route::post('/mystudents/soloAdd', 'Staff\ATCMentorController@makeSolo')->name('app.staff.atc.mine.soloadd');
+                Route::post('/mystudents/soloDel', 'Staff\ATCMentorController@delSolo')->name('app.staff.atc.mine.solodel');
                 Route::post('/mystudents/terminate', 'Staff\ATCMentorController@terminate')->name('app.staff.atc.mine.terminate');
             });
             Route::group(['prefix' => '/pilot'], function() {
@@ -112,7 +114,9 @@ Route::group([
     });
 
     // DEV ROUTES
-    Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
+    Route::group(['prefix' => '/devactions', 'middleware' => 'ADMIN'], function() {
+        Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
+    });
 });
 
 // Auth::routes();

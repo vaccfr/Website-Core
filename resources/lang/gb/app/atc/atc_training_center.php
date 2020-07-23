@@ -3,7 +3,7 @@
 return [
   // Titles
   'header_title' => ':FNAME\'s ATC Training Center',
-  'upcoming_sess' => 'Upcoming sessions',
+  'upcoming_sess' => 'Sessions',
   'past_sess' => 'Past sessions',
   'sess_req' => 'Request Training Session with :MENTOR',
 
@@ -12,6 +12,7 @@ return [
   'class_h' => 'Class Hours',
   'teaching_p' => 'Teaching Platform',
   'curr_ment' => 'Current Mentor',
+  'req_session' => 'Request Session',
 
   // Content
   'callsign' => 'Callsign',

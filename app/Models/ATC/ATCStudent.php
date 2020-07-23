@@ -34,4 +34,9 @@ class ATCStudent extends Model
     {
         return $this->hasOne(MentoringRequest::class, 'student_id', 'id');
     }
+
+    public function soloApprovals()
+    {
+        return $this->hasMany(SoloApproval::class, 'student_id', 'id');
+    }
 }

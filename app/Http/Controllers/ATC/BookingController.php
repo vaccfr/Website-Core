@@ -24,7 +24,7 @@ class BookingController extends Controller
         // ->with('parent')
         // ->get();
 
-        $positions = Airport::orderBy('icao', 'ASC')
+        $positions = Airport::orderBy('city', 'ASC')
         ->with(['positions' => function($q) {
             $q->whereIn('rank', app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short));
         }])

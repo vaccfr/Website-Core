@@ -8,6 +8,10 @@ return [
   '404_goto_app' => 'Tableau de bord',
   '404_report' => 'Signaler un problème',
 
+  '419_title' => 'Requête non-authentifiée',
+  '419_content' => 'Veuillez s\'il-vous-plait signaler ce problème',
+  '419_report' => 'Signaler un problème',
+
   '500_title' => 'Une erreur du serveur est survenue.',
   '500_content' => 'Vous pouvez retourner vers la page précedente, ou signaler ce problème',
   '500_report' => 'Signaler un problème',

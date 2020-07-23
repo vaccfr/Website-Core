@@ -76,7 +76,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#request_session">Request Session</button>
+              <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#request_session">{{__('app/atc/atc_training_center.req_session')}}</button>
             </div>
           </div>
         </div>

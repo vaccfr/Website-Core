@@ -28,7 +28,7 @@ class ATCTrainingController extends Controller
                 ->with('mentorUser')
                 ->get();
 
-                $positions = Airport::orderBy('icao', 'ASC')
+                $positions = Airport::orderBy('city', 'ASC')
                 ->with(['positions' => function($q) {
                     $q->whereIn('solo_rank', app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short));
                 }])
@@ -45,12 +45,14 @@ class ATCTrainingController extends Controller
                     'mentorObj' => $mentorObj,
                 ]);
             } else {
+                $mRequest = MentoringRequest::where('student_id', auth()->user()->id)->first();
                 return view('app.atc.training_req', [
                     'show' => "APPLIED",
+                    'mRequest' => $mRequest,
                 ]);
             }
         } else {
-            $platforms = Airport::orderBy('icao', 'ASC')->get();
+            $platforms = Airport::orderBy('city', 'ASC')->get();
             return view('app.atc.training_req', [
                 'platforms' => $platforms,
                 'excl' => config('vatfrance.excluded_mentoring_airports'),

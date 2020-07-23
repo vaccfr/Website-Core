@@ -27,14 +27,7 @@
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Students</span>
-            <span class="info-box-number">1</span>
-          </div>
-        </div>
-        <div class="info-box">
-          <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Sessions</span>
-            <span class="info-box-number">7</span>
+            <span class="info-box-number">{{ $studentCount }}</span>
           </div>
         </div>
         <div class="card card-outline card-info">
@@ -257,8 +250,7 @@
             <div class="card-footer">
               <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#book-session-{{ $s['user']['vatsim_id'] }}">Book Session</button>
               <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-progress-{{ $s['user']['vatsim_id']}}">Edit Progress</button>
-              <button type="button" class="btn btn-warning btn-flat">Approve Solo</button>
-              <button type="button" class="btn btn-danger btn-flat">Release Student</button>
+              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-solo{{ $s['user']['vatsim_id']}}">Solo Validation</button>
               <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#terminate-{{ $s['user']['vatsim_id']}}">Terminate Mentoring</button>
               {{-- Edit progress modal  --}}
               <div class="modal fade" id="edit-progress-{{ $s['user']['vatsim_id']}}">
@@ -293,6 +285,108 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                       </div>
                     </form>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+              {{-- Approve Solo  --}}
+              <div class="modal fade" id="edit-solo{{ $s['user']['vatsim_id']}}">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Manage {{ $s['user']['fname'] }}'s solo approvals</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="{{ route('app.staff.atc.mine.soloadd', app()->getLocale()) }}" method="post">
+                        @csrf
+                        <div class="row border-bottom">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="selectpos">Select position to approve</label>
+                              <select class="form-control" name="selectpos" id="selectpos">
+                                @foreach ($positions as $pos)
+                                  @if (count($pos['positions']) > 0)
+                                    <optgroup label="{{ $pos['city'] }} {{ $pos['airport'] }}"></optgroup>
+                                    @foreach ($pos['positions'] as $solopos)
+                                      <option value="{{ $solopos['code'] }}">{{ $solopos['code'] }}</option>
+                                    @endforeach
+                                    <optgroup></optgroup>
+                                  @endif
+                                @endforeach
+                              </select>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="start-date-solo-{{ $s['user']['vatsim_id'] }}">Start date</label>
+                                  <input type="text" class="form-control" id="start-date-solo-{{ $s['user']['vatsim_id'] }}" name="startdate" placeholder="Start date">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="length">Duration</label>
+                                  <select class="form-control" name="length" id="length">
+                                    @foreach ($soloLengths as $sl)
+                                      <option value="{{ $sl }}">{{ $sl }} days</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12 mb-3">
+                            <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
+                            <button type="submit" class="btn btn-success btn-flat mr-0">Submit</button>
+                          </div>
+                        </div>
+                      </form>
+                        <div class="row">
+                          <div class="col-md-12 mt-3">
+                            <h4>Current solo approvals</h4>
+                            <table
+                              id="solo_sessions_{{ $s['user']['vatsim_id'] }}"
+                              class="table table-bordered table-hover"
+                              data-order='[[ 1, "desc" ]]'>
+                              <thead>
+                                <tr>
+                                  <th>Position</th>
+                                  <th>Start date</th>
+                                  <th>End date</th>
+                                  <th>Valid</th>
+                                  <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach ($s['soloApprovals'] as $slapp)
+                                    <tr>
+                                      <td>{{ $slapp['position'] }}</td>
+                                      <td>{{ $slapp['start_date'] }}</td>
+                                      <td>{{ $slapp['end_date'] }}</td>
+                                      <td>
+                                        @if (\Illuminate\Support\Carbon::now()->format('d.m.Y') > \Illuminate\Support\Carbon::parse($slapp['end_date'])->format('d.m.Y'))
+                                          No
+                                        @else
+                                          Yes 
+                                        @endif
+                                      </td>
+                                      <td>
+                                        <form action="{{ route('app.staff.atc.mine.solodel', app()->getLocale()) }}" method="post">
+                                          @csrf
+                                          <input type="hidden" name="soloid" value="{{ $slapp['id'] }}">
+                                          <button type="submit" class="btn btn-flat btn-danger">Cancel</button>
+                                        </form>
+                                      </td>
+                                    </tr>
+                                  @endforeach
+                                </tbody>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
                   </div>
                   <!-- /.modal-content -->
                 </div>
@@ -399,7 +493,24 @@
                 "emptyTable": "No training sessions found."
               }
             });
+            $("#solo_sessions_{{ $s['user']['vatsim_id'] }}").DataTable({
+              "paging": false,
+              "lengthChange": false,
+              "searching": false,
+              "ordering": false,
+              "autoWidth": false,
+              "info": false,
+              "language": {
+                "emptyTable": "No training sessions found."
+              }
+            });
             flatpickr("#session-date-{{ $s['user']['vatsim_id'] }}", {
+                enableTime: false,
+                dateFormat: "d.m.Y",
+                minDate: "today",
+                allowInput: true,
+            });
+            flatpickr("#start-date-solo-{{ $s['user']['vatsim_id'] }}", {
                 enableTime: false,
                 dateFormat: "d.m.Y",
                 minDate: "today",

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMentorsTable extends Migration
+class CreateSoloApprovalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateMentorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mentors', function (Blueprint $table) {
+        Schema::create('solo_approvals', function (Blueprint $table) {
             $table->bigInteger('id')->unique();
-            $table->integer('vatsim_id');
-            $table->string('allowed_rank');
-            $table->integer('student_count')->default(0);
-            $table->boolean('active')->default(true);
+            $table->bigInteger('student_id');
+            $table->bigInteger('mentor_id');
+            $table->string('position');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateMentorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mentors');
+        Schema::dropIfExists('solo_approvals');
     }
 }
