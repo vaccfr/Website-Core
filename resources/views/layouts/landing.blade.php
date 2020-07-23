@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/cookie-consent.css') }}" rel="stylesheet" />
 
     <!-- Font Awesome -->
     <script
@@ -46,7 +47,6 @@
   </head>
 
   <body>
-    @include('cookieConsent::index')
     @include('components.landingpage.header')
 
     @yield('page-masthead')
@@ -134,5 +134,6 @@
       )
   </script>
   @endif
+  @include('cookieConsent::index')
   </body>
 </html>

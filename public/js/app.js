@@ -37350,6 +37350,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/cookie-consent.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/cookie-consent.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/landing.scss":
 /*!*************************************!*\
   !*** ./resources/sass/landing.scss ***!
@@ -37373,15 +37384,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/landing.scss ./resources/sass/stepbar.scss ***!
-  \*************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/landing.scss ./resources/sass/cookie-consent.scss ./resources/sass/stepbar.scss ***!
+  \**************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/peter/CodingProjects/vatfrance-workfiles/website/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /home/peter/CodingProjects/vatfrance-workfiles/website/resources/sass/app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! /home/peter/CodingProjects/vatfrance-workfiles/website/resources/sass/landing.scss */"./resources/sass/landing.scss");
+__webpack_require__(/*! /home/peter/CodingProjects/vatfrance-workfiles/website/resources/sass/cookie-consent.scss */"./resources/sass/cookie-consent.scss");
 module.exports = __webpack_require__(/*! /home/peter/CodingProjects/vatfrance-workfiles/website/resources/sass/stepbar.scss */"./resources/sass/stepbar.scss");
 
 
