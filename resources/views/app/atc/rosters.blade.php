@@ -96,52 +96,52 @@
                 </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    @foreach ($atc_roster as $atc)
-                    <td>{{ $atc['user']['vatsim_id'] }}</td>
-                    @if ($atc['user']['hide_details'] == false)
-                    <td>{{ $atc['user']['fname'] }} {{ $atc['user']['lname'] }}</td>
-                    @else
-                    <td><i>Hidden</i></td>
-                    @endif
-                    <td>{{ $atc['user']['atc_rating_short'] }}</td>
-                    <td>
-                      @if ($atc['approved_flag'] == true)
-                        Yes
+                  @foreach ($atc_roster as $atc)
+                    <tr>
+                      <td>{{ $atc['user']['vatsim_id'] }}</td>
+                      @if ($atc['user']['hide_details'] == false)
+                      <td>{{ $atc['user']['fname'] }} {{ $atc['user']['lname'] }}</td>
                       @else
-                        No
+                      <td><i>Hidden</i></td>
                       @endif
-                    </td>
-                    <td>
-                      @if ($atc['appr_lfpg_twr'] == true)
-                        Yes
-                      @else
-                        No
-                      @endif
-                    </td>
-                    <td>
-                      @if ($atc['appr_lfpg_app'] == true)
-                        Yes
-                      @else
-                        No
-                      @endif
-                    </td>
-                    <td>
-                      @if ($atc['appr_lfmn_twr'] == true)
-                        Yes
-                      @else
-                        No
-                      @endif
-                    </td>
-                    <td>
-                      @if ($atc['appr_lfmn_app'] == true)
-                        Yes
-                      @else
-                        No
-                      @endif
-                    </td>
-                    @endforeach
-                  </tr>
+                      <td>{{ $atc['user']['atc_rating_short'] }}</td>
+                      <td>
+                        @if ($atc['approved_flag'] == true)
+                          Yes
+                        @else
+                          No
+                        @endif
+                      </td>
+                      <td>
+                        @if ($atc['appr_lfpg_twr'] == true)
+                          Yes
+                        @else
+                          No
+                        @endif
+                      </td>
+                      <td>
+                        @if ($atc['appr_lfpg_app'] == true)
+                          Yes
+                        @else
+                          No
+                        @endif
+                      </td>
+                      <td>
+                        @if ($atc['appr_lfmn_twr'] == true)
+                          Yes
+                        @else
+                          No
+                        @endif
+                      </td>
+                      <td>
+                        @if ($atc['appr_lfmn_app'] == true)
+                          Yes
+                        @else
+                          No
+                        @endif
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -160,21 +160,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    @foreach ($mentors as $m)
-                    <td>{{ $m['user']['vatsim_id'] }}</td>
-                    <td>{{ $m['user']['fname'] }} {{ $m['user']['lname'] }}</td>
-                    <td>{{ $m['user']['atc_rating_short'] }}</td>
-                    <td>{{ $m['allowed_rank'] }}</td>
-                    <td>
-                      @if ($m['active'])
-                        Yes
-                      @else
-                        No
-                      @endif
-                    </td>
-                    @endforeach
-                  </tr>
+                  @foreach ($mentors as $m)
+                    <tr>
+                      <td>{{ $m['user']['vatsim_id'] }}</td>
+                      <td>{{ $m['user']['fname'] }} {{ $m['user']['lname'] }}</td>
+                      <td>{{ $m['user']['atc_rating_short'] }}</td>
+                      <td>{{ $m['allowed_rank'] }}</td>
+                      <td>
+                        @if ($m['active'])
+                          Yes
+                        @else
+                          No
+                        @endif
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
