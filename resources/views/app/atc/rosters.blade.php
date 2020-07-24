@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC Rosters</h1>
+          <h1>{{__('app/atc/rosters.header_title')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -32,7 +32,7 @@
                 href="#atc-roster"
                 role="tab"
                 aria-controls="atc-roster"
-                aria-selected="true">ATC Roster</a>
+                aria-selected="true">{{__('app/atc/rosters.roster_tab')}}</a>
             </li>
             <li class="nav-item">
               <a
@@ -42,7 +42,7 @@
                 href="#atc-mentors"
                 role="tab"
                 aria-controls="atc-mentors"
-                aria-selected="false">ATC Mentors</a>
+                aria-selected="false">{{__('app/atc/rosters.mentor_tab')}}</a>
             </li>
             <li class="nav-item">
               <a
@@ -52,7 +52,7 @@
                 href="#solo-approval"
                 role="tab"
                 aria-controls="solo-approval"
-                aria-selected="false">Solo Approvals</a>
+                aria-selected="false">{{__('app/atc/rosters.solo_tab')}}</a>
             </li>
             <li class="nav-item">
               <a
@@ -62,7 +62,7 @@
                 href="#domtom-approval"
                 role="tab"
                 aria-controls="domtom-approval"
-                aria-selected="false">DOM/TOM Approvals</a>
+                aria-selected="false">{{__('app/atc/rosters.domtom_tab')}}</a>
             </li>
             <li class="nav-item">
               <a
@@ -72,7 +72,7 @@
                 href="#domtom-approval"
                 role="tab"
                 aria-controls="domtom-approval"
-                aria-selected="false">Visiting ATC Approvals</a>
+                aria-selected="false">{{__('app/atc/rosters.visiting_tab')}}</a>
             </li>
           </ul>
         </div>
@@ -85,14 +85,14 @@
                 data-order='[[ 1, "desc" ]]'>
                 <thead>
                 <tr>
-                  <th>CID</th>
-                  <th>Name</th>
-                  <th>Rating</th>
-                  <th>Approved</th>
-                  <th>Authorised LFPG TWR</th>
-                  <th>Authorised LFPG APP</th>
-                  <th>Authorised LFMN TWR</th>
-                  <th>Authorised LFMN APP</th>
+                  <th>{{__('app/atc/rosters.cid')}}</th>
+                  <th>{{__('app/atc/rosters.name')}}</th>
+                  <th>{{__('app/atc/rosters.rating')}}</th>
+                  <th>{{__('app/atc/rosters.approved')}}</th>
+                  <th>{{__('app/atc/rosters.authorised')}} LFPG TWR</th>
+                  <th>{{__('app/atc/rosters.authorised')}} LFPG APP</th>
+                  <th>{{__('app/atc/rosters.authorised')}} LFMN TWR</th>
+                  <th>{{__('app/atc/rosters.authorised')}} LFMN APP</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -102,42 +102,42 @@
                       @if ($atc['user']['hide_details'] == false)
                       <td>{{ $atc['user']['fname'] }} {{ $atc['user']['lname'] }}</td>
                       @else
-                      <td><i>Hidden</i></td>
+                      <td><i>{{__('app/atc/rosters.hidden')}}</i></td>
                       @endif
                       <td>{{ $atc['user']['atc_rating_short'] }}</td>
                       <td>
                         @if ($atc['approved_flag'] == true)
-                          Yes
+                        {{__('app/atc/rosters.yes')}}
                         @else
-                          No
+                        {{__('app/atc/rosters.no')}}
                         @endif
                       </td>
                       <td>
                         @if ($atc['appr_lfpg_twr'] == true)
-                          Yes
+                          {{__('app/atc/rosters.yes')}}
                         @else
-                          No
+                          {{__('app/atc/rosters.no')}}
                         @endif
                       </td>
                       <td>
                         @if ($atc['appr_lfpg_app'] == true)
-                          Yes
+                          {{__('app/atc/rosters.yes')}}
                         @else
-                          No
+                          {{__('app/atc/rosters.no')}}
                         @endif
                       </td>
                       <td>
                         @if ($atc['appr_lfmn_twr'] == true)
-                          Yes
+                          {{__('app/atc/rosters.yes')}}
                         @else
-                          No
+                          {{__('app/atc/rosters.no')}}
                         @endif
                       </td>
                       <td>
                         @if ($atc['appr_lfmn_app'] == true)
-                          Yes
+                          {{__('app/atc/rosters.yes')}}
                         @else
-                          No
+                          {{__('app/atc/rosters.no')}}
                         @endif
                       </td>
                     </tr>
@@ -152,11 +152,11 @@
                 data-order='[[ 1, "desc" ]]'>
                 <thead>
                 <tr>
-                  <th>CID</th>
-                  <th>Name</th>
-                  <th>Rating</th>
-                  <th>Approved Rating</th>
-                  <th>Active</th>
+                  <th>{{__('app/atc/rosters.cid')}}</th>
+                  <th>{{__('app/atc/rosters.name')}}</th>
+                  <th>{{__('app/atc/rosters.rating')}}</th>
+                  <th>{{__('app/atc/rosters.approved_rating')}}</th>
+                  <th>{{__('app/atc/rosters.active')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -168,9 +168,9 @@
                       <td>{{ $m['allowed_rank'] }}</td>
                       <td>
                         @if ($m['active'])
-                          Yes
+                          {{__('app/atc/rosters.yes')}}
                         @else
-                          No
+                          {{__('app/atc/rosters.no')}}
                         @endif
                       </td>
                     </tr>
@@ -185,12 +185,12 @@
                 data-order='[[ 1, "desc" ]]'>
                 <thead>
                 <tr>
-                  <th>CID</th>
-                  <th>Name</th>
-                  <th>Rating</th>
-                  <th>Position</th>
-                  <th>Mentor</th>
-                  <th>Valid</th>
+                  <th>{{__('app/atc/rosters.cid')}}</th>
+                  <th>{{__('app/atc/rosters.name')}}</th>
+                  <th>{{__('app/atc/rosters.rating')}}</th>
+                  <th>{{__('app/atc/rosters.position')}}</th>
+                  <th>{{__('app/atc/rosters.mentor')}}</th>
+                  <th>{{__('app/atc/rosters.valid')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -203,9 +203,9 @@
                     <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
                     <td>
                       @if ($solo['valid'])
-                        Yes
+                        {{__('app/atc/rosters.yes')}}
                       @else
-                        No
+                        {{__('app/atc/rosters.no')}}
                       @endif
                     </td>
                   </tr>
