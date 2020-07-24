@@ -91,6 +91,13 @@ class MainController extends Controller
             $currentUser->custom_email = null;
             $currentUser->save();
         }
+        if (!is_null($request->get('hidedetails'))) {
+            $currentUser->hide_details = true;
+            $currentUser->save();
+        } else {
+            $currentUser->hide_details = false;
+            $currentUser->save();
+        }
         switch (Auth::user()->subdiv_id) {
             case 'FRA':
                 if (in_array($request->get('editusertype'), config('vatfrance.usertypes'))) {

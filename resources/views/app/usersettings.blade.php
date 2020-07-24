@@ -99,6 +99,12 @@
                   @endforeach
                 </select>
             </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="hide-details-switch" name="hidedetails" @if (Auth::user()->hiddenDetails() == true) checked @endif>
+                <label class="custom-control-label" for="hide-details-switch">Hide your personal details from rosters</label>
+              </div>
+            </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
