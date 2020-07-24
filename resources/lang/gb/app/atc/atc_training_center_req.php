@@ -13,7 +13,7 @@ return [
   the new Training Center will guide you through your progress.<br><br>
   
   To begin your mentoring, please submit your application on the right.',
-  'welcome_submsg' => 'Response times may vary based on mentor availabilities. Please be patient.',
+  'welcome_submsg' => 'Response times may vary based on mentor availabilities. Thank you for your patience.',
 
   // Right side
   'form_title' => 'Request ATC Mentoring',

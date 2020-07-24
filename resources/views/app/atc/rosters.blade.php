@@ -62,7 +62,17 @@
                 href="#domtom-approval"
                 role="tab"
                 aria-controls="domtom-approval"
-                aria-selected="false">DOM/TOM Approval</a>
+                aria-selected="false">DOM/TOM Approvals</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link" 
+                id="visiting-approval-tab"
+                data-toggle="pill"
+                href="#domtom-approval"
+                role="tab"
+                aria-controls="domtom-approval"
+                aria-selected="false">Visiting ATC Approvals</a>
             </li>
           </ul>
         </div>
@@ -206,6 +216,9 @@
             <div class="tab-pane fade" id="domtom-approval" role="tabpanel" aria-labelledby="domtom-approval-tab">
                Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis. 
             </div>
+            <div class="tab-pane fade" id="visiting-approval" role="tabpanel" aria-labelledby="visiting-approval-tab">
+              Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis. 
+           </div>
           </div>
         </div>
         <!-- /.card -->
