@@ -28,6 +28,7 @@ Route::group([
     Route::get('/events', 'Landingpage\MainController@events')->name('landingpage.home.events');
     Route::get('/contact', 'Landingpage\MainController@contact')->name('landingpage.home.contact');
     Route::get('/requestatc', 'Landingpage\MainController@reqatc')->name('landingpage.home.reqatc');
+    Route::post('/requestatc/submit', 'Landingpage\MainController@reqatcForm')->name('landingpage.home.reqatc.submit');
     Route::get('/policies', 'Landingpage\MainController@policies')->name('landingpage.home.policies');
 
     // Authentication routes
@@ -43,7 +44,7 @@ Route::group([
     ], function() {
         Route::get('/', 'App\MainController@index')->name('app.index');
 
-        Route::get('/general/stafforg', 'App\OrgpageController@staffOrg')->name('app.general.stafforg');
+        Route::get('/general/stafforg', 'App\MainController@staffOrg')->name('app.general.stafforg');
 
         Route::get('/user/settings', 'App\MainController@usersettings')->name('app.user.settings');
         Route::post('/user/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');

@@ -48,9 +48,10 @@
       <form
         id="contact-form"
         method="post"
-        action="contact.php"
+        action="{{ route('landingpage.home.reqatc.submit', app()->getLocale()) }}"
         role="form"
       >
+      @csrf
         <div class="messages"></div>
 
         <div class="controls">
@@ -65,7 +66,7 @@
                   class="form-control"
                   value="{{ auth()->user()->fname}} {{ auth()->user()->lname}}"
                   required="required"
-                  disabled
+                  readonly
                 />
                 <div class="help-block with-errors"></div>
               </div>
@@ -80,7 +81,7 @@
                   class="form-control"
                   value="{{ auth()->user()->vatsim_id}}"
                   required="required"
-                  disabled
+                  readonly
                 />
                 <div class="help-block with-errors"></div>
               </div>
@@ -96,9 +97,9 @@
                   type="email"
                   name="email"
                   class="form-control"
-                  placeholder="{{ auth()->user()->email}}"
+                  value="{{ auth()->user()->email}}"
                   required="required"
-                  disabled
+                  readonly
                 />
                 <div class="help-block with-errors"></div>
               </div>

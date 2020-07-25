@@ -112,4 +112,9 @@ class MainController extends Controller
 
         return redirect()->route('app.user.settings', app()->getLocale())->with('toast-success', trans('app/alerts.settings_edited'));
     }
+
+    public function staffOrg()
+    {
+        return view('app.general.org');
+    }
 }
