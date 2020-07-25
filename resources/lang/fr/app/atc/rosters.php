@@ -16,6 +16,8 @@ return [
   'rating' => 'Grade',
   'approved' => 'Approuvé',
   'authorised' => 'Autorisé',
+  'start' => 'Début',
+  'end' => 'Fin',
   'yes' => 'Oui',
   'no' => 'Non',
   'hidden' => 'Caché',

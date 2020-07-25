@@ -189,6 +189,8 @@
                   <th>{{__('app/atc/rosters.name')}}</th>
                   <th>{{__('app/atc/rosters.rating')}}</th>
                   <th>{{__('app/atc/rosters.position')}}</th>
+                  <th>{{__('app/atc/rosters.start')}}</th>
+                  <th>{{__('app/atc/rosters.end')}}</th>
                   <th>{{__('app/atc/rosters.mentor')}}</th>
                   <th>{{__('app/atc/rosters.valid')}}</th>
                 </tr>
@@ -200,6 +202,8 @@
                     <td>{{ $solo['user']['fname'] }} {{ $solo['user']['lname'] }}</td>
                     <td>{{ $solo['user']['atc_rating_short'] }}</td>
                     <td>{{ $solo['position'] }}</td>
+                    <td>{{ $solo['start_date'] }}</td>
+                    <td>{{ $solo['end_date'] }}</td>
                     <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
                     <td>
                       @if ($solo['valid'])
