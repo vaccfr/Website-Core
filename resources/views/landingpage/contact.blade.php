@@ -17,15 +17,38 @@
 @endsection
 
 @section('page-content')
+@if (!Auth::check())
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 py-3" align="center">
+      <h4>
+        To avoid any identity theft and to keep you and our users safe,<br>
+        you must be authenticated to use the contact form.<br>
+        Authentication is simple and uses the official VATSIM SSO.
+      </h4>
+      <br>
+      <form action="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'true']) }}" method="get">
+        @csrf
+        <input
+          type="submit"
+          class="btn btn-secondary btn-send"
+          value="Log in with SSO"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+@else
 <div class="container">
   <div class="row">
     <div class="col-xl-8 offset-xl-2 py-5">
       <form
         id="contact-form"
         method="post"
-        action="contact.php"
+        action="{{ route('landingpage.home.contact.submit', app()->getLocale()) }}"
         role="form"
       >
+      @csrf
         <div class="messages"></div>
 
         <div class="controls">
@@ -38,9 +61,10 @@
                   type="text"
                   name="name"
                   class="form-control"
-                  placeholder="Please enter your name *"
+                  value="{{ auth()->user()->fname}} {{ auth()->user()->lname}}"
                   required="required"
                   data-error="Name is required."
+                  readonly
                 />
                 <div class="help-block with-errors"></div>
               </div>
@@ -53,9 +77,10 @@
                   type="text"
                   name="cid"
                   class="form-control"
-                  placeholder="Please enter your VATSIM CID *"
+                  value="{{ auth()->user()->vatsim_id}}"
                   required="required"
                   data-error="CID is required."
+                  readonly
                 />
                 <div class="help-block with-errors"></div>
               </div>
@@ -71,9 +96,10 @@
                   type="email"
                   name="email"
                   class="form-control"
-                  placeholder="Please enter your email *"
+                  value="{{ auth()->user()->email}}"
                   required="required"
                   data-error="Valid email is required."
+                  readonly
                 />
                 <div class="help-block with-errors"></div>
               </div>
@@ -117,7 +143,8 @@
   </div>
   <!-- /.row-->
 </div>
-<!-- /.container-->
+<!-- /.container-->  
+@endif
 
 <script src="contact.js"></script>
 @endsection

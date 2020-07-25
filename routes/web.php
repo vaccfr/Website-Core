@@ -27,6 +27,7 @@ Route::group([
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
     Route::get('/events', 'Landingpage\MainController@events')->name('landingpage.home.events');
     Route::get('/contact', 'Landingpage\MainController@contact')->name('landingpage.home.contact');
+    Route::post('/contact/submit', 'Landingpage\MainController@contactForm')->name('landingpage.home.contact.submit');
     Route::get('/requestatc', 'Landingpage\MainController@reqatc')->name('landingpage.home.reqatc');
     Route::post('/requestatc/submit', 'Landingpage\MainController@reqatcForm')->name('landingpage.home.reqatc.submit');
     Route::get('/policies', 'Landingpage\MainController@policies')->name('landingpage.home.policies');

@@ -54,6 +54,11 @@ class MainController extends Controller
         return view('landingpage.contact');
     }
 
+    public function contactForm(Request $request)
+    {
+        return redirect()->route('landingpage.home.contact', app()->getLocale())->with('pop-success', 'Your question was submitted successfully and a receipt was sent to your email. We will get back to you as soon as we can.');
+    }
+
     public function reqatc()
     {
         return view('landingpage.reqatc');
