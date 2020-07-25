@@ -27,7 +27,7 @@
             <p>{{__('app/app_menus.forum')}}</p>
           </a>
         </li>
-        <li class="nav-item has-treeview">
+        <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/general')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
             <p>
@@ -37,7 +37,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('app.general.stafforg', app()->getLocale()) }}" class="nav-link">
+              <a href="{{ route('app.general.stafforg', app()->getLocale()) }}" class="nav-link @if (Route::is('app.general.stafforg')) active @endif">
                 <i class="far fa-circle nav-icon"></i>
                 <p>{{__('app/app_menus.staff_org')}}</p>
               </a>
@@ -70,7 +70,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('app.atc.allbookings', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.allbookings')) active @endif">
                 <i class="far fa-circle nav-icon"></i>
                 <p>{{__('app/app_menus.atc_all_bookings')}}</p>
               </a>
@@ -113,7 +113,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-download"></i>
                 <p>{{__('app/app_menus.atc_dl')}}</p>
               </a>
@@ -170,7 +170,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('app.staff.atcadmin', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.atcadmin')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>ATC Admin</p>
                   </a>

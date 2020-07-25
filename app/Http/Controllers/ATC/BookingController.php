@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {
+    public function allBookings()
+    {
+        return view('app.atc.allbookings');
+    }
     public function MyBookingsPage()
     {
         // $allowedRanks = app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short);

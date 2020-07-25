@@ -51,7 +51,7 @@ class AdminController extends Controller
             $currentMentorRank = $currentMentorRank->allowed_rank;
         }
 
-        return view('app.staff.admin-edit', [
+        return view('app.staff.admin_edit', [
             'user' => $user,
             'usertypes' => $utypes,
             'mentoring_ranks' => $ranks,
@@ -251,5 +251,10 @@ class AdminController extends Controller
             'locale' => app()->getLocale(),
             'userid' => $currentUser->id,
         ])->with('toast-info', trans('app/alerts.staff_edited'));
+    }
+
+    public function atcAdmin()
+    {
+        return view('app.staff.atc_admin');
     }
 }

@@ -64,6 +64,7 @@ Route::group([
                 Route::post('/requestsession', 'ATC\ATCTrainingController@requestSession')->name('app.atc.training.requestsession');
             });
             
+            Route::get('/book/all', 'ATC\BookingController@allBookings')->name('app.atc.allbookings');
             Route::group(['middleware' => 'ATC', 'prefix' => '/book/verified'], function() {
                 Route::get('/mybookings', 'ATC\BookingController@MyBookingsPage')->name('app.atc.mybookings');
             });
@@ -77,6 +78,7 @@ Route::group([
             Route::group(['prefix' => '/admin', 'middleware' => 'EXECSTAFF'], function() {
                 Route::get('/', 'Staff\AdminController@index')->name('app.staff.admin');
                 Route::get('/edit', 'Staff\AdminController@editUser')->name('app.staff.admin.edit');
+                Route::get('/atcadmin', 'Staff\AdminController@atcAdmin')->name('app.staff.atcadmin');
 
                 Route::post('/edit/details', 'Staff\AdminController@editUserFormDetails')->name('app.staff.admin.edit.details');
                 Route::post('/edit/atcmentor', 'Staff\AdminController@editUserAtcMentor')->name('app.staff.admin.edit.atcmentor');
