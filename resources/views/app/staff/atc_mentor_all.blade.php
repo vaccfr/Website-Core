@@ -76,7 +76,7 @@
                     <td>{{ $a['user']['subdiv_id'] }} {{ $a['user']['subdiv_name'] }}</td>
                     <td>{{ $a['icao'] }}</td>
                     <td>
-                      <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#motiv_modal">
+                      <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#motiv_modal_{{ $a['user']['vatsim_id'] }}">
                         Motivation
                       </button>
                     </td>
@@ -105,7 +105,7 @@
                       @endif
                     </td>
                   </tr>
-                  <div class="modal fade" id="motiv_modal">
+                  <div class="modal fade" id="motiv_modal_{{ $a['user']['vatsim_id'] }}">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
