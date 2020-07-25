@@ -177,22 +177,24 @@
   <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
   <script>
     $('#atc_sessions_table').DataTable({
-      "paging": true,
+      "paging": false,
       "lengthChange": false,
       "searching": false,
       "ordering": false,
-      "autoWidth": false,
+      "autoWidth": true,
+      "info": false,
       "scrollY": 400,
       "language": {
         "emptyTable": "{{__('app/app_indexpage.no_last_atc')}}"
       }
     });
     $('#flights_table').DataTable({
-      "paging": true,
+      "paging": false,
       "lengthChange": false,
       "searching": false,
       "ordering": false,
-      "autoWidth": false,
+      "autoWidth": true,
+      "info": false,
       "scrollY": 400,
       "language": {
         "emptyTable": "{{__('app/app_indexpage.no_last_flights')}}"

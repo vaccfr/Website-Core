@@ -147,7 +147,7 @@
             </div>
             <div class="tab-pane fade" id="atc-mentors" role="tabpanel" aria-labelledby="atc-mentors-tab">
               <table
-                id="atc_roster"
+                id="atc_mentors"
                 class="table table-bordered table-hover"
                 data-order='[[ 1, "desc" ]]'>
                 <thead>
@@ -180,7 +180,7 @@
             </div>
             <div class="tab-pane fade" id="solo-approval" role="tabpanel" aria-labelledby="solo-approval-tab">
               <table
-                id="atc_roster"
+                id="solo_approved"
                 class="table table-bordered table-hover"
                 data-order='[[ 1, "desc" ]]'>
                 <thead>
@@ -237,13 +237,28 @@
 <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
 <script>
   $('#atc_roster').DataTable({
-    "paging": true,
-    "lengthChange": false,
+    "paging": false,
+    "lengthChange": true,
     "searching": true,
     "ordering": true,
     "autoWidth": true,
     "info": true,
-    "scrollY": 300,
+  });
+  $('#atc_mentors').DataTable({
+    "paging": false,
+    "lengthChange": true,
+    "searching": true,
+    "ordering": true,
+    "autoWidth": true,
+    "info": true,
+  });
+  $('#solo_approved').DataTable({
+    "paging": false,
+    "lengthChange": true,
+    "searching": true,
+    "ordering": true,
+    "autoWidth": true,
+    "info": true,
   });
 </script>
 @endsection
