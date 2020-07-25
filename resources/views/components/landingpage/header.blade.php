@@ -97,12 +97,32 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">Upcoming Events</a>
+            <a class="dropdown-item" href="{{ route('landingpage.home.events', app()->getLocale()) }}">Upcoming Events</a>
           </div>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" href="#">{{__('lp/lp_menu.feedback')}}</a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Contact
+          </a>
+          <div
+            class="dropdown-menu animate slideIn"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <a class="dropdown-item" href="{{ route('landingpage.home.contact', app()->getLocale()) }}">Contact us</a>
+            <a class="dropdown-item" href="{{ route('landingpage.home.reqatc', app()->getLocale()) }}">Request ATC</a>
+          </div>
         </li>
         @if (Auth::check())
           <li class="nav-item dropdown">

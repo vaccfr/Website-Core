@@ -40,6 +40,22 @@ class MainController extends Controller
         ]);
     }
 
+    public function events()
+    {
+        // return view('landingpage.events');
+        return redirect()->back()->with('toast-info', 'This page is not yet available');
+    }
+
+    public function contact()
+    {
+        return view('landingpage.contact');
+    }
+
+    public function reqatc()
+    {
+        return view('landingpage.reqatc');
+    }
+
     public function policies()
     {
         return view('landingpage.statutes_policies');

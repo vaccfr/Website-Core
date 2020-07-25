@@ -8,7 +8,6 @@ body {
   line-height: 1.9;
   color: #1a1a1a;
   text-align: left;
-  background-color: #f5f5f5;
 }
 a {
   color: #262626;
@@ -44,8 +43,18 @@ h3 {
   color: #1f1f1f;
   font-size: 2rem;
 }
-h4,
-h5,
+h4{
+  font-family: 'Open Sans';
+  font-weight: 500 !important;
+  color: #1f1f1f;
+  font-size: 1rem;
+}
+h5{
+  font-weight: 250 !important;
+  font-weight: 300 !important;
+  font-size: 1rem;
+  color: #f2f2f2;
+}
 h6 {
   font-family: 'Open Sans';
   font-weight: 600 !important;
@@ -55,7 +64,6 @@ th,
 td {
   font-size: 0.8rem;
 }
-
 @media only screen and (max-width: 600px) {
   h1 {
     font-family: 'Open Sans';
@@ -79,6 +87,11 @@ td {
 
 .thead {
   color: #000000;
+}
+
+.table-borderless td,
+.table-borderless th {
+    border: 0;
 }
 
 .position {
@@ -107,9 +120,10 @@ button:focus {
   letter-spacing: 0.1rem;
 }
 
-.bg-black {
+.bg-dark {
   background-color: rgb(0, 0, 0) !important;
 }
+
 .bg-light {
   background-color: transparent !important;
 }
@@ -123,12 +137,6 @@ button:focus {
   align-items: center;
 }
 
-.navbar-light {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  position: relative;
-  padding: 0.5rem 1rem;
-}
 
 @media only screen and (max-width: 600px) {
   .navbar-custom {
@@ -189,6 +197,23 @@ header.masthead {
   text-align: center;
 }
 
+header.masthead-50{
+  height: 30vh;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(7rem + 72px);
+  padding-bottom: 7rem;
+  /* background: linear-gradient(0deg, #e2e2e9 0%, #64a19d 100%); */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('../../media/img/lp/fr.jpg');
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
 header.masthead .masthead-content {
   z-index: 1;
   position: relative;
@@ -201,6 +226,7 @@ header.masthead .masthead-content .masthead-heading {
 header.masthead .masthead-content .masthead-subheading {
   font-size: 1rem;
 }
+
 
 @media (min-width: 992px) {
   header.masthead {

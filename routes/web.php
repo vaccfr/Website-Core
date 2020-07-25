@@ -25,6 +25,9 @@ Route::group([
     'prefix' => '{locale}',
 ], function() {
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
+    Route::get('/events', 'Landingpage\MainController@events')->name('landingpage.home.events');
+    Route::get('/contact', 'Landingpage\MainController@contact')->name('landingpage.home.contact');
+    Route::get('/requestatc', 'Landingpage\MainController@reqatc')->name('landingpage.home.reqatc');
     Route::get('/policies', 'Landingpage\MainController@policies')->name('landingpage.home.policies');
 
     // Authentication routes
