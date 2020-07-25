@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark navbar-custom">
   <div class="container">
     <a class="navbar-brand" href="{{ route('landingpage.home', app()->getLocale()) }}"
       ><img
