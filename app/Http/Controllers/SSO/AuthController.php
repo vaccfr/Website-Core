@@ -66,6 +66,7 @@ class AuthController extends Controller
     public function computeLogin($locale, $code)
     {
         $previousUrl = session()->get('login_redir_url');
+        session()->forget('login_redir_url');
         if (is_null($previousUrl)) {
             $previousUrl = route('app.index', app()->getLocale());
         }

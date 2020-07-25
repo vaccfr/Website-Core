@@ -24,13 +24,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 py-3" align="center">
-      <h4>You must be authenticated to access this page</h4>
+      <h4>
+        To avoid any identity theft and to keep you and our users safe,<br>
+        you must be authenticated to submit an ATC request.<br>
+        Authentication is simple and uses the official VATSIM SSO.
+      </h4>
+      <br>
       <form action="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'true']) }}" method="get">
         @csrf
         <input
           type="submit"
           class="btn btn-secondary btn-send"
-          value="Request ATC"
+          value="Log in with SSO"
         />
       </form>
     </div>
@@ -58,7 +63,7 @@
                   type="text"
                   name="name"
                   class="form-control"
-                  placeholder="John Doe"
+                  value="{{ auth()->user()->fname}} {{ auth()->user()->lname}}"
                   required="required"
                   disabled
                 />
@@ -73,7 +78,7 @@
                   type="number"
                   name="cid"
                   class="form-control"
-                  placeholder="129845"
+                  value="{{ auth()->user()->vatsim_id}}"
                   required="required"
                   disabled
                 />
@@ -85,13 +90,13 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label for="form_email">Email *</label>
+                <label for="form_email">Email</label>
                 <input
                   id="form_email"
                   type="email"
                   name="email"
                   class="form-control"
-                  placeholder="ayy@lm.ao"
+                  placeholder="{{ auth()->user()->email}}"
                   required="required"
                   disabled
                 />
