@@ -147,7 +147,7 @@
           </li>
         @else
           <li class="nav-item">
-            <a href="{{ route('auth.login', app()->getLocale()) }}" class="nav-link">
+            <a href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" class="nav-link">
               <i class="fas fa-user text-white d-mobile-none"></i>
               <span class="d-tablet-none">{{__('lp/lp_menu.login')}}</span>
             </a>

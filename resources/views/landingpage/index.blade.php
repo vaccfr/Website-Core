@@ -16,7 +16,7 @@
           >{{__('lp/lp_menu.dashboard')}}</a
         >
         @else
-        <a href="{{ route('auth.login', app()->getLocale()) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
+        <a href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
           >{{__('lp/lp_titles.join_us')}}!</a
         >
         @endif

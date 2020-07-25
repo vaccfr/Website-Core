@@ -20,6 +20,23 @@
 @endsection
 
 @section('page-content')
+@if (!Auth::check())
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 py-3" align="center">
+      <h4>You must be authenticated to access this page</h4>
+      <form action="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'true']) }}" method="get">
+        @csrf
+        <input
+          type="submit"
+          class="btn btn-secondary btn-send"
+          value="Request ATC"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+@else
 <div class="container">
   <div class="row">
     <div class="col-xl-8 offset-xl-2 py-5">
@@ -262,4 +279,5 @@
   <!-- /.row-->
 </div>
 <!-- /.container-->
+@endif
 @endsection

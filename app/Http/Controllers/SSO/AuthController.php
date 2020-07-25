@@ -25,12 +25,16 @@ class AuthController extends Controller
 {
     use AuthenticatesUsers;
 
-    public function login()
+    public function login($locale, $redir)
     {
         if (Auth::check()) {
             return redirect()->route('landingpage.home', app()->getLocale());
         }
         // session()->put('state', $state = Str::random(40));
+        session()->forget('login_redir_url');
+        if ($redir == "true") {
+            session()->put('login_redir_url', url()->previous());
+        }
         session()->forget('token');
 
         if (app()->getLocale() == "gb") {
@@ -61,6 +65,10 @@ class AuthController extends Controller
 
     public function computeLogin($locale, $code)
     {
+        $previousUrl = session()->get('login_redir_url');
+        if (is_null($previousUrl)) {
+            $previousUrl = route('app.index', app()->getLocale());
+        }
         try {
             if (app()->getLocale() == "gb") {
                 $response = (new Client)->post('https://auth.vatsim.net/oauth/token', [
@@ -167,7 +175,8 @@ class AuthController extends Controller
 
         Auth::login($user, true);
 
-        return redirect()->route('app.index', app()->getLocale())->with("toast-success", trans('app/alerts.logged_in'));
+        return redirect()->to($previousUrl)->with("toast-success", trans('app/alerts.logged_in'));
+        // return redirect()->route('app.index', app()->getLocale())->with("toast-success", trans('app/alerts.logged_in'));
     }
 
     public function logout()

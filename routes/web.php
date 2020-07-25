@@ -31,7 +31,7 @@ Route::group([
     Route::get('/policies', 'Landingpage\MainController@policies')->name('landingpage.home.policies');
 
     // Authentication routes
-    Route::get('/access', 'SSO\AuthController@login')->name('auth.login');
+    Route::get('/access/{redirflag}', 'SSO\AuthController@login')->name('auth.login');
     Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
     Route::get('/validateLogin/{code}', 'SSO\AuthController@computeLogin')->name('auth.redirect');
     Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
