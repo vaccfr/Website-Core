@@ -6,8 +6,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" />
+    <meta name="keywords" content="vatsim vatfrance france online flight simulation fsx p3d vateud vateur virtual atc air traffic control euroscope" />
+    <meta name="author" content="Peter Paré, Reda Khermach & Corentin Zerbib - VATFRANCE" />
     <link rel="icon" type="image/png" href="{{ asset('media/img/logo_small.png') }}" />
 
     <title>{{ config('app.name') }} | @yield('page-title')</title>
