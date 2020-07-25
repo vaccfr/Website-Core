@@ -13,7 +13,7 @@
   <div class="sidebar">
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
         {{-- Top Section of the menu --}}
         <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link @if (Route::is('app.index')) active @endif">
