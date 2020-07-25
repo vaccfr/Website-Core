@@ -43,6 +43,8 @@ Route::group([
     ], function() {
         Route::get('/', 'App\MainController@index')->name('app.index');
 
+        Route::get('/general/stafforg', 'App\OrgpageController@staffOrg')->name('app.general.stafforg');
+
         Route::get('/user/settings', 'App\MainController@usersettings')->name('app.user.settings');
         Route::post('/user/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');
 

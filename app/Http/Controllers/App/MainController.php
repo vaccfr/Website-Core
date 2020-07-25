@@ -6,12 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\Users\User;
-use App\Models\Vatsim\UserAtcSession;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class MainController extends Controller
 {
