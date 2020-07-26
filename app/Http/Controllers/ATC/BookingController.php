@@ -4,12 +4,14 @@ namespace App\Http\Controllers\ATC;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
+use App\Jobs\ProcessNewBookingEmail;
 use App\Models\ATC\Airport;
 use App\Models\ATC\ATCStation;
 use App\Models\ATC\Booking;
 use Exception;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
@@ -76,6 +78,13 @@ class BookingController extends Controller
     public function validateBooking(Request $request)
     {
         $booking = Booking::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first();
+        
+        ProcessNewBookingEmail::dispatch(Auth::user(), [
+            'position' => $booking->position,
+            'date' => $booking->date,
+            'time' => $booking->time,
+        ])->delay(Carbon::now()->addSeconds(5));
+
         $booking->vatbook_id = $request->EU_ID;
         $booking->save();
 
