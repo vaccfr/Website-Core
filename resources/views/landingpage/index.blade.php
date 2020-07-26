@@ -34,11 +34,7 @@
         <div class="col-md-6">
           <h3 class="font-weight-medium mt-3">{{__('lp/lp_titles.welcome')}}!</h3>
           <p class="mt-4">
-            Soyez les bienvenus chez Vatfrance ! Nous avons le privilège d'être accueillis par Vatsim.
-            Notre but est de vous initier au contrôle aérien. Si vous êtes pilotes, vous apprendrez la phraséologie,
-            qui vous permettra de voler dans un espace contrôlé.
-            Nous ne sommes qu'une petite équipe constituée de passionnés de l'aviation.
-            Au plaisir de vous rencontrer.
+            {{__('lp/lp_index.director_text')}}
           </p>
           <p class="text-right">
             Patrick Fuchez <br />
@@ -151,7 +147,7 @@
           <h3 class="font-weight-medium">Live Map</h3>
         </div>
         <div class="col-md-6">
-          <h3 class="white-text mt-2">{{__('lp/lp_index.position')}}</h3>
+          <h3 class="white-text mt-2">{{__('lp/lp_index.online_atc_title')}}</h3>
           <ul class="list-unstyled ml-0 mt-3 p-0 onlineControllers">
             <li class="mb-2">
               <table class="table mt-4">
