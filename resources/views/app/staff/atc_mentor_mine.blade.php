@@ -173,7 +173,7 @@
                                   @else
 
                                     {{-- Training completed, has report --}}
-                                      <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#mentor_report_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">See Report</button>
+                                    <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#mentor_report_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">See Report</button>
 
                                   @endif
                                  @endif

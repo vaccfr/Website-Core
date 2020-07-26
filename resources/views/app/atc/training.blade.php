@@ -263,17 +263,14 @@
 
                           @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == true && $training['completed'] == true)
 
-                          @if (!is_null($training['mentor_report']))
+                          @if (is_null($training['mentor_report']))
 
                             (No report)
 
                           @else
 
                             {{-- Training completed, has report --}}
-                            <form action="" method="GET">
-                              @csrf
-                              <button type="submit" class="btn btn-block btn-info btn-flat">See Report</button>
-                            </form>
+                            <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#mentor_report_{{ $training['id'] }}">See Report</button>
 
                           @endif
                           @endif
@@ -314,6 +311,26 @@
                       </div>
                       <div class="modal-body">
                         <p>{{ $training['student_comment'] }}</p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                @endif
+                @if (!is_null($training['mentor_report']))
+                <div class="modal fade" id="mentor_report_{{ $training['id'] }}">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Mentor report</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>{{ $training['mentor_report'] }}</p>
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
