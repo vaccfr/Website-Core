@@ -39,6 +39,6 @@ class CreateATCRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('a_t_c_requests');
+        Schema::dropIfExists('atc_requests');
     }
 }
