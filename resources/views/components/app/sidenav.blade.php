@@ -125,7 +125,13 @@
         {{-- Pilot Section of the menu --}}
         @if (strpos(Auth::user()->account_type, 'Pilot') !== False)
         <li class="nav-header">{{__('app/app_menus.pilots_header')}}</li>
-        <li class="nav-item has-treeview">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-paper-plane"></i>
+            <p>Coming soon!</p>
+          </a>
+        </li>
+        {{-- <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-paper-plane"></i>
             <p>
@@ -147,7 +153,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
         @endif
 
         {{-- Staff section --}}

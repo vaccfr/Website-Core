@@ -172,6 +172,45 @@ class ATCMentorController extends Controller
         return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Session cancelled');
     }
 
+    public function completeSession(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'sessionid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
+        $session->completed = true;
+        $session->status = "Completed, awaiting report";
+        $session->save();
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Session completed');
+    }
+
+    public function writeSessionReport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'sessionid' => ['required'],
+            'report_box' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Incorrect arguments');
+        }
+
+        $dateNow = Carbon::now()->format('d.m.Y - H:i');
+
+        $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
+        $session->mentor_report = $request->get('report_box')." - [Mentor: ".auth()->user()->fname." ".auth()->user()->lname." - ".$dateNow." UTC]";
+        $session->status = "Completed";
+        $session->save();
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Report added');
+    }
+
     public function editProgress(Request $request)
     {
         $validator = Validator::make($request->all(), [

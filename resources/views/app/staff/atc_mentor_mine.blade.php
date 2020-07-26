@@ -40,13 +40,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" target="_blank" rel="noopener noreferrer">Powerpoint utile</a></td>
-                </tr>
-                <tr>
-                  <td><a href="#" target="_blank" rel="noopener noreferrer">Videos de chats</a></td>
-                </tr>
-                <tr>
-                  <td><a href="#" target="_blank" rel="noopener noreferrer">Photos de Philippe devant le scope</a></td>
+                  <td><a href="#" target="_blank" rel="noopener noreferrer">Coming Soon!</a></td>
                 </tr>
               </tbody>
             </table>
@@ -124,14 +118,14 @@
                           <td>{{ $training['requested_by'] }}</td>
                           <td>
                             @if (!is_null($training['mentor_comment']))
-                            <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment"><i class="far fa-eye"></i></button>
+                            <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="far fa-eye"></i></button>
                             @else
                               (No comment)
                             @endif
                           </td>
                           <td>
                             @if (!is_null($training['student_comment']))
-                            <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment"><i class="far fa-eye"></i></button>
+                            <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="far fa-eye"></i></button>
                             @else
                               (No comment)
                             @endif
@@ -141,11 +135,7 @@
                             @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == false)
 
                               {{-- Only accepted by mentor --}}
-                              <form action="{{ route('app.staff.atc.mine.cancelsession', app()->getLocale()) }}" method="POST">
-                                @csrf
-                                  <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
-                                  <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
-                              </form>
+                              <button type="button" class="btn btn-block btn-danger btn-flat" data-toggle="modal" data-target="#cancel-session-{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="fa fa-times"></i></button>
 
                             @else
 
@@ -157,22 +147,19 @@
                                   <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
                                   <button type="submit" class="btn btn-block btn-success btn-flat"><i class="fa fa-check"></i></button>
                                 </form>
-                                <form action="{{ route('app.staff.atc.mine.cancelsession', app()->getLocale()) }}" method="POST">
-                                  @csrf
-                                  <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
-                                  <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
-                                </form>
+                                <button type="button" class="btn btn-block btn-danger btn-flat" data-toggle="modal" data-target="#cancel-session-{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="fa fa-times"></i></button>
 
                               @else
 
                                 @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == true && $training['completed'] == false)
 
                                   {{-- Training accepted by both --}}
-                                  <form action="{{ route('app.staff.atc.mine.cancelsession', app()->getLocale()) }}" method="POST">
+                                  <form action="{{ route('app.staff.atc.mine.completesession', app()->getLocale()) }}" method="POST">
                                     @csrf
-                                  <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
-                                  <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
+                                    <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
+                                    <button type="submit" class="btn btn-block btn-success btn-flat">Complete</button>
                                   </form>
+                                  <button type="button" class="btn btn-block btn-danger btn-flat" data-toggle="modal" data-target="#cancel-session-{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="fa fa-times"></i></button>
 
                                 @else
 
@@ -181,18 +168,12 @@
                                   @if (is_null($training['mentor_report']))
 
                                     {{-- Training completed, awaiting report --}}
-                                    <form action="" method="GET">
-                                      @csrf
-                                      <button type="submit" class="btn btn-block btn-info btn-flat"><i class="fa fa-edit"></i></button>
-                                    </form>
+                                    <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#add-report-{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="fa fa-edit"></i></button>
 
                                   @else
 
                                     {{-- Training completed, has report --}}
-                                    <form action="" method="GET">
-                                      @csrf
-                                      <button type="submit" class="btn btn-block btn-info btn-flat">See Report</button>
-                                    </form>
+                                      <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#mentor_report_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">See Report</button>
 
                                   @endif
                                  @endif
@@ -202,7 +183,7 @@
                           </td>
                         </tr>
                         @if (!is_null($training['mentor_comment']))
-                        <div class="modal fade" id="mentor_comment">
+                        <div class="modal fade" id="mentor_comment_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -222,7 +203,7 @@
                         </div>
                         @endif
                         @if (!is_null($training['student_comment']))
-                        <div class="modal fade" id="student_comment">
+                        <div class="modal fade" id="student_comment_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -241,6 +222,84 @@
                           </div>
                         </div>
                         @endif
+                        @if (!is_null($training['mentor_report']))
+                        <div class="modal fade" id="mentor_report_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Mentor report</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p>{{ $training['mentor_report'] }}</p>
+                              </div>
+                              <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        @endif
+                        <div class="modal fade" id="cancel-session-{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Cancel session</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <form action="{{ route('app.staff.atc.mine.cancelsession', app()->getLocale()) }}" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                  <p>Are you sure you want to cancel this session?</p>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                  <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
+                                  <button type="submit" class="btn btn-danger">Confirm</button>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                </div>
+                              </form>
+                            </div>
+                            <!-- /.modal-content -->
+                          </div>
+                          <!-- /.modal-dialog -->
+                        </div>
+                        <div class="modal fade" id="add-report-{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Cancel session</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <form action="{{ route('app.staff.atc.mine.sessionreport', app()->getLocale()) }}" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                  <div class="form-group">
+                                    <label for="report_box_{{ $training['id'] }}_{{ $s['user']['vatsim_id']}}">Write session report</label>
+                                    <textarea
+                                      class="form-control"
+                                      name="report_box"
+                                      id="report_box_{{ $training['id'] }}_{{ $s['user']['vatsim_id']}}"
+                                      rows="10"
+                                      required></textarea>
+                                  </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                  <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                  <button type="submit" class="btn btn-success">Confirm</button>
+                                </div>
+                              </form>
+                            </div>
+                            <!-- /.modal-content -->
+                          </div>
+                          <!-- /.modal-dialog -->
+                        </div>
                       @endforeach
                     </tbody>
                   </table>

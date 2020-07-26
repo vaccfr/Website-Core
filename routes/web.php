@@ -94,6 +94,8 @@ Route::group([
                 Route::post('/mystudents/booksession', 'Staff\ATCMentorController@bookSession')->name('app.staff.atc.mine.booksession');
                 Route::post('/mystudents/acceptsession', 'Staff\ATCMentorController@acceptSession')->name('app.staff.atc.mine.acceptsession');
                 Route::post('/mystudents/cancelsession', 'Staff\ATCMentorController@cancelSession')->name('app.staff.atc.mine.cancelsession');
+                Route::post('/mystudents/completesession', 'Staff\ATCMentorController@completeSession')->name('app.staff.atc.mine.completesession');
+                Route::post('/mystudents/sessionreport', 'Staff\ATCMentorController@writeSessionReport')->name('app.staff.atc.mine.sessionreport');
                 Route::post('/mystudents/progress', 'Staff\ATCMentorController@editProgress')->name('app.staff.atc.mine.progress');
                 Route::post('/mystudents/soloAdd', 'Staff\ATCMentorController@makeSolo')->name('app.staff.atc.mine.soloadd');
                 Route::post('/mystudents/soloDel', 'Staff\ATCMentorController@delSolo')->name('app.staff.atc.mine.solodel');
