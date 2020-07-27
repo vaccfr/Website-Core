@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\ATC;
 
+use App\Events\EventNewATCBooking;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
-use App\Jobs\ProcessNewBookingEmail;
 use App\Models\ATC\Airport;
 use App\Models\ATC\ATCStation;
 use App\Models\ATC\Booking;
@@ -78,17 +78,16 @@ class BookingController extends Controller
     public function validateBooking(Request $request)
     {
         $booking = Booking::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first();
-        
-        ProcessNewBookingEmail::dispatch(Auth::user(), [
+        $booking->vatbook_id = $request->EU_ID;
+        $booking->save();
+
+        event(new EventNewATCBooking(Auth::user(), [
             'position' => $booking->position,
             'date' => $booking->date,
             'time' => $booking->time,
             'start_time' => $booking->start_time,
             'end_time' => $booking->end_time,
-        ])->delay(Carbon::now()->addSeconds(5));
-
-        $booking->vatbook_id = $request->EU_ID;
-        $booking->save();
+        ]));
 
         return redirect()->route('app.atc.mybookings', app()->getLocale())->with('toast-success', trans('app/alerts.success_book', ['POSITION' => $booking->position]));
     }
