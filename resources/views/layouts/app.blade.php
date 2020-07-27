@@ -9,6 +9,11 @@
   <meta name="description" content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" />
   <meta name="keywords" content="vatsim vatfrance france online flight simulation fsx p3d vateud vateur virtual atc air traffic control euroscope" />
   <meta name="author" content="Peter Paré, Reda Khermach & Corentin Zerbib - VATFRANCE" />
+  <meta name="content" content="{{ asset('media/img/logo_large.png') }}" property="og:image" />
+  <meta content="VatFrance - French Division of VATSIM" property="twitter:title" />
+  <meta content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" property="twitter:description" />
+  <meta content="VatFrance - French Division of VATSIM" property="og:title" />
+  <meta content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" property="og:description" />
   <link rel="icon" type="image/png" href="{{ asset('media/img/logo_small.png') }}" />
 
   <!-- Font Awesome -->
