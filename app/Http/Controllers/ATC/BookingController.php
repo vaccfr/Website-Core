@@ -81,13 +81,15 @@ class BookingController extends Controller
         $booking->vatbook_id = $request->EU_ID;
         $booking->save();
 
-        event(new EventNewATCBooking(Auth::user(), [
-            'position' => $booking->position,
-            'date' => $booking->date,
-            'time' => $booking->time,
-            'start_time' => $booking->start_time,
-            'end_time' => $booking->end_time,
-        ]));
+        if ((new Utilities)->checkEmailPreference(auth()->user()->id, 'atc_booking') == true) {
+            event(new EventNewATCBooking(Auth::user(), [
+                'position' => $booking->position,
+                'date' => $booking->date,
+                'time' => $booking->time,
+                'start_time' => $booking->start_time,
+                'end_time' => $booking->end_time,
+            ]));
+        }
 
         return redirect()->route('app.atc.mybookings', app()->getLocale())->with('toast-success', trans('app/alerts.success_book', ['POSITION' => $booking->position]));
     }

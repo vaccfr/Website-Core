@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\DataHandlers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Users\UserEmailPreference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -63,6 +64,60 @@ class Utilities extends Controller
             return ["S1", "S2", "S3", "C1"];
         } else {
             return ["S1", "S2", "S3", "C1"];
+        }
+    }
+
+    public function checkEmailPreference($userid, $type)
+    {
+        switch ($type) {
+            case 'event':
+                $pref = UserEmailPreference::where('id', $userid)->first();
+                if (!is_null($pref)) {
+                    return $pref->event_emails;
+                } else {
+                    return true;
+                }
+                break;
+            
+            case 'atc_booking':
+                $pref = UserEmailPreference::where('id', $userid)->first();
+                if (!is_null($pref)) {
+                    return $pref->atc_booking_emails;
+                } else {
+                    return true;
+                }
+                break;
+            
+            case 'atc_mentoring':
+                $pref = UserEmailPreference::where('id', $userid)->first();
+                if (!is_null($pref)) {
+                    return $pref->atc_mentoring_emails;
+                } else {
+                    return true;
+                }
+                break;
+                
+            case 'website_update':
+                $pref = UserEmailPreference::where('id', $userid)->first();
+                if (!is_null($pref)) {
+                    return $pref->website_update_emails;
+                } else {
+                    return true;
+                }
+                break;
+
+            case 'news':
+                $pref = UserEmailPreference::where('id', $userid)->first();
+                if (!is_null($pref)) {
+                    return $pref->news_emails;
+                } else {
+                    return true;
+                }
+                break;
+            
+            default:
+                return false;
+                break;
         }
     }
 }
