@@ -1,7 +1,10 @@
 <?php
 
+use App\Mail\NewBookingMail;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Spatie\CalendarLinks\Link;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,6 +130,27 @@ Route::group([
     // DEV ROUTES
     Route::group(['prefix' => '/devactions', 'middleware' => 'ADMIN'], function() {
         Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
+        Route::get('/email', function() {
+            $from = DateTime::createFromFormat('d.m.Y H:i', '30.07.2020 04:00');
+            $to = DateTime::createFromFormat('d.m.Y H:i', '30.07.2020 05:00');
+            $link = Link::create('LFFF_CTR - VatFrance ATC', $from, $to)
+                            ->description('VatFrance ATC Booking on LFFF_CTR - 30.07.2020 @ 04:00 - 05:00');
+            
+            $calendarLinks = [
+                'ics' => $link->ics(),
+                'google' => $link->google(),
+            ];
+
+            $data = [
+                'position' => 'LFFF_CTR',
+                'date' => '30.07.2020',
+                'time' => '04:00 - 05:00',
+                'start_time' => '04:00',
+                'end_time' => '05:00',
+            ];
+
+            return new NewBookingMail(auth()->user(), $data, $calendarLinks);
+        });
     });
 });
 

@@ -83,6 +83,8 @@ class BookingController extends Controller
             'position' => $booking->position,
             'date' => $booking->date,
             'time' => $booking->time,
+            'start_time' => $booking->start_time,
+            'end_time' => $booking->end_time,
         ])->delay(Carbon::now()->addSeconds(5));
 
         $booking->vatbook_id = $request->EU_ID;

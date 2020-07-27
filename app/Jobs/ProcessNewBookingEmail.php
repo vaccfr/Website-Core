@@ -3,12 +3,14 @@
 namespace App\Jobs;
 
 use App\Mail\NewBookingMail;
+use DateTime;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Spatie\CalendarLinks\Link;
 
 class ProcessNewBookingEmail implements ShouldQueue
 {
@@ -35,6 +37,16 @@ class ProcessNewBookingEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new NewBookingMail($this->user, $this->data));
+        $from = DateTime::createFromFormat('d.m.Y H:i', $this->data['date']." ".$this->data['start_time']);
+        $to = DateTime::createFromFormat('d.m.Y H:i', $this->data['date']." ".$this->data['end_time']);
+        $link = Link::create($this->data['position'].' - VatFrance ATC', $from, $to)
+                        ->description('VatFrance ATC Booking on '.$this->data['position'].' - '.$this->data['date'].' @ '.$this->data['time']);
+        
+        $calendarLinks = [
+            'ics' => $link->ics(),
+            'google' => $link->google(),
+        ];
+
+        Mail::to($this->user->email)->send(new NewBookingMail($this->user, $this->data, $calendarLinks));
     }
 }

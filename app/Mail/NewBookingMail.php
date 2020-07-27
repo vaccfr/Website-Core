@@ -13,16 +13,18 @@ class NewBookingMail extends Mailable
 
     protected $user;
     protected $data;
+    protected $calendarLinks;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user, $data)
+    public function __construct($user, $data, $calendarLinks)
     {
         $this->user = $user;
         $this->data = $data;
+        $this->calendarLinks = $calendarLinks;
     }
 
     /**
@@ -35,6 +37,7 @@ class NewBookingMail extends Mailable
         return $this->markdown('Mail/NewBookingEmail', [
             'user' => $this->user,
             'data' => $this->data,
+            'calendarLinks' => $this->calendarLinks,
         ]);
     }
 }
