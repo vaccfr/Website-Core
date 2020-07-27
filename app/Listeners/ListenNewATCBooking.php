@@ -46,6 +46,11 @@ class ListenNewATCBooking
             ];
         }
 
-        Mail::to($event->user->email)->send(new NewBookingMail($event->user, $event->data, $calendarLinks));
+        $useremail = $event->user->email;
+        if (!is_null($event->user->custom_email)) {
+            $useremail = $event->user->custom_email;
+        }
+
+        Mail::to($useremail)->send(new NewBookingMail($event->user, $event->data, $calendarLinks));
     }
 }
