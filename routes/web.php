@@ -88,6 +88,9 @@ Route::group([
                 Route::post('/edit/details', 'Staff\AdminController@editUserFormDetails')->name('app.staff.admin.edit.details');
                 Route::post('/edit/atcmentor', 'Staff\AdminController@editUserAtcMentor')->name('app.staff.admin.edit.atcmentor');
                 Route::post('/edit/staffstatus', 'Staff\AdminController@editUserFormStaff')->name('app.staff.admin.edit.staffstatus');
+                Route::post('/atcadmin/approval', 'Staff\AdminController@approveSpecialPosition')->name('app.staff.atcadmin.approval');
+                Route::post('/atcadmin/delsolo', 'Staff\AdminController@delSolo')->name('app.staff.atcadmin.delsolo');
+                Route::post('/atcadmin/delapplication', 'Staff\AdminController@delApplication')->name('app.staff.atcadmin.delapplication');
             });
             Route::group(['prefix' => '/atc', 'middleware' => 'ATCMENTOR'], function() {
                 Route::get('/all', 'Staff\ATCMentorController@allview')->name('app.staff.atc.all');

@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Staff;
 use App\Models\ATC\ATCRosterMember;
+use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Booking;
 use App\Models\ATC\Mentor;
+use App\Models\ATC\MentoringRequest;
+use App\Models\ATC\SoloApproval;
 use App\Models\Users\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -255,6 +258,110 @@ class AdminController extends Controller
 
     public function atcAdmin()
     {
-        return view('app.staff.atc_admin');
+        $roster = ATCRosterMember::get();
+        $soloApproved = SoloApproval::orderBy('end_date', 'ASC')
+        ->with('user')
+        ->with('mentor.user')
+        ->with('station')
+        ->get();
+        $applications = MentoringRequest::orderBy('created_at', 'DESC')
+        ->with('user')
+        ->with('mentor')
+        ->with(['mentor.user' => function($query) {
+            $query->select('id', 'vatsim_id', 'fname', 'lname');
+        }])
+        ->get();
+        return view('app.staff.atc_admin', [
+            'rosterCount' => count($roster),
+            'approvedRosterCount' => count($roster->where('approved_flag', true)),
+            'roster' => $roster,
+            'soloApproved' => $soloApproved,
+            'apps' => $applications,
+        ]);
+    }
+
+    public function approveSpecialPosition(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'position' => ['required'],
+            'userid' => ['required'],
+        ]);
+
+        $approvals = [
+            'lfpg_twr',
+            'lfpg_app',
+            'lfmn_twr',
+            'lfmn_app',
+        ];
+
+        if ($validator->fails() or !in_array($request->get('position'), $approvals)) {
+            return redirect()->back()->with('pop-error', 'Error occured.');
+        }
+
+        switch ($request->get('position')) {
+            case 'lfpg_twr':
+                $user = ATCRosterMember::where('id', $request->get('userid'))->firstOrFail();
+                $user->appr_lfpg_twr = !$user->appr_lfpg_twr;
+                $user->save();
+                break;
+            
+            case 'lfpg_app':
+                $user = ATCRosterMember::where('id', $request->get('userid'))->firstOrFail();
+                $user->appr_lfpg_app = !$user->appr_lfpg_app;
+                $user->save();
+                break;
+            
+            case 'lfmn_twr':
+                $user = ATCRosterMember::where('id', $request->get('userid'))->firstOrFail();
+                $user->appr_lfmn_twr = !$user->appr_lfmn_twr;
+                $user->save();
+                break;
+            
+            case 'lfmn_app':
+                $user = ATCRosterMember::where('id', $request->get('userid'))->firstOrFail();
+                $user->appr_lfmn_app = !$user->appr_lfmn_app;
+                $user->save();
+                break;
+            
+            default:
+                return redirect()->back()->with('pop-error', 'Error occured.');
+                break;
+        }
+
+        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', 'Modified ATC Approval for '.$user->fname);
+    }
+
+    public function delSolo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'soloid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $soloSession = SoloApproval::where('id', $request->get('soloid'))->delete();
+
+        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', 'Solo validation deleted');
+    }
+
+    public function delApplication(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'appid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', 'Error occured');
+        }
+
+        $request = MentoringRequest::where('id', $request->get('appid'))->firstOrFail();
+        $stuId = $request->student_id;
+        $request->delete();
+        $student = ATCStudent::where('id', $stuId)->firstOrFail();
+        $student->delete();
+
+        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', 'Mentoring requested deleted');
     }
 }
