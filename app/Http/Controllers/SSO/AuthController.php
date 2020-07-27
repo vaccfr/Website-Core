@@ -9,6 +9,7 @@ use App\Models\Admin\Staff;
 use App\Models\ATC\ATCRosterMember;
 use App\Models\SSO\SSOToken;
 use App\Models\Users\User;
+use App\Models\Users\UserEmailPreference;
 use App\Models\Users\UserSetting;
 use App\Models\Vatsim\UserAtcSession;
 use App\Models\Vatsim\UserFlight;
@@ -140,6 +141,13 @@ class AuthController extends Controller
             'id' => $userid,
             'lang' => app()->getLocale(),
         ]);
+
+        $pref = UserEmailPreference::where('id', $userid)->first();
+        if (is_null($pref)) {
+            UserEmailPreference::create([
+                'id' => $userid
+            ]);
+        }
 
         SSOToken::updateOrCreate(['vatsim_id' => $response->data->cid], [
             'id' => $userid,

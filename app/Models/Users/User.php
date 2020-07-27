@@ -159,4 +159,10 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function emailPreferences()
+    {
+        $pref = UserEmailPreference::where('id', $this->id)->first();
+        return $pref;
+    }
 }

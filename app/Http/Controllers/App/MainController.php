@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\Users\User;
+use App\Models\Users\UserEmailPreference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -111,6 +112,26 @@ class MainController extends Controller
         }
 
         return redirect()->route('app.user.settings', app()->getLocale())->with('toast-success', trans('app/alerts.settings_edited'));
+    }
+
+    public function userEmailPrefEdit(Request $request)
+    {
+        $switch = [
+            "on" => true,
+            null => false,
+        ];
+        $currentUser = UserEmailPreference::where('id', auth()->user()->id)->first();
+        if (!is_null($currentUser)) {
+            $currentUser->event_emails = $switch[$request->get('eventemail')];
+            $currentUser->atc_booking_emails = $switch[$request->get('atcbookingemail')];
+            $currentUser->atc_mentoring_emails = $switch[$request->get('atcmentoring')];
+            $currentUser->website_update_emails = $switch[$request->get('websiteupdates')];
+            $currentUser->news_emails = $switch[$request->get('newsemail')];
+            $currentUser->save();
+            return redirect()->route('app.user.settings', app()->getLocale())->with('toast-success', trans('app/alerts.settings_edited'));
+        } else {
+            return redirect()->back()->with('toast-error', 'Error occured');
+        }
     }
 
     public function staffOrg()

@@ -52,6 +52,7 @@ Route::group([
 
         Route::get('/user/settings', 'App\MainController@usersettings')->name('app.user.settings');
         Route::post('/user/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');
+        Route::post('/user/settings/editemail', 'App\MainController@userEmailPrefEdit')->name('app.user.settings.editemail');
 
         // ATC Routes
         Route::group([

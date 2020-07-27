@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-4">
       <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title">Edit Your Details</h3>
@@ -103,6 +103,56 @@
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="hide-details-switch" name="hidedetails" @if (Auth::user()->hiddenDetails() == true) checked @endif>
                 <label class="custom-control-label" for="hide-details-switch">Hide your personal details from rosters</label>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <input type="hidden" name="userid" value="{{ Auth::user()->id }}">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Edit Your Email Preferences</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form role="form" name="usereditform" id="usereditform" action="{{ route('app.user.settings.editemail', app()->getLocale()) }}" method="POST">
+          @csrf
+          <div class="card-body">
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="eventemail" name="eventemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->event_emails == true) checked @endif>
+                <label class="custom-control-label" for="eventemail">Receive vACC Event emails</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="atcbookingemail" name="atcbookingemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->atc_booking_emails == true) checked @endif>
+                <label class="custom-control-label" for="atcbookingemail">Receive your ATC Booking emails</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="atcmentoring" name="atcmentoring" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->atc_mentoring_emails == true) checked @endif>
+                <label class="custom-control-label" for="atcmentoring">Receive your ATC Mentoring emails</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="websiteupdates" name="websiteupdates" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->website_update_emails == true) checked @endif>
+                <label class="custom-control-label" for="websiteupdates">Receive Website Update emails</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="newsemail" name="newsemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->news_emails == true) checked @endif>
+                <label class="custom-control-label" for="newsemail">Receive vACC News emails</label>
               </div>
             </div>
           </div>
