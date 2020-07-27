@@ -10,8 +10,6 @@ A new ATC booking was registered on your account.
 You can view and edit your bookings on <a href="{{ route('app.atc.mybookings', 'gb') }}" target="_blank" rel="noopener noreferrer">your ATC bookings page</a>.
 <br>
 
-<a href="{{ $calendarLinks['ics'] }}" target="_blank" rel="noopener">Add to calendar</a>
-
 Thanks,<br>
 {{ config('app.name') }} Staff team
 <br>
