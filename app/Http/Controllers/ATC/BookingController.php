@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ATC;
 
+use App\Events\EventDeleteATCBooking;
 use App\Events\EventNewATCBooking;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
@@ -107,9 +108,24 @@ class BookingController extends Controller
 
     public function validateDelete(Request $request)
     {
-        Booking::where('vatsim_id', auth()->user()->vatsim_id)
-        ->where('id', $request->Local_ID)
-        ->delete();
+        $booking = Booking::where('vatsim_id', auth()->user()->vatsim_id)->where('id', $request->Local_ID)->first();
+        if (!is_null($booking)) {
+            $dataToSend = [
+                'position' => $booking->position,
+                'date' => $booking->date,
+                'time' => $booking->time,
+                'start_time' => $booking->start_time,
+                'end_time' => $booking->end_time,
+            ];
+            $booking->delete();
+            try {
+                if ((new Utilities)->checkEmailPreference(auth()->user()->id, 'atc_booking') == true) {
+                    event(new EventDeleteATCBooking(Auth::user(), $dataToSend));
+                }
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+        }
 
         return redirect()->route('app.atc.mybookings', app()->getLocale())->with('toast-success', trans('app/alerts.success_del'));
     }

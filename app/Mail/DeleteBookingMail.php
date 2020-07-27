@@ -7,24 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewBookingMail extends Mailable
+class DeleteBookingMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     protected $user;
     protected $data;
-    protected $calendarLinks;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user, $data, $calendarLinks)
+    public function __construct($user, $data)
     {
         $this->user = $user;
         $this->data = $data;
-        $this->calendarLinks = $calendarLinks;
     }
 
     /**
@@ -34,11 +32,10 @@ class NewBookingMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('Mail/NewBookingEmail', [
+        return $this->markdown('Mail/DeleteBookingEmail', [
             'user' => $this->user,
             'data' => $this->data,
-            'calendarLinks' => $this->calendarLinks,
         ])
-        ->subject('Added ATC Booking');
+        ->subject('Deleted ATC Booking');
     }
 }
