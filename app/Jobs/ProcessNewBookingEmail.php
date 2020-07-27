@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
-use Spatie\CalendarLinks\Link;
 
 class ProcessNewBookingEmail implements ShouldQueue
 {
@@ -40,7 +39,7 @@ class ProcessNewBookingEmail implements ShouldQueue
         try {
             $from = DateTime::createFromFormat('d.m.Y H:i', $this->data['date']." ".$this->data['start_time']);
             $to = DateTime::createFromFormat('d.m.Y H:i', $this->data['date']." ".$this->data['end_time']);
-            $link = Link::create($this->data['position'].' - VatFrance ATC', $from, $to)
+            $link = \Spatie\CalendarLinks\Link::create($this->data['position'].' - VatFrance ATC', $from, $to)
                             ->description('VatFrance ATC Booking on '.$this->data['position'].' - '.$this->data['date'].' @ '.$this->data['time']);
             
             $calendarLinks = [
