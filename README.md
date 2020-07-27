@@ -1,4 +1,4 @@
-<p align="center"><img src="https://new.vatfrance.org/media/img/logo_large.png" width="400"></p>
+<p align="center"><img src="https://new.vatfrance.org/media/img/logo_large.png" width="200"></p>
 
 <p align="center">Official repository of the new VatFrance Website rewrite<br>
 <a href="https://new.vatfrance.org/fr" target="_blank">https://new.vatfrance.org/fr</a>
