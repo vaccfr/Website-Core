@@ -14,10 +14,12 @@ Thanks,<br>
 {{ config('app.name') }} Staff team
 <br>
 <br>
+@if (!is_null($calendarLinks['ics']))
 <div align="center">
   <a href="{{ $calendarLinks['ics'] }}" class="button button-primary" target="_blank" rel="noopener">Add to calendar</a>
   <a href="{{ $calendarLinks['google'] }}" class="button button-primary" target="_blank" rel="noopener">Add to Google calendar</a>
 </div>
+@endif
 
 @component('mail::subcopy')
   This email was generated automatically.
