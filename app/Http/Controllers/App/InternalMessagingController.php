@@ -111,13 +111,17 @@ class InternalMessagingController extends Controller
         ->with('sender')
         ->with('recipient')
         ->first();
+        if (!is_null($msg)) {
+
+        }
+        if (is_null($msg)) {
+            return redirect()->route('app.inmsg.inbox', app()->getLocale())->with('pop-error', 'Your message could not be found');
+        }
         $concerned = [
             $msg->recipient_id,
             $msg->sender_id,
         ];
-        if (is_null($msg)) {
-            return redirect()->route('app.inmsg.inbox', app()->getLocale())->with('pop-error', 'Your message could not be found');
-        } elseif (!in_array(auth()->user()->id, $concerned)) {
+        if (!in_array(auth()->user()->id, $concerned)) {
             return redirect()->back();
         }
         if ($msg->read == false) {
