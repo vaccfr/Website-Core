@@ -21,7 +21,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-          <a href="#" class="btn btn-primary btn-block mb-3">Compose</a>
+          <a href="#" class="btn btn-primary btn-block mb-3" data-target="#send_message" data-toggle="modal">Compose</a>
 
           <div class="card">
             <div class="card-header">
@@ -60,6 +60,44 @@
               </ul>
             </div>
             <!-- /.card-body -->
+          </div>
+        </div>
+        <div class="modal fade" id="send_message">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Message Draft</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form action="{{ route('app.inmsg.send', app()->getLocale()) }}" method="post">
+                @csrf
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="msgrecipient">Recipient</label>
+                    <select class="form-control" name="msgrecipient" id="msgrecipient" required>
+                      <option value="" disabled selected>Recipient</option>
+                      @foreach ($recipientList as $r)
+                        <option value="{{ $r['value'] }}">{{ $r['verbose'] }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="msgsubject">Subject</label>
+                    <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="Subject" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="msgbody">Message</label>
+                    <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="Your message" required></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Send message</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
         <div class="col-md-9">

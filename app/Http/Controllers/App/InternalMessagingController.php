@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Staff;
+use App\Models\ATC\ATCStudent;
+use App\Models\ATC\Mentor;
 use App\Models\General\InternalMessage;
 use App\Models\Users\User;
 use Godruoyi\Snowflake\Snowflake;
@@ -11,6 +14,33 @@ use Illuminate\Support\Facades\Validator;
 
 class InternalMessagingController extends Controller
 {
+    protected function recipientsListMaker()
+    {
+        $recipientList = [];
+        $student = ATCStudent::where('id', auth()->user()->id)->first();
+        if (!is_null($student)) {
+            if (!is_null($student->mentor_id)) {
+                $mentor = Mentor::where('id', $student->mentor_id)->first();
+                array_push($recipientList, [
+                    'verbose' => 'Mentor: '.$mentor->user['fname'].' '.$mentor->user['lname'],
+                    'value' => $mentor->id,
+                ]);
+            }
+        }
+        $allStaff = Staff::get();
+        foreach ($allStaff as $s) {
+            $title = $s['title'];
+            if (is_null($title)) {
+                $title = "N/A";
+            }
+            array_push($recipientList, [
+                'verbose' => 'Staff: ' . $s->user['fname'] . ' ' . $s->user['lname'] . ' (' . $title . ')',
+                'value' => $s->id,
+            ]);
+        }
+        return $recipientList;
+    }
+
     public function inbox()
     {
         $inbox = InternalMessage::orderBy('created_at', 'DESC')
@@ -21,6 +51,7 @@ class InternalMessagingController extends Controller
         ->where('recipient_trashed', false)
         ->get();
         return view('app.messaging.inbox', [
+            'recipientList' => $this->recipientsListMaker(),
             'header' => 'Messages',
             'display' => $inbox,
         ]);
@@ -36,6 +67,7 @@ class InternalMessagingController extends Controller
         ->where('recipient_trashed', true)
         ->get();
         return view('app.messaging.inbox', [
+            'recipientList' => $this->recipientsListMaker(),
             'header' => 'Trash',
             'display' => $inbox,
         ]);
@@ -57,6 +89,7 @@ class InternalMessagingController extends Controller
             $msg->save();
         }
         return view('app.messaging.read', [
+            'recipientList' => $this->recipientsListMaker(),
             'msg' => $msg,
         ]);
     }
