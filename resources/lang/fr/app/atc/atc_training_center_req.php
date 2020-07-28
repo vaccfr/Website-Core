@@ -13,7 +13,7 @@ return [
 
   // Right side
   'form_title' => 'Demande de Mentoring',
-  'choose_pos' => 'Choisissez une plateforme',
+  'choose_pos' => 'Choisissez une plateforme (sous réserve de disponibilité)',
   'select' => 'Plateforme',
   'your_motiv' => 'Motivation',
   'strt_typ' => 'Décrivez votre motivation ici',

@@ -17,7 +17,7 @@ return [
 
   // Right side
   'form_title' => 'Request ATC Mentoring',
-  'choose_pos' => 'Choose your position',
+  'choose_pos' => 'Choose your position (may be modified based on availabilities)',
   'select' => 'Teaching Platform',
   'your_motiv' => 'Your Motivation',
   'strt_typ' => 'Type here',
