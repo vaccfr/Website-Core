@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-info elevation-4">
   <!-- Brand Logo -->
   <a href="{{ route('app.index', app()->getLocale()) }}" class="brand-link">
     <img src="{{ asset('media/img/logo_medium.png') }}"

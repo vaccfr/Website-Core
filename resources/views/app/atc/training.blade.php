@@ -23,10 +23,10 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>23</h3>
+          <h3>{{ $sessionsCount }}</h3>
 
           <p>{{__('app/atc/atc_training_center.ment_sessions')}}</p>
         </div>
@@ -35,22 +35,10 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2">
-      <div class="small-box bg-yellow">
+    <div class="col-md-3">
+      <div class="small-box bg-warning">
         <div class="inner">
-          <h3>25:34</h3>
-
-          <p>{{__('app/atc/atc_training_center.class_h')}}</p>
-        </div>
-        <div class="icon">
-          <i class="fas fa-clock"></i>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3>LFMN</h3>
+          <h3>{{ $trainingPlatform }}</h3>
 
           <p>{{__('app/atc/atc_training_center.teaching_p')}}</p>
         </div>
@@ -59,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <div class="small-box bg-info">
         <div class="inner">
           <h3>{{ $mentorObj->fname." ".$mentorObj->lname }}</h3>
@@ -71,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="card card-outline card-info">
         <div class="card-body">
           <div class="row">

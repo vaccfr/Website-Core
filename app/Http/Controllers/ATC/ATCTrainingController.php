@@ -9,6 +9,7 @@ use App\Models\ATC\ATCStudent;
 use App\Models\ATC\MentoringRequest;
 use App\Models\ATC\TrainingSession;
 use App\Models\Users\User;
+use Carbon\Carbon;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -34,6 +35,12 @@ class ATCTrainingController extends Controller
                 }])
                 ->get();
 
+                if (!is_null($existingRequest)) {
+                    $trainingPlatform = $existingRequest->icao;
+                } else {
+                    $trainingPlatform = "N/A";
+                }
+
                 $mentorObj = User::where('id', $activeStudent->mentor_id)->first();
 
                 return view('app.atc.training', [
@@ -43,6 +50,8 @@ class ATCTrainingController extends Controller
                     'sessions' => $sessions,
                     'positions' => $positions,
                     'mentorObj' => $mentorObj,
+                    'sessionsCount' => count($sessions),
+                    'trainingPlatform' => $trainingPlatform,
                 ]);
             } else {
                 $mRequest = MentoringRequest::where('student_id', auth()->user()->id)->first();
