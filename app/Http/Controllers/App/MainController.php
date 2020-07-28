@@ -55,6 +55,11 @@ class MainController extends Controller
 
     public function usersettings()
     {
+        $user = Auth::user();
+        if ($user->login_alert == true) {
+            $user->login_alert = false;
+            $user->save();
+        }
         $useremail = Auth::user()->email;
         if (!is_null(Auth::user()->custom_email)) {
             $useremail = Auth::user()->custom_email." (custom)";
@@ -127,6 +132,7 @@ class MainController extends Controller
             $currentUser->atc_mentoring_emails = $switch[$request->get('atcmentoring')];
             $currentUser->website_update_emails = $switch[$request->get('websiteupdates')];
             $currentUser->news_emails = $switch[$request->get('newsemail')];
+            $currentUser->internal_messaging_emails = $switch[$request->get('inmsgemail')];
             $currentUser->save();
             return redirect()->route('app.user.settings', app()->getLocale())->with('toast-success', trans('app/alerts.settings_edited'));
         } else {

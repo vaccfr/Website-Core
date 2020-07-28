@@ -20,6 +20,7 @@ class CreateUserEmailPreferencesTable extends Migration
             $table->boolean('atc_mentoring_emails')->default(true);
             $table->boolean('website_update_emails')->default(true);
             $table->boolean('news_emails')->default(true);
+            $table->boolean('internal_messaging_emails')->default(true);
             $table->timestamps();
         });
     }

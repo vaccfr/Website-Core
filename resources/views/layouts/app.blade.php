@@ -135,5 +135,21 @@
   </script>
 @endif
 @include('cookieConsent::index')
+
+@if (Auth::user()->login_alert == true)
+<script lang="javascript">
+  Swal.fire({
+    title: 'Bienvenue sur le nouveau site!',
+    text: 'Pour votre première connection, veuillez jeter un coup d\'oeil à vos réglages utilisateur!',
+    showCancelButton: false,
+    showConfirmButton: true,
+    confirmButtonText: 'Voir mes réglages'
+  }).then((result) => {
+    if (result.value) {
+      window.location.href="{{ route('app.user.settings', app()->getLocale()) }}"
+    }
+  })
+</script>
+@endif
 </body>
 </html>

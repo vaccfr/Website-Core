@@ -127,12 +127,6 @@
           <div class="card-body">
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
-                <input type="checkbox" class="custom-control-input" id="eventemail" name="eventemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->event_emails == true) checked @endif>
-                <label class="custom-control-label" for="eventemail">Receive vACC Event emails</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="atcbookingemail" name="atcbookingemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->atc_booking_emails == true) checked @endif>
                 <label class="custom-control-label" for="atcbookingemail">Receive your ATC Booking emails</label>
               </div>
@@ -141,6 +135,18 @@
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="atcmentoring" name="atcmentoring" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->atc_mentoring_emails == true) checked @endif>
                 <label class="custom-control-label" for="atcmentoring">Receive your ATC Mentoring emails</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="inmsgemail" name="inmsgemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->internal_messaging_emails == true) checked @endif>
+                <label class="custom-control-label" for="inmsgemail">Receive notifications of new 'Pigeon Voyageur' messages</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="eventemail" name="eventemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->event_emails == true) checked @endif>
+                <label class="custom-control-label" for="eventemail">Receive vACC Event emails</label>
               </div>
             </div>
             <div class="form-group">
