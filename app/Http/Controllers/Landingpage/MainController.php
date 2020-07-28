@@ -46,7 +46,7 @@ class MainController extends Controller
     public function events()
     {
         // return view('landingpage.events');
-        return redirect()->back()->with('toast-info', 'This page is not yet available');
+        return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
     }
 
     public function contact()
@@ -56,7 +56,7 @@ class MainController extends Controller
 
     public function contactForm(Request $request)
     {
-        return redirect()->route('landingpage.home.contact', app()->getLocale())->with('pop-success', 'Your question was submitted successfully and a receipt was sent to your email. We will get back to you as soon as we can.');
+        return redirect()->route('landingpage.home.contact', app()->getLocale())->with('pop-success', trans('app/alerts.contact_success'));
     }
 
     public function reqatc()
@@ -83,7 +83,7 @@ class MainController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'An error occured. Make sure you filled all the fields properly.');
+            return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
         }
 
         ATCRequest::create([
@@ -103,7 +103,7 @@ class MainController extends Controller
             'message' => $request->get('message'),
         ]);
 
-        return redirect()->route('landingpage.home.reqatc', app()->getLocale())->with('pop-success', 'Your request was submitted successfully and a receipt was sent to your email. We will get back to you as soon as we can.');
+        return redirect()->route('landingpage.home.reqatc', app()->getLocale())->with('pop-success', trans('app/alerts.atcreq_success'));
     }
 
     public function policies()

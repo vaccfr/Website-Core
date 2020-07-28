@@ -136,7 +136,7 @@ class MainController extends Controller
             $currentUser->save();
             return redirect()->route('app.user.settings', app()->getLocale())->with('toast-success', trans('app/alerts.settings_edited'));
         } else {
-            return redirect()->back()->with('toast-error', 'Error occured');
+            return redirect()->back()->with('toast-error', trans('app/alerts.error_occured'));
         }
     }
 

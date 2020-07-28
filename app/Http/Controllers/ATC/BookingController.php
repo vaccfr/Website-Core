@@ -57,7 +57,7 @@ class BookingController extends Controller
         ]);
 
         if ($validatedData->fails()) {
-            return redirect()->back()->with('pop-error', 'Booking could not be placed. Please fill all required fields');
+            return redirect()->back()->with('pop-error', trans('app/alerts.booking_error_fields'));
         }
 
         Booking::create([

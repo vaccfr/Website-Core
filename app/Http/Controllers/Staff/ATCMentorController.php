@@ -114,7 +114,7 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Session could not be requested. Please fill all required fields');
+            return redirect()->back()->with('pop-error', trans('app/alerts.session_req_error'));
         }
 
         // dd(htmlspecialchars($request->get('sessiondate')));
@@ -135,7 +135,7 @@ class ATCMentorController extends Controller
             'mentor_comment' => htmlspecialchars($request->get('reqcomment')),
         ]);
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Mentoring session requested!');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', trans('app/alerts.sessions_req_succ'));
     }
 
     public function acceptSession(Request $request)
@@ -145,7 +145,7 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
@@ -153,7 +153,7 @@ class ATCMentorController extends Controller
         $session->accepted_by_mentor = true;
         $session->save();
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Session accepted');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', trans('app/alerts.session_accepted'));
     }
 
     public function cancelSession(Request $request)
@@ -163,13 +163,13 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
         $session->delete();
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Session cancelled');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', trans('app/alerts.session_cancelled'));
     }
 
     public function completeSession(Request $request)
@@ -179,7 +179,7 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
@@ -187,7 +187,7 @@ class ATCMentorController extends Controller
         $session->status = "Completed, awaiting report";
         $session->save();
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Session completed');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', trans('app/alerts.session_completed'));
     }
 
     public function writeSessionReport(Request $request)
@@ -198,7 +198,7 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Incorrect arguments');
+            return redirect()->back()->with('pop-error', trans('app/alerts.incorr_args'));
         }
 
         $dateNow = Carbon::now()->format('d.m.Y - H:i');
@@ -208,7 +208,7 @@ class ATCMentorController extends Controller
         $session->status = "Completed";
         $session->save();
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Report added');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', trans('app/alerts.report_added'));
     }
 
     public function editProgress(Request $request)
@@ -219,14 +219,14 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $atcstudent = ATCStudent::where('id', $request->get('userid'))->firstOrFail();
         $atcstudent->progress = (int)$request->get('stuprogress');
         $atcstudent->save();
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', 'Progress edited');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', trans('app/alerts.progr_edited'));
     }
 
     public function makeSolo(Request $request)
@@ -239,7 +239,7 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails() or !in_array($request->get('length'), $this->soloLengths)) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $soloSession = SoloApproval::where('student_id', $request->get('userid'))
@@ -247,7 +247,7 @@ class ATCMentorController extends Controller
                         ->get();
         // dd(count($soloSession));
         if (!count($soloSession) == 0) {
-            return redirect()->back()->with('pop-error', 'There is already a mentoring session similar to this one. Cancel it before proceeding.');
+            return redirect()->back()->with('pop-error', trans('app/alerts.solo_exist_err'));
         }
         SoloApproval::create([
             'id' => (new Snowflake)->id(),
@@ -258,7 +258,7 @@ class ATCMentorController extends Controller
             'end_date' => Carbon::parse($request->get('startdate'))->addDays($request->get('length'))->format('d.m.Y'),
         ]);
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', 'Solo validation added on '.$request->get('selectpos'));
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', trans('app/alerts.solo_added', ['POSITION' => $request->get('selectpos')]));
     }
 
     public function delSolo(Request $request)
@@ -268,12 +268,12 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $soloSession = SoloApproval::where('id', $request->get('soloid'))->delete();
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', 'Solo validation deleted');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', trans('app/alerts.solo_deleted'));
     }
 
     public function terminate(Request $request)
@@ -283,7 +283,7 @@ class ATCMentorController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $mentoring = MentoringRequest::where('student_id', $request->get('userid'))->firstOrFail();
@@ -298,6 +298,6 @@ class ATCMentorController extends Controller
         $mentoring->mentor_id = null;
         $mentoring->save();
 
-        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', 'Mentoring terminated');
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', trans('app/alerts.mentoring_terminated'));
     }
 }

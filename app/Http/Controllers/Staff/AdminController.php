@@ -311,7 +311,7 @@ class AdminController extends Controller
         ];
 
         if ($validator->fails() or !in_array($request->get('position'), $approvals)) {
-            return redirect()->back()->with('pop-error', 'Error occured.');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         switch ($request->get('position')) {
@@ -340,11 +340,11 @@ class AdminController extends Controller
                 break;
             
             default:
-                return redirect()->back()->with('pop-error', 'Error occured.');
+                return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
                 break;
         }
 
-        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', 'Modified ATC Approval for '.$user->fname);
+        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', trans('app/alerts.mod_atcappr_success', ['FNAME' => $user->fname]));
     }
 
     public function delSolo(Request $request)
@@ -354,12 +354,12 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $soloSession = SoloApproval::where('id', $request->get('soloid'))->delete();
 
-        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', 'Solo validation deleted');
+        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', trans('app/alerts.solo_deleted'));
     }
 
     public function delApplication(Request $request)
@@ -369,7 +369,7 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $request = MentoringRequest::where('id', $request->get('appid'))->firstOrFail();
@@ -378,6 +378,6 @@ class AdminController extends Controller
         $student = ATCStudent::where('id', $stuId)->firstOrFail();
         $student->delete();
 
-        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', 'Mentoring requested deleted');
+        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', trans('app/alerts.mentoring_deleted'));
     }
 }

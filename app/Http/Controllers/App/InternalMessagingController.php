@@ -115,7 +115,7 @@ class InternalMessagingController extends Controller
 
         }
         if (is_null($msg)) {
-            return redirect()->route('app.inmsg.inbox', app()->getLocale())->with('pop-error', 'Your message could not be found');
+            return redirect()->route('app.inmsg.inbox', app()->getLocale())->with('pop-error', trans('app/alerts.msg_not_found'));
         }
         $concerned = [
             $msg->recipient_id,
@@ -144,7 +144,7 @@ class InternalMessagingController extends Controller
 
         $recipient = User::where('id', $request->get('msgrecipient'))->first();
         if ($validator->fails() || is_null($recipient)) {
-            return redirect()->back()->with('pop-error', 'An error occurred and the message could not be sent');
+            return redirect()->back()->with('pop-error', trans('app/alerts.err_not_sent'));
         }
 
         $formattedBody = nl2br($request->get('msgbody'));
@@ -167,7 +167,7 @@ class InternalMessagingController extends Controller
             ]));
         }
 
-        return redirect()->back()->with('toast-success', 'Your message was sent');
+        return redirect()->back()->with('toast-success', trans('app/alerts.msg_sent'));
     }
 
     public function sendReply(Request $request)
@@ -185,7 +185,7 @@ class InternalMessagingController extends Controller
 
         $recipient = User::where('id', $request->get('msgrecipient'))->first();
         if ($validator->fails() || is_null($recipient)) {
-            return redirect()->back()->with('pop-error', 'An error occurred and the reply could not be sent');
+            return redirect()->back()->with('pop-error', trans('app/alerts.err_reply_not_sent'));
         }
 
         $formattedBody = nl2br($request->get('msgbody'));
@@ -213,7 +213,7 @@ class InternalMessagingController extends Controller
             ]));
         }
 
-        return redirect()->back()->with('toast-success', 'Your reply was sent');
+        return redirect()->back()->with('toast-success', trans('app/alerts.reply_sent'));
     }
 
     public function archiveMessage(Request $request)
@@ -223,11 +223,11 @@ class InternalMessagingController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'An error occurred and the message could not be archived');
+            return redirect()->back()->with('pop-error', trans('app/alerts.err_archive'));
         } else {
             $msg = InternalMessage::where('id', $request->get('msgid'))->first();
             if (is_null($msg)) {
-                return redirect()->back()->with('pop-error', 'An error occurred and the message could not be archived');
+                return redirect()->back()->with('pop-error', trans('app/alerts.err_archive'));
             } elseif (!$msg->recipient_id == auth()->user()->id) {
                 return redirect()->back();
             }
@@ -236,7 +236,7 @@ class InternalMessagingController extends Controller
         $msg->recipient_archived = true;
         $msg->save();
 
-        return redirect()->back()->with('toast-success', 'Message archived');
+        return redirect()->back()->with('toast-success', trans('app/alerts.msg_archived'));
     }
 
     public function deleteMessage(Request $request)
@@ -246,11 +246,11 @@ class InternalMessagingController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'An error occurred and the message could not be deleted');
+            return redirect()->back()->with('pop-error', trans('app/alerts.err_del'));
         } else {
             $msg = InternalMessage::where('id', $request->get('msgid'))->first();
             if (is_null($msg)) {
-                return redirect()->back()->with('pop-error', 'An error occurred and the message could not be deleted');
+                return redirect()->back()->with('pop-error', trans('app/alerts.err_del'));
             } elseif (!$msg->recipient_id == auth()->user()->id) {
                 return redirect()->back();
             }
@@ -259,6 +259,6 @@ class InternalMessagingController extends Controller
         $msg->recipient_trashed = true;
         $msg->save();
 
-        return redirect()->back()->with('toast-success', 'Message deleted');
+        return redirect()->back()->with('toast-success', trans('app/alerts.msg_del'));
     }
 }

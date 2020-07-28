@@ -121,7 +121,7 @@ class ATCTrainingController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Session could not be requested. Please fill all required fields');
+            return redirect()->back()->with('pop-error', trans('app/alerts.session_req_error'));
         }
 
         // dd(htmlspecialchars($request->get('sessiondate')));
@@ -142,7 +142,7 @@ class ATCTrainingController extends Controller
             'student_comment' => htmlspecialchars($request->get('reqcomment')),
         ]);
 
-        return redirect()->route('app.atc.training', app()->getLocale())->with('toast-success', 'Mentoring session requested!');
+        return redirect()->route('app.atc.training', app()->getLocale())->with('toast-success', trans('app/alerts.session_req_succ'));
     }
 
     public function acceptSession(Request $request)
@@ -152,7 +152,7 @@ class ATCTrainingController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
@@ -160,7 +160,7 @@ class ATCTrainingController extends Controller
         $session->accepted_by_student = true;
         $session->save();
 
-        return redirect()->route('app.atc.training', app()->getLocale())->with('toast-success', 'Session accepted');
+        return redirect()->route('app.atc.training', app()->getLocale())->with('toast-success', trans('app/alerts.session_accepted'));
     }
 
     public function cancelSession(Request $request)
@@ -170,12 +170,12 @@ class ATCTrainingController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('pop-error', 'Error occured');
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
         }
 
         $session = TrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
         $session->delete();
 
-        return redirect()->route('app.atc.training', app()->getLocale())->with('toast-success', 'Session cancelled');
+        return redirect()->route('app.atc.training', app()->getLocale())->with('toast-success', trans('app/alerts.session_cancelled'));
     }
 }
