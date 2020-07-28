@@ -10,7 +10,7 @@ class Staff extends Model
     protected $table = "staff";
 
     protected $fillable = [
-        'id', 'vatsim_id', 'staff_level', 'admin', 'atc_dpt', 'pilot_dpt', 'executive', 'events',
+        'id', 'vatsim_id', 'staff_level', 'title', 'admin', 'atc_dpt', 'pilot_dpt', 'executive', 'events',
     ];
 
     // Relationships

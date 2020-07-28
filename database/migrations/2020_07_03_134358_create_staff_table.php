@@ -17,6 +17,7 @@ class CreateStaffTable extends Migration
             $table->bigInteger('id')->unique();
             $table->integer('vatsim_id');
             $table->integer('staff_level')->default(0);
+            $table->string('title')->nullable();
             $table->boolean('admin')->default(false);
             $table->boolean('atc_dpt')->default(false);
             $table->boolean('pilot_dpt')->default(false);

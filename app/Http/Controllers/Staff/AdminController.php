@@ -54,8 +54,15 @@ class AdminController extends Controller
             $currentMentorRank = $currentMentorRank->allowed_rank;
         }
 
+        if (Auth::user()->isAdmin() == true) {
+            $staffData = Staff::where('id', $user->id)->first();
+        } else {
+            $staffData = null;
+        }
+
         return view('app.staff.admin_edit', [
             'user' => $user,
+            'staff' => $staffData,
             'usertypes' => $utypes,
             'mentoring_ranks' => $ranks,
             'curr_mentor_rank' => $currentMentorRank,
@@ -249,6 +256,15 @@ class AdminController extends Controller
             default:
                 break;
         }
+
+        // Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+        //     'id' => $currentUser->id,
+        //     'title' => 
+        // ]);
+
+        $staff = Staff::where('id', $currentUser->id)->first();
+        $staff->title = $request->get('stafftitle');
+        $staff->save();
 
         return redirect()->route('app.staff.admin.edit', [
             'locale' => app()->getLocale(),

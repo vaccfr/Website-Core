@@ -171,7 +171,11 @@
                     <input type="checkbox" class="custom-control-input" id="exec-rights-switch" name="execswitch" @if ($user->isExecStaff() == true) checked @endif>
                     <label class="custom-control-label" for="exec-rights-switch">{{__('app/admin/useredit.make_exec')}}</label>
                   </div>
-                </div>               
+                </div>
+                <div class="form-group">
+                  <label for="stafftitle">Staff title</label>
+                  <input type="text" class="form-control" name="stafftitle" id="stafftitle" @if (!is_null($staff->title)) value="{{ $staff->title }}" @else placeholder="Staff title" @endif>
+                </div>             
                 @endif
               </div>
               <!-- /.card-body -->
