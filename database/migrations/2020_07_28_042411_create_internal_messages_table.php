@@ -19,8 +19,10 @@ class CreateInternalMessagesTable extends Migration
             $table->bigInteger('recipient_id');
             $table->string('subject')->default('(No subject)');
             $table->longText('body')->default('(No content found)');
-            $table->boolean('read');
-            $table->timestamp('read_at');
+            $table->boolean('read')->default(false);
+            $table->timestamp('read_at')->nullable();
+            $table->boolean('archived')->default(false);
+            $table->boolean('trashed')->default(false);
             $table->timestamps();
         });
     }

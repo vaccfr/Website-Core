@@ -50,9 +50,23 @@ Route::group([
 
         Route::get('/general/stafforg', 'App\MainController@staffOrg')->name('app.general.stafforg');
 
-        Route::get('/user/settings', 'App\MainController@usersettings')->name('app.user.settings');
-        Route::post('/user/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');
-        Route::post('/user/settings/editemail', 'App\MainController@userEmailPrefEdit')->name('app.user.settings.editemail');
+        Route::group(['prefix' => '/user'], function() {
+            Route::get('/settings', 'App\MainController@usersettings')->name('app.user.settings');
+            Route::post('/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');
+            Route::post('/settings/editemail', 'App\MainController@userEmailPrefEdit')->name('app.user.settings.editemail');
+        });
+
+        Route::group([
+            'prefix' => 'pigeon-voyageur',
+            'middleware' => 'CanSendMail',
+        ], function() {
+            Route::get('/inbox', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox');
+            Route::get('/inbox/read', 'App\InternalMessagingController@read')->name('app.inmsg.inbox.read');
+            Route::get('/inbox/mentoring', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox.mentoring');
+            Route::get('/inbox/sent', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox.sent');
+            Route::get('/inbox/archive', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox.archive');
+            Route::get('/inbox/trash', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox.trash');
+        });
 
         // ATC Routes
         Route::group([

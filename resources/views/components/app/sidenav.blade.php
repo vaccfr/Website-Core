@@ -22,6 +22,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('app.inmsg.inbox', app()->getLocale()) }}" class="nav-link @if (str_contains(url()->current(), '/app/pigeon-voyageur')) active @endif">
+            <i class="nav-icon fa fa-envelope-open"></i>
+            <p>{!!__('app/app_menus.mail')!!}</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fa fa-comments"></i>
             <p>{{__('app/app_menus.forum')}}</p>
