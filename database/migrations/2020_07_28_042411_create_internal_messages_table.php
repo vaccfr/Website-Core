@@ -21,8 +21,10 @@ class CreateInternalMessagesTable extends Migration
             $table->longText('body')->default('(No content found)');
             $table->boolean('read')->default(false);
             $table->timestamp('read_at')->nullable();
-            $table->boolean('archived')->default(false);
-            $table->boolean('trashed')->default(false);
+            $table->boolean('recipient_archived')->default(false);
+            $table->boolean('sender_archived')->default(false);
+            $table->boolean('recipient_trashed')->default(false);
+            $table->boolean('sender_trashed')->default(false);
             $table->timestamps();
         });
     }

@@ -308,6 +308,7 @@
             </div>
             <div class="card-footer">
               <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#book-session-{{ $s['user']['vatsim_id'] }}">Book Session</button>
+              <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#send-message-{{ $s['user']['vatsim_id'] }}">Send Message</button>
               <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-progress-{{ $s['user']['vatsim_id']}}">Edit Progress</button>
               <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-solo{{ $s['user']['vatsim_id']}}">Solo Validation</button>
               <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#terminate-{{ $s['user']['vatsim_id']}}">Terminate Mentoring</button>
@@ -348,6 +349,37 @@
                   <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
+              </div>
+              {{-- Send private message  --}}
+              <div class="modal fade" id="send-message-{{ $s['user']['vatsim_id'] }}">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Send message to {{ $s['user']['fname'] }} {{ $s['user']['lname'] }}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="{{ route('app.inmsg.send', app()->getLocale()) }}" method="post">
+                      @csrf
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="msgsubject">Subject</label>
+                          <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                          <label for="msgbody">Message</label>
+                          <textarea class="form-control" rows="5" name="msgbody" id="msgbody" placeholder="Your message"></textarea>
+                        </div>
+                      </div>
+                      <input type="hidden" name="msgrecipient" value="{{ $s['user']['id'] }}">
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Send message</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
               {{-- Approve Solo  --}}
               <div class="modal fade" id="edit-solo{{ $s['user']['vatsim_id']}}">

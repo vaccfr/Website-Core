@@ -75,8 +75,13 @@
       <div class="card card-outline card-info">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-6">
-              <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#request_session">{{__('app/atc/atc_training_center.req_session')}}</button>
+            <div class="col-md-12">
+              <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#request_session">
+                {{__('app/atc/atc_training_center.req_session')}}
+              </button>
+              <button type="button" class="btn btn-flat btn-info float-right" data-toggle="modal" data-target="#send_message">
+                Send Message to {{ $mentorObj->fname }}
+              </button>
             </div>
           </div>
         </div>
@@ -139,6 +144,36 @@
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-success">Send request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="send_message">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Send message to {{ $mentorObj->fname." ".$mentorObj->lname }}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('app.inmsg.send', app()->getLocale()) }}" method="post">
+          @csrf
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="msgsubject">Subject</label>
+              <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <label for="msgbody">Message</label>
+              <textarea class="form-control" rows="5" name="msgbody" id="msgbody" placeholder="Your message"></textarea>
+            </div>
+          </div>
+          <input type="hidden" name="msgrecipient" value="{{ $mentorObj->id }}">
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Send message</button>
           </div>
         </form>
       </div>

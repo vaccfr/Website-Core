@@ -26,12 +26,15 @@ Inbox | Message from Peter
   </div>
   <div class="card-footer">
     <div class="float-right">
+      <button type="button" class="btn btn-default"><i class="fas fa-archive"></i> Archive</button>
       <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>
       {{-- <button type="button" class="btn btn-default"><i class="fas fa-exclamation-triangle"></i> Report</button> --}}
     </div>
-      <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
-      <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>
-      <button type="button" class="btn btn-default"><i class="fas fa-archive"></i> Archive</button>
+      <form action="{{ route('app.inmsg.delete', app()->getLocale()) }}" method="post">
+        @csrf
+        <input type="hidden" name="msgid" value="{{ $msg['id'] }}">
+        <button type="submit" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
+      </form>
   </div>
 </div>
 @endsection

@@ -25,6 +25,9 @@
           <a href="{{ route('app.inmsg.inbox', app()->getLocale()) }}" class="nav-link @if (str_contains(url()->current(), '/app/pigeon-voyageur')) active @endif">
             <i class="nav-icon fa fa-envelope-open"></i>
             <p>{!!__('app/app_menus.mail')!!}</p>
+            @if (!session()->get('inbox_count') == 0)
+            <span class="badge bg-warning float-right">{{ session()->get('inbox_count') }}</span>
+            @endif
           </a>
         </li>
         <li class="nav-item">

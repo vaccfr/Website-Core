@@ -5,13 +5,13 @@ Pigeon Voyageur | Inbox
 @endsection
 
 @section('header')
-Inbox
+Inbox - {{ $header }}
 @endsection
 
 @section('body')
 <div class="card card-primary card-outline">
   <div class="card-header">
-      <h3 class="card-title">Inbox</h3>
+      <h3 class="card-title">{{ $header }}</h3>
 
       <div class="card-tools">
         <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
@@ -26,7 +26,7 @@ Inbox
               @forelse ($display as $d)
               <tr>
                 <td class="mailbox-name">
-                  <form id="msg_id_{{ $d['id'] }}" action="{{ route('app.inmsg.inbox.read', ['locale' => app()->getLocale()]) }}" method="get">
+                  <form id="msg_id_{{ $d['id'] }}" action="{{ route('app.inmsg.read', ['locale' => app()->getLocale()]) }}" method="get">
                     <input type="hidden" value="{{ $d['id'] }}" name="msgid">
                     <a href="javascript:$('#msg_id_{{ $d['id'] }}').submit();">
                       {{ $d['sender']['fname'] }} {{ $d['sender']['lname'] }}

@@ -32,28 +32,28 @@
                 <li class="nav-item">
                   <a href="{{ route('app.inmsg.inbox', app()->getLocale()) }}" class="nav-link">
                     <i class="fas fa-inbox"></i> Inbox
-                    @if (!$inbox_count == 0)
-                    <span class="badge bg-warning float-right">{{ $inbox_count }}</span>
+                    @if (!session()->get('inbox_count') == 0)
+                    <span class="badge bg-warning float-right">{{ session()->get('inbox_count') }}</span>
                     @endif
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.inbox.mentoring', app()->getLocale()) }}" class="nav-link">
+                  <a href="{{ route('app.inmsg.mentoring', app()->getLocale()) }}" class="nav-link">
                     <i class="fa fa-graduation-cap"></i> Mentoring
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.inbox.sent', app()->getLocale()) }}" class="nav-link">
+                  <a href="{{ route('app.inmsg.sent', app()->getLocale()) }}" class="nav-link">
                     <i class="far fa-envelope"></i> Sent
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.inbox.archive', app()->getLocale()) }}" class="nav-link">
+                  <a href="{{ route('app.inmsg.archive', app()->getLocale()) }}" class="nav-link">
                     <i class="fa fa-archive"></i> Archived
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.inbox.trash', app()->getLocale()) }}" class="nav-link">
+                  <a href="{{ route('app.inmsg.trash', app()->getLocale()) }}" class="nav-link">
                     <i class="far fa-trash-alt"></i> Trash
                   </a>
                 </li>

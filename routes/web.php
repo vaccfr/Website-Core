@@ -26,7 +26,6 @@ Route::get('/', function () {
 Route::group([
     'middleware' => 'setlocale',
     'prefix' => '{locale}',
-    'middleware' => 'InboxFetcher',
 ], function() {
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
     Route::get('/events', 'Landingpage\MainController@events')->name('landingpage.home.events');
@@ -46,6 +45,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:web',
         'prefix' => '/app',
+        'middleware' => 'InboxFetcher',
     ], function() {
         Route::get('/', 'App\MainController@index')->name('app.index');
 
@@ -62,11 +62,14 @@ Route::group([
             'middleware' => 'CanSendMail',
         ], function() {
             Route::get('/inbox', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox');
-            Route::get('/inbox/read', 'App\InternalMessagingController@read')->name('app.inmsg.inbox.read');
-            Route::get('/inbox/mentoring', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox.mentoring');
-            Route::get('/inbox/sent', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox.sent');
-            Route::get('/inbox/archive', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox.archive');
-            Route::get('/inbox/trash', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox.trash');
+            Route::get('/read', 'App\InternalMessagingController@read')->name('app.inmsg.read');
+            Route::get('/mentoring', 'App\InternalMessagingController@inbox')->name('app.inmsg.mentoring');
+            Route::get('/sent', 'App\InternalMessagingController@inbox')->name('app.inmsg.sent');
+            Route::get('/archive', 'App\InternalMessagingController@inbox')->name('app.inmsg.archive');
+            Route::get('/trash', 'App\InternalMessagingController@trash')->name('app.inmsg.trash');
+
+            Route::post('/send', 'App\InternalMessagingController@sendMessage')->name('app.inmsg.send');
+            Route::post('/delete', 'App\InternalMessagingController@deleteMessage')->name('app.inmsg.delete');
         });
 
         // ATC Routes

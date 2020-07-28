@@ -18,21 +18,14 @@ class InboxFetcher
     public function handle($request, Closure $next)
     {
         session()->forget('inbox_count');
-        if (app(CacheController::class)->checkCache('inbox_count', true)) {
-            $inbox_count = app(CacheController::class)->getCache('inbox_count', true);
-            session()->put('inbox_count', $inbox_count);
-        } else {
-            $inbox = InternalMessage::orderBy('created_at', 'DESC')
-            ->where('recipient_id', auth()->user()->id)
-            ->with('recipient')
-            ->with('sender')
-            ->where('archived', false)
-            ->where('trashed', false)
-            ->get();
-            $inbox_count = count($inbox->where('read', false));
-            app(CacheController::class)->putCache('inbox_count', $inbox_count, 300, true);
-            session()->put('inbox_count', $inbox_count);
-        }
+        $inbox = InternalMessage::orderBy('created_at', 'DESC')
+        ->where('recipient_id', auth()->user()->id)
+        ->where('read', false)
+        ->where('recipient_archived', false)
+        ->where('recipient_trashed', false)
+        ->get();
+        $inbox_count = count($inbox->where('read', false));
+        session()->put('inbox_count', $inbox_count);
         return $next($request);
     }
 }

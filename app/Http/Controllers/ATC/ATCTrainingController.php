@@ -90,7 +90,7 @@ class ATCTrainingController extends Controller
             'student_id' => auth()->user()->id,
             'icao' => $request->get('reqposition'),
             'motivation' => $request->get('reqmotivation'),
-            'reqallowmail' => true,
+            'mail_consent' => true,
         ]);
 
         ATCStudent::create([

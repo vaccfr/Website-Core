@@ -10,7 +10,9 @@ class InternalMessage extends Model
     protected $table = "internal_messages";
 
     protected $fillable = [
-        'id', 'sender_id', 'recipient_id', 'subject', 'body', 'read', 'read_at', 'archived', 'trashed',
+        'id', 'sender_id', 'recipient_id', 'subject', 'body', 'read', 'read_at',
+        'recipient_archived', 'recipient_trashed',
+        'sender_archived', 'sender_trashed',
     ];
 
     // Relationships
