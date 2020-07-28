@@ -369,7 +369,7 @@
                         </div>
                         <div class="form-group">
                           <label for="msgbody">Message</label>
-                          <textarea class="form-control" rows="5" name="msgbody" id="msgbody" placeholder="Your message"></textarea>
+                          <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="Your message"></textarea>
                         </div>
                       </div>
                       <input type="hidden" name="msgrecipient" value="{{ $s['user']['id'] }}">

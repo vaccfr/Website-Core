@@ -74,12 +74,14 @@ class InternalMessagingController extends Controller
             return redirect()->back()->with('pop-error', 'An error occurred and the message could not be sent');
         }
 
+        $formattedBody = nl2br($request->get('msgbody'));
+
         InternalMessage::create([
             'id' => (new Snowflake)->id(),
             'sender_id' => auth()->user()->id,
             'recipient_id' => $request->get('msgrecipient'),
             'subject' => $request->get('msgsubject'),
-            'body' => $request->get('msgbody'),
+            'body' => $formattedBody,
         ]);
 
         return redirect()->back()->with('toast-success', 'Your message was sent');

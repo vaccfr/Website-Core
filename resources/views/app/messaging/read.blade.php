@@ -21,7 +21,7 @@ Inbox | Message from Peter
           <span class="mailbox-read-time float-right">{{ $msg['created_at'] }}</span></h6>
     </div>
     <div class="mailbox-read-message">
-      {{ $msg['body'] }}
+      {!! $msg['body'] !!}
     </div>
   </div>
   <div class="card-footer">
