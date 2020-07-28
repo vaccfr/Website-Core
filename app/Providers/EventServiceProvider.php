@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Events\EventDeleteATCBooking;
 use App\Events\EventNewATCBooking;
+use App\Events\EventNewInternalMessage;
 use App\Listeners\ListenDeleteATCBooking;
 use App\Listeners\ListenNewATCBooking;
+use App\Listeners\ListenNewInternalMessage;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
         EventDeleteATCBooking::class => [
             ListenDeleteATCBooking::class,
         ],
+        EventNewInternalMessage::class => [
+            ListenNewInternalMessage::class,
+        ]
     ];
 
     /**

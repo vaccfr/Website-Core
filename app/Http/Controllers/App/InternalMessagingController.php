@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Events\EventNewInternalMessage;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Staff;
 use App\Models\ATC\ATCStudent;
@@ -143,13 +144,21 @@ class InternalMessagingController extends Controller
 
         $formattedBody = nl2br($request->get('msgbody'));
 
+        $newmsgid = (new Snowflake)->id();
         InternalMessage::create([
-            'id' => (new Snowflake)->id(),
+            'id' => $newmsgid,
             'sender_id' => auth()->user()->id,
             'recipient_id' => $request->get('msgrecipient'),
             'subject' => $request->get('msgsubject'),
             'body' => $formattedBody,
         ]);
+
+        event(new EventNewInternalMessage($recipient, [
+            'subject' => $request->get('msgsubject'),
+            'sender' => auth()->user()->fname." ".auth()->user()->lname,
+            'body' => $formattedBody,
+            'id' => $newmsgid,
+        ]));
 
         return redirect()->back()->with('toast-success', 'Your message was sent');
     }
@@ -179,13 +188,21 @@ class InternalMessagingController extends Controller
         "<br><br>".$request->get('prevmsg_body').
         "</i><br>==========<br>".$formattedBody;
 
+        $newmsgid = (new Snowflake)->id();
         InternalMessage::create([
-            'id' => (new Snowflake)->id(),
+            'id' => $newmsgid,
             'sender_id' => auth()->user()->id,
             'recipient_id' => $request->get('msgrecipient'),
             'subject' => $request->get('msgsubject'),
             'body' => $replyText,
         ]);
+
+        event(new EventNewInternalMessage($recipient, [
+            'subject' => $request->get('msgsubject'),
+            'sender' => auth()->user()->fname." ".auth()->user()->lname,
+            'body' => $replyText,
+            'id' => $newmsgid,
+        ]));
 
         return redirect()->back()->with('toast-success', 'Your reply was sent');
     }
