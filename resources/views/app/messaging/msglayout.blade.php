@@ -38,11 +38,6 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.mentoring', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.mentoring')) active @endif">
-                    <i class="fa fa-graduation-cap"></i> Mentoring
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a href="{{ route('app.inmsg.sent', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.sent')) active @endif">
                     <i class="far fa-envelope"></i> Sent
                   </a>

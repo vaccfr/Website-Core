@@ -61,14 +61,18 @@ Route::group([
                 'prefix' => 'pigeon-voyageur',
                 'middleware' => 'CanSendMail',
             ], function() {
+                Route::get('/', function () {
+                    return redirect()->route('app.inmsg.inbox', app()->getLocale());
+                });
                 Route::get('/inbox', 'App\InternalMessagingController@inbox')->name('app.inmsg.inbox');
                 Route::get('/read', 'App\InternalMessagingController@read')->name('app.inmsg.read');
-                Route::get('/mentoring', 'App\InternalMessagingController@inbox')->name('app.inmsg.mentoring');
-                Route::get('/sent', 'App\InternalMessagingController@inbox')->name('app.inmsg.sent');
-                Route::get('/archive', 'App\InternalMessagingController@inbox')->name('app.inmsg.archive');
+                Route::get('/sent', 'App\InternalMessagingController@sent')->name('app.inmsg.sent');
+                Route::get('/archive', 'App\InternalMessagingController@archive')->name('app.inmsg.archive');
                 Route::get('/trash', 'App\InternalMessagingController@trash')->name('app.inmsg.trash');
 
                 Route::post('/send', 'App\InternalMessagingController@sendMessage')->name('app.inmsg.send');
+                Route::post('/reply', 'App\InternalMessagingController@sendReply')->name('app.inmsg.reply');
+                Route::post('/archive', 'App\InternalMessagingController@archiveMessage')->name('app.inmsg.archive');
                 Route::post('/delete', 'App\InternalMessagingController@deleteMessage')->name('app.inmsg.delete');
             });
 

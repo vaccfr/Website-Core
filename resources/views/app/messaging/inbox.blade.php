@@ -14,7 +14,10 @@ Inbox - {{ $header }}
       <h3 class="card-title">{{ $header }}</h3>
 
       <div class="card-tools">
-        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+        <button
+          type="button"
+          class="btn btn-default btn-sm"
+          onclick="window.location.href='{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), app()->getLocale()) }}'"><i class="fas fa-sync-alt"></i></button>
       </div>
       <!-- /.card-tools -->
   </div>
