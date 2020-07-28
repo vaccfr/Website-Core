@@ -31,6 +31,7 @@ Inbox | Message from Peter
     </div>
       <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
       <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>
+      <button type="button" class="btn btn-default"><i class="fas fa-archive"></i> Archive</button>
   </div>
 </div>
 @endsection

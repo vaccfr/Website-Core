@@ -72,5 +72,7 @@ class Kernel extends HttpKernel
         'ATCMENTOR' => \App\Http\Middleware\Users\ATCMentor::class,
 
         'CanSendMail' => \App\Http\Middleware\Moderation\CanSendMail::class,
+
+        'InboxFetcher' => \App\Http\Middleware\Utility\InboxFetcher::class,
     ];
 }

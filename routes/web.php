@@ -26,6 +26,7 @@ Route::get('/', function () {
 Route::group([
     'middleware' => 'setlocale',
     'prefix' => '{locale}',
+    'middleware' => 'InboxFetcher',
 ], function() {
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
     Route::get('/events', 'Landingpage\MainController@events')->name('landingpage.home.events');

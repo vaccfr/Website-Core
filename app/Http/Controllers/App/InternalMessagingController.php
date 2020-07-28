@@ -18,7 +18,7 @@ class InternalMessagingController extends Controller
         ->where('trashed', false)
         ->get();
         return view('app.messaging.inbox', [
-            'inbox_count' => count($inbox->where('read', false)),
+            'inbox_count' => session()->get('inbox_count'),
             'display' => $inbox,
         ]);
     }
@@ -33,7 +33,7 @@ class InternalMessagingController extends Controller
             return redirect()->route('app.inmsg.inbox', app()->getLocale())->with('pop-error', 'Your message could not be found.');
         }
         return view('app.messaging.read', [
-            'inbox_count' => 0,
+            'inbox_count' => session()->get('inbox_count'),
             'msg' => $msg,
         ]);
     }
