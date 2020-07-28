@@ -10,7 +10,7 @@ class MentoringRequest extends Model
     protected $table = "mentoring_requests";
 
     protected $fillable = [
-        'id', 'student_id', 'icao', 'motivation', 'taken', 'mentor_id',
+        'id', 'student_id', 'icao', 'motivation', 'mail_consent', 'taken', 'mentor_id',
     ];
 
     // Relationships

@@ -18,6 +18,7 @@ class CreateMentoringRequestsTable extends Migration
             $table->bigInteger('student_id');
             $table->string('icao');
             $table->longText('motivation');
+            $table->boolean('mail_consent');
             $table->boolean('taken')->default(false);
             $table->bigInteger('mentor_id')->nullable();
             $table->timestamps();

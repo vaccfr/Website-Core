@@ -58,6 +58,12 @@
                     <label for="reqmotivation">{{__('app/atc/atc_training_center_req.your_motiv') }}</label>
                     <textarea class="form-control" rows="5" name="reqmotivation" id="reqmotivation" style="resize: none;" placeholder="{{__('app/atc/atc_training_center_req.strt_typ') }}..."></textarea>
                   </div>
+                  <div class="form-group">
+                    <div class="custom-control custom-switch custom-switch-on-success">
+                      <input type="checkbox" class="custom-control-input" id="reqallowmail" name="reqallowmail">
+                      <label class="custom-control-label" for="reqallowmail">{{__('app/atc/atc_training_center_req.allowmail') }}</label>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-success">{{__('app/atc/atc_training_center_req.submit') }}</button>
@@ -112,6 +118,9 @@
         },
         reqmotivation: {
           required: true
+        },
+        reqallowmail: {
+          required: true
         }
       },
       messages: {
@@ -120,6 +129,9 @@
         },
         reqmotivation: {
           required: "Please explain your motivation"
+        },
+        reqallowmail: {
+          required: "You must allow your mentor to see your email"
         }
       },
       errorElement: 'span',

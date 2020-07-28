@@ -76,6 +76,7 @@ class ATCTrainingController extends Controller
         $validator = Validator::make($request->all(), [
             'reqposition' => ['required'],
             'reqmotivation' => ['required'],
+            'reqallowmail' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -89,6 +90,7 @@ class ATCTrainingController extends Controller
             'student_id' => auth()->user()->id,
             'icao' => $request->get('reqposition'),
             'motivation' => $request->get('reqmotivation'),
+            'reqallowmail' => true,
         ]);
 
         ATCStudent::create([

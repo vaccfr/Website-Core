@@ -17,6 +17,7 @@ return [
   'select' => 'Plateforme',
   'your_motiv' => 'Motivation',
   'strt_typ' => 'Décrivez votre motivation ici',
+  'allowmail' => 'Autoriser votre futur mentor à voir votre adresse email à des fins de communication',
   'submit' => 'Soumettre',
 
   //NOREGION

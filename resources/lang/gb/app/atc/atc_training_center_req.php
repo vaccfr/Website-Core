@@ -21,6 +21,7 @@ return [
   'select' => 'Teaching Platform',
   'your_motiv' => 'Your Motivation',
   'strt_typ' => 'Type here',
+  'allowmail' => 'Allow your mentor to see your email address to communicate with you',
   'submit' => 'Submit',
 
   //NOREGION
