@@ -17,8 +17,8 @@ class CreateInternalMessagesTable extends Migration
             $table->bigInteger('id')->unique();
             $table->bigInteger('sender_id');
             $table->bigInteger('recipient_id');
-            $table->string('subject')->default('(No subject)');
-            $table->longText('body')->default('(No content found)');
+            $table->string('subject')->nullable();
+            $table->longText('body')->nullable();
             $table->boolean('read')->default(false);
             $table->timestamp('read_at')->nullable();
             $table->boolean('recipient_archived')->default(false);
