@@ -21,7 +21,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-          <a href="compose.html" class="btn btn-primary btn-block mb-3">Compose</a>
+          <a href="#" class="btn btn-primary btn-block mb-3">Compose</a>
 
           <div class="card">
             <div class="card-header">
