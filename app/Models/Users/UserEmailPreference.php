@@ -10,7 +10,7 @@ class UserEmailPreference extends Model
 
     protected $fillable = [
         'id', 'event_emails', 'atc_booking_emails', 'atc_mentoring_emails',
-        'website_update_emails', 'news_emails',
+        'website_update_emails', 'news_emails', 'internal_messaging_emails',
     ];
 
     // Relationships

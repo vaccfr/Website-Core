@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Events\EventNewInternalMessage;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\Utilities;
 use App\Models\Admin\Staff;
 use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Mentor;
@@ -153,12 +154,14 @@ class InternalMessagingController extends Controller
             'body' => $formattedBody,
         ]);
 
-        event(new EventNewInternalMessage($recipient, [
-            'subject' => $request->get('msgsubject'),
-            'sender' => auth()->user()->fname." ".auth()->user()->lname,
-            'body' => $formattedBody,
-            'id' => $newmsgid,
-        ]));
+        if ((new Utilities)->checkEmailPreference(auth()->user()->id, 'internal_message') == true) {
+            event(new EventNewInternalMessage($recipient, [
+                'subject' => $request->get('msgsubject'),
+                'sender' => auth()->user()->fname." ".auth()->user()->lname,
+                'body' => $formattedBody,
+                'id' => $newmsgid,
+            ]));
+        }
 
         return redirect()->back()->with('toast-success', 'Your message was sent');
     }
@@ -197,12 +200,14 @@ class InternalMessagingController extends Controller
             'body' => $replyText,
         ]);
 
-        event(new EventNewInternalMessage($recipient, [
-            'subject' => $request->get('msgsubject'),
-            'sender' => auth()->user()->fname." ".auth()->user()->lname,
-            'body' => $replyText,
-            'id' => $newmsgid,
-        ]));
+        if ((new Utilities)->checkEmailPreference(auth()->user()->id, 'internal_message') == true) {
+            event(new EventNewInternalMessage($recipient, [
+                'subject' => $request->get('msgsubject'),
+                'sender' => auth()->user()->fname." ".auth()->user()->lname,
+                'body' => $replyText,
+                'id' => $newmsgid,
+            ]));
+        }
 
         return redirect()->back()->with('toast-success', 'Your reply was sent');
     }

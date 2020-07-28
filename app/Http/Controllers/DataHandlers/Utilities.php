@@ -114,6 +114,15 @@ class Utilities extends Controller
                     return true;
                 }
                 break;
+
+            case 'internal_message':
+                $pref = UserEmailPreference::where('id', $userid)->first();
+                if (!is_null($pref)) {
+                    return $pref->internal_messaging_emails;
+                } else {
+                    return true;
+                }
+                break;
             
             default:
                 return false;
