@@ -25,5 +25,9 @@ return [
   'active' => 'Active',
   'position' => 'Position',
   'mentor' => 'Mentor',
-  'valid' => 'Valid'
+  'valid' => 'Valid',
+  
+  'no_s1_found' => 'No S1 Solo Approvals found', 
+  'no_s2_found' => 'No S2 Solo Approvals found', 
+  'no_s3_found' => 'No S3 Solo Approvals found',
 ];

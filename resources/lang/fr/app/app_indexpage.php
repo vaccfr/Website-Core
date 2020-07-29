@@ -13,7 +13,7 @@ return [
   'approved_atc' => 'Statut ATC',
   'approved' => 'Approuvé',
   'not_approved' => 'Non approuvé',
-  'most_ctr_pos' => 'Position la plus controllée',
+  'most_ctr_pos' => 'Position la plus controllée (100 dernières connections)',
 
   'callsign' => 'Position',
   'sess_time' => 'Durée de la session',

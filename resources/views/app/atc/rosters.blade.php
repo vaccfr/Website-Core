@@ -343,7 +343,7 @@
     "autoWidth": true,
     "info": true,
     "language": {
-      "emptyTable": "No S1 solo approvals found."
+      "emptyTable": "{{__('app/atc/rosters.no_s1_found')}}"
     }
   });
   $('#solo_approved_s2').DataTable({
@@ -354,7 +354,7 @@
     "autoWidth": true,
     "info": true,
     "language": {
-      "emptyTable": "No S2 solo approvals found."
+      "emptyTable": "{{__('app/atc/rosters.no_s2_found')}}"
     }
   });
   $('#solo_approved_s3').DataTable({
@@ -365,7 +365,7 @@
     "autoWidth": true,
     "info": true,
     "language": {
-      "emptyTable": "No S3 solo approvals found."
+      "emptyTable": "{{__('app/atc/rosters.no_s3_found')}}"
     }
   });
 </script>
