@@ -63,12 +63,15 @@
       <div class="card card-outline card-info">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#request_session">
                 {{__('app/atc/atc_training_center.req_session')}}
               </button>
+              
+            </div>
+            <div class="col-md-6">
               <button type="button" class="btn btn-flat btn-info float-right" data-toggle="modal" data-target="#send_message">
-                Send Message to {{ $mentorObj->fname }}
+                {{__('app/atc/atc_training_center.send_msg_btn', ['MENTOR' => $mentorObj->fname])}}
               </button>
             </div>
           </div>
@@ -80,7 +83,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Request a session with {{ $mentorObj->fname." ".$mentorObj->lname }}</h4>
+          <h4 class="modal-title">{{__('app/atc/atc_training_center.title_req', ['MENTOR' => $mentorObj->fname." ".$mentorObj->lname])}}</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -130,8 +133,8 @@
           </div>
           <input type="hidden" name="mentorid" value="{{ $mentorObj->id }}">
           <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Send request</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/atc/atc_training_center.close')}}</button>
+            <button type="submit" class="btn btn-success">{{__('app/atc/atc_training_center.send_req')}}</button>
           </div>
         </form>
       </div>
@@ -141,7 +144,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Send message to {{ $mentorObj->fname." ".$mentorObj->lname }}</h4>
+          <h4 class="modal-title">{{__('app/atc/atc_training_center.title_msg', ['MENTOR' => $mentorObj->fname." ".$mentorObj->lname])}}</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -150,18 +153,18 @@
           @csrf
           <div class="modal-body">
             <div class="form-group">
-              <label for="msgsubject">Subject</label>
-              <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="Subject">
+              <label for="msgsubject">{{__('app/atc/atc_training_center.subject')}}</label>
+              <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="{{__('app/atc/atc_training_center.subject')}}">
             </div>
             <div class="form-group">
-              <label for="msgbody">Message</label>
-              <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="Your message"></textarea>
+              <label for="msgbody">{{__('app/atc/atc_training_center.msg')}}</label>
+              <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="{{__('app/atc/atc_training_center.msg_placeholder')}}"></textarea>
             </div>
           </div>
           <input type="hidden" name="msgrecipient" value="{{ $mentorObj->id }}">
           <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Send message</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/atc/atc_training_center.close')}}</button>
+            <button type="submit" class="btn btn-success">{{__('app/atc/atc_training_center.send_msg')}}</button>
           </div>
         </form>
       </div>
@@ -208,7 +211,7 @@
         <!-- /.card-header -->
         <div class="card-body">
           <table
-            id="upcoming_sessions"
+            id="training_sessions"
             class="table table-bordered table-hover"
             data-order='[[ 1, "desc" ]]'>
             <thead>
@@ -217,8 +220,8 @@
               <th>{{__('app/atc/atc_training_center.when')}}</th>
               <th>{{__('app/atc/atc_training_center.mentor')}}</th>
               <th>{{__('app/atc/atc_training_center.prop_by')}}</th>
-              <th>Mentor Comment</th>
-              <th>Student Comment</th>
+              <th>{{__('app/atc/atc_training_center.mentor_comment')}}</th>
+              <th>{{__('app/atc/atc_training_center.student_comment')}}</th>
               <th>{{__('app/atc/atc_training_center.status')}}</th>
               <th>{{__('app/atc/atc_training_center.options')}}</th>
             </tr>
@@ -234,14 +237,14 @@
                     @if (!is_null($training['mentor_comment']))
                     <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment"><i class="far fa-eye"></i></button>
                     @else
-                      (No comment)
+                      {{__('app/atc/atc_training_center.no_comment')}}
                     @endif
                   </td>
                   <td>
                     @if (!is_null($training['student_comment']))
                     <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment"><i class="far fa-eye"></i></button>
                     @else
-                      (No comment)
+                      {{__('app/atc/atc_training_center.no_comment')}}
                     @endif
                   </td>
                   <td>{{ $training['status'] }}</td>
@@ -288,12 +291,12 @@
 
                           @if (is_null($training['mentor_report']))
 
-                            (No report)
+                          {{__('app/atc/atc_training_center.no_report')}}
 
                           @else
 
                             {{-- Training completed, has report --}}
-                            <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#mentor_report_{{ $training['id'] }}">See Report</button>
+                            <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#mentor_report_{{ $training['id'] }}">{{__('app/atc/atc_training_center.see_report')}}</button>
 
                           @endif
                           @endif
@@ -307,7 +310,7 @@
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h4 class="modal-title">Mentor's comment</h4>
+                        <h4 class="modal-title">{{__('app/atc/atc_training_center.mentor_comment')}}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -316,7 +319,7 @@
                         <p>{{ $training['mentor_comment'] }}</p>
                       </div>
                       <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/atc/atc_training_center.close')}}</button>
                       </div>
                     </div>
                   </div>
@@ -327,7 +330,7 @@
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h4 class="modal-title">Student's comment</h4>
+                        <h4 class="modal-title">{{__('app/atc/atc_training_center.student_comment')}}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -336,7 +339,7 @@
                         <p>{{ $training['student_comment'] }}</p>
                       </div>
                       <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/atc/atc_training_center.close')}}</button>
                       </div>
                     </div>
                   </div>
@@ -347,7 +350,7 @@
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h4 class="modal-title">Mentor report</h4>
+                        <h4 class="modal-title">{{__('app/atc/atc_training_center.mentor_report')}}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -356,7 +359,7 @@
                         <p>{{ $training['mentor_report'] }}</p>
                       </div>
                       <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/atc/atc_training_center.close')}}</button>
                       </div>
                     </div>
                   </div>
@@ -379,23 +382,16 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
-  $('#upcoming_sessions').DataTable({
+  $('#training_sessions').DataTable({
     "paging": false,
     "lengthChange": false,
     "searching": false,
     "ordering": false,
     "autoWidth": false,
     "info": false,
-    "scrollY": 300,
-  });
-  $('#past_sessions').DataTable({
-    "paging": false,
-    "lengthChange": false,
-    "searching": false,
-    "ordering": false,
-    "autoWidth": false,
-    "info": false,
-    "scrollY": 300,
+    "language": {
+      "emptyTable" : "{{__('app/atc/atc_training_center.empty_table')}}"
+    }
   });
   flatpickr("#session-date", {
       enableTime: false,
