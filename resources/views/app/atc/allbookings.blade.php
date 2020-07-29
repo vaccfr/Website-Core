@@ -67,9 +67,9 @@
                         <td>{{$b['time']}}</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                         <td>@if ($b['training'] == true)
-                          <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
+                          <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
                         @else
-                          <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
+                          <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
                         @endif</td>
                       </tr>
                     @endforeach
