@@ -15,7 +15,7 @@ return [
   'pil_rank' => 'Pilot Rank',
   'actions' => 'Actions',
   'edit' => 'Edit',
-  'restrict' => 'Restrict',
+  'restrict' => 'Block',
 
   // Widgets
   'atc_members' => 'ATC Members',

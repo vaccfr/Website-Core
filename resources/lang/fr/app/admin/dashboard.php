@@ -15,7 +15,7 @@ return [
   'pil_rank' => 'Grade Pilote',
   'actions' => 'Actions',
   'edit' => 'Editer',
-  'restrict' => 'Restreindre',
+  'restrict' => 'Bloquer',
 
   // Widgets
   'atc_members' => 'Membres ATC',

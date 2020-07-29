@@ -75,8 +75,20 @@
                     <td>{{ $m['vatsim_id'] }}</td>
                     <td>{{ $m['subdiv_id'] }} ({{ $m['subdiv_name'] }})</td>
                     <td>{{ $m['account_type'] }}</td>
-                    <td>@if($m['is_staff'] == true) Yes @else No @endif</td>
-                    <td>@if($m['is_approved_atc'] == true) Yes @else No @endif</td>
+                    <td>
+                      @if($m['is_staff'] == true)
+                        <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                      @else
+                        <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                      @endif
+                    </td>
+                    <td>
+                      @if($m['is_approved_atc'] == true)
+                        <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                      @else
+                        <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                      @endif
+                    </td>
                     <td>{{ $m['atc_rating_short'] }}</td>
                     <td>P{{ $m['pilot_rating'] }}</td>
                     <td>
