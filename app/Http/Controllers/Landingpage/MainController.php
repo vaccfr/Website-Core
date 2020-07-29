@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\ATC\ATCRequest;
 use App\Models\ATC\Booking;
+use App\Models\General\ContactForm;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -56,6 +57,26 @@ class MainController extends Controller
 
     public function contactForm(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'cid' => ['required'],
+            'email' => ['required', 'email'],
+            'message' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
+        }
+
+        $newID = (new Snowflake)->id();        
+        ContactForm::create([
+            'id' => $newID,
+            'name' => $request->get('name'),
+            'vatsim_id' => $request->get('cid'),
+            'email' => $request->get('email'),
+            'message' => $request->get('message'),
+        ]);
+
         return redirect()->route('landingpage.home.contact', app()->getLocale())->with('pop-success', trans('app/alerts.contact_success'));
     }
 
@@ -86,8 +107,9 @@ class MainController extends Controller
             return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
         }
 
+        $newID = (new Snowflake)->id();
         ATCRequest::create([
-            'id' => (new Snowflake)->id(),
+            'id' => $newID,
             'name' => $request->get('name'),
             'vatsim_id' => $request->get('cid'),
             'email' => $request->get('email'),
