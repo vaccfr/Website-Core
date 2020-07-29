@@ -21,17 +21,17 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-          <a href="#" class="btn btn-primary btn-block mb-3" data-target="#send_message" data-toggle="modal">Compose</a>
+          <a href="#" class="btn btn-primary btn-block mb-3" data-target="#send_message" data-toggle="modal">{{__('app/inmsg.compose')}}</a>
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Folders</h3>
+              <h3 class="card-title">{{__('app/inmsg.folders')}}</h3>
             </div>
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
                   <a href="{{ route('app.inmsg.inbox', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.inbox')) active @endif">
-                    <i class="fas fa-inbox"></i> Inbox
+                    <i class="fas fa-inbox"></i> {{__('app/inmsg.inbox')}}
                     @if (!session()->get('inbox_count') == 0)
                     <span class="badge bg-warning float-right">{{ session()->get('inbox_count') }}</span>
                     @endif
@@ -39,17 +39,17 @@
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('app.inmsg.sent', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.sent')) active @endif">
-                    <i class="far fa-envelope"></i> Sent
+                    <i class="far fa-envelope"></i> {{__('app/inmsg.sent')}}
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('app.inmsg.archive', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.archive')) active @endif">
-                    <i class="fa fa-archive"></i> Archived
+                    <i class="fa fa-archive"></i> {{__('app/inmsg.archived')}}
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('app.inmsg.trash', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.trash')) active @endif">
-                    <i class="far fa-trash-alt"></i> Trash
+                    <i class="far fa-trash-alt"></i> {{__('app/inmsg.trash')}}
                   </a>
                 </li>
               </ul>
@@ -61,7 +61,7 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Message Draft</h4>
+                <h4 class="modal-title">{{__('app/inmsg.comp_title')}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,26 +70,26 @@
                 @csrf
                 <div class="modal-body">
                   <div class="form-group">
-                    <label for="msgrecipient">Recipient</label>
+                    <label for="msgrecipient">{{__('app/inmsg.comp_recip')}}</label>
                     <select class="form-control" name="msgrecipient" id="msgrecipient" required>
-                      <option value="" disabled selected>Recipient</option>
+                      <option value="" disabled selected>{{__('app/inmsg.comp_recip')}}</option>
                       @foreach ($recipientList as $r)
                         <option value="{{ $r['value'] }}">{{ $r['verbose'] }}</option>
                       @endforeach
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="msgsubject">Subject</label>
-                    <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="Subject" required>
+                    <label for="msgsubject">{{__('app/inmsg.comp_subject')}}</label>
+                    <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="{{__('app/inmsg.comp_subject')}}" required>
                   </div>
                   <div class="form-group">
-                    <label for="msgbody">Message</label>
-                    <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="Your message" required></textarea>
+                    <label for="msgbody">{{__('app/inmsg.comp_msg')}}</label>
+                    <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="{{__('app/inmsg.comp_your_msg')}}" required></textarea>
                   </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-success">Send message</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/inmsg.comp_close')}}</button>
+                  <button type="submit" class="btn btn-success">{{__('app/inmsg.comp_send_msg')}}</button>
                 </div>
               </form>
             </div>

@@ -54,7 +54,7 @@ class InternalMessagingController extends Controller
         ->get();
         return view('app.messaging.inbox', [
             'recipientList' => $this->recipientsListMaker(),
-            'header' => 'Messages',
+            'header' => trans('app/inmsg.inbox'),
             'display' => $inbox,
         ]);
     }
@@ -68,7 +68,7 @@ class InternalMessagingController extends Controller
         ->get();
         return view('app.messaging.inbox', [
             'recipientList' => $this->recipientsListMaker(),
-            'header' => 'Sent',
+            'header' => trans('app/inmsg.sent'),
             'display' => $inbox,
         ]);
     }
@@ -84,7 +84,7 @@ class InternalMessagingController extends Controller
         ->get();
         return view('app.messaging.inbox', [
             'recipientList' => $this->recipientsListMaker(),
-            'header' => 'Archive',
+            'header' => trans('app/inmsg.archived'),
             'display' => $inbox,
         ]);
     }
@@ -100,7 +100,7 @@ class InternalMessagingController extends Controller
         ->get();
         return view('app.messaging.inbox', [
             'recipientList' => $this->recipientsListMaker(),
-            'header' => 'Trash',
+            'header' => trans('app/inmsg.trash'),
             'display' => $inbox,
         ]);
     }

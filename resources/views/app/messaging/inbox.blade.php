@@ -5,7 +5,7 @@ Pigeon Voyageur | Inbox
 @endsection
 
 @section('header')
-Inbox - {{ $header }}
+{{__('app/inmsg.header_title', ['HEADER' => $header])}} 
 @endsection
 
 @section('body')
@@ -50,7 +50,7 @@ Inbox - {{ $header }}
               @empty
               <tr>
                 <td>
-                  No messages
+                  {{__('app/inmsg.no_msg')}}
                 </td>
               </tr> 
               @endforelse
