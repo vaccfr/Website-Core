@@ -26,7 +26,7 @@ class BookingController extends Controller
 
         $day = Carbon::now()->format('D. d/m');
         array_push($allDates, $day);
-        for ($i=1; $i < 8; $i++) { 
+        for ($i=1; $i < 15; $i++) { 
             $day = Carbon::now()->addDays($i)->format('D. d/m');
             array_push($allDates, $day);
         }
@@ -35,7 +35,7 @@ class BookingController extends Controller
         ->with('user')
         ->get();
         array_push($allBookings, $bookingToday);
-        for ($i=1; $i < 8; $i++) { 
+        for ($i=1; $i < 15; $i++) { 
             $booking = Booking::where('date', Carbon::now()
             ->addDays($i)
             ->format('d.m.Y'))
