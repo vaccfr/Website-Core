@@ -179,8 +179,9 @@
               </table>
             </div>
             <div class="tab-pane fade" id="solo-approval" role="tabpanel" aria-labelledby="solo-approval-tab">
+              <h3>S1 rating</h3>
               <table
-                id="solo_approved"
+                id="solo_approved_s1"
                 class="table table-bordered table-hover"
                 data-order='[[ 1, "desc" ]]'>
                 <thead>
@@ -197,6 +198,7 @@
                 </thead>
                 <tbody>
                   @foreach ($soloApproved as $solo)
+                  @if ($solo['user']['atc_rating_short'] == "S1")
                   <tr>
                     <td>{{ $solo['user']['vatsim_id'] }}</td>
                     <td>{{ $solo['user']['fname'] }} {{ $solo['user']['lname'] }}</td>
@@ -213,6 +215,87 @@
                       @endif
                     </td>
                   </tr>
+                  @endif
+                  @endforeach
+                </tbody>
+              </table>
+              <h3 class="mt-5">S2 rating</h3>
+              <table
+                id="solo_approved_s2"
+                class="table table-bordered table-hover"
+                data-order='[[ 1, "desc" ]]'>
+                <thead>
+                <tr>
+                  <th>{{__('app/atc/rosters.cid')}}</th>
+                  <th>{{__('app/atc/rosters.name')}}</th>
+                  <th>{{__('app/atc/rosters.rating')}}</th>
+                  <th>{{__('app/atc/rosters.position')}}</th>
+                  <th>{{__('app/atc/rosters.start')}}</th>
+                  <th>{{__('app/atc/rosters.end')}}</th>
+                  <th>{{__('app/atc/rosters.mentor')}}</th>
+                  <th>{{__('app/atc/rosters.valid')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach ($soloApproved as $solo)
+                  @if ($solo['user']['atc_rating_short'] == "S2")
+                  <tr>
+                    <td>{{ $solo['user']['vatsim_id'] }}</td>
+                    <td>{{ $solo['user']['fname'] }} {{ $solo['user']['lname'] }}</td>
+                    <td>{{ $solo['user']['atc_rating_short'] }}</td>
+                    <td>{{ $solo['position'] }}</td>
+                    <td>{{ $solo['start_date'] }}</td>
+                    <td>{{ $solo['end_date'] }}</td>
+                    <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
+                    <td>
+                      @if ($solo['valid'])
+                        {{__('app/atc/rosters.yes')}}
+                      @else
+                        {{__('app/atc/rosters.no')}}
+                      @endif
+                    </td>
+                  </tr>
+                  @endif
+                  @endforeach
+                </tbody>
+              </table>
+              <h3 class="mt-5">S3 rating</h3>
+              <table
+                id="solo_approved_s3"
+                class="table table-bordered table-hover"
+                data-order='[[ 1, "desc" ]]'>
+                <thead>
+                <tr>
+                  <th>{{__('app/atc/rosters.cid')}}</th>
+                  <th>{{__('app/atc/rosters.name')}}</th>
+                  <th>{{__('app/atc/rosters.rating')}}</th>
+                  <th>{{__('app/atc/rosters.position')}}</th>
+                  <th>{{__('app/atc/rosters.start')}}</th>
+                  <th>{{__('app/atc/rosters.end')}}</th>
+                  <th>{{__('app/atc/rosters.mentor')}}</th>
+                  <th>{{__('app/atc/rosters.valid')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach ($soloApproved as $solo)
+                  @if ($solo['user']['atc_rating_short'] == "S3")
+                  <tr>
+                    <td>{{ $solo['user']['vatsim_id'] }}</td>
+                    <td>{{ $solo['user']['fname'] }} {{ $solo['user']['lname'] }}</td>
+                    <td>{{ $solo['user']['atc_rating_short'] }}</td>
+                    <td>{{ $solo['position'] }}</td>
+                    <td>{{ $solo['start_date'] }}</td>
+                    <td>{{ $solo['end_date'] }}</td>
+                    <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
+                    <td>
+                      @if ($solo['valid'])
+                        {{__('app/atc/rosters.yes')}}
+                      @else
+                        {{__('app/atc/rosters.no')}}
+                      @endif
+                    </td>
+                  </tr>
+                  @endif
                   @endforeach
                 </tbody>
               </table>
@@ -252,13 +335,38 @@
     "autoWidth": true,
     "info": true,
   });
-  $('#solo_approved').DataTable({
+  $('#solo_approved_s1').DataTable({
     "paging": false,
     "lengthChange": true,
-    "searching": true,
+    "searching": false,
     "ordering": true,
     "autoWidth": true,
     "info": true,
+    "language": {
+      "emptyTables": "No S1 solo approvals found."
+    }
+  });
+  $('#solo_approved_s2').DataTable({
+    "paging": false,
+    "lengthChange": true,
+    "searching": false,
+    "ordering": true,
+    "autoWidth": true,
+    "info": true,
+    "language": {
+      "emptyTables": "No S2 solo approvals found."
+    }
+  });
+  $('#solo_approved_s3').DataTable({
+    "paging": false,
+    "lengthChange": true,
+    "searching": false,
+    "ordering": true,
+    "autoWidth": true,
+    "info": true,
+    "language": {
+      "emptyTables": "No S3 solo approvals found."
+    }
   });
 </script>
 @endsection
