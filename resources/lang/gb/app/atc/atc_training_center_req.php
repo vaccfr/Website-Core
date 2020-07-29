@@ -24,9 +24,19 @@ return [
   'allowmail' => 'Allow your mentor to see your email address to communicate with you',
   'submit' => 'Submit',
 
+  //CLOSED
+  'closed_msg' => 'The Training Center is currently closed.',
+
+  //ERROR
+  'err_msg' => 'An error occured.',
+
   //NOREGION
   'err_noregion' => 'You must be affiliated to the French Region with your Vatsim Account before you can request mentoring.',
 
   //APPLIED
   'err_applied' => 'You have already requested training. Please wait for a response',
+
+  // Validation
+  'required_pos' => 'Please choose a position',
+  'required_motiv' => 'Please explain your motivation',
 ];

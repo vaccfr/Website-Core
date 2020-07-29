@@ -20,9 +20,19 @@ return [
   'allowmail' => 'Autoriser votre futur mentor à voir votre adresse email à des fins de communication',
   'submit' => 'Soumettre',
 
+  //CLOSED
+  'closed_msg' => 'Le Training Center est momentanément fermé.',
+
+  //ERROR
+  'err_msg' => 'Une erreur est survenue',
+
   //NOREGION
   'err_noregion' => 'Vous devez être affilié à la région française de Vatsim avant de pouvoir faire une demande de mentoring.',
 
   //APPLIED
   'err_applied' => 'Votre demande a bien été prise en compte et nous reviendrons bientôt vers vous. Merci pour votre patience.',
+
+  // Validation
+  'required_pos' => 'Veuillez choisir une position',
+  'required_motiv' => 'Veuillez expliquer vos motivations',
 ];

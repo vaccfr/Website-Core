@@ -85,7 +85,6 @@ class ATCTrainingController extends Controller
         $validator = Validator::make($request->all(), [
             'reqposition' => ['required'],
             'reqmotivation' => ['required'],
-            'reqallowmail' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -94,12 +93,17 @@ class ATCTrainingController extends Controller
             return redirect()->route('app.atc.training', app()->getLocale());
         }
 
+        $consent = true;
+        if (is_null($request->get('reqallowmail'))) {
+            $consent = false;
+        }
+
         MentoringRequest::create([
             'id' => (new Snowflake)->id(),
             'student_id' => auth()->user()->id,
             'icao' => $request->get('reqposition'),
             'motivation' => $request->get('reqmotivation'),
-            'mail_consent' => true,
+            'mail_consent' => $consent,
         ]);
 
         ATCStudent::create([

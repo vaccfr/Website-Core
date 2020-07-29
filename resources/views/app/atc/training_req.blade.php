@@ -94,12 +94,12 @@
             
             @case("CLOSED")
               <div class="card-body">
-                <p class="text-danger" style="font-weight: bolder;">The Training Center is currently closed.</p>
+                <p class="text-danger" style="font-weight: bolder;">{{__('app/atc/atc_training_center_req.closed_msg') }}</p>
               </div>
               @break
             @default
               <div class="card-body">
-                <p class="text-danger" style="font-weight: bolder;">An error occured.</p>
+                <p class="text-danger" style="font-weight: bolder;">{{__('app/atc/atc_training_center_req.err_msg') }}</p>
               </div>
                 
         @endswitch
@@ -118,20 +118,14 @@
         },
         reqmotivation: {
           required: true
-        },
-        reqallowmail: {
-          required: true
         }
       },
       messages: {
         reqposition: {
-          required: "Please choose a position"
+          required: "{{__('app/atc/atc_training_center_req.required_pos') }}"
         },
         reqmotivation: {
-          required: "Please explain your motivation"
-        },
-        reqallowmail: {
-          required: "You must allow your mentor to see your email"
+          required: "{{__('app/atc/atc_training_center_req.required_motiv') }}"
         }
       },
       errorElement: 'span',
