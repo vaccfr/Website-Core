@@ -52,6 +52,9 @@ Route::group([
             Route::get('/general/stafforg', 'App\MainController@staffOrg')->name('app.general.stafforg');
 
             Route::group(['prefix' => '/user'], function() {
+                Route::get('/', function () {
+                    return redirect()->route('app.user.settings', app()->getLocale());
+                });
                 Route::get('/settings', 'App\MainController@usersettings')->name('app.user.settings');
                 Route::post('/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');
                 Route::post('/settings/editemail', 'App\MainController@userEmailPrefEdit')->name('app.user.settings.editemail');
@@ -80,10 +83,16 @@ Route::group([
             Route::group([
                 'prefix' => '/atc',
             ], function() {
+                Route::get('/', function () {
+                    return redirect()->route('app.index', app()->getLocale());
+                });
                 Route::get('/roster', 'ATC\ATCPagesController@atcRoster')->name('app.atc.roster');
                 Route::get('/loas', 'ATC\ATCPagesController@loas')->name('app.atc.loas');
 
                 Route::group(['prefix' => '/trainingcenter'], function() {
+                    Route::get('/', function () {
+                        return redirect()->route('app.atc.training', app()->getLocale());
+                    });
                     Route::get('/dashboard', 'ATC\ATCTrainingController@index')->name('app.atc.training'); // ATC Training route
                     
                     Route::post('/submit-application', 'ATC\ATCTrainingController@mentoringRequest')->name('app.atc.training.mentoringRequest');
@@ -103,6 +112,9 @@ Route::group([
                 'middleware' => 'STAFF',
                 'prefix' => '/staff'
             ], function() {
+                Route::get('/', function () {
+                    return redirect()->route('app.index', app()->getLocale());
+                });
                 Route::group(['prefix' => '/admin', 'middleware' => 'EXECSTAFF'], function() {
                     Route::get('/', 'Staff\AdminController@index')->name('app.staff.admin');
                     Route::get('/edit', 'Staff\AdminController@editUser')->name('app.staff.admin.edit');
@@ -131,9 +143,6 @@ Route::group([
                     Route::post('/mystudents/terminate', 'Staff\ATCMentorController@terminate')->name('app.staff.atc.mine.terminate');
                 });
                 Route::group(['prefix' => '/pilot'], function() {
-                    
-                });
-                Route::group(['prefix' => '/exec'], function() {
                     
                 });
                 Route::group(['prefix' => '/events'], function() {

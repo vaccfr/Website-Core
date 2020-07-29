@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Staff organisation
+{{__('app/app_menus.staff_org')}}
 @endsection
 
 @section('page-header')
@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Staff Organisation</h1>
+          <h1>{{__('app/app_menus.staff_org')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
