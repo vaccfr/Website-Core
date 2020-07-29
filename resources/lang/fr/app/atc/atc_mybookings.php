@@ -1,6 +1,7 @@
 <?php
 
 return [
+  'header_title' => 'ATC - Bookings de :FNAME',
   'book_a_pos' => 'Réservez un RDV ATC',
   'pos_label' => 'Position',
   'pos_select' => 'Choisissez une position',

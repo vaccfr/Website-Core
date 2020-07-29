@@ -1,6 +1,7 @@
 <?php
 
 return [
+  'header_title' => 'ATC - :FNAME\'s Bookings',
   'book_a_pos' => 'Book a position',
   'pos_label' => 'ATC Position',
   'pos_select' => 'Choose a position',

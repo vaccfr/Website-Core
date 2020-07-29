@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC - {{ Auth::user()->fname}}'s Bookings</h1>
+          <h1>{{__('app/atc/atc_mybookings.header_title', ['FNAME' => Auth::user()->fname])}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -32,15 +32,6 @@
           <form role="form" id="atc-booking-form" method="POST" action="{{ route('do.atc.booking.add', app()->getLocale()) }}">
             @csrf
             <div class="card-body">
-              {{-- <div class="form-group">
-                <label>Position</label>
-                <select class="form-control" id="position-select" name="positionselect">
-                  <option value="" disabled selected>Select your option</option>
-                  @foreach ($stations as $s)
-                    <option value="{{ $s['code'] }}">{{ $s['code'] }} ({{ $s['parent']['city'] }} {{ $s['parent']['airport'] }})</option>
-                  @endforeach
-                </select>
-              </div> --}}
               <div class="form-group">
                 <label>{{__('app/atc/atc_mybookings.pos_label')}}</label>
                 <select class="form-control" id="position-select" name="positionselect">
@@ -56,14 +47,6 @@
                   @endforeach
                 </select>
               </div>
-              {{-- <div class="form-group">
-                <label>Position</label>
-                <select class="form-control" id="positionpicker">
-                  @foreach ($stations as $s)
-                      <option value="{{ $s['code'] }}">{{ $s['code'] }} ({{ $s['parent']['city'] }} {{ $s['parent']['airport'] }})</option>
-                  @endforeach
-                </select>
-              </div> --}}
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group">
