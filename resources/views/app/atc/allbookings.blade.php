@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC - All Bookings</h1>
+          <h1>{{__('app/atc/atc_allbookings.header_title')}}</h1>
         </div>
       </div>
     </div>
@@ -45,18 +45,18 @@
             <div class="tab-content" id="bookings-tables">
               @foreach ($bookings as $book)
               <div class="tab-pane fade show @if ($loop->index == 0) active @endif" id="booking_day_tab_{{ $loop->index }}" role="tabpanel" aria-labelledby="booking_day_{{ $loop->index }}">
-                <h3>Bookings for {{ $bookingDate[$loop->index] }}</h3>
+                <h3>{{__('app/atc/atc_allbookings.bookings_for', ['DATE' => $bookingDate[$loop->index]])}}</h3>
                 <table
                   id="booking_table_{{ $loop->index }}"
                   class="table table-bordered table-hover mt-3"
                   data-order='[[ 2, "asc" ]]'>
                   <thead>
                   <tr>
-                    <th>Position</th>
-                    <th>Name</th>
-                    <th>Hours</th>
-                    <th>Rating</th>
-                    <th>Mentoring?</th>
+                    <th>{{__('app/atc/atc_allbookings.position')}}</th>
+                    <th>{{__('app/atc/atc_allbookings.name')}}</th>
+                    <th>{{__('app/atc/atc_allbookings.hours')}}</th>
+                    <th>{{__('app/atc/atc_allbookings.rating')}}</th>
+                    <th>{{__('app/atc/atc_allbookings.mentoring')}}</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -86,7 +86,7 @@
                   "autoWidth": false,
                   "responsive": true,
                   "language": {
-                    "emptyTable": "No bookings found"
+                    "emptyTable": "{{__('app/atc/atc_allbookings.no_bookings')}}"
                   }
                 });
               </script>
