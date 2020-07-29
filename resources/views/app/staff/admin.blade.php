@@ -77,16 +77,16 @@
                     <td>{{ $m['account_type'] }}</td>
                     <td>
                       @if($m['is_staff'] == true)
-                        <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                        <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                       @else
-                        <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                       @endif
                     </td>
                     <td>
                       @if($m['is_approved_atc'] == true)
-                        <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                        <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                       @else
-                        <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                       @endif
                     </td>
                     <td>{{ $m['atc_rating_short'] }}</td>

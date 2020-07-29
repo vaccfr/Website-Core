@@ -107,37 +107,37 @@
                       <td>{{ $atc['user']['atc_rating_short'] }}</td>
                       <td>
                         @if ($atc['approved_flag'] == true)
-                        <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                        <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                         @else
-                        <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                         @endif
                       </td>
                       <td>
                         @if ($atc['appr_lfpg_twr'] == true)
-                          <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                          <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                         @else
-                          <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                          <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                         @endif
                       </td>
                       <td>
                         @if ($atc['appr_lfpg_app'] == true)
-                          <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                          <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                         @else
-                          <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                          <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                         @endif
                       </td>
                       <td>
                         @if ($atc['appr_lfmn_twr'] == true)
-                          <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                          <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                         @else
-                          <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                          <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                         @endif
                       </td>
                       <td>
                         @if ($atc['appr_lfmn_app'] == true)
-                          <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                          <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                         @else
-                          <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                          <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                         @endif
                       </td>
                     </tr>
@@ -168,9 +168,9 @@
                       <td>{{ $m['allowed_rank'] }}</td>
                       <td>
                         @if ($m['active'])
-                          <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                          <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                         @else
-                          <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                          <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                         @endif
                       </td>
                     </tr>
@@ -209,9 +209,9 @@
                     <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
                     <td>
                       @if ($solo['valid'])
-                        <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                        <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                       @else
-                        <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                       @endif
                     </td>
                   </tr>
@@ -249,9 +249,9 @@
                     <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
                     <td>
                       @if ($solo['valid'])
-                        <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                        <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                       @else
-                        <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                       @endif
                     </td>
                   </tr>
@@ -289,9 +289,9 @@
                     <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
                     <td>
                       @if ($solo['valid'])
-                        <span class="badge bg-success"><i class="fa fa-check"></i></span>
+                        <span class="badge bg-success"><i class="fa fa-check"></i> Yes</span>
                       @else
-                        <span class="badge bg-danger"><i class="fa fa-times"></i></span>
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> No</span>
                       @endif
                     </td>
                   </tr>
