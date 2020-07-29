@@ -21,7 +21,32 @@ class BookingController extends Controller
 {
     public function allBookings()
     {
-        return view('app.atc.allbookings');
+        $allDates = [];
+        $allBookings = [];
+
+        $day = Carbon::now()->format('D. d/m');
+        array_push($allDates, $day);
+        for ($i=1; $i < 8; $i++) { 
+            $day = Carbon::now()->addDays($i)->format('D. d/m');
+            array_push($allDates, $day);
+        }
+
+        $bookingToday = Booking::where('date', Carbon::now()->format('d.m.Y'))
+        ->with('user')
+        ->get();
+        array_push($allBookings, $bookingToday);
+        for ($i=1; $i < 8; $i++) { 
+            $booking = Booking::where('date', Carbon::now()
+            ->addDays($i)
+            ->format('d.m.Y'))
+            ->with('user')
+            ->get();
+            array_push($allBookings, $booking);
+        }
+        return view('app.atc.allbookings', [
+            'bookingDate' => $allDates,
+            'bookings' => $allBookings,
+        ]);
     }
     public function MyBookingsPage()
     {

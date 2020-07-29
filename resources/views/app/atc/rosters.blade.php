@@ -343,7 +343,7 @@
     "autoWidth": true,
     "info": true,
     "language": {
-      "emptyTables": "No S1 solo approvals found."
+      "emptyTable": "No S1 solo approvals found."
     }
   });
   $('#solo_approved_s2').DataTable({
@@ -354,7 +354,7 @@
     "autoWidth": true,
     "info": true,
     "language": {
-      "emptyTables": "No S2 solo approvals found."
+      "emptyTable": "No S2 solo approvals found."
     }
   });
   $('#solo_approved_s3').DataTable({
@@ -365,7 +365,7 @@
     "autoWidth": true,
     "info": true,
     "language": {
-      "emptyTables": "No S3 solo approvals found."
+      "emptyTable": "No S3 solo approvals found."
     }
   });
 </script>
