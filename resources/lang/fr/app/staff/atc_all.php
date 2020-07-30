@@ -3,9 +3,9 @@
 return [
     'header_title' => 'Mentoring ATC - Vue d\'Ensemble',
 
-    'apps' => 'Candidatures',
+    'apps' => 'Demandes',
     'active_stu' => 'Etudiants Actifs',
-    'new_apps' => 'Nouvelles Candidatures',
+    'new_apps' => 'Nouvelles Demandes',
 
     'cid' => 'ID Vatsim',
     'name' => 'Nom',

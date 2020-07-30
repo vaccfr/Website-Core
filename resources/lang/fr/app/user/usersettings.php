@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'header_title' => 'Réglages Utilisateur - :FNAME',
+
+    //GDPR
+    'gdpr_title' => 'Requêtes GDPR',
+    'gdpr_view' => 'Voir vos données',
+    'gdpr_del' => 'Supprimer votre compte et vos données',
+
+    // User details
+    'det_title' => 'Données Personnelles',
+    'det_custom_email' => 'Email Personnalisé (laisser vide pour supprimer)',
+    'det_acc_type' => 'Modifier type de compte',
+    'det_pers_det' => 'Cacher vos données personnelles des autres',
+
+    // Email preferences
+    'em_title' => 'Préférences Email',
+    'em_atcbooking' => 'Recevoir emails de vos Bookings ATC',
+    'em_atcmentoring' => 'Recevoir emails de vos mentorings ATC',
+    'em_inmsg' => 'Recevoir emails de nouveaux messages du \'Pigeon Voyageur\'',
+    'em_events' => 'Recevoir emails d\'évènements',
+    'em_webupdates' => 'Recevoir emails de mises à jour du site',
+    'em_news' => 'Recevoir emails des news de la vACC',
+
+    'submit' => 'Soumettre',
+];

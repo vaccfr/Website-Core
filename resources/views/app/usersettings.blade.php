@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>User Settings - {{ Auth::user()->fname }}</h1>
+          <h1>{{__('app/user/usersettings.header_title', ['FNAME' => Auth::user()->fname])}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -60,14 +60,14 @@
 
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">GDPR Request</h3>
+          <h3 class="card-title">{{__('app/user/usersettings.gdpr_title')}}</h3>
         </div>
         <div class="card-body">
           <form>
-            <button type="submit" class="btn btn-primary">View your data</button>
+            <button type="submit" class="btn btn-primary">{{__('app/user/usersettings.gdpr_view')}}</button>
           </form>
           <form>
-            <button type="submit" class="btn btn-danger">Delete all your data</button>
+            <button type="submit" class="btn btn-danger">{{__('app/user/usersettings.gdpr_del')}}</button>
           </form>
         </div>
       </div>
@@ -76,7 +76,7 @@
     <div class="col-md-4">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Edit Your Details</h3>
+          <h3 class="card-title">{{__('app/user/usersettings.det_title')}}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -84,11 +84,11 @@
           @csrf
           <div class="card-body">
             <div class="form-group">
-              <label>Custom email for your account</label>
+              <label>{{__('app/user/usersettings.det_custom_email')}}</label>
               <input type="email" class="form-control" name="customemail" value="{{ Auth::user()->custom_email }}">
             </div>
             <div class="form-group">
-              <label>Modify your account type</label>
+              <label>{{__('app/user/usersettings.det_acc_type')}}</label>
                 <select class="form-control" name="editusertype">
                   @foreach ($usertypes as $ut)
                     @if ($ut == Auth::user()->account_type)
@@ -102,14 +102,14 @@
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="hide-details-switch" name="hidedetails" @if (Auth::user()->hiddenDetails() == true) checked @endif>
-                <label class="custom-control-label" for="hide-details-switch">Hide your personal details from rosters</label>
+                <label class="custom-control-label" for="hide-details-switch">{{__('app/user/usersettings.det_pers_det')}}</label>
               </div>
             </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
             <input type="hidden" name="userid" value="{{ Auth::user()->id }}">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{__('app/user/usersettings.submit')}}</button>
           </div>
         </form>
       </div>
@@ -118,7 +118,7 @@
     <div class="col-md-4">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Edit Your Email Preferences</h3>
+          <h3 class="card-title">{{__('app/user/usersettings.em_title')}}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -128,44 +128,44 @@
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="atcbookingemail" name="atcbookingemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->atc_booking_emails == true) checked @endif>
-                <label class="custom-control-label" for="atcbookingemail">Receive your ATC Booking emails</label>
+                <label class="custom-control-label" for="atcbookingemail">{{__('app/user/usersettings.em_atcbooking')}}</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="atcmentoring" name="atcmentoring" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->atc_mentoring_emails == true) checked @endif>
-                <label class="custom-control-label" for="atcmentoring">Receive your ATC Mentoring emails</label>
+                <label class="custom-control-label" for="atcmentoring">{{__('app/user/usersettings.em_atcmentoring')}}</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="inmsgemail" name="inmsgemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->internal_messaging_emails == true) checked @endif>
-                <label class="custom-control-label" for="inmsgemail">Receive notifications of new 'Pigeon Voyageur' messages</label>
+                <label class="custom-control-label" for="inmsgemail">{{__('app/user/usersettings.em_inmsg')}}</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="eventemail" name="eventemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->event_emails == true) checked @endif>
-                <label class="custom-control-label" for="eventemail">Receive vACC Event emails</label>
+                <label class="custom-control-label" for="eventemail">{{__('app/user/usersettings.em_events')}}</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="websiteupdates" name="websiteupdates" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->website_update_emails == true) checked @endif>
-                <label class="custom-control-label" for="websiteupdates">Receive Website Update emails</label>
+                <label class="custom-control-label" for="websiteupdates">{{__('app/user/usersettings.em_webupdates')}}</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-switch custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="newsemail" name="newsemail" @if (!Auth::user()->emailPreferences() == false && Auth::user()->emailPreferences()->news_emails == true) checked @endif>
-                <label class="custom-control-label" for="newsemail">Receive vACC News emails</label>
+                <label class="custom-control-label" for="newsemail">{{__('app/user/usersettings.em_news')}}</label>
               </div>
             </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
             <input type="hidden" name="userid" value="{{ Auth::user()->id }}">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{__('app/user/usersettings.submit')}}</button>
           </div>
         </form>
       </div>
