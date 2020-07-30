@@ -22,6 +22,7 @@ return [
   'make_staff' => 'Make Staff',
   'make_admin' => 'Give Admin rights',
   'make_exec' => 'Give Executive staff rights (moderator)',
+  'staff_title' => 'Staff Title',
   'make_atc_mentor' => 'Make ATC Mentor',
   'allowed_mentor_lvl' => 'Allows ATC Mentoring Rating',
 

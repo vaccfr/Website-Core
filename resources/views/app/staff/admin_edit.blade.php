@@ -173,8 +173,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="stafftitle">Staff title</label>
-                  <input type="text" class="form-control" name="stafftitle" id="stafftitle" @if (!is_null($staff->title)) value="{{ $staff->title }}" @else placeholder="Staff title" @endif>
+                  <label for="stafftitle">{{__('app/admin/useredit.staff_title')}}</label>
+                  <input type="text" class="form-control" name="stafftitle" id="stafftitle" @if (!is_null($staff->title)) value="{{ $staff->title }}" @else placeholder="{{__('app/admin/useredit.staff_title')}}" @endif>
                 </div>             
                 @endif
               </div>
