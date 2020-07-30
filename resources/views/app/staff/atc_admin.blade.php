@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC Admin</h1>
+          <h1>{{__('app/admin/atc_admin.header_title')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -24,14 +24,14 @@
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Roster Members</span>
+            <span class="info-box-text">{{__('app/admin/atc_admin.pill_one')}}</span>
             <span class="info-box-number">{{ $rosterCount }}</span>
           </div>
         </div>
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Approved ATC</span>
+            <span class="info-box-text">{{__('app/admin/atc_admin.pill_two')}}</span>
             <span class="info-box-number">{{ $approvedRosterCount }}</span>
           </div>
         </div>
@@ -40,9 +40,9 @@
         <!-- /.card -->
         <div class="card card-outline card-primary">
           <div class="card-header" data-card-widget="collapse">
-            <h3 class="card-title">Roster Members</h3>
+            <h3 class="card-title">{{__('app/admin/atc_admin.roster_members')}}</h3>
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
               </button>
             </div>
           </div>
@@ -54,40 +54,40 @@
               data-order='[[ 2, "desc" ]]'>
               <thead>
               <tr>
-                <th>Name</th>
-                <th>Vatsim ID</th>
-                <th>ATC Rating</th>
-                <th>Approved ATC</th>
-                <th>Authorised LFPG TWR</th>
-                <th>Authorised LFPG APP</th>
-                <th>Authorised LFMN TWR</th>
-                <th>Authorised LFMN APP</th>
+                <th>{{__('app/admin/atc_admin.cid')}}</th>
+                <th>{{__('app/admin/atc_admin.name')}}</th>
+                <th>{{__('app/admin/atc_admin.rating')}}</th>
+                <th>{{__('app/admin/atc_admin.approved')}}</th>
+                <th>{{__('app/admin/atc_admin.authorised')}} LFPG TWR</th>
+                <th>{{__('app/admin/atc_admin.authorised')}} LFPG APP</th>
+                <th>{{__('app/admin/atc_admin.authorised')}} LFMN TWR</th>
+                <th>{{__('app/admin/atc_admin.authorised')}} LFMN APP</th>
               </tr>
               </thead>
               <tbody>
                 @foreach ($roster as $r)
                   <tr>
-                    <td>{{ $r['fname'] }} {{ $r['lname'] }}</td>
                     <td>{{ $r['vatsim_id'] }}</td>
+                    <td>{{ $r['fname'] }} {{ $r['lname'] }}</td>
                     <td>{{ $r['rating_short'] }}</td>
                     <td>@if ($r['approved_flag'] == true)
-                        Yes
-                    @else
-                        No
+                      <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
+                      @else
+                      <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
                     @endif</td>
                     <td>@if ($r['appr_lfpg_twr'] == true)
                       <form action="{{ route('app.staff.atcadmin.approval', app()->getLocale()) }}" method="POST">
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
                         <input type="hidden" name="position" value="lfpg_twr">
-                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> Remove</button>
+                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> {{__('app/admin/atc_admin.remove')}}</button>
                       </form>
                     @else
                       <form action="{{ route('app.staff.atcadmin.approval', app()->getLocale()) }}" method="POST">
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
                         <input type="hidden" name="position" value="lfpg_twr">
-                        <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> Add</button>
+                        <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> {{__('app/admin/atc_admin.add')}}</button>
                       </form>
                     @endif</td>
 
@@ -96,14 +96,14 @@
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
                         <input type="hidden" name="position" value="lfpg_app">
-                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> Remove</button>
+                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> {{__('app/admin/atc_admin.remove')}}</button>
                       </form>
                     @else
                       <form action="{{ route('app.staff.atcadmin.approval', app()->getLocale()) }}" method="POST">
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
                         <input type="hidden" name="position" value="lfpg_app">
-                        <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> Add</button>
+                        <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> {{__('app/admin/atc_admin.add')}}</button>
                       </form>
                     @endif</td>
 
@@ -112,14 +112,14 @@
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
                         <input type="hidden" name="position" value="lfmn_twr">
-                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> Remove</button>
+                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> {{__('app/admin/atc_admin.remove')}}</button>
                       </form>
                     @else
                       <form action="{{ route('app.staff.atcadmin.approval', app()->getLocale()) }}" method="POST">
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
                         <input type="hidden" name="position" value="lfmn_twr">
-                        <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> Add</button>
+                        <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> {{__('app/admin/atc_admin.add')}}</button>
                       </form>
                     @endif</td>
 
@@ -128,14 +128,14 @@
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
                         <input type="hidden" name="position" value="lfmn_app">
-                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> Remove</button>
+                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> {{__('app/admin/atc_admin.remove')}}</button>
                       </form>
                     @else
                       <form action="{{ route('app.staff.atcadmin.approval', app()->getLocale()) }}" method="POST">
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
                         <input type="hidden" name="position" value="lfmn_app">
-                        <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> Add</button>
+                        <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> {{__('app/admin/atc_admin.add')}}</button>
                       </form>
                     @endif</td>
                   </tr>
@@ -147,9 +147,9 @@
         </div>
         <div class="card card-outline card-primary">
           <div class="card-header" data-card-widget="collapse">
-            <h3 class="card-title">Solo Validations</h3>
+            <h3 class="card-title">{{__('app/admin/atc_admin.solo_appr')}}</h3>
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
               </button>
             </div>
           </div>
@@ -161,14 +161,14 @@
               data-order='[[ 1, "desc" ]]'>
               <thead>
               <tr>
-                <th>{{__('app/atc/rosters.cid')}}</th>
-                <th>{{__('app/atc/rosters.name')}}</th>
-                <th>{{__('app/atc/rosters.rating')}}</th>
-                <th>{{__('app/atc/rosters.position')}}</th>
-                <th>{{__('app/atc/rosters.start')}}</th>
-                <th>{{__('app/atc/rosters.end')}}</th>
-                <th>{{__('app/atc/rosters.mentor')}}</th>
-                <th>Options</th>
+                <th>{{__('app/admin/atc_admin.cid')}}</th>
+                <th>{{__('app/admin/atc_admin.name')}}</th>
+                <th>{{__('app/admin/atc_admin.rating')}}</th>
+                <th>{{__('app/admin/atc_admin.position')}}</th>
+                <th>{{__('app/admin/atc_admin.start')}}</th>
+                <th>{{__('app/admin/atc_admin.end')}}</th>
+                <th>{{__('app/admin/atc_admin.mentor')}}</th>
+                <th>{{__('app/admin/atc_admin.options')}}</th>
               </tr>
               </thead>
               <tbody>
@@ -185,7 +185,7 @@
                     <form action="{{ route('app.staff.atcadmin.delsolo', app()->getLocale()) }}" method="POST">
                       @csrf
                       <input type="hidden" name="soloid" value="{{ $solo['id'] }}">
-                      <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> Delete</button>
+                      <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> {{__('app/admin/atc_admin.delete')}}</button>
                     </form>
                   </td>
                 </tr>
@@ -197,46 +197,46 @@
         </div>
         <div class="card card-outline card-primary">
           <div class="card-header" data-card-widget="collapse">
-            <h3 class="card-title">Mentoring Request</h3>
+            <h3 class="card-title">{{__('app/admin/atc_admin.mentoring_reqs')}}</h3>
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
               </button>
             </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <table
-              id="atc_sessions_table"
+              id="mentoring_requests"
               class="table table-bordered table-hover"
               data-order='[[ 2, "desc" ]]'>
               <thead>
               <tr>
-                <th>Name</th>
-                <th>Vatsim ID</th>
-                <th>ATC Rating</th>
-                <th>Region</th>
-                <th>Airport</th>
-                <th>Motivation</th>
-                <th>Mentor</th>
-                <th>Options</th>
+                <th>{{__('app/admin/atc_admin.cid')}}</th>
+                <th>{{__('app/admin/atc_admin.name')}}</th>
+                <th>{{__('app/admin/atc_admin.rating')}}</th>
+                <th>{{__('app/admin/atc_admin.region')}}</th>
+                <th>{{__('app/admin/atc_admin.airport')}}</th>
+                <th>{{__('app/admin/atc_admin.motiv')}}</th>
+                <th>{{__('app/admin/atc_admin.mentor')}}</th>
+                <th>{{__('app/admin/atc_admin.options')}}</th>
               </tr>
               </thead>
               <tbody>
                 @foreach ($apps as $a)
                   <tr>
-                    <td>{{ $a['user']['fname'] }} {{ $a['user']['lname'] }}</td>
                     <td>{{ $a['user']['vatsim_id'] }}</td>
+                    <td>{{ $a['user']['fname'] }} {{ $a['user']['lname'] }}</td>
                     <td>{{ $a['user']['atc_rating_short'] }}</td>
                     <td>{{ $a['user']['subdiv_id'] }} {{ $a['user']['subdiv_name'] }}</td>
                     <td>{{ $a['icao'] }}</td>
                     <td>
                       <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#motiv_modal_{{ $a['user']['vatsim_id'] }}">
-                        Motivation
+                        {{__('app/admin/atc_admin.motiv')}}
                       </button>
                     </td>
                     <td>
                       @if ($a['mentor_id'] == null)
-                        (no mentor)
+                      {{__('app/admin/atc_admin.no_mentor')}}
                       @else
                         {{ $a['mentor']['user']['fname'] }} {{ $a['mentor']['user']['lname'] }}
                       @endif
@@ -245,7 +245,7 @@
                       <form action="{{ route('app.staff.atcadmin.delapplication', app()->getLocale()) }}" method="POST">
                         @csrf
                         <input type="hidden" name="appid" value="{{ $a['id'] }}">
-                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> Delete</button>
+                        <button type="submit" class="btn btn-flat btn-danger"><i class="fa fa-times"></i> {{__('app/admin/atc_admin.delete')}}</button>
                       </form>
                     </td>
                   </tr>
@@ -293,6 +293,15 @@
       "responsive": true,
     });
     $('#solo_approved').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    $('#mentoring_requests').DataTable({
       "paging": true,
       "lengthChange": true,
       "searching": true,
