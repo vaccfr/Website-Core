@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC Mentoring - Overview</h1>
+          <h1>{{__('app/staff/atc_all.header_title')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -24,21 +24,21 @@
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Applications</span>
+            <span class="info-box-text">{{__('app/staff/atc_all.apps')}}</span>
             <span class="info-box-number">{{ $appsCount }}</span>
           </div>
         </div>
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Active Students</span>
+            <span class="info-box-text">{{__('app/staff/atc_all.active_stu')}}</span>
             <span class="info-box-number">{{ $activeCount }}</span>
           </div>
         </div>
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-calendar"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">New applications</span>
+            <span class="info-box-text">{{__('app/staff/atc_all.new_apps')}}</span>
             <span class="info-box-number">N/A</span>
           </div>
         </div>
@@ -57,32 +57,32 @@
               data-order='[[ 2, "desc" ]]'>
               <thead>
               <tr>
-                <th>Name</th>
-                <th>Vatsim ID</th>
-                <th>ATC Rating</th>
-                <th>Region</th>
-                <th>Airport</th>
-                <th>Motivation</th>
-                <th>Mentor</th>
-                <th>Options</th>
+                <th>{{__('app/staff/atc_all.cid')}}</th>
+                <th>{{__('app/staff/atc_all.name')}}</th>
+                <th>{{__('app/staff/atc_all.rating')}}</th>
+                <th>{{__('app/staff/atc_all.region')}}</th>
+                <th>{{__('app/staff/atc_all.airport')}}</th>
+                <th>{{__('app/staff/atc_all.motiv')}}</th>
+                <th>{{__('app/staff/atc_all.mentor')}}</th>
+                <th>{{__('app/staff/atc_all.options')}}</th>
               </tr>
               </thead>
               <tbody>
                 @foreach ($apps as $a)
                   <tr>
-                    <td>{{ $a['user']['fname'] }} {{ $a['user']['lname'] }}</td>
                     <td>{{ $a['user']['vatsim_id'] }}</td>
+                    <td>{{ $a['user']['fname'] }} {{ $a['user']['lname'] }}</td>
                     <td>{{ $a['user']['atc_rating_short'] }}</td>
                     <td>{{ $a['user']['subdiv_id'] }} {{ $a['user']['subdiv_name'] }}</td>
                     <td>{{ $a['icao'] }}</td>
                     <td>
                       <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#motiv_modal_{{ $a['user']['vatsim_id'] }}">
-                        Motivation
+                        {{__('app/staff/atc_all.motiv')}}
                       </button>
                     </td>
                     <td>
                       @if ($a['mentor_id'] == null)
-                        (no mentor)
+                      {{__('app/staff/atc_all.no_mentor')}}
                       @else
                         {{ $a['mentor']['user']['fname'] }} {{ $a['mentor']['user']['lname'] }}
                       @endif
@@ -94,14 +94,14 @@
                             @csrf
                             <input type="hidden" value="{{ $a['id'] }}" name="requestid">
                             <button type="submit" class="btn btn-block btn-success btn-flat">
-                              Take
+                              {{__('app/staff/atc_all.take')}}
                             </button>
                           </form>
                         @else
-                          (Student rank too high)
+                        {{__('app/staff/atc_all.rank_too_high')}}
                         @endif
                       @else
-                        (Taken)
+                      {{__('app/staff/atc_all.taken')}}
                       @endif
                     </td>
                   </tr>
@@ -109,7 +109,7 @@
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h4 class="modal-title">{{ $a['user']['fname'] }}'s Motivation</h4>
+                          <h4 class="modal-title">{{__('app/staff/atc_all.motiv_title', ['FNAME' => $a['user']['fname']])}}</h4>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -118,7 +118,7 @@
                           <p>{{ $a['motivation'] }}</p>
                         </div>
                         <div class="modal-footer justify-content-between">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_all.motiv_close')}}</button>
                         </div>
                       </div>
                       <!-- /.modal-content -->
