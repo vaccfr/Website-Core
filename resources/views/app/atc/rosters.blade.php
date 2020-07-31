@@ -208,7 +208,7 @@
                     <td>{{ $solo['end_date'] }}</td>
                     <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
                     <td>
-                      @if ($solo['valid'])
+                      @if (\Illuminate\Support\Carbon::now()->format('d.m.Y') > \Illuminate\Support\Carbon::parse($solo['end_date'])->format('d.m.Y'))
                         <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
                       @else
                         <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
@@ -248,7 +248,7 @@
                     <td>{{ $solo['end_date'] }}</td>
                     <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
                     <td>
-                      @if ($solo['valid'])
+                      @if (\Illuminate\Support\Carbon::now()->format('d.m.Y') > \Illuminate\Support\Carbon::parse($solo['end_date'])->format('d.m.Y'))
                         <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
                       @else
                         <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
@@ -288,7 +288,7 @@
                     <td>{{ $solo['end_date'] }}</td>
                     <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
                     <td>
-                      @if ($solo['valid'])
+                      @if (\Illuminate\Support\Carbon::now()->format('d.m.Y') > \Illuminate\Support\Carbon::parse($solo['end_date'])->format('d.m.Y'))
                         <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
                       @else
                         <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
