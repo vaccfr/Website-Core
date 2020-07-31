@@ -20,7 +20,7 @@ return [
   // ATC Training Controller
   'success_application' => 'Votre candidature a été envoyée. Veuillez patienter pendant qu\'un de nos mentors vous prend en charge.',
   'session_req_error' => 'Erreur dans votre demande de session, vérifiez toutes les données',
-  'sessions_req_succ' => 'Demande de session mentoring envoyée!',
+  'session_req_succ' => 'Demande de session mentoring envoyée!',
   'session_accepted' => 'Session acceptée',
   'session_cancelled' => 'Session annulée',
 
