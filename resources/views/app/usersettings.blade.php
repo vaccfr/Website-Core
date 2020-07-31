@@ -105,6 +105,12 @@
                 <label class="custom-control-label" for="hide-details-switch">{{__('app/user/usersettings.det_pers_det')}}</label>
               </div>
             </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch custom-switch-on-success">
+                <input type="checkbox" class="custom-control-input" id="collapse-sidebar-switch" name="sidenav" @if (Auth::user()->sidenavCollapsed() == true) checked @endif>
+                <label class="custom-control-label" for="collapse-sidebar-switch">{{__('app/user/usersettings.det_sidenav')}}</label>
+              </div>
+            </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">

@@ -17,6 +17,7 @@ class CreateUserSettingsTable extends Migration
             $table->bigInteger('id')->unique();
             $table->integer('vatsim_id');
             $table->string('lang')->default('fr');
+            $table->boolean('sidenav_collapsed')->default(false);
             $table->timestamps();
         });
     }

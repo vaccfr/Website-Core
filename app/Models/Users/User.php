@@ -165,4 +165,10 @@ class User extends Authenticatable
         $pref = UserEmailPreference::where('id', $this->id)->first();
         return $pref;
     }
+
+    public function sidenavCollapsed()
+    {
+        $curr = UserSetting::where('vatsim_id', $this->vatsim_id)->first();
+        return $curr['sidenav_collapsed'];
+    }
 }

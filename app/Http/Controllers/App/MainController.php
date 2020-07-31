@@ -100,6 +100,13 @@ class MainController extends Controller
             $currentUser->hide_details = false;
             $currentUser->save();
         }
+        if (!is_null($request->get('sidenav'))) {
+            $currentUser->settings->sidenav_collapsed = true;
+            $currentUser->settings->save();
+        } else {
+            $currentUser->settings->sidenav_collapsed = false;
+            $currentUser->settings->save();
+        }
         switch (Auth::user()->subdiv_id) {
             case 'FRA':
                 if (in_array($request->get('editusertype'), config('vatfrance.usertypes'))) {

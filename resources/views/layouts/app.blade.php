@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
   <link href="{{ asset('css/cookie-consent.css') }}" rel="stylesheet" />
 </head>
-<body class="hold-transition sidebar-mini" onload="startTime()">
+<body class="hold-transition sidebar-mini @if (Auth::user()->sidenavCollapsed() == true) sidebar-collapse @endif" onload="startTime()">
 <!-- Site wrapper -->
 <div class="wrapper">
   

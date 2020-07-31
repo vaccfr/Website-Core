@@ -13,6 +13,7 @@ return [
     'det_custom_email' => 'Custom email (leave blank to remove)',
     'det_acc_type' => 'Modify your account type',
     'det_pers_det' => 'Hide your personal details from others',
+    'det_sidenav' => 'Collapse left side navigation bar',
 
     // Email preferences
     'em_title' => 'Edit Your Email Preferences',
