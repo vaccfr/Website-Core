@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC Mentoring - My students</h1>
+          <h1>{{__('app/staff/atc_mine.header_title')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -26,13 +26,13 @@
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Students</span>
+            <span class="info-box-text">{{__('app/staff/atc_mine.pill_one')}}</span>
             <span class="info-box-number">{{ $studentCount }}</span>
           </div>
         </div>
         <div class="card card-outline card-info">
           <div class="card-header">
-            <h3 class="card-title">Mentor's toolbox</h3>
+            <h3 class="card-title">{{__('app/staff/atc_mine.toolbox_title')}}</h3>
           </div>
           <div class="card-body p-0">
             <table class="table">
@@ -66,7 +66,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
-                  <h4>{{ $s['user']['fname'] }}'s progress</h4>
+                  <h4>{{__('app/staff/atc_mine.c_progress', ['FNAME' => $s['user']['fname']])}}</h4>
                   <div class="steps">
                     <ul class="steps-container">
                       @foreach ($steps as $step)
@@ -94,20 +94,20 @@
               </div>
               <div class="row mt-3">
                 <div class="col-md-12">
-                  <h4>All training sessions</h4>
+                  <h4>{{__('app/staff/atc_mine.c_sessions')}}</h4>
                   <table
                     id="upcoming_sessions_{{ $s['user']['vatsim_id'] }}"
                     class="table table-bordered table-hover"
                     data-order='[[ 1, "desc" ]]'>
                     <thead>
                     <tr>
-                      <th>Position</th>
-                      <th>When</th>
-                      <th>Scheduled by</th>
-                      <th>Mentor Comment</th>
-                      <th>Student Comment</th>
-                      <th>Status</th>
-                      <th>Options</th>
+                      <th>{{__('app/staff/atc_mine.position')}}</th>
+                      <th>{{__('app/staff/atc_mine.when')}}</th>
+                      <th>{{__('app/staff/atc_mine.sched_by')}}</th>
+                      <th>{{__('app/staff/atc_mine.mentor_comm')}}</th>
+                      <th>{{__('app/staff/atc_mine.student_comm')}}</th>
+                      <th>{{__('app/staff/atc_mine.status')}}</th>
+                      <th>{{__('app/staff/atc_mine.options')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -120,14 +120,14 @@
                             @if (!is_null($training['mentor_comment']))
                             <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="far fa-eye"></i></button>
                             @else
-                              (No comment)
+                              {{__('app/staff/atc_mine.no_comment')}}
                             @endif
                           </td>
                           <td>
                             @if (!is_null($training['student_comment']))
                             <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="far fa-eye"></i></button>
                             @else
-                              (No comment)
+                              {{__('app/staff/atc_mine.no_comment')}}
                             @endif
                           </td>
                           <td>{{ $training['status'] }}</td>
@@ -157,7 +157,7 @@
                                   <form action="{{ route('app.staff.atc.mine.completesession', app()->getLocale()) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
-                                    <button type="submit" class="btn btn-block btn-success btn-flat">Complete</button>
+                                    <button type="submit" class="btn btn-block btn-success btn-flat">{{__('app/staff/atc_mine.complete')}}</button>
                                   </form>
                                   <button type="button" class="btn btn-block btn-danger btn-flat" data-toggle="modal" data-target="#cancel-session-{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="fa fa-times"></i></button>
 
@@ -173,7 +173,7 @@
                                   @else
 
                                     {{-- Training completed, has report --}}
-                                    <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#mentor_report_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">See Report</button>
+                                    <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#mentor_report_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.see_report')}}</button>
 
                                   @endif
                                  @endif
@@ -187,8 +187,8 @@
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h4 class="modal-title">Mentor's comment</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h4 class="modal-title">{{__('app/staff/atc_mine.mentor_comm')}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
@@ -196,7 +196,7 @@
                                 <p>{{ $training['mentor_comment'] }}</p>
                               </div>
                               <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.close')}}</button>
                               </div>
                             </div>
                           </div>
@@ -207,8 +207,8 @@
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h4 class="modal-title">Student's comment</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h4 class="modal-title">{{__('app/staff/atc_mine.student_comm')}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
@@ -216,7 +216,7 @@
                                 <p>{{ $training['student_comment'] }}</p>
                               </div>
                               <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.close')}}</button>
                               </div>
                             </div>
                           </div>
@@ -227,8 +227,8 @@
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h4 class="modal-title">Mentor report</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h4 class="modal-title">{{__('app/staff/atc_mine.mentor_report')}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
@@ -236,7 +236,7 @@
                                 <p>{{ $training['mentor_report'] }}</p>
                               </div>
                               <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.close')}}</button>
                               </div>
                             </div>
                           </div>
@@ -246,20 +246,20 @@
                           <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h4 class="modal-title">Cancel session</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h4 class="modal-title">{{__('app/staff/atc_mine.cancel_sess')}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
                               <form action="{{ route('app.staff.atc.mine.cancelsession', app()->getLocale()) }}" method="post">
                                 @csrf
                                 <div class="modal-body">
-                                  <p>Are you sure you want to cancel this session?</p>
+                                  <p>{{__('app/staff/atc_mine.cancel_sess_sure')}}</p>
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                   <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
-                                  <button type="submit" class="btn btn-danger">Confirm</button>
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                  <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
                                 </div>
                               </form>
                             </div>
@@ -271,8 +271,8 @@
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h4 class="modal-title">Cancel session</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h4 class="modal-title">{{__('app/staff/atc_mine.add_report')}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
@@ -280,7 +280,7 @@
                                 @csrf
                                 <div class="modal-body">
                                   <div class="form-group">
-                                    <label for="report_box_{{ $training['id'] }}_{{ $s['user']['vatsim_id']}}">Write session report</label>
+                                    <label for="report_box_{{ $training['id'] }}_{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.report_textarea')}}</label>
                                     <textarea
                                       class="form-control"
                                       name="report_box"
@@ -291,8 +291,8 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                   <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                  <button type="submit" class="btn btn-success">Confirm</button>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
+                                  <button type="submit" class="btn btn-success">{{__('app/staff/atc_mine.confirm')}}</button>
                                 </div>
                               </form>
                             </div>
@@ -307,18 +307,81 @@
               </div>
             </div>
             <div class="card-footer">
-              <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#book-session-{{ $s['user']['vatsim_id'] }}">Book Session</button>
-              <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#send-message-{{ $s['user']['vatsim_id'] }}">Send Message</button>
-              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-progress-{{ $s['user']['vatsim_id']}}">Edit Progress</button>
-              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-solo{{ $s['user']['vatsim_id']}}">Solo Validation</button>
-              <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#terminate-{{ $s['user']['vatsim_id']}}">Terminate Mentoring</button>
+              <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#book-session-{{ $s['user']['vatsim_id'] }}">{{__('app/staff/atc_mine.btn_booksess')}}</button>
+              <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#send-message-{{ $s['user']['vatsim_id'] }}">{{__('app/staff/atc_mine.btn_sendmsg')}}</button>
+              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-progress-{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.btn_editprog')}}</button>
+              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-solo{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.btn_soloval')}}</button>
+              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#">{{__('app/staff/atc_mine.btn_editairport')}}</button>
+              <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#terminate-{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.btn_terminate')}}</button>
+              {{-- Book session modal  --}}
+              <div class="modal fade" id="book-session-{{ $s['user']['vatsim_id'] }}">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">{{__('app/staff/atc_mine.bsm_title', ['STUDENT' => $s['user']['fname']])}}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="{{ route('app.staff.atc.mine.booksession', app()->getLocale()) }}" method="post">
+                      @csrf
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="reqposition">{{__('app/atc/atc_training_center.pos')}}</label>
+                          <select class="form-control" name="reqposition" id="reqposition">
+                            <option value="" disabled selected>{{__('app/atc/atc_training_center.select')}}...</option>
+                            @foreach ($positions as $p)
+                              @if (count($p['positions']) > 0)
+                                <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
+                                @foreach ($p['positions'] as $pos)
+                                  <option value="{{ $pos['code'] }}">{{ $pos['code'] }}</option>
+                                @endforeach
+                                <optgroup label=""></optgroup>
+                              @endif
+                            @endforeach
+                          </select>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="session-date">{{__('app/atc/atc_training_center.date')}}</label>
+                              <input type="text" class="form-control" id="session-date-{{ $s['user']['vatsim_id'] }}" name="sessiondate" placeholder="{{__('app/atc/atc_training_center.date')}}">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="starttime">{{__('app/atc/atc_training_center.st_time')}} (UTC)</label>
+                              <input type="text" class="form-control" id="starttime-{{ $s['user']['vatsim_id'] }}" name="starttime" placeholder="{{__('app/atc/atc_training_center.st_time')}}">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="endtime">{{__('app/atc/atc_training_center.end_time')}} (UTC)</label>
+                              <input type="text" class="form-control" id="endtime-{{ $s['user']['vatsim_id'] }}" name="endtime" placeholder="{{__('app/atc/atc_training_center.end_time')}}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="reqcomment">{{__('app/atc/atc_training_center.comment_for')}}</label>
+                          <textarea class="form-control" rows="3" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="..."></textarea>
+                        </div>
+                      </div>
+                      <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.close')}}</button>
+                        <button type="submit" class="btn btn-success">{{__('app/staff/atc_mine.send_req')}}</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
               {{-- Edit progress modal  --}}
               <div class="modal fade" id="edit-progress-{{ $s['user']['vatsim_id']}}">
                 <div class="modal-dialog modal-sm">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Edit {{ $s['user']['fname'] }}'s progress</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <h4 class="modal-title">{{__('app/staff/atc_mine.epm_title', ['STUDENT' => $s['user']['fname']])}}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -326,10 +389,10 @@
                       @csrf
                       <div class="modal-body">
                         <div class="form-group">
-                          <label for="reqposition">Select {{ $s['user']['fname'] }}'s latest achievement</label>
+                          <label for="reqposition">{{__('app/staff/atc_mine.epm_select', ['STUDENT' => $s['user']['fname']])}}</label>
                           <select class="form-control" name="stuprogress" id="stuprogress">
                             @if ($s['progress'] == 0)
-                              <option value="0" disabled selected>Choose...</option>
+                              <option value="0" disabled selected>{{__('app/staff/atc_mine.epm_choose')}}...</option>
                             @else
                               <option value="{{ $s['progress'] }}">{{ $steps[$s['progress']]['title'] }}</option>
                             @endif
@@ -341,8 +404,8 @@
                       </div>
                       <div class="modal-footer justify-content-between">
                         <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
-                        <button type="submit" class="btn btn-danger">Confirm</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
                       </div>
                     </form>
                   </div>
@@ -355,8 +418,8 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Send message to {{ $s['user']['fname'] }} {{ $s['user']['lname'] }}</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <h4 class="modal-title">{{__('app/staff/atc_mine.spmm_title', ['STUDENT' => $s['user']['fname']])}}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -364,18 +427,18 @@
                       @csrf
                       <div class="modal-body">
                         <div class="form-group">
-                          <label for="msgsubject">Subject</label>
-                          <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="Subject">
+                          <label for="msgsubject">{{__('app/staff/atc_mine.spmm_subject')}}</label>
+                          <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="{{__('app/staff/atc_mine.spmm_subject')}}">
                         </div>
                         <div class="form-group">
-                          <label for="msgbody">Message</label>
-                          <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="Your message"></textarea>
+                          <label for="msgbody">{{__('app/staff/atc_mine.spmm_msg')}}</label>
+                          <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="{{__('app/staff/atc_mine.spmm_your_msg')}}"></textarea>
                         </div>
                       </div>
                       <input type="hidden" name="msgrecipient" value="{{ $s['user']['id'] }}">
                       <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Send message</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.close')}}</button>
+                        <button type="submit" class="btn btn-success">{{__('app/staff/atc_mine.spmm_sendmsg')}}</button>
                       </div>
                     </form>
                   </div>
@@ -386,8 +449,8 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Manage {{ $s['user']['fname'] }}'s solo approvals</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <h4 class="modal-title">{{__('app/staff/atc_mine.asm_title', ['STUDENT' => $s['user']['fname']])}}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -397,7 +460,7 @@
                         <div class="row border-bottom">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label for="selectpos">Select position to approve</label>
+                              <label for="selectpos">{{__('app/staff/atc_mine.asm_selectpos')}}</label>
                               <select class="form-control" name="selectpos" id="selectpos">
                                 @foreach ($positions as $pos)
                                   @if (count($pos['positions']) > 0)
@@ -413,16 +476,16 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <label for="start-date-solo-{{ $s['user']['vatsim_id'] }}">Start date</label>
-                                  <input type="text" class="form-control" id="start-date-solo-{{ $s['user']['vatsim_id'] }}" name="startdate" placeholder="Start date">
+                                  <label for="start-date-solo-{{ $s['user']['vatsim_id'] }}">{{__('app/staff/atc_mine.asm_selectdate')}}</label>
+                                  <input type="text" class="form-control" id="start-date-solo-{{ $s['user']['vatsim_id'] }}" name="startdate" placeholder="{{__('app/staff/atc_mine.asm_selectdate')}}">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <label for="length">Duration</label>
+                                  <label for="length">{{__('app/staff/atc_mine.asm_duration')}}</label>
                                   <select class="form-control" name="length" id="length">
                                     @foreach ($soloLengths as $sl)
-                                      <option value="{{ $sl }}">{{ $sl }} days</option>
+                                      <option value="{{ $sl }}">{{ $sl }} {{__('app/staff/atc_mine.days')}}</option>
                                     @endforeach
                                   </select>
                                 </div>
@@ -431,24 +494,23 @@
                           </div>
                           <div class="col-md-12 mb-3">
                             <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
-                            <button type="submit" class="btn btn-success btn-flat mr-0">Submit</button>
+                            <button type="submit" class="btn btn-success btn-flat mr-0">{{__('app/staff/atc_mine.submit')}}</button>
                           </div>
                         </div>
                       </form>
                         <div class="row">
                           <div class="col-md-12 mt-3">
-                            <h4>Current solo approvals</h4>
+                            <h4>{{__('app/staff/atc_mine.asm_curr_appr')}}</h4>
                             <table
                               id="solo_sessions_{{ $s['user']['vatsim_id'] }}"
                               class="table table-bordered table-hover"
                               data-order='[[ 1, "desc" ]]'>
                               <thead>
                                 <tr>
-                                  <th>Position</th>
-                                  <th>Start date</th>
-                                  <th>End date</th>
-                                  <th>Valid</th>
-                                  <th></th>
+                                  <th>{{__('app/staff/atc_mine.position')}}</th>
+                                  <th>{{__('app/staff/atc_mine.start_date')}}</th>
+                                  <th>{{__('app/staff/atc_mine.end_date')}}</th>
+                                  <th>{{__('app/staff/atc_mine.valid')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -459,16 +521,16 @@
                                       <td>{{ $slapp['end_date'] }}</td>
                                       <td>
                                         @if (\Illuminate\Support\Carbon::now()->format('d.m.Y') > \Illuminate\Support\Carbon::parse($slapp['end_date'])->format('d.m.Y'))
-                                          No
+                                        <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
                                         @else
-                                          Yes 
+                                        <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
                                         @endif
                                       </td>
                                       <td>
                                         <form action="{{ route('app.staff.atc.mine.solodel', app()->getLocale()) }}" method="post">
                                           @csrf
                                           <input type="hidden" name="soloid" value="{{ $slapp['id'] }}">
-                                          <button type="submit" class="btn btn-flat btn-danger">Cancel</button>
+                                          <button type="submit" class="btn btn-flat btn-danger">{{__('app/staff/atc_mine.cancel')}}</button>
                                         </form>
                                       </td>
                                     </tr>
@@ -488,87 +550,26 @@
                 <div class="modal-dialog modal-md">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Are you sure?</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <h4 class="modal-title">{{__('app/staff/atc_mine.tm_sure')}}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <form action="{{ route('app.staff.atc.mine.terminate', app()->getLocale()) }}" method="post">
                       @csrf
                       <div class="modal-body">
-                        <p>You are about to terminate your mentoring with {{ $s['user']['fname'] }}. This cannot be undone.</p>
+                        <p>{{__('app/staff/atc_mine.tm_text', ['STUDENT' => $s['user']['fname']])}}</p>
                       </div>
                       <div class="modal-footer justify-content-between">
                         <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
-                        <button type="submit" class="btn btn-danger">Confirm</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
                       </div>
                     </form>
                   </div>
                   <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
-              </div>
-            </div>
-          </div>
-          <div class="modal fade" id="book-session-{{ $s['user']['vatsim_id'] }}">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Book a session with {{ $s['user']['fname'] }}</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <form action="{{ route('app.staff.atc.mine.booksession', app()->getLocale()) }}" method="post">
-                  @csrf
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="reqposition">{{__('app/atc/atc_training_center.pos')}}</label>
-                      <select class="form-control" name="reqposition" id="reqposition">
-                        <option value="" disabled selected>{{__('app/atc/atc_training_center.select')}}...</option>
-                        @foreach ($positions as $p)
-                          @if (count($p['positions']) > 0)
-                            <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
-                            @foreach ($p['positions'] as $pos)
-                              <option value="{{ $pos['code'] }}">{{ $pos['code'] }}</option>
-                            @endforeach
-                            <optgroup label=""></optgroup>
-                          @endif
-                        @endforeach
-                      </select>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="session-date">{{__('app/atc/atc_training_center.date')}}</label>
-                          <input type="text" class="form-control" id="session-date-{{ $s['user']['vatsim_id'] }}" name="sessiondate" placeholder="{{__('app/atc/atc_training_center.date')}}">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="starttime">{{__('app/atc/atc_training_center.st_time')}} (UTC)</label>
-                          <input type="text" class="form-control" id="starttime-{{ $s['user']['vatsim_id'] }}" name="starttime" placeholder="{{__('app/atc/atc_training_center.st_time')}}">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="endtime">{{__('app/atc/atc_training_center.end_time')}} (UTC)</label>
-                          <input type="text" class="form-control" id="endtime-{{ $s['user']['vatsim_id'] }}" name="endtime" placeholder="{{__('app/atc/atc_training_center.end_time')}}">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="reqcomment">{{__('app/atc/atc_training_center.comment_for')}}</label>
-                      <textarea class="form-control" rows="3" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="..."></textarea>
-                    </div>
-                  </div>
-                  <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
-                  <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Send request</button>
-                  </div>
-                </form>
               </div>
             </div>
           </div>
@@ -581,7 +582,7 @@
               "autoWidth": false,
               "info": false,
               "language": {
-                "emptyTable": "No training sessions found."
+                "emptyTable": "{{__('app/staff/atc_mine.no_training_found')}}"
               }
             });
             $("#solo_sessions_{{ $s['user']['vatsim_id'] }}").DataTable({
@@ -592,7 +593,7 @@
               "autoWidth": false,
               "info": false,
               "language": {
-                "emptyTable": "No training sessions found."
+                "emptyTable": "{{__('app/staff/atc_mine.no_solo_found')}}"
               }
             });
             flatpickr("#session-date-{{ $s['user']['vatsim_id'] }}", {
