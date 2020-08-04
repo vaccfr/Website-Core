@@ -149,17 +149,17 @@
               data-order='[[ 2, "desc" ]]'>
               <thead>
               <tr>
-                <th>{{__('app/app_indexpage.callsign')}}</th>
-                <th>Flight time</th>
-                <th>Flight start</th>
-                <th>Flight end</th>
+                <th>{{__('app/app_indexpage.fl_callsign')}}</th>
+                {{-- <th>Flight duration</th> --}}
+                <th>{{__('app/app_indexpage.fl_start')}}</th>
+                <th>{{__('app/app_indexpage.fl_end')}}</th>
               </tr>
               </thead>
               <tbody>
                 @foreach ($flights as $f)
                   <tr>
                     <td>{{ $f['callsign'] }}</td>
-                    <td>{{ $f['duration'] }}</td>
+                    {{-- <td>{{ $f['duration'] }}</td> --}}
                     <td>{{ $f['start_time'] }}</td>
                     <td>{{ $f['end_time'] }}</td>
                   </tr>

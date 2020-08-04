@@ -19,4 +19,8 @@ return [
   'sess_time' => 'Durée de la session',
   'sess_start' => 'Début',
   'sess_end' => 'Fin',
+
+  'fl_callsign' => 'Callsign',
+  'fl_start' => 'Début du vol',
+  'fl_end' => 'Fin du vol',
 ];

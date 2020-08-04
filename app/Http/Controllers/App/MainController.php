@@ -40,6 +40,7 @@ class MainController extends Controller
             $values = array_count_values($allATCCallsigns);
             arsort($values);
             $mostControlled = array_slice(array_keys($values), 0, 5, true);
+            $mostControlled = $mostControlled[0];
         } else {
             $mostControlled = "N/A";
         }
@@ -48,7 +49,7 @@ class MainController extends Controller
             'sessions' => $sessions,
             'atcTimes' => $times['atc'],
             'pilotTimes' => $times['pilot'],
-            'mostControlled' => $mostControlled[0],
+            'mostControlled' => $mostControlled,
             'flights' => $allFlights,
         ]);
     }
