@@ -14,7 +14,7 @@
     <meta content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" property="twitter:description" />
     <meta content="VatFrance - French Division of VATSIM" property="og:title" />
     <meta content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" property="og:description" />
-    <link rel="icon" type="image/png" href="{{ asset('media/img/logo_small.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('media/img/new_favicon.png') }}" />
 
     <title>{{ config('app.name') }} | @yield('page-title')</title>
 
