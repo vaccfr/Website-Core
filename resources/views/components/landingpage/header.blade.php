@@ -3,9 +3,9 @@
   <div class="container">
     <a class="navbar-brand" href="{{ route('landingpage.home', app()->getLocale()) }}"
       ><img
-        style="height: 2.5rem; width: auto;"
+        style="height: 30px; width: auto;"
         id="vatfrancelogo"
-        src="{{ asset('media/img/logo_large.png') }}"
+        src="{{ asset('media/img/VATFrance.png') }}"
         alt=""
     /></a>
     <button
