@@ -22,9 +22,7 @@
   <div class="row">
     <div class="col-md-12 py-3" align="center">
       <h4>
-        To avoid any identity theft and to keep you and our users safe,<br>
-        you must be authenticated to use the contact form.<br>
-        Authentication is simple and uses the official VATSIM SSO.
+        {!!__('lp/lp_menu.warning_contact')!!}
       </h4>
       <br>
       <form action="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'true']) }}" method="get">
@@ -32,7 +30,7 @@
         <input
           type="submit"
           class="btn btn-secondary btn-send"
-          value="Log in with SSO"
+          value="{!!__('lp/lp_menu.login_w_sso')!!}"
         />
       </form>
     </div>

@@ -29,6 +29,7 @@ Route::group([
 ], function() {
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
     Route::get('/events', 'Landingpage\MainController@events')->name('landingpage.home.events');
+    Route::get('/feedback', 'Landingpage\MainController@feedback')->name('landingpage.home.feedback');
     Route::get('/contact', 'Landingpage\MainController@contact')->name('landingpage.home.contact');
     Route::post('/contact/submit', 'Landingpage\MainController@contactForm')->middleware('auth:web')->name('landingpage.home.contact.submit');
     Route::get('/requestatc', 'Landingpage\MainController@reqatc')->name('landingpage.home.reqatc');

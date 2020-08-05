@@ -50,6 +50,11 @@ class MainController extends Controller
         return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
     }
 
+    public function feedback()
+    {
+        return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
+    }
+
     public function contact()
     {
         return view('landingpage.contact');

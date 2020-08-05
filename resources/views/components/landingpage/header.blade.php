@@ -37,7 +37,7 @@
             aria-labelledby="navbarDropdownMenuLink"
           >
             <a class="dropdown-item" href="#">Staff </a>
-            <a class="dropdown-item" href="{{ route('landingpage.home.policies', app()->getLocale()) }}">Statutes and Policies</a>
+            <a class="dropdown-item" href="{{ route('landingpage.home.policies', app()->getLocale()) }}">{{__('lp/lp_menu.st_and_pol')}}</a>
           </div>
         </li>
 
@@ -56,8 +56,8 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">Charts</a>
-            <a class="dropdown-item" href="#">Pilot training</a>
+            <a class="dropdown-item" href="#">{{__('lp/lp_menu.charts')}}</a>
+            <a class="dropdown-item" href="#">{{__('lp/lp_menu.pilot_tr')}}</a>
           </div>
         </li>
 
@@ -76,33 +76,17 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">ATC training</a>
-            <a class="dropdown-item" href="#">Bookings</a>
-            <a class="dropdown-item" href="#">Visiting Controllers</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            {{__('lp/lp_menu.events')}}
-          </a>
-          <div
-            class="dropdown-menu dropdown-menu-right animate slideIn"
-            aria-labelledby="navbarDropdownMenuLink"
-          >
-            <a class="dropdown-item" href="{{ route('landingpage.home.events', app()->getLocale()) }}">Upcoming Events</a>
+            <a class="dropdown-item" href="#">{{__('lp/lp_menu.atc_tr')}}</a>
+            <a class="dropdown-item" href="#">{{__('lp/lp_menu.vis_contrl')}}</a>
           </div>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">{{__('lp/lp_menu.feedback')}}</a>
+          <a class="nav-link" href="{{ route('landingpage.home.events', app()->getLocale()) }}">{{__('lp/lp_menu.events')}}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('landingpage.home.feedback', app()->getLocale()) }}">{{__('lp/lp_menu.feedback')}}</a>
         </li>
         
         <li class="nav-item dropdown">
@@ -120,8 +104,8 @@
             class="dropdown-menu animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="{{ route('landingpage.home.contact', app()->getLocale()) }}">Contact us</a>
-            <a class="dropdown-item" href="{{ route('landingpage.home.reqatc', app()->getLocale()) }}">Request ATC</a>
+            <a class="dropdown-item" href="{{ route('landingpage.home.contact', app()->getLocale()) }}">{{__('lp/lp_menu.contact_us')}}</a>
+            <a class="dropdown-item" href="{{ route('landingpage.home.reqatc', app()->getLocale()) }}">{{__('lp/lp_menu.req_atc')}}</a>
           </div>
         </li>
         @if (Auth::check())
