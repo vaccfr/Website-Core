@@ -97,7 +97,7 @@
       <div class="col-md-4">
         <div class="info-box">
           <span class="info-box-icon bg-info"><i class="fas fa-map-marker-alt"></i></span>
-          <div class="info-box-content">
+          <div class="info-box-content" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
             <span class="info-box-text">{{__('app/app_indexpage.most_ctr_pos')}}</span>
             <span class="info-box-number">{{ $mostControlled }}</span>
           </div>
@@ -107,7 +107,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card card-outline card-info">
-          <div class="card-header">
+          <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
             <h3 class="card-title">{{__('app/app_indexpage.your_last_atc')}}</h3>
           </div>
           <div class="card-body">
@@ -139,7 +139,7 @@
       </div>
       <div class="col-md-6">
         <div class="card card-outline card-info">
-          <div class="card-header">
+          <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
             <h3 class="card-title">{{__('app/app_indexpage.your_last_flights')}}</h3>
           </div>
           <div class="card-body">
@@ -199,6 +199,9 @@
       "language": {
         "emptyTable": "{{__('app/app_indexpage.no_last_flights')}}"
       }
+    });
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
     });
   </script>
 @endsection
