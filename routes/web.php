@@ -146,7 +146,7 @@ Route::group([
                 Route::group(['prefix' => '/pilot'], function() {
                     
                 });
-                Route::group(['prefix' => '/events'], function() {
+                Route::group(['prefix' => '/events', 'middleware' => 'EVENTSSTAFF'], function() {
                     Route::get('/', 'Staff\EventsManagerController@dashboard')->name('app.staff.events.dashboard');
                 });
             });

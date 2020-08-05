@@ -132,6 +132,18 @@ class User extends Authenticatable
         return true;
     }
 
+    public function isEventsStaff()
+    {
+        $user = Staff::where('vatsim_id', $this->vatsim_id)->first();
+        if (is_null($user)) {
+            return false;
+        }
+        if ($user->events == false) {
+            return false;
+        }
+        return true;
+    }
+
     public function isAtcMentor()
     {
         $user = Mentor::where('vatsim_id', $this->vatsim_id)->first();

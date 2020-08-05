@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
         'EXECSTAFF' => \App\Http\Middleware\Users\ExecStaff::class,
         'ADMIN' => \App\Http\Middleware\Users\Admin::class,
         'ATCMENTOR' => \App\Http\Middleware\Users\ATCMentor::class,
+        'EVENTSSTAFF' => \App\Http\Middleware\Users\EventsStaff::class,
 
         'CanSendMail' => \App\Http\Middleware\Moderation\CanSendMail::class,
 

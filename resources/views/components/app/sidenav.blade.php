@@ -243,7 +243,7 @@
               </ul>
             </li>
           @endif
-          @if (True)
+          @if (Auth::user()->isEventsStaff() == true || Auth::user()->isAdmin() == true)
           <li class="nav-item">
             <a href="{{ route('app.staff.events.dashboard', app()->getLocale()) }}" class="nav-link">
               <i class="nav-icon fas fa-calendar-alt"></i>
