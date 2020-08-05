@@ -322,6 +322,12 @@ header.masthead .masthead-content .masthead-subheading {
   text-transform: uppercase;
 }
 
+.leaflet-container{
+  border-radius: 5px;
+  }
+
+
+
 /* Change this breakpoint if you change the breakpoint of the navbar */
 
 @media (min-width: 992px) {

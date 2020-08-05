@@ -27,7 +27,11 @@
 @endsection
 
 @section('page-content')
-  <!-- Page Content -->
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+<script src="{{ asset('dashboard/jquery/jquery.min.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+<!-- Page Content -->
   <div class="container-fluid py-4">
     <div class="container">
       <div class="row">
@@ -41,7 +45,7 @@
             {{__('lp/lp_titles.vacc_director')}}
           </p>
         </div>
-        <div class="col-sm">
+        <div class="col-md-6">
           <h3 class="font-weight-medium mt-3">{{__('lp/lp_titles.atc_bookings')}}</h3>
           <div class="card text-center mt-4">
             <div class="card-header">
@@ -143,11 +147,45 @@
   <div class="container-fluid py-4">
     <div class="container">
       <div class="row">
-        <div class="col-sm">
-          <h3 class="font-weight-medium">Live Map</h3>
+        <div class="col-md-6">
+          <h3 class="mt-3 mb-2">Live Map</h3>
+          <div class="fluid-container">
+            <main role="main">
+              <div id="map" style="height: calc(50vh - 120px)" class="mt-2">
+                <div style="position: absolute; z-index: 500; background: rgba(0,0,0,0.5); color:white; font-size: 10px; padding: 3px;">Flights: <span id="stat_f">X</span> / ATC: <span id="stat_u">X</span></div>
+                <!--note for Peter: populate the X's with actual data danke-->
+                <script>
+                  var map = L.map('map', {maxZoom: 19, minZoom: 5, worldCopyJump: true, zoomControl: false, dragging: true, attributionControl: false}).setView([46.7, 2.900333], 5);
+                  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+                  subdomains: 'abcd',
+                  // attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                  }).addTo(map);
+                  var markers = new L.FeatureGroup();
+                  var icon = L.icon({
+                    iconUrl: '/img/plane.png',
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10],
+                  });
+                  function initial(d) {
+                    mymap.removeLayer(markers)
+                    markers.clearLayers()
+                    var c = 0;
+                    for( var n in d ){
+                      let m = L.marker([parseFloat(d[n][2]), parseFloat(d[n][3])], {rotationAngle: parseInt(d[n][4]), icon: icon} ).bindTooltip( "<div style='font-size: 90%'><strong>" + (d[n][10] != "" ? d[n][10] + " - ": "") + d[n][0] + "</strong> - " + d[n][7] + "/" + d[n][8] + "<br>" + d[n][1] + "<br>" + d[n][5] + "kts @ " + d[n][6] + "ft</div>", {offset: [10,0], direction: 'right'});
+                      markers.addLayer(m)
+                      c++;
+                    }
+                    $('#stat_f').html(c);
+                    $('#stat_u').load("#");
+                    mymap.addLayer(markers);
+                  }
+                </script>
+              </div>
+            </main>
+          </div>
         </div>
         <div class="col-md-6">
-          <h3 class="white-text mt-2">{{__('lp/lp_index.online_atc_title')}}</h3>
+          <h3 class="mt-2">{{__('lp/lp_index.online_atc_title')}}</h3>
           <ul class="list-unstyled ml-0 mt-3 p-0 onlineControllers">
             <li class="mb-2">
               <table class="table mt-4">
@@ -179,5 +217,4 @@
       </div>
     </div>
   </div>
-
 @endsection
