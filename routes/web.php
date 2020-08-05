@@ -147,7 +147,7 @@ Route::group([
                     
                 });
                 Route::group(['prefix' => '/events'], function() {
-                    
+                    Route::get('/', 'Staff\EventsManagerController@dashboard')->name('app.staff.events.dashboard');
                 });
             });
 

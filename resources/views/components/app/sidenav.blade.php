@@ -243,6 +243,14 @@
               </ul>
             </li>
           @endif
+          @if (True)
+          <li class="nav-item">
+            <a href="{{ route('app.staff.events.dashboard', app()->getLocale()) }}" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>Events Dashboard</p>
+            </a>
+          </li>
+          @endif
         @endif
       </ul>
     </nav>
