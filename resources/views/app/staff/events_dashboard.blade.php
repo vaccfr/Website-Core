@@ -27,17 +27,10 @@
   <div class="row">
     <div class="col-md-2">
       <div class="info-box">
-        <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
+        <span class="info-box-icon bg-info"><i class="fas fa-calendar-alt"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Total Events</span>
-          <span class="info-box-number">N/A</span>
-        </div>
-      </div>
-      <div class="info-box">
-        <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Events this Month</span>
-          <span class="info-box-number">N/A</span>
+          <span class="info-box-text">Upcoming Events</span>
+          <span class="info-box-number">{{ $eventCount }}</span>
         </div>
       </div>
       <div class="card card-outline card-secondary">

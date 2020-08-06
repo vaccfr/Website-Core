@@ -21,6 +21,7 @@ class EventsManagerController extends Controller
         ->get();
         return view('app.staff.events_dashboard', [
             'events2come' => $eventsList,
+            'eventCount' => count($eventsList),
         ]);
     }
 
@@ -40,8 +41,6 @@ class EventsManagerController extends Controller
 
         $hasImgBool = false;
 
-        dd($request->hasFile('event_img'), $request->file('event_img'), $request->file('event_img')->isValid());
-
         if ($request->hasFile('event_img')) {
             if ($request->file('event_img')->isValid()) {
                 $imgValidate = Validator::make($request->all(), [
@@ -50,13 +49,10 @@ class EventsManagerController extends Controller
                 if ($imgValidate->fails()) {
                     return redirect()->back()->with('toast-error', 'Image is invalid.');
                 } else {
-                    echo "here";
                     $imgName = Str::random(50);
                     $imgExtension = $request->event_img->extension();
                     $request->event_img->storeAs('/public/event_images', $imgName.".".$imgExtension);
                     $imgUrl = Storage::url('event_images/'.$imgName.'.'.$imgExtension);
-
-                    dd($imgUrl);
 
                     $imgID = (new Snowflake)->id();
                     $file = File::create([
