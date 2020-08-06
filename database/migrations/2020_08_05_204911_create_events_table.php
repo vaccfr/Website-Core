@@ -17,9 +17,12 @@ class CreateEventsTable extends Migration
             $table->bigInteger('id')->unique();
             $table->string('title');
             $table->longText('description');
-            $table->timestamp('date_time');
+            $table->string('date');
+            $table->string('start_time');
+            $table->string('end_time');
             $table->boolean('has_image')->default(false);
             $table->bigInteger('image_id')->nullable();
+            $table->string('image_url')->nullable();
             $table->bigInteger('publisher_id');
             $table->timestamps();
         });
