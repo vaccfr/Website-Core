@@ -16,7 +16,9 @@ class EventsManagerController extends Controller
 {
     public function dashboard()
     {
-        $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))->get();
+        $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
+        ->orderBy('created_at', 'DESC')
+        ->get();
         return view('app.staff.events_dashboard', [
             'events2come' => $eventsList,
         ]);
@@ -24,7 +26,6 @@ class EventsManagerController extends Controller
 
     public function newEvent(Request $request)
     {
-        // dd();
         $validator = Validator::make($request->all(), [
             'title' => ['required'],
             'description' => ['required'],
@@ -34,24 +35,28 @@ class EventsManagerController extends Controller
         ]);
 
         if ($validator->fails()) {
-            dd($validator->errors());
             return redirect()->back()->with('toast-error', 'Error occured');
         }
 
         $hasImgBool = false;
 
+        dd($request->hasFile('event_img'), $request->file('event_img'), $request->file('event_img')->isValid());
+
         if ($request->hasFile('event_img')) {
             if ($request->file('event_img')->isValid()) {
                 $imgValidate = Validator::make($request->all(), [
-                    'event_img' => ['mimes:jpeg,png,jpg', 'max:1024']
+                    'event_img' => ['mimes:jpeg,png,jpg', 'max:5120']
                 ]);
                 if ($imgValidate->fails()) {
                     return redirect()->back()->with('toast-error', 'Image is invalid.');
                 } else {
+                    echo "here";
                     $imgName = Str::random(50);
                     $imgExtension = $request->event_img->extension();
                     $request->event_img->storeAs('/public/event_images', $imgName.".".$imgExtension);
                     $imgUrl = Storage::url('event_images/'.$imgName.'.'.$imgExtension);
+
+                    dd($imgUrl);
 
                     $imgID = (new Snowflake)->id();
                     $file = File::create([
@@ -81,5 +86,24 @@ class EventsManagerController extends Controller
         ]);
 
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('pop-success', 'New event registered!');
+    }
+
+    public function delEvent(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'eventid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('toast-error', 'Error occured');
+        }
+
+        $event = Event::where('id', $request->get('eventid'))->first();
+        if (is_null($event)) {
+            return redirect()->back()->with('toast-error', 'Event was not found and could not be deleted');
+        }
+
+        $event->delete();
+        return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event deleted');
     }
 }

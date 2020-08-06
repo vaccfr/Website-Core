@@ -19,6 +19,10 @@
 
 @section('page-content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="{{ asset('dashboard/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('dashboard/jquery/jquery.validate.js') }}"></script>
+<script src="{{ asset('dashboard/jquery/additional-methods.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
@@ -95,7 +99,7 @@
                   <textarea class="form-control" name="description" id="ne_description" rows="5" required></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="event_img">Upload image</label>
+                  <label for="event_img">Upload image (700 x 400 px | max. 5 MB)</label>
                   <input type="file" class="form-control" id="event_img" name="event_img" accept="image/*">
                 </div>
               </div>
@@ -128,8 +132,22 @@
               <tr>
                 <td>{{$e['title']}}</td>
                 <td>{{$e['date']}}</td>
-                <td align="right"><button class="btn btn-info btn-flat">View</button></td>
+                <td align="right"><button class="btn btn-info btn-flat" id="event_{{$e['id']}}">View</button></td>
               </tr>
+              <script>
+                $("#event_{{$e['id']}}").click(function() {
+                  $("#selevent_title").text("{{$e['title']}}");
+                  $("#selevent_description").text("{{$e['description']}}");
+                  if ("{{$e['has_image']}}" == "1") {
+                    $("#selevent_img_div").html('<img id="selevent_img" src="' + "{{config('app.url')}}/{{$e['image_url']}}" + '" alt="Event Picture" class="img-fluid" />')
+                  } else {
+                    $("#selevent_img_div").html('<p>(no image found for this event)</p>')
+                  }
+                  $("#selevent_editbtn").html('<button class="btn btn-info btn-flat float-right" type="button">Edit</button>')
+                  $("#selevent_eventid").attr('value', '{{$e["id"]}}')
+                  $("#selevent_delbtn").show();
+                })
+              </script>
               @endforeach
               @else
               <tr>
@@ -146,20 +164,31 @@
     <div class="col-md-5">
       <div class="card card-success">
         <div class="card-header">
-          <h3 class="card-title">Selected Event</h3>
+          <h3 class="card-title" id="selevent_title">(no event selected)</h3>
         </div>
         <div class="card-body">
-          
+          <div class="form-group">
+            <label for="selevent_description_label">Description</label>
+            <textarea name="selevent_description" id="selevent_description" rows="5" class="form-control" readonly>(no event selected)</textarea>
+          </div>
+          <div id="selevent_img_div"></div>
+        </div>
+        <div class="card-footer">
+          <div id="selevent_editbtn"></div>
+          <div id="selevent_delbtn">
+            <form id="selevent_cancelForm" action="{{ route('app.staff.events.delevent', app()->getLocale()) }}" method="post">
+              @csrf
+              <input type="hidden" name="eventid" id="selevent_eventid" value="">
+              <button type="submit" class="btn btn-danger btn-flat">Cancel Event</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<script src="{{ asset('dashboard/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('dashboard/jquery/jquery.validate.js') }}"></script>
-<script src="{{ asset('dashboard/jquery/additional-methods.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+  $('#selevent_delbtn').hide();
   d = new Date();
   flatpickr("#eventdate", {
       enableTime: false,

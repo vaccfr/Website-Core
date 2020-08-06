@@ -150,6 +150,7 @@ Route::group([
                     Route::get('/', 'Staff\EventsManagerController@dashboard')->name('app.staff.events.dashboard');
 
                     Route::post('/newevent', 'Staff\EventsManagerController@newEvent')->name('app.staff.events.newevent');
+                    Route::post('/delevent', 'Staff\EventsManagerController@delEvent')->name('app.staff.events.delevent');
                 });
             });
 
