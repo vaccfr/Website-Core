@@ -137,6 +137,7 @@
                     $("#selevent_img_div").html('<p>(no image found for this event)</p>')
                   }
                   $("#selevent_editbtn").html('<button class="btn btn-info btn-flat float-right" type="button">Edit</button>')
+                  $("#selevent_delbtn").html('<button type="submit" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#delete_event">Cancel Event</button>')
                   $("#selevent_eventid").attr('value', '{{$e["id"]}}')
                   $("#selevent_delbtn").show();
                 })
@@ -168,14 +169,33 @@
         </div>
         <div class="card-footer">
           <div id="selevent_editbtn"></div>
-          <div id="selevent_delbtn">
-            <form id="selevent_cancelForm" action="{{ route('app.staff.events.delevent', app()->getLocale()) }}" method="post">
+          <div id="selevent_delbtn"></div>
+        </div>
+      </div>
+      <div class="modal fade" id="delete_event">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{__('app/staff/atc_mine.tm_sure')}}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="{{ route('app.staff.events.delevent', app()->getLocale()) }}" method="post">
               @csrf
-              <input type="hidden" name="eventid" id="selevent_eventid" value="">
-              <button type="submit" class="btn btn-danger btn-flat">Cancel Event</button>
+              <div class="modal-body">
+                Are you sure?
+              </div>
+              <div class="modal-footer justify-content-between">
+                <input type="hidden" name="eventid" id="selevent_eventid" value="">
+                <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
+              </div>
             </form>
           </div>
+          <!-- /.modal-content -->
         </div>
+        <!-- /.modal-dialog -->
       </div>
     </div>
   </div>

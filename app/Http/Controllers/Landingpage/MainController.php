@@ -7,6 +7,7 @@ use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\ATC\ATCRequest;
 use App\Models\ATC\Booking;
 use App\Models\General\ContactForm;
+use App\Models\General\Event;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -33,6 +34,9 @@ class MainController extends Controller
         $dayTomorrow = Carbon::now()->addDays(1)->format('D. d/m');
         $dayAfterTomorrow = Carbon::now()->addDays(2)->format('D. d/m');
         $onlineATC = app(VatsimDataController::class)->getOnlineATC();
+        $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
+        ->orderBy('created_at', 'DESC')
+        ->get();
         return view('landingpage.index', [
             'book0' => $bookingsToday,
             'book1' => $bookingsTomorrow,
@@ -41,6 +45,7 @@ class MainController extends Controller
             'day1' => $dayTomorrow,
             'day2' => $dayAfterTomorrow,
             'atconline' => $onlineATC,
+            'eventsList' => $eventsList,
         ]);
     }
 

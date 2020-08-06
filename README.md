@@ -1,4 +1,4 @@
-<p align="center" style="background: black;"><img src="https://cdn.discordapp.com/attachments/722439694494728292/740676960149045319/Untitled-1.png" width="auto" style="background: black;"></p>
+<p align="center" style="background: black;"><img src="https://cdn.discordapp.com/attachments/721714238619648101/740926322208931850/VATFrance_WIDE.png" width="auto" style="background: black;"></p>
 
 <p align="center">Official repository of the new VatFrance Website rewrite<br>
 <a href="https://new.vatfrance.org/fr" target="_blank">https://new.vatfrance.org/fr</a>
