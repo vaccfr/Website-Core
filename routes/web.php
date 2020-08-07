@@ -56,7 +56,7 @@ Route::group([
                 Route::get('/', function () {
                     return redirect()->route('app.user.settings', app()->getLocale());
                 });
-                Route::get('/settings', 'App\MainController@usersetting')->name('app.user.settings');
+                Route::get('/settings', 'App\MainController@usersettings')->name('app.user.settings');
                 Route::post('/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');
                 Route::post('/settings/editemail', 'App\MainController@userEmailPrefEdit')->name('app.user.settings.editemail');
             });
