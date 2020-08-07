@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use Throwable;
 
 class VatsimDataController extends Controller
 {
@@ -27,8 +28,14 @@ class VatsimDataController extends Controller
                 $response = json_decode((string) $response->getBody(), true);
                 $sessions = $this->atcSessionsSort($response['results']);
                 app(CacheController::class)->putCache('atc_sessions', $response, $this->expiryTime, true);
-            } catch(ClientException $e) {
+            } catch(Throwable $e) {
+                $response = [
+                    "results" => [
+
+                    ],
+                ];
                 $sessions = [];
+                app(CacheController::class)->putCache('atc_sessions', $response, $this->expiryTime, true);
             }
         }
         
@@ -73,11 +80,12 @@ class VatsimDataController extends Controller
                     'pilot' => $PilotTime,
                 ];
                 app(CacheController::class)->putCache('hours', $return, $this->expiryTime, true);
-            } catch(ClientException $e) {
+            } catch(Throwable $e) {
                 $return = [
                     'atc' => 'Api Error',
                     'pilot' => 'Api Error',
                 ];
+                app(CacheController::class)->putCache('hours', $return, $this->expiryTime, true);
             }
         }
         return $return;
@@ -110,8 +118,9 @@ class VatsimDataController extends Controller
                 }
 
                 app(CacheController::class)->putCache('flights', $flights, $this->expiryTime, true);
-            } catch(ClientException $e) {
+            } catch(Throwable $e) {
                 $flights = [];
+                app(CacheController::class)->putCache('flights', $flights, $this->expiryTime, true);
             }
         }
         return $flights;
@@ -131,22 +140,23 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
+                $clients = [];
+                foreach ($response['clients'] as $c) {
+                    if ($c['clienttype'] == "ATC" && substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) !== "_ATIS" && config('vatfrance.atc_ranks')[$c['rating']] !== "OBS") {
+                        $add = [
+                            'callsign' => $c['callsign'],
+                            'name' => $c['realname'],
+                            'livesince' => date_format(date_create($c['time_logon']), 'H:i'),
+                            'rating' => config('vatfrance.atc_ranks')[$c['rating']],
+                        ];
+                        array_push($clients, $add);
+                    }
+                }
 
-            } catch(ClientException $e) {
+            } catch(Throwable $e) {
                 $clients = [];
             }
-            $clients = [];
-            foreach ($response['clients'] as $c) {
-                if ($c['clienttype'] == "ATC" && substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) !== "_ATIS" && config('vatfrance.atc_ranks')[$c['rating']] !== "OBS") {
-                    $add = [
-                        'callsign' => $c['callsign'],
-                        'name' => $c['realname'],
-                        'livesince' => date_format(date_create($c['time_logon']), 'H:i'),
-                        'rating' => config('vatfrance.atc_ranks')[$c['rating']],
-                    ];
-                    array_push($clients, $add);
-                }
-            }
+            
             app(CacheController::class)->putCache('onlineatc', $clients, 150, false);
         }
         return $clients;
