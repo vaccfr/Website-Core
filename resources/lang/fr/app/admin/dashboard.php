@@ -13,6 +13,7 @@ return [
   'atc_approv' => 'ATC Approuvé',
   'atc_rank' => 'Grade ATC',
   'pil_rank' => 'Grade Pilote',
+  'last_login' => 'Dernière connexion',
   'actions' => 'Actions',
   'edit' => 'Editer',
   'restrict' => 'Bloquer',

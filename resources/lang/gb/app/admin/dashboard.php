@@ -13,6 +13,7 @@ return [
   'atc_approv' => 'ATC Approval',
   'atc_rank' => 'ATC Rank',
   'pil_rank' => 'Pilot Rank',
+  'last_login' => 'Last Login',
   'actions' => 'Actions',
   'edit' => 'Edit',
   'restrict' => 'Block',

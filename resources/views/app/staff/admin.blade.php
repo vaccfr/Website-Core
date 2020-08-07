@@ -20,7 +20,7 @@
 @section('page-content')
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-4">
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
@@ -28,6 +28,8 @@
             <span class="info-box-number">{{ $memberCount }}</span>
           </div>
         </div>
+      </div>
+      <div class="col-md-4">
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
           <div class="info-box-content">
@@ -35,6 +37,8 @@
             <span class="info-box-number">{{ $atcCount }}</span>
           </div>
         </div>
+      </div>
+      <div class="col-md-4">
         <div class="info-box">
           <span class="info-box-icon bg-warning"><i class="fas fa-calendar"></i></span>
           <div class="info-box-content">
@@ -43,7 +47,9 @@
           </div>
         </div>
       </div>
-      <div class="col-md-10">
+    </div>
+    <div class="row">
+      <div class="col-md-12">
         <!-- /.card -->
         <div class="card">
           <div class="card-header">
@@ -65,6 +71,7 @@
                 <th>{{__('app/admin/dashboard.atc_approv')}}</th>
                 <th>{{__('app/admin/dashboard.atc_rank')}}</th>
                 <th>{{__('app/admin/dashboard.pil_rank')}}</th>
+                <th>{{__('app/admin/dashboard.last_login')}}</th>
                 <th>{{__('app/admin/dashboard.actions')}}</th>
               </tr>
               </thead>
@@ -91,6 +98,7 @@
                     </td>
                     <td>{{ $m['atc_rating_short'] }}</td>
                     <td>P{{ $m['pilot_rating'] }}</td>
+                    <td>{{ $m['last_login'] }}</td>
                     <td>
                       <div class="row">
                         <div class="col-sm-6">
