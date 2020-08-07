@@ -5,11 +5,13 @@ namespace App\Providers;
 use App\Events\EventDeleteATCBooking;
 use App\Events\Authentication\EventLogin;
 use App\Events\Authentication\EventLogout;
+use App\Events\EventExceptionLog;
 use App\Events\EventNewATCBooking;
 use App\Events\EventNewInternalMessage;
 use App\Listeners\ListenDeleteATCBooking;
 use App\Listeners\Authentication\ListenLogin;
 use App\Listeners\Authentication\ListenLogout;
+use App\Listeners\ListenExceptionLog;
 use App\Listeners\ListenNewATCBooking;
 use App\Listeners\ListenNewInternalMessage;
 use Illuminate\Auth\Events\Registered;
@@ -28,7 +30,9 @@ class EventServiceProvider extends ServiceProvider
         // Registered::class => [
         //     SendEmailVerificationNotification::class,
         // ],
-
+        EventExceptionLog::class => [
+            ListenExceptionLog::class,
+        ],
         EventNewATCBooking::class => [
             ListenNewATCBooking::class,
         ],

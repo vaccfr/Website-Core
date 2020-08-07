@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Events\EventExceptionLog;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -36,6 +37,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
+        if (!is_null($exception->getMessage())) {
+            event(new EventExceptionLog($exception));
+        }
+
         parent::report($exception);
     }
 
