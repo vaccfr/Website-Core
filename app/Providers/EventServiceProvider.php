@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Events\EventDeleteATCBooking;
+use App\Events\EventLogin;
 use App\Events\EventNewATCBooking;
 use App\Events\EventNewInternalMessage;
 use App\Listeners\ListenDeleteATCBooking;
+use App\Listeners\ListenLogin;
 use App\Listeners\ListenNewATCBooking;
 use App\Listeners\ListenNewInternalMessage;
 use Illuminate\Auth\Events\Registered;
@@ -33,7 +35,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         EventNewInternalMessage::class => [
             ListenNewInternalMessage::class,
-        ]
+        ],
+        EventLogin::class => [
+            ListenLogin::class,
+        ],
     ];
 
     /**

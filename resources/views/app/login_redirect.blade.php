@@ -431,6 +431,6 @@
 </html>
 
   <?php }
-  header( "refresh:1;url=".route('auth.redirect', ['locale' => app()->getLocale(), 'code' => $code]) );
+  header( "refresh:1;url=".route('auth.redirect', ['locale' => app()->getLocale(), 'code' => $code, 'ip' => $ip]) );
   exit();
   ?>

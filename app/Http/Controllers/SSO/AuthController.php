@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SSO;
 
+use App\Events\EventLogin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\CacheController;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
@@ -61,10 +62,11 @@ class AuthController extends Controller
     {
         return view('app.login_redirect', [
             'code' => $request->code,
+            'ip' => $request->ip(),
         ]);
     }
 
-    public function computeLogin($locale, $code)
+    public function computeLogin($locale, $code, $userip)
     {
         $previousUrl = session()->get('login_redir_url');
         session()->forget('login_redir_url');
@@ -183,6 +185,8 @@ class AuthController extends Controller
         }
 
         Auth::login($user, true);
+
+        event(new EventLogin($user, $userip));
 
         return redirect()->to($previousUrl)->with("toast-success", trans('app/alerts.logged_in'));
         // return redirect()->route('app.index', app()->getLocale())->with("toast-success", trans('app/alerts.logged_in'));

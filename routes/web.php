@@ -39,7 +39,7 @@ Route::group([
     // Authentication routes
     Route::get('/access/{redirflag}', 'SSO\AuthController@login')->name('auth.login');
     Route::get('/authenticate', 'SSO\AuthController@validateLogin')->name('auth.authenticate');
-    Route::get('/validateLogin/{code}', 'SSO\AuthController@computeLogin')->name('auth.redirect');
+    Route::get('/validateLogin/{code}/{ip}', 'SSO\AuthController@computeLogin')->name('auth.redirect');
     Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
     // Member dashboard routes with locales
