@@ -251,7 +251,7 @@
             </a>
           </li>
           @endif
-          @if (Auth::user()->isEventsStaff() == true || Auth::user()->isAdmin() == true)
+          @if (Auth::user()->isAdmin() == true)
           <li class="nav-item">
             <a href="{{ route('app.staff.webadmin.dashboard', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.webadmin.dashboard')) active @endif">
               <i class="nav-icon fas fa-server"></i>
