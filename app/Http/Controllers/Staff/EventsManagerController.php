@@ -102,4 +102,28 @@ class EventsManagerController extends Controller
         $event->delete();
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event deleted');
     }
+
+    public function editEvent(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'eventid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('toast-error', 'Error occured');
+        }
+
+        $event = Event::where('id', $request->get('eventid'))->first();
+        if (is_null($event)) {
+            return redirect()->back()->with('toast-error', 'Event was not found and could not be edited');
+        }
+
+        $event->title = $request->get('edittitle');
+        $event->description = $request->get('editdescription');
+        $event->date = $request->get('editdate');
+        $event->start_time = $request->get('editstarttime');
+        $event->end_time = $request->get('editendtime');
+        $event->save();
+        return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event content edited');
+    }
 }
