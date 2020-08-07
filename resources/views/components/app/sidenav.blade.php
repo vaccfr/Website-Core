@@ -173,7 +173,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-home"></i>
                 <p>
-                  Admin
+                  Staff
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
@@ -245,9 +245,17 @@
           @endif
           @if (Auth::user()->isEventsStaff() == true || Auth::user()->isAdmin() == true)
           <li class="nav-item">
-            <a href="{{ route('app.staff.events.dashboard', app()->getLocale()) }}" class="nav-link">
+            <a href="{{ route('app.staff.events.dashboard', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.events.dashboard')) active @endif">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>Events Dashboard</p>
+            </a>
+          </li>
+          @endif
+          @if (Auth::user()->isEventsStaff() == true || Auth::user()->isAdmin() == true)
+          <li class="nav-item">
+            <a href="{{ route('app.staff.webadmin.dashboard', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.webadmin.dashboard')) active @endif">
+              <i class="nav-icon fas fa-server"></i>
+              <p>WebAdmin</p>
             </a>
           </li>
           @endif

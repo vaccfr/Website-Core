@@ -153,6 +153,9 @@ Route::group([
                     Route::post('/delevent', 'Staff\EventsManagerController@delEvent')->name('app.staff.events.delevent');
                     Route::post('/editevent', 'Staff\EventsManagerController@editEvent')->name('app.staff.events.editevent');
                 });
+                Route::group(['prefix' => 'webadmin', 'middleware' => 'ADMIN'], function() {
+                    Route::get('/', 'Staff\WebadminController@dashboard')->name('app.staff.webadmin.dashboard');
+                });
             });
 
             // Authenticated POST routes
