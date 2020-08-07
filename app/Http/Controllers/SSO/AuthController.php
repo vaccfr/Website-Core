@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\SSO;
 
-use App\Events\EventLogin;
+use App\Events\Authentication\EventLogin;
+use App\Events\Authentication\EventLogout;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\CacheController;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
@@ -125,7 +126,7 @@ class AuthController extends Controller
         $user = User::where('vatsim_id', $response->data->cid)->first();
 
         if (is_null($user)) {
-            $user = User::create([
+            User::create([
                 'id' => $userid,
                 'vatsim_id' => $response->data->cid,
                 'email' => isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org',
@@ -142,6 +143,7 @@ class AuthController extends Controller
                 'subdiv_id' => $response->data->vatsim->subdivision->id,
                 'subdiv_name' => $response->data->vatsim->subdivision->name,
             ]);
+            $user = User::where('vatsim_id', $response->data->cid)->first();
             UserSetting::create([
                 'id' => $userid,
                 'vatsim_id' => $response->data->cid,
@@ -230,7 +232,9 @@ class AuthController extends Controller
 
     public function logout()
     {
+        $user = Auth::user();
         Auth::logout();
+        event(new EventLogout($user));
         return redirect()->route('landingpage.home', app()->getLocale())->with("toast-success", trans('app/alerts.logged_out'));
     }
 }

@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "spatie/calendar-links": "^1.4",
+        "spatie/laravel-activitylog": "^3.14",
         "spatie/laravel-cookie-consent": "^2.12"
     },
     "require-dev": {

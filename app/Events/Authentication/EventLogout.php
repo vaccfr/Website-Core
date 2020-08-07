@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Authentication;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class EventLogin
+class EventLogout
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,10 +19,9 @@ class EventLogin
      *
      * @return void
      */
-    public function __construct($user, $ip)
+    public function __construct($user)
     {
         $this->user = $user;
-        $this->ip = $ip;
     }
 
     /**
@@ -32,6 +31,6 @@ class EventLogin
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('userlogin-name');
+        return new PrivateChannel('authentication-name');
     }
 }

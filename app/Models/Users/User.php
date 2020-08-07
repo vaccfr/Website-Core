@@ -11,12 +11,13 @@ use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 use function GuzzleHttp\json_decode;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, LogsActivity;
 
     protected $table = "users";
 
@@ -31,6 +32,20 @@ class User extends Authenticatable
         'division_id', 'division_name', 'region_id', 'region_name', 'subdiv_id', 'subdiv_name',
         'is_staff', 'hide_details', 'last_login', 'login_ip',
     ];
+    
+    protected static $logName = 'user';
+    protected static $logAttributes  = [
+        'id', 'vatsim_id', 'fname', 'lname', 'email', 'custom_email', 'account_type', 'is_approved_atc',
+        'atc_rating_short', 'pilot_rating', 'is_staff',
+    ];
+    // protected static $ignoreChangedAttributes = ['vatsim_id', 'fname', 'lname', 
+    // 'division_id', 'division_name', 'region_id', 'region_name', 'subdiv_id', 'subdiv_name',
+    // 'is_staff', 'hide_details', 'last_login', 'login_ip', 'updated_at',];
+    protected static $logOnlyDirty = true;
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "User {$eventName}";
+    }
 
     /**
      * The attributes that should be hidden for arrays.
