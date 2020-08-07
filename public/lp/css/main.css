@@ -9,6 +9,9 @@ body {
   color: #1a1a1a;
   text-align: left;
 }
+html {
+  scroll-behavior: smooth;
+}
 a {
   color: #262626;
   font-size: 0.9375rem;
