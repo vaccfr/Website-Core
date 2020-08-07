@@ -137,7 +137,7 @@ class VatsimDataController extends Controller
             }
             $clients = [];
             foreach ($response['clients'] as $c) {
-                if ($c['clienttype'] == "ATC" && substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) !== "_ATIS") {
+                if ($c['clienttype'] == "ATC" && substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) !== "_ATIS" && config('vatfrance.atc_ranks')[$c['rating']] !== "OBS") {
                     $add = [
                         'callsign' => $c['callsign'],
                         'name' => $c['realname'],
