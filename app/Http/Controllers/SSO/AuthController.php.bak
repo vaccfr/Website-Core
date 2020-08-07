@@ -121,50 +121,28 @@ class AuthController extends Controller
         } else {
             $userid = $existingUser->id;
         }
-        
+        User::updateOrCreate(['vatsim_id' => $response->data->cid], [
+            'id' => $userid,
+            'email' => isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org',
+            'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
+            'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
+            'atc_rating' => $response->data->vatsim->rating->id,
+            'atc_rating_short' => $response->data->vatsim->rating->short,
+            'atc_rating_long' => $response->data->vatsim->rating->long,
+            'pilot_rating' => $response->data->vatsim->pilotrating->id,
+            'region_id' => $response->data->vatsim->region->id,
+            'region_name' => $response->data->vatsim->region->name,
+            'division_id' => $response->data->vatsim->division->id,
+            'division_name' => $response->data->vatsim->division->name,
+            'subdiv_id' => $response->data->vatsim->subdivision->id,
+            'subdiv_name' => $response->data->vatsim->subdivision->name,
+        ]);
         $user = User::where('vatsim_id', $response->data->cid)->first();
 
-        if (is_null($user)) {
-            $user = User::create([
-                'id' => $userid,
-                'vatsim_id' => $response->data->cid,
-                'email' => isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org',
-                'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
-                'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
-                'atc_rating' => $response->data->vatsim->rating->id,
-                'atc_rating_short' => $response->data->vatsim->rating->short,
-                'atc_rating_long' => $response->data->vatsim->rating->long,
-                'pilot_rating' => $response->data->vatsim->pilotrating->id,
-                'region_id' => $response->data->vatsim->region->id,
-                'region_name' => $response->data->vatsim->region->name,
-                'division_id' => $response->data->vatsim->division->id,
-                'division_name' => $response->data->vatsim->division->name,
-                'subdiv_id' => $response->data->vatsim->subdivision->id,
-                'subdiv_name' => $response->data->vatsim->subdivision->name,
-            ]);
-            UserSetting::create([
-                'id' => $userid,
-                'vatsim_id' => $response->data->cid,
-                'lang' => app()->getLocale(),
-            ]);
-        } else {
-            $user->id = $userid;
-            $user->vatsim_id = $response->data->cid;
-            $user->email = isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org';
-            $user->fname = isset($response->data->personal->name_first) ? $response->data->personal->name_first : null;
-            $user->lname = isset($response->data->personal->name_last) ? $response->data->personal->name_last : null;
-            $user->atc_rating = $response->data->vatsim->rating->id;
-            $user->atc_rating_short = $response->data->vatsim->rating->short;
-            $user->atc_rating_long = $response->data->vatsim->rating->long;
-            $user->pilot_rating = $response->data->vatsim->pilotrating->id;
-            $user->region_id = $response->data->vatsim->region->id;
-            $user->region_name = $response->data->vatsim->region->name;
-            $user->division_id = $response->data->vatsim->division->id;
-            $user->division_name = $response->data->vatsim->division->name;
-            $user->subdiv_id = $response->data->vatsim->subdivision->id;
-            $user->subdiv_name = $response->data->vatsim->subdivision->name;
-            $user->save();
-        }
+        UserSetting::updateOrCreate(['vatsim_id' => $response->data->cid], [
+            'id' => $userid,
+            'lang' => app()->getLocale(),
+        ]);
 
         $pref = UserEmailPreference::where('id', $userid)->first();
         if (is_null($pref)) {
@@ -172,41 +150,27 @@ class AuthController extends Controller
                 'id' => $userid
             ]);
         }
-        
-        $rosterMember = ATCRosterMember::where('vatsim_id', $response->data->cid)->first();
-        if (is_null($rosterMember)) {
-            if ($user->subdiv_id == "FRA" && $user->atc_rating > 1) {
-                ATCRosterMember::create([
-                    'id' => $userid,
-                    'vatsim_id' => $response->data->cid,
-                    'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
-                    'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
-                    'rating' => $response->data->vatsim->rating->id,
-                    'rating_short' => $response->data->vatsim->rating->short,
-                    'approved_flag' => false,
-                ]);
-            } elseif (!is_null($rosterMember)) {
-                $rosterMember->delete();
-            }
-        } else {
-            if ($user->subdiv_id == "FRA" && $user->atc_rating > 1) {
-                $rosterMember->id = $userid;
-                $rosterMember->vatsim_id = $response->data->cid;
-                $rosterMember->fname = isset($response->data->personal->name_first) ? $response->data->personal->name_first : null;
-                $rosterMember->lname = isset($response->data->personal->name_last) ? $response->data->personal->name_last : null;
-                $rosterMember->rating = $response->data->vatsim->rating->id;
-                $rosterMember->rating_short = $response->data->vatsim->rating->short;
-                $rosterMember->save();
-            } elseif (!is_null($rosterMember)) {
-                $rosterMember->delete();
-            }
-        }
 
         SSOToken::updateOrCreate(['vatsim_id' => $response->data->cid], [
             'id' => $userid,
             'access_token' => $tokens['access_token'],
             'refresh_token' => $tokens['refresh_token'],
         ]);
+        
+        $rosterMember = ATCRosterMember::where('vatsim_id', $response->data->cid)->first();
+
+        if ($user->subdiv_id == "FRA" && $user->atc_rating > 1) {
+            ATCRosterMember::updateOrCreate(['vatsim_id' => $response->data->cid], [
+                'id' => $userid,
+                'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
+                'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
+                'rating' => $response->data->vatsim->rating->id,
+                'rating_short' => $response->data->vatsim->rating->short,
+                'approved_flag' => false,
+            ]);
+        } elseif (!is_null($rosterMember)) {
+            $rosterMember->delete();
+        }
 
         if ($user->vatsim_id == '1267123') {
             Staff::updateOrCreate(['vatsim_id' => $user->vatsim_id], [
