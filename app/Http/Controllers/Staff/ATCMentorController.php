@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Staff;
 
+use App\Events\Mentoring\EventNewAtcSession;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
 use App\Models\ATC\Airport;
@@ -10,9 +11,11 @@ use App\Models\ATC\Mentor;
 use App\Models\ATC\MentoringRequest;
 use App\Models\ATC\SoloApproval;
 use App\Models\ATC\TrainingSession;
+use App\Models\Users\User;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ATCMentorController extends Controller
@@ -119,7 +122,7 @@ class ATCMentorController extends Controller
 
         // dd(htmlspecialchars($request->get('sessiondate')));
 
-        TrainingSession::create([
+        $newTrSess = TrainingSession::create([
             'id' => (new Snowflake)->id(),
             'student_id' => $request->get('userid'),
             'mentor_id' => auth()->user()->id,
@@ -134,6 +137,18 @@ class ATCMentorController extends Controller
             'status' => 'Awaiting student approval',
             'mentor_comment' => htmlspecialchars($request->get('reqcomment')),
         ]);
+
+        $student = User::where('id', $request->get('userid'))->first();
+        if (!is_null($student)) {
+            if ((new Utilities)->checkEmailPreference($student->id, 'atc_mentoring') == true) {
+                event(new EventNewAtcSession($student, [
+                    'mentor_fname' => $student->fname,
+                    'position' => $newTrSess['position'],
+                    'date' => $newTrSess['date'],
+                    'time' => $newTrSess['time'],
+                ]));
+            }
+        }
 
         return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('toast-success', trans('app/alerts.sessions_req_succ'));
     }

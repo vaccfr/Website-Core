@@ -8,12 +8,14 @@ use App\Events\Authentication\EventLogout;
 use App\Events\EventExceptionLog;
 use App\Events\EventNewATCBooking;
 use App\Events\EventNewInternalMessage;
+use App\Events\Mentoring\EventNewAtcSession;
 use App\Listeners\ListenDeleteATCBooking;
 use App\Listeners\Authentication\ListenLogin;
 use App\Listeners\Authentication\ListenLogout;
 use App\Listeners\ListenExceptionLog;
 use App\Listeners\ListenNewATCBooking;
 use App\Listeners\ListenNewInternalMessage;
+use App\Listeners\Mentoring\ListenNewAtcSession;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -47,6 +49,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         EventLogout::class => [
             ListenLogout::class,
+        ],
+
+        EventNewAtcSession::class => [
+            ListenNewAtcSession::class,
         ],
     ];
 
