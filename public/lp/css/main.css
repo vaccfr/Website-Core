@@ -188,7 +188,7 @@ header.masthead {
   padding-bottom: 7rem;
   /* background: linear-gradient(0deg, #e2e2e9 0%, #64a19d 100%); */
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('../../media/img/lp/fr.jpg');
+    url('../../media/img/lp/banner1.jpg');
   background-color: #000;
   background-size: cover;
   background-position: center;
@@ -205,7 +205,7 @@ header.masthead-50 {
   padding-bottom: 7rem;
   /* background: linear-gradient(0deg, #e2e2e9 0%, #64a19d 100%); */
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('../../media/img/lp/fr.jpg');
+    url('../../media/img/lp/banner1.jpg');
   background-color: #000;
   background-size: cover;
   background-position: center;
