@@ -161,4 +161,74 @@ class VatsimDataController extends Controller
         }
         return $clients;
     }
+
+    public function livemapDataGenerator()
+    {
+        $url = "http://cluster.data.vatsim.net/vatsim-data.json";
+
+        if (app(CacheController::class)->checkCache('livemap', false)) {
+            $data = app(CacheController::class)->getCache('livemap', false);
+        } else {
+            try {
+                $response = (new Client)->get($url, [
+                    'header' => [
+                        'Accept' => 'application/json',
+                    ]
+                ]);
+                $response = json_decode((string) $response->getBody(), true);
+                $appr = [];
+                $planes = [];
+                $planeCount = 0;
+                $atcCount = 0;
+                foreach ($response['clients'] as $p) {
+                    if ($p['clienttype'] == "PILOT") {
+                        if (substr($p['planned_depairport'], 0, 2) == "LF" || substr($p['planned_destairport'], 0, 2) == "LF") {
+                            $planeCount++;
+                            $add = [
+                                'callsign' => $p['callsign'],
+                                'hdg' => $p['heading'],
+                                'lat' => $p['latitude'],
+                                'lon' => $p['longitude'],
+                                'dep' => $p['planned_depairport'],
+                                'arr' => $p['planned_destairport'],
+                                'alt' => $p['altitude'],
+                                'gspd' => $p['groundspeed'],
+                            ];
+                            array_push($planes, $add);
+                        }
+                    } elseif ($p['clienttype'] == "ATC") {
+                        if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && substr($p['callsign'], -4) == "_APP" && config('vatfrance.atc_ranks')[$p['rating']] !== "OBS") {
+                            $atcCount++;
+                            $add = [
+                                'callsign' => $p['callsign'],
+                                'lat' => $p['latitude'],
+                                'lon' => $p['longitude'],
+                                'freq' => $p['frequency'],
+                            ];
+                            array_push($appr, $add);
+                        }
+                    }
+                }
+        
+                $data = [
+                    'planes' => $planes,
+                    'appr' => $appr,
+                    'planeCount' => $planeCount,
+                    'atcCount' => $atcCount,
+                ];
+
+            } catch(Throwable $e) {
+                $data = [
+                    'planes' => null,
+                    'appr' => null,
+                    'planeCount' => 0,
+                    'atcCount' => 0,
+                ];
+            }
+
+            app(CacheController::class)->putCache('livemap', $data, 150, false);
+        }
+
+        return $data;
+    }
 }

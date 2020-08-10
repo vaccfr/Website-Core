@@ -144,6 +144,7 @@
       </div>
     </div>
   </div>
+  <script src="{{ asset('lp/js/data.js') }}" type="text/javascript"></script>
   <div class="container-fluid py-4">
     <div class="container">
       <div class="row">
@@ -152,65 +153,141 @@
           <div class="fluid-container">
             <main role="main">
               <div id="map" style="height: calc(50vh - 120px)" class="mt-2">
-                <div style="position: absolute; z-index: 500; background: rgba(0,0,0,0.5); color:white; font-size: 10px; padding: 3px;">Flights: <span id="stat_f">X</span> / ATC: <span id="stat_u">X</span></div>
+                <div style="position: absolute; z-index: 500; background: rgba(0,0,0,0.5); color:white; font-size: 10px; padding: 3px;">Flights: <span>{{$livemap['planeCount']}}</span> / ATC: <span>{{$livemap['atcCount']}}</span></div>
                 <!--note for Peter: populate the X's with actual data danke-->
+                <script src="{{ asset('lp/js/rotate_marker.js') }}"></script>
                 <script>
-                  var map = L.map('map', {maxZoom: 19, minZoom: 5, worldCopyJump: true, zoomControl: false, dragging: true, attributionControl: false}).setView([46.7, 2.900333], 5);
+                  var map = L.map('map', {maxZoom: 19, minZoom: 2, worldCopyJump: true, zoomControl: false, dragging: true, attributionControl: false}).setView([46.7, 2.900333], 5);
                   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
                   subdomains: 'abcd',
                   // attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
                   }).addTo(map);
-                  var markers = new L.FeatureGroup();
+    
                   var icon = L.icon({
-                    iconUrl: '/img/plane.png',
+                    iconUrl: "{{ asset('lp/atcmap/plane.png') }}",
                     iconSize: [20, 20],
                     iconAnchor: [10, 10],
                   });
-                  function initial(d) {
-                    mymap.removeLayer(markers)
-                    markers.clearLayers()
-                    var c = 0;
-                    for( var n in d ){
-                      let m = L.marker([parseFloat(d[n][2]), parseFloat(d[n][3])], {rotationAngle: parseInt(d[n][4]), icon: icon} ).bindTooltip( "<div style='font-size: 90%'><strong>" + (d[n][10] != "" ? d[n][10] + " - ": "") + d[n][0] + "</strong> - " + d[n][7] + "/" + d[n][8] + "<br>" + d[n][1] + "<br>" + d[n][5] + "kts @ " + d[n][6] + "ft</div>", {offset: [10,0], direction: 'right'});
-                      markers.addLayer(m)
-                      c++;
+    
+                  var TWR = L.icon({
+                    iconUrl: "{{ asset('lp/atcmap/TWR.png') }}",
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10],
+                  });
+                  
+                  function onEachFeature(feature, layer) {
+                    // does this feature have a property named popupContent?
+                    if (feature.properties && feature.properties.popupContent) {
+                        layer.bindTooltip(feature.properties.popupContent, {permanent: true, direction:"center", className: 'label'});
                     }
-                    $('#stat_f').html(c);
-                    $('#stat_u').load("#");
-                    mymap.addLayer(markers);
                   }
+                  
+                  function polystyle(feature) {
+                    return {
+                      fillColor: '#3386FF ',
+                      weight: 2,
+                      opacity: 0.4,
+                      color: '#3386FF',  //Outline color
+                      fillOpacity: 0.2
+                    };
+                  }
+
+                  // // This part imports the FIR data
+                  // L.geoJSON(FIR, {
+                  //   filter: function(feature, layer) {
+                  //     return feature.properties.show_on_map;
+                  //   },
+                  //   onEachFeature: onEachFeature,
+                  //   style: polystyle
+                  // }).addTo(map);
+    
+                  // // This part creates a tower / GND / DEL object on the map
+                  // L.marker(
+                  //   [47.59000000, 7.52916667], 
+                  //   {icon: TWR,}
+                  // )
+                  // .addTo(map)
+                  // .bindTooltip(
+                  //   "<div style='font-size: 90%'><strong>Basel Tower</strong> - " + "LFSB_TWR" + "<br>" +  "<center>" + "118.300" +"</center>" + "</div>",
+                  //   {offset: [0,-10], direction: 'top'}
+                  // );  
+    
+    
+    
                 </script>
+                @foreach ($livemap['planes'] as $op)
+                  <script>
+                    // This part creates a plane icon on the map
+                    L.marker(
+                      ["{{ $op['lat'] }}", "{{ $op['lon'] }}"], 
+                      {rotationAngle: "{{ $op['hdg'] }}", icon: icon} 
+                    )
+                    .addTo(map)
+                    .bindTooltip( 
+                      "<div style='font-size: 90%'><strong>{{ $op['callsign'] }}</strong> - " + "{{ $op['dep'] }}" + "/" + "{{ $op['arr'] }}" + "<br>" + "{{ $op['gspd'] }}" + "kts @ " + "{{ $op['alt'] }}" + "ft</div>", 
+                      {offset: [10,0], direction: 'right'}
+                    );
+                  </script>
+                @endforeach
+
+                @foreach ($livemap['appr'] as $app)
+                  <script>
+                    // This part creates an approach position circle on the map
+                    L.circle(
+                      ["{{ $app['lat'] }}", "{{ $app['lon'] }}"],
+                      {
+                        radius: 50000,
+                        fillColor: '#3386FF ',
+                        weight: 2,
+                        opacity: 0.7,
+                        color: '#3386FF',  //Outline color
+                        fillOpacity: 0.2
+                      }
+                    )
+                    .addTo(map)
+                    .bindTooltip(
+                      "<div style='font-size: 90%'><strong>{{ $app['callsign'] }}</strong>" + "<br>" +  "<center>" + "{{ $app['freq'] }}" +"</center>" + "</div>",
+                      {offset: [0,0], direction: 'left'}
+                    );
+                  </script>
+                @endforeach
               </div>
             </main>
+            <h6 class="text-muted">Only approach positions and planes for now</h6>
           </div>
         </div>
         <div class="col-md-6">
-          <h3 class="mt-2">{{__('lp/lp_index.online_atc_title')}}</h3>
+          <h3 class="mt-3  mb-3">{{__('lp/lp_index.online_atc_title')}}</h3>
           <ul class="list-unstyled ml-0 mt-3 p-0 onlineControllers">
-            <li class="mb-2">
-              <table class="table mt-4">
-                <thead class="thead">
-                  <tr>
-                    <th scope="col">{{__('lp/lp_index.position')}}</th>
-                    <th scope="col">{{__('lp/lp_index.name')}}</th>
-                    <th scope="col">{{__('lp/lp_index.livesince')}}</th>
-                    <th scope="col">{{__('lp/lp_index.rating')}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($atconline as $a)
-                    <tr>
-                      <th class="position" scope="row">{{$a['callsign']}}</th>
-                      <td>{{$a['name']}}</td>
-                      <td>{{$a['livesince']}}z</td>
-                      <td>{{$a['rating']}}</td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              @if (count($atconline) == 0)
-                <p style="vertical-align: middle; text-align: center;">{{__('lp/lp_index.noatc')}}</p>
-              @endif
+            <li>
+              <div class="card shadow-none blue-grey lighten-5 p-3">
+                <div class="d-flex flex-row justify-content-between align-items-center mb-1 text-center">
+                  @if (count($atconline) == 0)
+                    <p style="vertical-align: middle; text-align: center;">{{__('lp/lp_index.noatc')}}</p>
+                  @else
+                  <table class="table table-borderless">
+                    <thead class="thead">
+                      <tr>
+                        <th scope="col">{{__('lp/lp_index.position')}}</th>
+                        <th scope="col">{{__('lp/lp_index.name')}}</th>
+                        <th scope="col">{{__('lp/lp_index.livesince')}}</th>
+                        <th scope="col">{{__('lp/lp_index.rating')}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($atconline as $a)
+                        <tr>
+                          <th class="position" scope="row">{{$a['callsign']}}</th>
+                          <td>{{$a['name']}}</td>
+                          <td>{{$a['livesince']}}z</td>
+                          <td>{{$a['rating']}}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                  @endif
+                </div>
+              </div>
             </li>
           </ul>
         </div>

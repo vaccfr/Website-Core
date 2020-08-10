@@ -34,6 +34,7 @@ class MainController extends Controller
         $dayTomorrow = Carbon::now()->addDays(1)->format('D. d/m');
         $dayAfterTomorrow = Carbon::now()->addDays(2)->format('D. d/m');
         $onlineATC = app(VatsimDataController::class)->getOnlineATC();
+        $livemap = app(VatsimDataController::class)->livemapDataGenerator();
         $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
         ->orderBy('created_at', 'DESC')
         ->get();
@@ -46,6 +47,7 @@ class MainController extends Controller
             'day2' => $dayAfterTomorrow,
             'atconline' => $onlineATC,
             'eventsList' => $eventsList,
+            'livemap' => $livemap,
         ]);
     }
 
