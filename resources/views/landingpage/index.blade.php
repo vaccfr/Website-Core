@@ -8,8 +8,8 @@
 <header class="masthead">
   <div>
       <video loop muted autoplay playsinline class="animated_bg__video" src="/media/video/lp/vatfrance_bg.mp4">
-          <source src="/media/video/lp/vatfrance_bg.webm" type="video/webm">
-          <source src="/media/video/lp/vatfrance_bg.mp4" type="video/mp4">
+          <source src="{{ asset('/media/video/lp/vatfrance_bg.webm') }}" type="video/webm">
+          <source src="{{ asset('/media/video/lp/vatfrance_bg.mp4') }}" type="video/mp4">
       </video>
   </div>
   <div class="container-fluid h-100 bg-overlay d-flex align-items-end masthead-container" >
