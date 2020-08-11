@@ -25,11 +25,13 @@ class MainController extends Controller
         ->addDays(1)
         ->format('d.m.Y'))
         ->with('user')
+        ->orderBy('time', 'ASC')
         ->get();
         $bookingsAfterTomorrow = Booking::where('date', Carbon::now()
         ->addDays(2)
         ->format('d.m.Y'))
         ->with('user')
+        ->orderBy('time', 'ASC')
         ->get();
         $dayToday = Carbon::now()->format('D. d/m');
         $dayTomorrow = Carbon::now()->addDays(1)->format('D. d/m');
