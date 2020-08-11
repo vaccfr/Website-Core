@@ -176,6 +176,7 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
+                $twrs = [];
                 $appr = [];
                 $planes = [];
                 $planeCount = 0;
@@ -197,15 +198,28 @@ class VatsimDataController extends Controller
                             array_push($planes, $add);
                         }
                     } elseif ($p['clienttype'] == "ATC") {
-                        if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && substr($p['callsign'], -4) == "_APP" && config('vatfrance.atc_ranks')[$p['rating']] !== "OBS") {
-                            $atcCount++;
-                            $add = [
-                                'callsign' => $p['callsign'],
-                                'lat' => $p['latitude'],
-                                'lon' => $p['longitude'],
-                                'freq' => $p['frequency'],
-                            ];
-                            array_push($appr, $add);
+                        if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && config('vatfrance.atc_ranks')[$p['rating']] !== "OBS") {
+                            if (substr($p['callsign'], -4) == "_APP") {
+                                $atcCount++;
+                                $add = [
+                                    'callsign' => $p['callsign'],
+                                    'lat' => $p['latitude'],
+                                    'lon' => $p['longitude'],
+                                    'freq' => $p['frequency'],
+                                ];
+                                array_push($appr, $add);
+                            }
+
+                            if (substr($p['callsign'], -4) == "_TWR") {
+                                $atcCount++;
+                                $add = [
+                                    'callsign' => $p['callsign'],
+                                    'lat' => $p['latitude'],
+                                    'lon' => $p['longitude'],
+                                    'freq' => $p['frequency'],
+                                ];
+                                array_push($twrs, $add);
+                            }
                         }
                     }
                 }
@@ -213,6 +227,7 @@ class VatsimDataController extends Controller
                 $data = [
                     'planes' => $planes,
                     'appr' => $appr,
+                    'twr' => $twrs,
                     'planeCount' => $planeCount,
                     'atcCount' => $atcCount,
                 ];
@@ -221,6 +236,7 @@ class VatsimDataController extends Controller
                 $data = [
                     'planes' => null,
                     'appr' => null,
+                    'twr' => null,
                     'planeCount' => 0,
                     'atcCount' => 0,
                 ];
