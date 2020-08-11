@@ -193,7 +193,40 @@ header.masthead {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  text-align: center;
+}
+
+.animated_bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .animated_bg__video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .animated_bg__video {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+.masthead-container {
+  position:absolute;
+  bottom: 50px;
+}
+
+h1.masthead-heading, h2.masthead-subheading {
+  width: fit-content;
+  background-size: 2px 2px;
+  padding: 2px;
+  background-image: linear-gradient(45deg, rgb(19, 18, 18) 25%, transparent 25%), linear-gradient(-45deg, rgb(19, 18, 18) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgb(19, 18, 18) 75%), linear-gradient(-45deg, transparent 75%, rgb(19, 18, 18) 75%);
 }
 
 header.masthead-50 {
