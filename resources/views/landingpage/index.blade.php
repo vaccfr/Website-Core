@@ -6,19 +6,23 @@
 
 @section('page-masthead')
 <header class="masthead">
-  <div class="container h-100 bg-overlay justify-content-center">
-    <div class="row h-75 align-items-center ">
-      <div class="col-12 text-center">
+  <div>
+      <video loop muted autoplay playsinline class="animated_bg__video" src="/media/video/lp/vatfrance_bg.mp4">
+          <source src="{{ asset('/media/video/lp/vatfrance_bg.webm') }}" type="video/webm">
+          <source src="{{ asset('/media/video/lp/vatfrance_bg.mp4') }}" type="video/mp4">
+      </video>
+  </div>
+  <div class="container-fluid h-100 bg-overlay d-flex align-items-end masthead-container" >
+    <div class="row container-fluid no-gutters">
+      <div class="col-12">
         <h1 class="masthead-heading">{{__('lp/lp_titles.welcome_to_vatfrance')}}@if (Auth::check()), {{ Auth::user()->fname }}@endif!</h1>
         <h2 class="masthead-subheading">{{__('lp/lp_titles.french_branch')}}</h2>
         @if (Auth::check())
-        <a href="{{ route('app.index', app()->getLocale()) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
-          >{{__('lp/lp_menu.dashboard')}}</a
-        >
+        <a href="{{ route('app.index', app()->getLocale()) }}" 
+          class="btn btn-xl btn-pill btn-primary px-7 mt-4">{{__('lp/lp_menu.dashboard')}}</a>
         @else
-        <a href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" class="btn btn-xl btn-pill btn-primary px-7 mt-4"
-          >{{__('lp/lp_titles.join_us')}}!</a
-        >
+        <a href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" 
+          class="btn btn-xl btn-pill btn-primary px-7 mt-4">{{__('lp/lp_titles.join_us')}}!</a>
         @endif
       </div>
     </div>

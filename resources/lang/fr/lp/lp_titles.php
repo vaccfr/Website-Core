@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'welcome_to_vatfrance' => 'Bienvenue sur VatFrance',
+  'welcome_to_vatfrance' => 'Bienvenue sur VATFrance',
   'french_branch' => 'L\'antenne française de VATSIM',
   'join_us' => 'Rejoignez-nous',
   'about_us' => 'A propos',
