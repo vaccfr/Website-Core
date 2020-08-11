@@ -78,10 +78,12 @@
                     </thead>
                     <tbody>
                       @foreach ($book0 as $b)
-                      <th scope="row">{{$b['position']}}</th>
-                      <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                      <td>{{$b['time']}}</td>
-                      <td>{{$b['user']['atc_rating_short']}}</td>
+                      <tr>
+                        <th scope="row">{{$b['position']}}</th>
+                        <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                        <td>{{$b['time']}}</td>
+                        <td>{{$b['user']['atc_rating_short']}}</td>
+                      </tr>
                       @endforeach
                     </tbody>
                   </table>
@@ -103,10 +105,12 @@
                     </thead>
                     <tbody>
                       @foreach ($book1 as $b)
-                      <th scope="row">{{$b['position']}}</th>
-                      <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                      <td>{{$b['time']}}</td>
-                      <td>{{$b['user']['atc_rating_short']}}</td>
+                      <tr>
+                        <th scope="row">{{$b['position']}}</th>
+                        <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                        <td>{{$b['time']}}</td>
+                        <td>{{$b['user']['atc_rating_short']}}</td>
+                      </tr>
                       @endforeach
                     </tbody>
                   </table>
@@ -128,10 +132,12 @@
                     </thead>
                     <tbody>
                       @foreach ($book2 as $b)
-                      <th scope="row">{{$b['position']}}</th>
-                      <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                      <td>{{$b['time']}}</td>
-                      <td>{{$b['user']['atc_rating_short']}}</td>
+                      <tr>
+                        <th scope="row">{{$b['position']}}</th>
+                        <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                        <td>{{$b['time']}}</td>
+                        <td>{{$b['user']['atc_rating_short']}}</td>
+                      </tr>
                       @endforeach
                     </tbody>
                   </table>
