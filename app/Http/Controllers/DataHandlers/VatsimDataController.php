@@ -176,6 +176,11 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
+                $lfff = false;
+                $lfrr = false;
+                $lfee = false;
+                $lfbb = false;
+                $lfmm = false;
                 $twrs = [];
                 $appr = [];
                 $planes = [];
@@ -220,6 +225,26 @@ class VatsimDataController extends Controller
                                 ];
                                 array_push($twrs, $add);
                             }
+                            switch ($p['callsign']) {
+                                case 'LFFF_CTR':
+                                    $lfff = true;
+                                    break;
+                                case 'LFRR_CTR':
+                                    $lfrr = true;
+                                    break;
+                                case 'LFEE_CTR':
+                                    $lfee = true;
+                                    break;
+                                case 'LFBB_CTR':
+                                    $lfbb = true;
+                                    break;
+                                case 'LFMM_CTR':
+                                    $lfmm = true;
+                                    break;
+                                default:
+                                    # code...
+                                    break;
+                            }
                         }
                     }
                 }
@@ -228,6 +253,11 @@ class VatsimDataController extends Controller
                     'planes' => $planes,
                     'appr' => $appr,
                     'twr' => $twrs,
+                    'lfff' => $lfff,
+                    'lfrr' => $lfrr,
+                    'lfee' => $lfee,
+                    'lfbb' => $lfbb,
+                    'lfmm' => $lfmm,
                     'planeCount' => $planeCount,
                     'atcCount' => $atcCount,
                 ];
@@ -237,6 +267,11 @@ class VatsimDataController extends Controller
                     'planes' => null,
                     'appr' => null,
                     'twr' => null,
+                    'lfff' => false,
+                    'lfrr' => false,
+                    'lfee' => false,
+                    'lfbb' => false,
+                    'lfmm' => false,
                     'planeCount' => 0,
                     'atcCount' => 0,
                 ];
