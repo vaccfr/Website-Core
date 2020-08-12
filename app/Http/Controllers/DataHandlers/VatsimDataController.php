@@ -176,11 +176,11 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
-                $lfff = false;
-                $lfrr = false;
-                $lfee = false;
-                $lfbb = false;
-                $lfmm = false;
+                $lfff = true;
+                $lfrr = true;
+                $lfee = true;
+                $lfbb = true;
+                $lfmm = true;
                 $twrs = [];
                 $appr = [];
                 $planes = [];
@@ -225,25 +225,22 @@ class VatsimDataController extends Controller
                                 ];
                                 array_push($twrs, $add);
                             }
-                            switch ($p['callsign']) {
-                                case 'LFFF_CTR':
+                            if (substr($p['callsign'], -4) == "_CTR") {
+                                if (substr($p['callsign'], 0, 4) === "LFFF") {
                                     $lfff = true;
-                                    break;
-                                case 'LFRR_CTR':
+                                }
+                                if (substr($p['callsign'], 0, 4) === "LFRR") {
                                     $lfrr = true;
-                                    break;
-                                case 'LFEE_CTR':
+                                }
+                                if (substr($p['callsign'], 0, 4) === "LFEE") {
                                     $lfee = true;
-                                    break;
-                                case 'LFBB_CTR':
+                                }
+                                if (substr($p['callsign'], 0, 4) === "LFBB") {
                                     $lfbb = true;
-                                    break;
-                                case 'LFMM_CTR':
+                                }
+                                if (substr($p['callsign'], 0, 4) === "LFMM") {
                                     $lfmm = true;
-                                    break;
-                                default:
-                                    # code...
-                                    break;
+                                }
                             }
                         }
                     }
