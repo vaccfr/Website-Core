@@ -7,7 +7,7 @@
 @section('page-masthead')
 <header class="masthead">
   <div>
-      <video loop muted autoplay playsinline class="animated_bg__video" src="/media/video/lp/vatfrance_bg.mp4">
+      <video loop muted autoplay playsinline class="animated_bg__video" src="{{ asset('/media/video/lp/vatfrance_bg.mp4') }}">
           <source src="{{ asset('/media/video/lp/vatfrance_bg.webm') }}" type="video/webm">
           <source src="{{ asset('/media/video/lp/vatfrance_bg.mp4') }}" type="video/mp4">
       </video>
@@ -211,19 +211,6 @@
                   //   style: polystyle
                   // }).addTo(map);
     
-                  // // This part creates a tower / GND / DEL object on the map
-                  // L.marker(
-                  //   [47.59000000, 7.52916667], 
-                  //   {icon: TWR,}
-                  // )
-                  // .addTo(map)
-                  // .bindTooltip(
-                  //   "<div style='font-size: 90%'><strong>Basel Tower</strong> - " + "LFSB_TWR" + "<br>" +  "<center>" + "118.300" +"</center>" + "</div>",
-                  //   {offset: [0,-10], direction: 'top'}
-                  // );  
-    
-    
-    
                 </script>
                 @foreach ($livemap['planes'] as $op)
                   <script>
@@ -261,9 +248,24 @@
                     );
                   </script>
                 @endforeach
+
+                @foreach ($livemap['twr'] as $twr)
+                  <script>
+                    // This part creates a tower object on the map
+                    L.marker(
+                      ["{{ $twr['lat'] }}", "{{ $twr['lon'] }}"], 
+                      {icon: TWR,}
+                    )
+                    .addTo(map)
+                    .bindTooltip(
+                      "<div style='font-size: 90%'><strong>{{ $twr['callsign'] }}</strong> " + "<br>" +  "<center>" + "{{ $twr['freq'] }}" +"</center>" + "</div>",
+                      {offset: [0,-10], direction: 'top'}
+                    ); 
+                  </script>
+                @endforeach
               </div>
             </main>
-            <h6 class="text-muted">Only approach positions and planes for now</h6>
+            <h6 class="text-muted">Only approach & tower positions and planes for now</h6>
           </div>
         </div>
         <div class="col-md-6">

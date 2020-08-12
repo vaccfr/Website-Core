@@ -12,13 +12,13 @@
       "children": [
         {
           "name": "Patrick Fuchez",
-          "label": "Directeur ATC & Training",
+          "label": "Directeur ATC",
           "children": [
             {
               "name": "David Petit",
               "label": "Instructeur ATC"
             }, {
-              "name": "Georges FIGUERAS-GIBERT",
+              "name": "Georges Figueras",
               "label": "Examinateur"
             }, {
               "name": "Raphaël Guillod",
@@ -26,6 +26,9 @@
             }, {
               "name": "Peter Paré",
               "label": "Examinateur"
+            }, {
+              "name": "Pierre Ferran",
+              "label": "GNG"
             }
           ]
         }
@@ -38,16 +41,13 @@
       "children": [
         {
           "name": "Eric Lavorel",
-          "label": "(?)",
+          "label": "Responsable Section Pilote",
           "children": [
             {
               "name": "Bastien Serriere",
               "label": "Instructeur Pilote"
             }, {
               "name": "Jean-François Karsenty",
-              "label": "Instructeur Pilote"
-            }, {
-              "name": "Christophe Billaux",
               "label": "Instructeur Pilote"
             }, {
               "name": "Eric Zanni",
@@ -64,9 +64,6 @@
       "children": [
         {
           "name": "Guy Boulanger",
-          "label": "Responsable Events"
-        }, {
-          "name": "Bruno Audoux",
           "label": "Responsable Events"
         }
       ]
@@ -96,9 +93,17 @@
         }, {
           "name": "Peter Paré",
           "label": "Webmaster (nouveau site)"
-        }, {
-          "name": "Karel Tessaro",
-          "label": "Webmaster"
+        }
+      ]
+    }, {
+      "name": "Miltaire",
+      "label": "",
+      "color": "green",
+      "text": "white",
+      "children": [
+        {
+          "name": "Bruno Audoux",
+          "label": "N/A"
         }
       ]
     }

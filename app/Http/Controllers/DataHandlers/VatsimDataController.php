@@ -176,6 +176,12 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
+                $lfff = false;
+                $lfrr = false;
+                $lfee = false;
+                $lfbb = false;
+                $lfmm = false;
+                $twrs = [];
                 $appr = [];
                 $planes = [];
                 $planeCount = 0;
@@ -197,15 +203,48 @@ class VatsimDataController extends Controller
                             array_push($planes, $add);
                         }
                     } elseif ($p['clienttype'] == "ATC") {
-                        if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && substr($p['callsign'], -4) == "_APP" && config('vatfrance.atc_ranks')[$p['rating']] !== "OBS") {
-                            $atcCount++;
-                            $add = [
-                                'callsign' => $p['callsign'],
-                                'lat' => $p['latitude'],
-                                'lon' => $p['longitude'],
-                                'freq' => $p['frequency'],
-                            ];
-                            array_push($appr, $add);
+                        if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && config('vatfrance.atc_ranks')[$p['rating']] !== "OBS") {
+                            if (substr($p['callsign'], -4) == "_APP") {
+                                $atcCount++;
+                                $add = [
+                                    'callsign' => $p['callsign'],
+                                    'lat' => $p['latitude'],
+                                    'lon' => $p['longitude'],
+                                    'freq' => $p['frequency'],
+                                ];
+                                array_push($appr, $add);
+                            }
+
+                            if (substr($p['callsign'], -4) == "_TWR") {
+                                $atcCount++;
+                                $add = [
+                                    'callsign' => $p['callsign'],
+                                    'lat' => $p['latitude'],
+                                    'lon' => $p['longitude'],
+                                    'freq' => $p['frequency'],
+                                ];
+                                array_push($twrs, $add);
+                            }
+                            switch ($p['callsign']) {
+                                case 'LFFF_CTR':
+                                    $lfff = true;
+                                    break;
+                                case 'LFRR_CTR':
+                                    $lfrr = true;
+                                    break;
+                                case 'LFEE_CTR':
+                                    $lfee = true;
+                                    break;
+                                case 'LFBB_CTR':
+                                    $lfbb = true;
+                                    break;
+                                case 'LFMM_CTR':
+                                    $lfmm = true;
+                                    break;
+                                default:
+                                    # code...
+                                    break;
+                            }
                         }
                     }
                 }
@@ -213,6 +252,12 @@ class VatsimDataController extends Controller
                 $data = [
                     'planes' => $planes,
                     'appr' => $appr,
+                    'twr' => $twrs,
+                    'lfff' => $lfff,
+                    'lfrr' => $lfrr,
+                    'lfee' => $lfee,
+                    'lfbb' => $lfbb,
+                    'lfmm' => $lfmm,
                     'planeCount' => $planeCount,
                     'atcCount' => $atcCount,
                 ];
@@ -221,6 +266,12 @@ class VatsimDataController extends Controller
                 $data = [
                     'planes' => null,
                     'appr' => null,
+                    'twr' => null,
+                    'lfff' => false,
+                    'lfrr' => false,
+                    'lfee' => false,
+                    'lfbb' => false,
+                    'lfmm' => false,
                     'planeCount' => 0,
                     'atcCount' => 0,
                 ];
