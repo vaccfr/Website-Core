@@ -1,6 +1,6 @@
 <p align="center" style="background: black;"><img src="https://cdn.discordapp.com/attachments/721714238619648101/740926322208931850/VATFrance_WIDE.png" width="auto" style="background: black;"></p>
 
-<p align="center">Official repository of the new VatFrance Website rewrite<br>
+<p align="center">Official repository of the new VATFrance Website rewrite<br>
 <a href="https://new.vatfrance.org/fr" target="_blank">https://new.vatfrance.org/fr</a>
 </p>
 
@@ -10,7 +10,7 @@
 
 ### About
 
-This project came about in July / August of 2020 as a new version for the aging VatFrance website. The goal of this project is to build a fully new front- and backend interface and logic for our division, with one key goal: simplicity and efficiency.
+This project came about in July / August of 2020 as a new version for the aging VATFrance website. The goal of this project is to build a fully new front- and backend interface and logic for our division, with one key goal: simplicity and efficiency.
 
 This website will feature both a 'guest' landing area, as well as an authenticated member dashboard, available to anyone with a vatsim account.
 
@@ -28,4 +28,4 @@ A special thank you to the following people:
 
 ### License
 
-The VatFrance Website Core is licensed under the **MIT License**. You are free to use code from the repository within the reigns of that license. 
+The VATFrance Website Core is licensed under the **MIT License**. You are free to use code from the repository within the reigns of that license. 
