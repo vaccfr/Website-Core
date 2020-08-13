@@ -28,12 +28,10 @@ class ListenExceptionLog
      */
     public function handle(EventExceptionLog $event)
     {
-        if (!$event->exception->getMessage() == "Unauthenticated.") {
-            if (Auth::guest()) {
-                SystemLog::exception(2, 1, $event->exception->getMessage(), \Request::url(), $event->exception->getLine(), $event->exception->getFile());
-            } else {
-                SystemLog::exception(2, Auth::user()->id, $event->exception->getMessage(), \Request::url(), $event->exception->getLine(), $event->exception->getFile());
-            }
+        if (Auth::guest()) {
+            SystemLog::exception(2, 1, $event->exception->getMessage(), \Request::url(), $event->exception->getLine(), $event->exception->getFile());
+        } else {
+            SystemLog::exception(2, Auth::user()->id, $event->exception->getMessage(), \Request::url(), $event->exception->getLine(), $event->exception->getFile());
         }
     }
 }

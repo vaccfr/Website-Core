@@ -22,6 +22,7 @@ class WebadminController extends Controller
         $exceptionsToday = SystemLog::orderBy('created_at', 'DESC')
         ->where('type', 2)
         ->whereDate('created_at', Carbon::today())
+        ->where('message', '!=', 'Unauthenticated.')
         ->with('user')
         ->get();
 
