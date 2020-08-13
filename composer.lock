@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3ea44f1f4d5e574141586a2a86f31076",
+    "content-hash": "283ca74999ce8904047ea37a9f8548d8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2103,6 +2103,46 @@
                 }
             ],
             "time": "2020-03-29T20:13:32+00:00"
+        },
+        {
+            "name": "safran-cassiopee/php-metar-decoder",
+            "version": "v0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SafranCassiopee/php-metar-decoder.git",
+                "reference": "0de2b1b0a9bce7b73bff719348baf3b0a961dc7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SafranCassiopee/php-metar-decoder/zipball/0de2b1b0a9bce7b73bff719348baf3b0a961dc7f",
+                "reference": "0de2b1b0a9bce7b73bff719348baf3b0a961dc7f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MetarDecoder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Edouard de Labareyre",
+                    "email": "edouard@melix.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "METAR weather observation decoder",
+            "time": "2020-02-11T13:31:33+00:00"
         },
         {
             "name": "spatie/calendar-links",
