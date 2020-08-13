@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/atis/{atis_letter}/{deprwy}/{arrrwy}/{app}/{dep}', 'ATC\AtisController@Index');
 Route::get('/atisurl', function() {
-  return "<b>".config('app.url')."/api/atis/ATIS LETTER/DEP RWY/ARR RWY/APP/DEP?m=METAR</b>";
+  return config('app.url')."/\$atiscode/\$deprwy(\$atisairport)/\$arrrwy(\$atisairport)/<b>APPROACH TYPE</b>/<b>SID</b>/?m=\$metar(\$atisairport)";
 });
 
 // http://vatfrance.build/api/c/04R/04L/ILS/6W?m=LFPG%20130900Z%2019008KT%20150V210%20CAVOK%2025/17%20Q1013%20NOSIG
+
+// /$atiscode/$deprwy($atisairport)/$arrrwy($atisairport)/<b>ILS</b>/<b>SID</b>/?m=$metar($atisairport)
