@@ -4,8 +4,10 @@ namespace App\Http\Controllers\DataHandlers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Users\UserEmailPreference;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Utilities extends Controller
 {
@@ -128,5 +130,36 @@ class Utilities extends Controller
                 return false;
                 break;
         }
+    }
+
+    public function onlineUsers()
+    {
+        $delay = 300;
+        if (app(CacheController::class)->checkCache('onlineUsers', false)) {
+            $data = app(CacheController::class)->getCache('onlineUsers', false);
+        } else {
+            $timeDelta = (new DateTime(Carbon::now()))->format('U');
+            $timeDelta = (int)$timeDelta - $delay;
+
+            $liveVisitors = DB::table('sessions')
+            ->where('last_activity', '>', $timeDelta)
+            ->where('user_id', null, null)
+            ->where('user_agent', '!=', 'python-requests/2.22.0')
+            ->get();
+
+            $liveMembers = DB::table('sessions')
+            ->where('last_activity', '>', $timeDelta)
+            ->where('user_id', '!=', null)
+            ->get();
+
+            $data = [
+                'members' => count($liveMembers),
+                'visitors' => count($liveVisitors),
+            ];
+
+            // app(CacheController::class)->putCache('onlineUsers', $data, 60, false);
+        }
+
+        return $data;
     }
 }

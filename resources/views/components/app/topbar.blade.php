@@ -21,6 +21,25 @@
         <span id="utc_time"></span>
       </a>
     </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="#" class="nav-link">
+        <span>
+          Online ATC: {{ app(App\Http\Controllers\DataHandlers\VatsimDataController::class)->getOnlineATCCount() }}
+        </span>
+      </a>
+    </li>
+    @if (Auth::user()->isAdmin() == true)
+    <?php 
+    $onlineUsers = app(App\Http\Controllers\DataHandlers\Utilities::class)->onlineUsers();
+    ?>
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="#" class="nav-link">
+        <span>
+          Online users: {{$onlineUsers['visitors']}} visitor(s) / {{$onlineUsers['members']}} member(s)
+        </span>
+      </a>
+    </li>
+    @endif
   </ul>
 
   <!-- Right navbar links -->

@@ -27,20 +27,20 @@ class WebadminController extends Controller
 
         $thisMorning = (new DateTime(Carbon::today()))->format('U');
         $totalToday = DB::table('sessions')
-	->where('last_activity', '>', $thisMorning)
-	->where('user_agent', '!=', 'python-requests/2.22.0')
+	    ->where('last_activity', '>', $thisMorning)
+	    ->where('user_agent', '!=', 'python-requests/2.22.0')
         ->get();
 
         $visitorsToday = DB::table('sessions')
         ->where('last_activity', '>', $thisMorning)
         ->where('user_id', null, null)
-	->where('user_agent', '!=', 'python-requests/2.22.0')
+	    ->where('user_agent', '!=', 'python-requests/2.22.0')
         ->get();
 
         $membersToday = DB::table('sessions')
         ->where('last_activity', '>', $thisMorning)
         ->where('user_id', '!=', null)
-	->get();
+	    ->get();
 
         return view('app.admin.webadmin', [
             'exceptions' => $exceptionLogs,

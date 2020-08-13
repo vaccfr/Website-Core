@@ -133,6 +133,7 @@ class VatsimDataController extends Controller
         if (app(CacheController::class)->checkCache('onlineatc', false)) {
             $clients = app(CacheController::class)->getCache('onlineatc', false);
         } else {
+            $onlineATC = 0;
             try {
                 $response = (new Client)->get($url, [
                     'header' => [
@@ -150,6 +151,7 @@ class VatsimDataController extends Controller
                             'rating' => config('vatfrance.atc_ranks')[$c['rating']],
                         ];
                         array_push($clients, $add);
+                        $onlineATC++;
                     }
                 }
 
@@ -158,8 +160,20 @@ class VatsimDataController extends Controller
             }
             
             app(CacheController::class)->putCache('onlineatc', $clients, 150, false);
+            app(CacheController::class)->putCache('onlineatccount', $onlineATC, 150, false);
         }
         return $clients;
+    }
+
+    public function getOnlineATCCount()
+    {
+        if (app(CacheController::class)->checkCache('onlineatccount', false)) {
+            $count = app(CacheController::class)->getCache('onlineatccount', false);
+        } else {
+            $t = $this->getOnlineATC();
+            $count = app(CacheController::class)->getCache('onlineatccount', false);
+        }
+        return $count;
     }
 
     public function livemapDataGenerator()
