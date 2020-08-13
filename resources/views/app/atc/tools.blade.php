@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  LOAs | {{ Auth::user()->fname }}
+  Tools | {{ Auth::user()->fname }}
 @endsection
 
 @section('page-header')
@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Letters of Agreement</h1>
+          <h1>ATC Tools / Outils ATC</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -78,7 +78,8 @@
               </div>
               <div class="col-md-8">
                 <div class="form-group">
-                  <input class="form-control" type="text" readonly value="{{ $url }}">
+                  <label for="atisurl">ATIS URL:</label>
+                  <input class="form-control" id="atisurl" type="text" readonly value="{{ $url }}">
                 </div>
               </div>
             </div>
