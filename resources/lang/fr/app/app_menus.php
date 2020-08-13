@@ -20,6 +20,7 @@ return [
   'ch' => 'Suisse',
   'uk' => 'Royaume Uni',
   'atc_ressources' => 'Ressources',
+  'tools' => 'Outils',
   'atc_dl' => 'Téléchargements',
 
   'pilots_header' => 'Pilotes',

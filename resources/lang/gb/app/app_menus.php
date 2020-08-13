@@ -20,6 +20,7 @@ return [
   'ch' => 'Switzerland',
   'uk' => 'United Kingdom',
   'atc_ressources' => 'Resources',
+  'tools' => 'Tools',
   'atc_dl' => 'Downloads',
 
   'pilots_header' => 'Pilots',

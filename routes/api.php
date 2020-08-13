@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/atis/{atis_letter}/{deprwy}/{arrrwy}/{app}/{dep}', 'ATC\AtisController@Index');
 Route::get('/atisurl', function() {
-  return view('api.atisdocs');
+  return redirect()->route('app.atc.tools', 'fr');
 });
 
 // http://vatfrance.build/api/c/04R/04L/ILS/6W?m=LFPG%20130900Z%2019008KT%20150V210%20CAVOK%2025/17%20Q1013%20NOSIG

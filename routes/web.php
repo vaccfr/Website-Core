@@ -86,7 +86,17 @@ Route::group([
                     return redirect()->route('app.index', app()->getLocale());
                 });
                 Route::get('/roster', 'ATC\ATCPagesController@atcRoster')->name('app.atc.roster');
-                Route::get('/loas', 'ATC\ATCPagesController@loas')->name('app.atc.loas');
+                
+                Route::group([
+                    'prefix' => '/resources',
+                ], function() {
+                    Route::get('/', function () {
+                        return redirect()->route('app.atc.tools', app()->getLocale());
+                    });
+                    Route::get('/loas', 'ATC\ATCPagesController@loas')->name('app.atc.loas');
+                    Route::get('/tools', 'ATC\ATCPagesController@tools')->name('app.atc.tools');
+                    Route::post('/toolsgen', 'ATC\ATCPagesController@toolsGenAtis')->name('app.atc.tools.atisgen');
+                });
 
                 Route::group(['prefix' => '/trainingcenter'], function() {
                     Route::get('/', function () {

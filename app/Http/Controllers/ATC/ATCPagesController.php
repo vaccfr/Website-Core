@@ -37,4 +37,50 @@ class ATCPagesController extends Controller
     {
         return view('app.atc.loas');
     }
+
+    public function tools(Request $request)
+    {
+        $apptype = "APPROACHTYPE";
+        $apptype_form = null;
+        if ($request->has('apptype')) {
+            $apptype = request('apptype');
+            $apptype_form = request('apptype');
+        }
+
+        $sid = "SID";
+        $sid_form = null;
+        if ($request->has('sid')) {
+            $sid = request('sid');
+            $sid_form = request('sid');
+        }
+
+        $birds = "";
+        $birds_form = false;
+        if ($request->has('birds') && request('birds') == "1") {
+            $birds = "&birds=1";
+            $birds_form = true;
+        }
+        $baseURL = config('app.url')."/api/atis/\$atiscode/\$deprwy(\$atisairport)/\$arrrwy(\$atisairport)/".$apptype."/".$sid."/?m=\$metar(\$atisairport)".$birds;
+
+        return view('app.atc.tools', [
+            'url' => $baseURL,
+            'apptype' => $apptype_form,
+            'sid' => $sid_form,
+            'birds' => $birds_form,
+        ]);
+    }
+
+    public function toolsGenAtis(Request $request)
+    {
+        $birds = "0";
+        if ($request->get('birds') == "on") {
+            $birds = "1";
+        }
+        return redirect()->route('app.atc.tools', [
+            'locale' => app()->getLocale(),
+            'apptype' => $request->get('apptype'),
+            'sid' => $request->get('sid'),
+            'birds' => $birds,
+        ]);
+    }
 }

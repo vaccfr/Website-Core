@@ -106,7 +106,7 @@
             <p>Training Center</p>
           </a>
         </li>
-        <li class="nav-item has-treeview">
+        <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc/resources')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-question-circle"></i>
             <p>
@@ -119,6 +119,12 @@
               <a href="{{ route('app.atc.loas', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.loas')) active @endif">
                 <i class="nav-icon fas fa-sticky-note"></i>
                 <p>{{__('app/app_menus.loas')}}</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('app.atc.tools', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.tools')) active @endif">
+                <i class="nav-icon fas fa-tools"></i>
+                <p>{{__('app/app_menus.tools')}}</p>
               </a>
             </li>
             <li class="nav-item">
