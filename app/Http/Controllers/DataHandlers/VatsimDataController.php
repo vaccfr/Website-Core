@@ -176,11 +176,11 @@ class VatsimDataController extends Controller
                     ]
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
-                $lfff = true;
-                $lfrr = true;
-                $lfee = true;
-                $lfbb = true;
-                $lfmm = true;
+                $lfff = false;
+                $lfrr = false;
+                $lfee = false;
+                $lfbb = false;
+                $lfmm = false;
                 $twrs = [];
                 $appr = [];
                 $planes = [];
