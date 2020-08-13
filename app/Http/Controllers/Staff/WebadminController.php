@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use App\Models\Data\SystemLog;
 use App\Models\Users\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class WebadminController extends Controller
 {
@@ -26,6 +28,9 @@ class WebadminController extends Controller
         $membersToday = User::orderBy('last_login', 'DESC')
         ->whereDate('last_login', Carbon::today())
         ->get();
+
+        $thisMorning = (new DateTime(Carbon::today()))->format('U');
+        $membersToday = DB::table('sessions')->where('last_activity', '>', $thisMorning)->get();
 
         return view('app.admin.webadmin', [
             'exceptions' => $exceptionLogs,
