@@ -143,7 +143,5 @@
 </div>
 <!-- /.container-->  
 @endif
-
-<script src="contact.js"></script>
 @endsection
 
