@@ -20,21 +20,39 @@
 @section('page-content')
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-3">
         <div class="info-box">
-          <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
+          <span class="info-box-icon bg-warning"><i class="fas fa-bug"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Exceptions today</span>
             <span class="info-box-number">{{ $exceptionsToday }}</span>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-3">
         <div class="info-box">
-          <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
+          <span class="info-box-icon bg-warning"><i class="fas fa-users"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Members logged today</span>
-            <span class="info-box-number">{{ $usersToday }}</span>
+            <span class="info-box-text">Total visitors today</span>
+            <span class="info-box-number">{{ $totalToday }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-warning"><i class="fas fa-user-check"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Members only</span>
+            <span class="info-box-number">{{ $membersToday }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-warning"><i class="fas fa-user-tag"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Visitors only</span>
+            <span class="info-box-number">{{ $visitorsToday }}</span>
           </div>
         </div>
       </div>

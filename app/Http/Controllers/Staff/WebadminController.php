@@ -25,17 +25,27 @@ class WebadminController extends Controller
         ->with('user')
         ->get();
 
-        $membersToday = User::orderBy('last_login', 'DESC')
-        ->whereDate('last_login', Carbon::today())
+        $thisMorning = (new DateTime(Carbon::today()))->format('U');
+        $totalToday = DB::table('sessions')
+        ->where('last_activity', '>', $thisMorning)
         ->get();
 
-        $thisMorning = (new DateTime(Carbon::today()))->format('U');
-        $membersToday = DB::table('sessions')->where('last_activity', '>', $thisMorning)->get();
+        $visitorsToday = DB::table('sessions')
+        ->where('last_activity', '>', $thisMorning)
+        ->where('user_id', null, null)
+        ->get();
+
+        $membersToday = DB::table('sessions')
+        ->where('last_activity', '>', $thisMorning)
+        ->where('user_id', '!=', null)
+        ->get();
 
         return view('app.admin.webadmin', [
             'exceptions' => $exceptionLogs,
             'exceptionsToday' => count($exceptionsToday),
-            'usersToday' => count($membersToday),
+            'totalToday' => count($totalToday),
+            'visitorsToday' => count($visitorsToday),
+            'membersToday' => count($membersToday),
         ]);
     }
 }
