@@ -93,8 +93,15 @@
                           <form action="{{ route('app.staff.atc.all.take', app()->getLocale()) }}" method="POST">
                             @csrf
                             <input type="hidden" value="{{ $a['id'] }}" name="requestid">
-                            <button type="submit" class="btn btn-block btn-success btn-flat">
+                            <button type="submit" class="btn btn-success btn-flat">
                               {{__('app/staff/atc_all.take')}}
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-info btn-flat"
+                              data-toggle="modal"
+                              data-target="#send-message-{{ $a['user']['vatsim_id'] }}">
+                                {{__('app/staff/atc_mine.btn_sendmsg')}}
                             </button>
                           </form>
                         @else
@@ -126,6 +133,37 @@
                     <!-- /.modal-dialog -->
                   </div>
                   <!-- /.modal -->
+                  {{-- Send private message  --}}
+                  <div class="modal fade" id="send-message-{{ $a['user']['vatsim_id'] }}">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">{{__('app/staff/atc_mine.spmm_title', ['STUDENT' => $a['user']['fname']])}}</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form action="{{ route('app.inmsg.send', app()->getLocale()) }}" method="post">
+                          @csrf
+                          <div class="modal-body">
+                            <div class="form-group">
+                              <label for="msgsubject">{{__('app/staff/atc_mine.spmm_subject')}}</label>
+                              <input type="text" class="form-control" id="msgsubject" name="msgsubject" placeholder="{{__('app/staff/atc_mine.spmm_subject')}}">
+                            </div>
+                            <div class="form-group">
+                              <label for="msgbody">{{__('app/staff/atc_mine.spmm_msg')}}</label>
+                              <textarea class="form-control" rows="15" name="msgbody" id="msgbody" placeholder="{{__('app/staff/atc_mine.spmm_your_msg')}}"></textarea>
+                            </div>
+                          </div>
+                          <input type="hidden" name="msgrecipient" value="{{ $a['user']['id'] }}">
+                          <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.close')}}</button>
+                            <button type="submit" class="btn btn-success">{{__('app/staff/atc_mine.spmm_sendmsg')}}</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 @endforeach
               </tbody>
             </table>
