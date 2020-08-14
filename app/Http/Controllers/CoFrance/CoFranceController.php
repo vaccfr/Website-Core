@@ -9,12 +9,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Yosymfony\Toml\Toml;
+use Yosymfony\Toml\TomlBuilder;
 
 class CoFranceController extends Controller
 {
     public function dashboard()
     {
-        return view('app.atc.cofrance.dashboard');
+        $currtoken = null;
+        $tokens = CoFranceToken::where('user_id', auth()->user()->id)->first();
+        if (!is_null($tokens)) {
+            $currtoken = $tokens->token;
+        }
+        return view('app.atc.cofrance.dashboard', [
+            'token' => $currtoken,
+        ]);
     }
 
     public function createToken(Request $request)
@@ -52,5 +61,19 @@ class CoFranceController extends Controller
             'message' => 'Success',
             'user' => $user,
         ], 200);
+    }
+
+    public function test(Request $request)
+    {
+        $tb = new TomlBuilder();
+        $result = $tb->addComment('Toml file')
+        ->addTable('data.string')
+        ->addValue('name', "Toml", 'This is your name')
+        ->addValue('newline', "This string has a \n new line character.")
+        ->addValue('winPath', "C:\\Users\\nodejs\\templates")
+        ->addValue('literal', '@<\i\c*\s*>') // literals starts with '@'.
+        ->addValue('unicode', 'unicode character: ' . json_decode('"\u03B4"'))
+        ->getTomlString();
+        return response($result, 200)->header('Content-Type', 'application/toml');
     }
 }

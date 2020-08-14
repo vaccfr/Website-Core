@@ -28,6 +28,7 @@ Route::group(['prefix' => '/cfr'], function() {
       'message' => 'CoFrance API alpha 1.0',
     ]);
   });
+  Route::get('/test', 'CoFrance\CoFranceController@test');
   Route::group(['middleware' => 'COFRANCEAPI'], function() {
     Route::get('/checktoken', 'CoFrance\CoFranceController@checkToken');
   });

@@ -33,6 +33,12 @@
             <input type="hidden" name="userid" value="{{Auth::user()->id}}">
             <button type="submit" class="btn btn-success btn-flat btn-block">Generate new Token</button>
           </form>
+          @if (!is_null($token))
+            <div class="form-group">
+              <label for="currtoken">Current Token</label>
+              <input class="form-control" name="currtoken" value="{{$token}}" disabled>
+            </div>
+          @endif
         </div>
       </div>
     </div>
