@@ -68,7 +68,8 @@ return [
   'valid' => 'Valide',
 
   // (TBC) Edit Training Airport Modal
-
+  'eta_title' => 'Modifier Aéroport d\'entrainment',
+  'eta_label' => 'Modifier Aéroport d\'entrainment de :FNAME',
 
   // Terminate Modal
   'tm_sure' => 'Etes-vous sur?',

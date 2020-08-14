@@ -149,6 +149,7 @@ Route::group([
                     Route::post('/mystudents/progress', 'Staff\ATCMentorController@editProgress')->name('app.staff.atc.mine.progress');
                     Route::post('/mystudents/soloAdd', 'Staff\ATCMentorController@makeSolo')->name('app.staff.atc.mine.soloadd');
                     Route::post('/mystudents/soloDel', 'Staff\ATCMentorController@delSolo')->name('app.staff.atc.mine.solodel');
+                    Route::post('/mystudents/modapt', 'Staff\ATCMentorController@modifyAirport')->name('app.staff.atc.mine.modapt');
                     Route::post('/mystudents/terminate', 'Staff\ATCMentorController@terminate')->name('app.staff.atc.mine.terminate');
                 });
                 Route::group(['prefix' => '/pilot'], function() {

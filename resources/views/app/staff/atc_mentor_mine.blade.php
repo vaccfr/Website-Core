@@ -328,7 +328,7 @@
               <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#send-message-{{ $s['user']['vatsim_id'] }}">{{__('app/staff/atc_mine.btn_sendmsg')}}</button>
               <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-progress-{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.btn_editprog')}}</button>
               <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-solo{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.btn_soloval')}}</button>
-              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#">{{__('app/staff/atc_mine.btn_editairport')}}</button>
+              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-airport{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.btn_editairport')}}</button>
               <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#terminate-{{ $s['user']['vatsim_id']}}">{{__('app/staff/atc_mine.btn_terminate')}}</button>
               {{-- Book session modal  --}}
               <div class="modal fade" id="book-session-{{ $s['user']['vatsim_id'] }}">
@@ -561,6 +561,42 @@
                   <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
+              </div>
+              {{-- Edit training airport  --}} 
+              <div class="modal fade" id="edit-airport{{ $s['user']['vatsim_id']}}">
+                <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">{{__('app/staff/atc_mine.eta_title')}}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="{{ route('app.staff.atc.mine.modapt', app()->getLocale()) }}" method="post">
+                      @csrf
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="icao">{{__('app/staff/atc_mine.eta_label', ['FNAME' => $s['user']['fname']])}}</label>
+                          <select class="form-control" name="icao" id="icao">
+                            @if (is_null($s['mentoringRequest']['icao']))
+                              <option value="0" disabled selected>{{__('app/staff/atc_mine.epm_choose')}}...</option>
+                            @else
+                              <option value="{{ $s['mentoringRequest']['icao'] }}">{{ $s['mentoringRequest']['icao'] }}</option>
+                            @endif
+                            @foreach ($airports as $apt)
+                              <option value="{{ $apt['icao'] }}">{{ $apt['city'] }} {{ $apt['airport'] }} ({{ $apt['icao'] }})</option>
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <input type="hidden" name="studentid" value="{{ $s['user']['id'] }}">
+                        <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
               {{-- Termination modal  --}}
               <div class="modal fade" id="terminate-{{ $s['user']['vatsim_id']}}">

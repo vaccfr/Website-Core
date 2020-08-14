@@ -94,7 +94,9 @@ class ATCMentorController extends Controller
         }])
         ->get();
 
-        // dd($students[0]['user']);
+        $airports = Airport::orderBy('city', 'ASC')->get();
+
+        // dd($airports[0]);
         
         return view('app.staff.atc_mentor_mine', [
             'steps' => $studySessions,
@@ -103,6 +105,7 @@ class ATCMentorController extends Controller
             'positions' => $positions,
             'soloLengths' => $this->soloLengths,
             'studentCount' => count($students),
+            'airports' => $airports
         ]);
     }
 
@@ -287,6 +290,39 @@ class ATCMentorController extends Controller
         }
 
         $soloSession = SoloApproval::where('id', $request->get('soloid'))->delete();
+
+        return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', trans('app/alerts.solo_deleted'));
+    }
+
+    public function modifyAirport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'studentid' => ['required'],
+            'icao' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
+        }
+
+        $airports = Airport::get();
+        $apts = [];
+
+        foreach ($airports as $a) {
+            array_push($apts, $a['icao']);
+        }
+
+        if (!in_array(request('icao'), $apts)) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
+        }
+
+        $student = MentoringRequest::where('student_id', request('studentid'))->first();
+        if (is_null($student)) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
+        }
+
+        $student->icao = request('icao');
+        $student->save();
 
         return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', trans('app/alerts.solo_deleted'));
     }
