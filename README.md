@@ -1,7 +1,8 @@
-<p align="center" style="background: black;"><img src="https://cdn.discordapp.com/attachments/721714238619648101/740926322208931850/VATFrance_WIDE.png" width="auto" style="background: black;"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/VATFrance/VATFrance-Graphics-Standards-Manual/master/VATFrance_WIDE_ALT.png" width="auto"></p>
 
 <p align="center">Official repository of the new VATFrance Website rewrite<br>
-<a href="https://new.vatfrance.org/fr" target="_blank">https://new.vatfrance.org/fr</a>
+<a href="https://new.vatfrance.org/fr" target="_blank">https://new.vatfrance.org/fr</a> <i>(Version française)</i><br>
+<a href="https://new.vatfrance.org/gb" target="_blank">https://new.vatfrance.org/gb</a> <i>(English version)</i>
 </p>
 
 ---
