@@ -20,23 +20,17 @@ class CoFranceAuth
     public function handle($request, Closure $next)
     {
         $authToken = $request->header('auth');
-        $pwd = $request->header('pwd');
 
-        if (is_null($authToken) || is_null($pwd)) {
+        if (is_null($authToken)) {
             return response()->json([
-                'message' => 'Unauthenticated. 1',
+                'message' => 'Unauthenticated.',
             ], 401);
         }
 
         $token = CoFranceToken::where('token', $authToken)->first();
         if (is_null($token)) {
             return response()->json([
-                'message' => 'Unauthenticated. 2',
-            ], 401);
-        }
-        if (!Hash::check($pwd, $token->password)) {
-            return response()->json([
-                'message' => 'Unauthenticated. 3',
+                'message' => 'Unauthenticated.',
             ], 401);
         }
         $foundUser = User::where('id', $token->user_id)->first();

@@ -30,14 +30,8 @@
         <div class="card-body">
           <form action="{{ route('app.atc.cofrance.newtoken', app()->getLocale()) }}" method="post">
             @csrf
-            <label for="unique">Define Password</label>
-            <div class="input-group input-group-sm">
-              <input class="form-control" type="password" name="unique" id="unique" placeholder="Password" required>
-              <span class="input-group-append">
-                <input type="hidden" name="userid" value="{{Auth::user()->id}}">
-                <button type="submit" class="btn btn-success btn-flat btn-block">Submit</button>
-              </span>
-            </div>
+            <input type="hidden" name="userid" value="{{Auth::user()->id}}">
+            <button type="submit" class="btn btn-success btn-flat btn-block">Generate new Token</button>
           </form>
         </div>
       </div>

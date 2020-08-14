@@ -17,7 +17,6 @@ class CreateCoFranceTokensTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unique();
             $table->longText('token')->nullable();
-            $table->string('password');
             $table->string('last_ip')->nullable();
             $table->timestamp('last_used')->nullable();
             $table->timestamps();

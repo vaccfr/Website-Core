@@ -21,7 +21,6 @@ class CoFranceController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'userid' => ['required'],
-            'unique' => ['required', 'min:8'],
         ]);
 
         if ($validator->fails()) {
@@ -37,7 +36,6 @@ class CoFranceController extends Controller
         $newToken = new CoFranceToken([
             'user_id' => request('userid'),
             'token' => $newValue,
-            'password' => Hash::make(request('unique')),
         ]);
         $newToken->save();
 
@@ -47,7 +45,7 @@ class CoFranceController extends Controller
     public function checkToken(Request $request)
     {
         $user = User::where('id', auth()->user()->id)
-        ->select('vatsim_id', 'fname', 'is_approved_atc', 'is_betatester')
+        ->select('is_approved_atc', 'is_betatester')
         ->first();
 
         return response()->json([
