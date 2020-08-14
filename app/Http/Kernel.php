@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'setlocale' => \App\Http\Middleware\SetLocale::class,
+        
         'ATC' => \App\Http\Middleware\Users\ATC::class,
         'STAFF' => \App\Http\Middleware\Users\Staff::class,
         'EXECSTAFF' => \App\Http\Middleware\Users\ExecStaff::class,
@@ -72,6 +73,8 @@ class Kernel extends HttpKernel
         'ATCMENTOR' => \App\Http\Middleware\Users\ATCMentor::class,
         'EVENTSSTAFF' => \App\Http\Middleware\Users\EventsStaff::class,
         'BETATESTER' => \App\Http\Middleware\Users\BetaTesters::class,
+
+        'COFRANCEAPI' => \App\Http\Middleware\CoFrance\CoFranceAuth::class,
 
         'CanSendMail' => \App\Http\Middleware\Moderation\CanSendMail::class,
 

@@ -22,10 +22,13 @@ Route::get('/atisurl', function() {
 
 // CoFrance Routes
 Route::group(['prefix' => '/cfr'], function() {
-  Route::get('/', function() {
+  Route::get('/', function(Request $request) {
     return response()->json([
       'response' => 'Success',
-      'message' => 'CoFrance API alpha 1.0'
+      'message' => 'CoFrance API alpha 1.0',
     ]);
+  });
+  Route::group(['middleware' => 'COFRANCEAPI'], function() {
+    Route::get('/checktoken', 'CoFrance\CoFranceController@checkToken');
   });
 });

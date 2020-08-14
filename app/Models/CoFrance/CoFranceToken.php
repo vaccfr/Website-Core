@@ -10,7 +10,11 @@ class CoFranceToken extends Model
     protected $table = "co_france_tokens";
 
     protected $fillable = [
-        'user_id', 'token', 'last_used', 'last_ip',
+        'user_id', 'token', 'last_used', 'last_ip', 'password'
+    ];
+
+    protected $hidden = [
+        'password',
     ];
 
     // Relationships

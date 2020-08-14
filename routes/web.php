@@ -115,7 +115,13 @@ Route::group([
                     Route::get('/mybookings', 'ATC\BookingController@MyBookingsPage')->name('app.atc.mybookings');
                 });
 
-                Route::get('/cofrance-dashboard', 'CoFrance\CoFranceController@dashboard')->name('app.atc.cofrance.dashboard')->middleware('BETATESTER');
+                Route::group([
+                    'prefix' => '/cofrance',
+                    'middleware' => 'BETATESTER',
+                ], function() {
+                    Route::get('/dashboard', 'CoFrance\CoFranceController@dashboard')->name('app.atc.cofrance.dashboard');
+                    Route::post('/newtoken', 'CoFrance\CoFranceController@createToken')->name('app.atc.cofrance.newtoken');
+                });
             });
 
             // Staff Routes

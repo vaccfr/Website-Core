@@ -21,6 +21,27 @@
 
 @section('page-content')
 <div class="container-fluid">
-
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-dark">
+        <div class="card-header">
+          <h3 class="card-title">Request Token</h3>
+        </div>
+        <div class="card-body">
+          <form action="{{ route('app.atc.cofrance.newtoken', app()->getLocale()) }}" method="post">
+            @csrf
+            <label for="unique">Define Password</label>
+            <div class="input-group input-group-sm">
+              <input class="form-control" type="password" name="unique" id="unique" placeholder="Password" required>
+              <span class="input-group-append">
+                <input type="hidden" name="userid" value="{{Auth::user()->id}}">
+                <button type="submit" class="btn btn-success btn-flat btn-block">Submit</button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
