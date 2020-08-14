@@ -8,6 +8,7 @@ return [
   'toolbox_title' => 'Mentor\'s Toolbox',
 
   // Student card
+  'email_share' => ':FNAME has agreed to share their email with you. You can contact them at',
   'c_progress' => ':FNAME\'s progress',
   'c_sessions' => 'All Training Sessions',
   'position' => 'Position',

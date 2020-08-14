@@ -67,7 +67,7 @@
               @if ($s['mentoringRequest']['mail_consent'] == true)
               <div class="row">
                 <div class="col-md-12">
-                  <i>Peter has agreed to share their email with you. You can contact them at <a href="mailto:
+                  <i>{{__('app/staff/atc_mine.email_share', ['FNAME' => $s['user']['fname']])}} <a href="mailto:
                     @if (is_null($s['user']['custom_email'])) 
                       {{ $s['user']['email'] }} 
                     @else 

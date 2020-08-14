@@ -8,6 +8,7 @@ return [
   'toolbox_title' => 'Boite à outils',
 
   // Student card
+  'email_share' => ':FNAME a accepté de partager son adresse email avec vous. Vous pouvez le contacter à l\'adresse ',
   'c_progress' => 'Progrès de :FNAME',
   'c_sessions' => 'Toutes les Sessions',
   'position' => 'Position',
