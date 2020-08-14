@@ -75,7 +75,7 @@ class CoFranceController extends Controller
         ->addValue('is_betatester', $user['is_betatester'])
         ->getTomlString();
 
-        return response($result, 200)->header('Content-Type', 'application/toml');
+        return response($result, 200)->header('Content-Type', 'text/plain');
     }
 
     public function test(Request $request)
@@ -90,7 +90,7 @@ class CoFranceController extends Controller
         ->addValue('unicode', 'unicode character: ' . json_decode('"\u03B4"'))
         ->getTomlString();
         $result = "[random]\nfirst_var = my_value\n[other.stuff]\neven_more_stuff = cool_shiz";
-        return response($result, 200)->header('Content-Type', 'application/toml');
+        return response($result, 200)->header('Content-Type', 'text/plain');
     }
 
     public function sendConfig(Request $request)
@@ -106,7 +106,7 @@ class CoFranceController extends Controller
         $config = $config['content'];
         $result .= "\n";
         $result .= $config;
-        return response($result, 200)->header('Content-Type', 'application/toml');
+        return response($result, 200)->header('Content-Type', 'text/plain');
     }
 
     public function storeConfig(Request $request)

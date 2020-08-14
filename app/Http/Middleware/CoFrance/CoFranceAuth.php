@@ -31,16 +31,16 @@ class CoFranceAuth
         $authToken = $request->header('auth');
 
         if (is_null($authToken)) {
-            return response($error, 401)->header('Content-Type', 'application/toml');
+            return response($error, 401)->header('Content-Type', 'text/plain');
         }
 
         $token = CoFranceToken::where('token', $authToken)->first();
         if (is_null($token)) {
-            return response($error, 401)->header('Content-Type', 'application/toml');
+            return response($error, 401)->header('Content-Type', 'text/plain');
         }
         $foundUser = User::where('id', $token->user_id)->first();
         if (is_null($foundUser)) {
-            return response($error, 401)->header('Content-Type', 'application/toml');
+            return response($error, 401)->header('Content-Type', 'text/plain');
         }
         Auth::setUser($foundUser);
         return $next($request);
