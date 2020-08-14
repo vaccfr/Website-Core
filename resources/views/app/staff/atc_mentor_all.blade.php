@@ -54,7 +54,7 @@
             <table
               id="atc_sessions_table"
               class="table table-bordered table-hover"
-              data-order='[[ 2, "desc" ]]'>
+              data-order='[[ 7, "asc" ]]'>
               <thead>
               <tr>
                 <th>{{__('app/staff/atc_all.cid')}}</th>
