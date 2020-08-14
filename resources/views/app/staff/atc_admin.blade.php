@@ -38,7 +38,7 @@
       </div>
       <div class="col-md-10">
         <!-- /.card -->
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-primary collapsed-card">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.roster_members')}}</h3>
             <div class="card-tools">
@@ -145,7 +145,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-primary collapsed-card">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.solo_appr')}}</h3>
             <div class="card-tools">
@@ -195,7 +195,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-primary collapsed-card">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.mentoring_reqs')}}</h3>
             <div class="card-tools">
