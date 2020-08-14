@@ -55,7 +55,7 @@
         <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         @foreach ($students as $s)
-          <div class="card card-outline  @if(true) card-success @else card-danger @endif">
+          <div class="card card-outline collapsed-card @if(true) card-success @else card-danger @endif">
             <div class="card-header" data-card-widget="collapse">
               <h3 class="card-title">{{ $s['user']['fname'] }} {{ $s['user']['lname'] }} - {{ $s['user']['atc_rating_short'] }} - {{ $s['mentoringRequest']['icao'] }}</h3>
               <div class="card-tools">
