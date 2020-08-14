@@ -96,6 +96,10 @@ Route::group([
                     Route::get('/loas', 'ATC\ATCPagesController@loas')->name('app.atc.loas');
                     Route::get('/tools', 'ATC\ATCPagesController@tools')->name('app.atc.tools');
                     Route::post('/toolsgen', 'ATC\ATCPagesController@toolsGenAtis')->name('app.atc.tools.atisgen');
+
+                    Route::get('/cofrance-plugin-token', function() {
+                        return "Nothing yet";
+                    })->name('app.atc.cofrance.dashboard')->middleware('BETATESTER');
                 });
 
                 Route::group(['prefix' => '/trainingcenter'], function() {

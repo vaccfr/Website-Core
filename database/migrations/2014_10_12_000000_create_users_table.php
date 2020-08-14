@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('subdiv_id')->nullable();
             $table->string('subdiv_name')->nullable();
             $table->boolean('is_staff')->default(false);
+            $table->boolean('is_betatester')->default(false);
             $table->boolean('hide_details')->default(false);
             $table->boolean('login_alert')->default(true);
             $table->timestamp('last_login')->nullable();

@@ -135,6 +135,14 @@
             </li>
           </ul>
         </li>
+        @if (Auth::user()->isBetaTester() == true)
+        <li class="nav-item">
+          <a href="{{ route('app.atc.cofrance.dashboard', app()->getLocale()) }}" class="nav-link @if (str_contains(url()->current(), '/app')) active @endif">
+            <i class="nav-icon fa fa-plug"></i>
+            <p>CoFrance (Beta)</p>
+          </a>
+        </li>
+        @endif
         @endif
 
         {{-- Pilot Section of the menu --}}

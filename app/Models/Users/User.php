@@ -30,7 +30,7 @@ class User extends Authenticatable
         'id', 'vatsim_id', 'fname', 'lname', 'email', 'custom_email', 'account_type', 'is_approved_atc',
         'atc_rating', 'atc_rating_short', 'atc_rating_long', 'pilot_rating', 
         'division_id', 'division_name', 'region_id', 'region_name', 'subdiv_id', 'subdiv_name',
-        'is_staff', 'hide_details', 'last_login', 'login_ip',
+        'is_staff', 'is_betatester', 'hide_details', 'last_login', 'login_ip',
     ];
     
     protected static $logName = 'user';
@@ -117,6 +117,15 @@ class User extends Authenticatable
     public function isStaff()
     {
         if ($this->is_staff == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isBetaTester()
+    {
+        if ($this->is_betatester == true) {
             return true;
         } else {
             return false;
