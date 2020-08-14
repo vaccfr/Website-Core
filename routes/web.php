@@ -121,6 +121,7 @@ Route::group([
                 ], function() {
                     Route::get('/dashboard', 'CoFrance\CoFranceController@dashboard')->name('app.atc.cofrance.dashboard');
                     Route::post('/newtoken', 'CoFrance\CoFranceController@createToken')->name('app.atc.cofrance.newtoken');
+                    Route::post('/storeconfig', 'CoFrance\CoFranceController@storeConfig')->name('app.atc.cofrance.storeconfig');
                 });
             });
 

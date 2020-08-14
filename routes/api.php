@@ -29,6 +29,7 @@ Route::group(['prefix' => '/cfr'], function() {
     ]);
   });
   Route::get('/test', 'CoFrance\CoFranceController@test');
+  Route::get('/config', 'CoFrance\CoFranceController@sendConfig');
   Route::group(['middleware' => 'COFRANCEAPI'], function() {
     Route::get('/checktoken', 'CoFrance\CoFranceController@checkToken');
   });

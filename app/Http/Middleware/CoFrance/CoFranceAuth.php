@@ -7,6 +7,7 @@ use App\Models\Users\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Yosymfony\Toml\TomlBuilder;
 
 class CoFranceAuth
 {
@@ -19,26 +20,27 @@ class CoFranceAuth
      */
     public function handle($request, Closure $next)
     {
+        $tb = new TomlBuilder();
+        $error = $tb
+        ->addTable('request')
+        ->addValue('code', 401)
+        ->addValue('type', 'error')
+        ->addValue('message', 'Unauthenticated.')
+        ->getTomlString();
+
         $authToken = $request->header('auth');
 
         if (is_null($authToken)) {
-            return response()->json([
-                'message' => 'Unauthenticated.',
-            ], 401);
+            return response($error, 401)->header('Content-Type', 'application/toml');
         }
 
         $token = CoFranceToken::where('token', $authToken)->first();
         if (is_null($token)) {
-            return response()->json([
-                'message' => 'Unauthenticated.',
-            ], 401);
+            return response($error, 401)->header('Content-Type', 'application/toml');
         }
         $foundUser = User::where('id', $token->user_id)->first();
         if (is_null($foundUser)) {
-            return response()->json([
-                'message' => 'Error',
-                'error' => 'user not found'
-            ], 401);
+            return response($error, 401)->header('Content-Type', 'application/toml');
         }
         Auth::setUser($foundUser);
         return $next($request);
