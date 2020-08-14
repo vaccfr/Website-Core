@@ -23,9 +23,10 @@ It is based on the Laravel Framework, and uses a Bootstrap 4 & *mostly* vanilla 
 ### Contributors, maintainers and acknowledgements
 
 A special thank you to the following people:
+- [@FrenchGap](https://github.com/FrenchGap), for his extensive work on the backend and member dashboard.
 - [@redac](https://github.com/redac), for his frontend development and design contributions;
 - [@Pampah91](https://github.com/Pampah91), for his frontend design contributions;
-- [@FrenchGap](https://github.com/FrenchGap), for his extensive work on the backend and member dashboard.
+- [@pierr3](https://github.com/pierr3), for his help on CoFrance integration, as well as his frontend and backend contributions.
 
 ### License
 
