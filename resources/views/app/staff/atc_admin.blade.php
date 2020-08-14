@@ -42,7 +42,7 @@
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.roster_members')}}</h3>
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
               </button>
             </div>
           </div>
@@ -149,7 +149,7 @@
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.solo_appr')}}</h3>
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
               </button>
             </div>
           </div>
@@ -199,7 +199,7 @@
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.mentoring_reqs')}}</h3>
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
               </button>
             </div>
           </div>
