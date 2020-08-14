@@ -55,7 +55,7 @@
         <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         @foreach ($students as $s)
-          <div class="card card-outline collapsed-card @if(true) card-success @else card-danger @endif">
+          <div class="card card-outline  @if(true) card-success @else card-danger @endif">
             <div class="card-header" data-card-widget="collapse">
               <h3 class="card-title">{{ $s['user']['fname'] }} {{ $s['user']['lname'] }} - {{ $s['user']['atc_rating_short'] }} - {{ $s['mentoringRequest']['icao'] }}</h3>
               <div class="card-tools">
@@ -64,7 +64,24 @@
               </div>
             </div>
             <div class="card-body">
+              @if ($s['mentoringRequest']['mail_consent'] == true)
               <div class="row">
+                <div class="col-md-12">
+                  <i>Peter has agreed to share their email with you. You can contact them at <a href="mailto:
+                    @if (is_null($s['user']['custom_email'])) 
+                      {{ $s['user']['email'] }} 
+                    @else 
+                      {{ $s['user']['custom_email'] }} 
+                    @endif">
+                    @if (is_null($s['user']['custom_email'])) 
+                      {{ $s['user']['email'] }} 
+                    @else 
+                      {{ $s['user']['custom_email'] }} 
+                    @endif</a></i>
+                </div>
+              </div>
+              @endif
+              <div class="row mt-3">
                 <div class="col-md-12">
                   <h4>{{__('app/staff/atc_mine.c_progress', ['FNAME' => $s['user']['fname']])}}</h4>
                   <div class="steps">

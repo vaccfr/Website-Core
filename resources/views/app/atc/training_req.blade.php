@@ -89,6 +89,12 @@
                   <label for="reqmotivation">{{__('app/atc/atc_training_center_req.your_motiv') }}</label>
                   <textarea class="form-control" rows="5" name="reqmotivation" id="reqmotivation" style="resize: none;" placeholder="{{ $mRequest->motivation }}" disabled></textarea>
                 </div>
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="reqallowmail" name="reqallowmail" disabled @if ($mRequest->mail_consent == true) checked @endif>
+                    <label class="custom-control-label" for="reqallowmail">{{__('app/atc/atc_training_center_req.allowmail') }}</label>
+                  </div>
+                </div>
               </div>
               @break
             
