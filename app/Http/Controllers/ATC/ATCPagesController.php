@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\ATC;
 
 use App\Http\Controllers\Controller;
+use App\Models\ATC\Airport;
 use App\Models\ATC\ATCRosterMember;
-use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Mentor;
 use App\Models\ATC\SoloApproval;
 use Illuminate\Http\Request;
@@ -62,11 +62,14 @@ class ATCPagesController extends Controller
         }
         $baseURL = config('app.url')."/api/atis/\$atiscode/\$deprwy(\$atisairport)/\$arrrwy(\$atisairport)/".$apptype."/".$sid."/?m=\$metar(\$atisairport)".$birds;
 
+        $airports = Airport::with('positions')->get();
+
         return view('app.atc.tools', [
             'url' => $baseURL,
             'apptype' => $apptype_form,
             'sid' => $sid_form,
             'birds' => $birds_form,
+            'airport' => $airports,
         ]);
     }
 
