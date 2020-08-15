@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ATC Tools / Outils ATC</h1>
+          <h1>{{__('app/atc/tools.header')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -26,13 +26,13 @@
       <div class="col-md-6">
         <div class="card card-dark elevation-3">
           <div class="card-header">
-            <h3 class="card-title">ATIS URL</h3>
+            <h3 class="card-title">{{__('app/atc/tools.atis_title')}}</h3>
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="atisurl">ATIS URL:</label>
+                  <label for="atisurl">{{__('app/atc/tools.atis_urltitle')}}</label>
                   <input class="form-control" id="atisurl" type="text" readonly value="{{ $url }}">
                 </div>
               </div>
@@ -44,7 +44,7 @@
                     @csrf
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="apptype">Approach / Approche</label>
+                        <label for="apptype">{{__('app/atc/tools.atis_app')}}</label>
                         <input type="text" class="form-control" id="apptype" name="apptype" value="{{ $apptype }}" placeholder='Ex: "ILS" / Ex: "RNAV A, VPT"'>
                       </div>
                       <div class="form-group">
@@ -53,11 +53,11 @@
                       </div>
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="birds" name="birds" @if ($birds == true) checked @endif>
-                        <label class="form-check-label" for="birds">Bird activity / Activité aviaire</label>
+                        <label class="form-check-label" for="birds">{{__('app/atc/tools.atis_birds')}}</label>
                       </div>
                     </div>    
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary">{{__('app/atc/tools.atis_generate')}}</button>
                     </div>
                   </form>
                 </div>
@@ -69,7 +69,7 @@
       <div class="col-md-6">
         <div class="card card-dark elevation-3">
           <div class="card-header">
-            <h3 class="card-title">ATC Frequencies</h3>
+            <h3 class="card-title">{{__('app/atc/tools.freq_title')}}</h3>
           </div>
           <div class="card-body">
             <table
@@ -78,10 +78,10 @@
               data-order='[[ 0, "asc" ]]'>
               <thead>
               <tr>
-                <th>Position</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Frequency</th>
+                <th>{{__('app/atc/tools.freq_pos')}}</th>
+                <th>{{__('app/atc/tools.freq_name')}}</th>
+                <th>{{__('app/atc/tools.freq_type')}}</th>
+                <th>{{__('app/atc/tools.freq_freq')}}</th>
               </tr>
               </thead>
               <tbody>
