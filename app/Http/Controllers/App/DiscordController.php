@@ -62,6 +62,7 @@ class DiscordController extends Controller
         $existing = DiscordData::where('user_id', auth()->user()->id)->first();
         if (is_null($existing)) {
             DiscordData::create([
+                'user_id' => auth()->user()->id,
                 'discord_id' => $user_data->id,
                 'sso_code' => $ssocode,
                 'username' => $user_data->username."#".$user_data->discriminator,
