@@ -30,7 +30,7 @@
             <span class="info-box-number">{{ $studentCount }}</span>
           </div>
         </div>
-        <div class="card card-outline card-info elevation-3">
+        <div class="card card-dark elevation-3">
           <div class="card-header">
             <h3 class="card-title">{{__('app/staff/atc_mine.toolbox_title')}}</h3>
           </div>

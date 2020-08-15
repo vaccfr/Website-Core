@@ -23,7 +23,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
-        <div class="card card-secondary elevation-3">
+        <div class="card card-dark elevation-3">
           <div class="card-header">
             <h3 class="card-title">{{__('app/atc/atc_mybookings.book_a_pos')}}</h3>
           </div>
@@ -81,7 +81,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card card-secondary elevation-3">
+        <div class="card card-dark elevation-3">
           <div class="card-header">
             <h3 class="card-title">{{__('app/atc/atc_mybookings.your_bk_title')}}</h3>
           </div>

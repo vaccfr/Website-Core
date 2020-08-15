@@ -9,7 +9,7 @@ Pigeon Voyageur | Inbox
 @endsection
 
 @section('body')
-<div class="card card-primary card-outline elevation-3">
+<div class="card card-dark elevation-3">
   <div class="card-header">
       <h3 class="card-title">{{ $header }}</h3>
 

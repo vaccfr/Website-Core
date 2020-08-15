@@ -163,7 +163,7 @@
       </div>
     </div>
     <div class="col-md-5">
-      <div class="card card-success elevation-3">
+      <div class="card card-info elevation-3">
         <div class="card-header">
           <h3 class="card-title" id="selevent_title">(no event selected)</h3>
         </div>

@@ -57,7 +57,7 @@
                       </div>
                     </div>    
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">{{__('app/atc/tools.atis_generate')}}</button>
+                      <button type="submit" class="btn btn-success">{{__('app/atc/tools.atis_generate')}}</button>
                     </div>
                   </form>
                 </div>

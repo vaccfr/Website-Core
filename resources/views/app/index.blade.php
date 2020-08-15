@@ -36,14 +36,14 @@
           </div>
           <div class="card-footer">
             <div class="row">
-              <div class="col-sm-3 border-right elevation-1">
+              <div class="col-sm-3 border-right">
                 <div class="description-block">
                   <span class="description-text">Vatsim ID</span>
                   <h5 class="description-header">{{ Auth::user()->vatsim_id }}</h5>
                 </div>
                 <!-- /.description-block -->
               </div>
-              <div class="col-sm-3 border-right elevation-1">
+              <div class="col-sm-3 border-right">
                 <div class="description-block">
                   <span class="description-text">{{__('app/app_indexpage.atc_rank')}}</span>
                   <h5 class="description-header">{{ Auth::user()->fullAtcRank() }}</h5>
@@ -51,14 +51,14 @@
                 <!-- /.description-block -->
               </div>
               <!-- /.col -->
-              <div class="col-sm-3 border-right elevation-1">
+              <div class="col-sm-3 border-right">
                 <div class="description-block">
                   <span class="description-text">{{__('app/app_indexpage.pilot_rank')}}</span>
                   <h5 class="description-header">P{{ Auth::user()->pilot_rating }}</h5>
                 </div>
                 <!-- /.description-block -->
               </div>
-              <div class="col-sm-3 elevation-1">
+              <div class="col-sm-3">
                 <div class="description-block">
                   <span class="description-text">{{__('app/app_indexpage.approved_atc')}}</span>
                   <h5 class="description-header">@if (Auth::user()->isApprovedAtc() == true)
@@ -106,7 +106,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div class="card card-outline card-info elevation-3">
+        <div class="card card-outline card-dark elevation-3">
           <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
             <h3 class="card-title">{{__('app/app_indexpage.your_last_atc')}}</h3>
           </div>
@@ -138,7 +138,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card card-outline card-info elevation-3">
+        <div class="card card-outline card-dark elevation-3">
           <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
             <h3 class="card-title">{{__('app/app_indexpage.your_last_flights')}}</h3>
           </div>

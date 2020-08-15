@@ -21,7 +21,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
-      <div class="card card-secondary elevation-3">
+      <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/atc/atc_training_center_req.welcome_title') }}</h3>
         </div>
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="card card-primary elevation-3">
+      <div class="card card-info elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/atc/atc_training_center_req.form_title') }}</h3>
         </div>

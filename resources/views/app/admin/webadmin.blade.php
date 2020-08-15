@@ -60,7 +60,7 @@
     <div class="row">
       <div class="col-md-12">
         <!-- /.card -->
-        <div class="card card-outline card-primary collapsed-card elevation-3">
+        <div class="card card-dark collapsed-card elevation-3">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">Exception Logs</h3>
             <div class="card-tools">

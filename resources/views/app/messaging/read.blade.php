@@ -9,12 +9,12 @@
 @endsection
 
 @section('body')
-<div class="card card-primary card-outline elevation-3">
+<div class="card card-dark elevation-3">
   <div class="card-header">
       <h3 class="card-title">{{__('app/inmsg.mail_title', ['FNAME' => $msg['sender']['fname']])}}</h3>
       @if ($msg['recipient_id'] == auth()->user()->id)
       <div class="float-right">
-        <button type="button" class="btn btn-default" data-target="#send_reply" data-toggle="modal"><i class="fas fa-reply"></i> {{__('app/inmsg.mail_reply')}}</button>
+        <button type="button" class="btn btn-default btn-sm" data-target="#send_reply" data-toggle="modal"><i class="fas fa-reply"></i> {{__('app/inmsg.mail_reply')}}</button>
       </div>
       @endif
   </div>
@@ -35,13 +35,13 @@
       <form action="{{ route('app.inmsg.archive', app()->getLocale()) }}" method="post">
         @csrf
         <input type="hidden" name="msgid" value="{{ $msg['id'] }}">
-        <button type="submit" class="btn btn-default"><i class="fa fa-archive"></i> {{__('app/inmsg.mail_archive')}}</button>
+        <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-archive"></i> {{__('app/inmsg.mail_archive')}}</button>
       </form>
     </div>
     <form action="{{ route('app.inmsg.delete', app()->getLocale()) }}" method="post">
       @csrf
       <input type="hidden" name="msgid" value="{{ $msg['id'] }}">
-      <button type="submit" class="btn btn-default"><i class="far fa-trash-alt"></i> {{__('app/inmsg.mail_delete')}}</button>
+      <button type="submit" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i> {{__('app/inmsg.mail_delete')}}</button>
     </form>
     @endif
   </div>

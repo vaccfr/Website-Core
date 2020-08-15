@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col-md-4">
       <!-- Profile Image -->
-      <div class="card card-primary card-outline elevation-3">
+      <div class="card card-info card-outline elevation-3">
         <div class="card-body box-profile">
           <h3 class="profile-username text-center">{{ Auth::user()->fullname() }}</h3>
 
@@ -58,7 +58,7 @@
       </div>
       <!-- /.card -->
 
-      <div class="card card-primary elevation-3">
+      <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/user/usersettings.gdpr_title')}}</h3>
         </div>
@@ -67,14 +67,14 @@
             <button type="submit" class="btn btn-primary">{{__('app/user/usersettings.gdpr_view')}}</button>
           </form>
           <form>
-            <button type="submit" class="btn btn-danger">{{__('app/user/usersettings.gdpr_del')}}</button>
+            <button type="submit" class="btn btn-danger mt-2">{{__('app/user/usersettings.gdpr_del')}}</button>
           </form>
         </div>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="card card-primary elevation-3">
+      <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/user/usersettings.det_title')}}</h3>
         </div>
@@ -122,7 +122,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card card-primary elevation-3">
+      <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/user/usersettings.em_title')}}</h3>
         </div>

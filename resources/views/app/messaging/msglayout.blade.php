@@ -21,16 +21,16 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-          <a href="#" class="btn btn-primary btn-block mb-3 elevation-3" data-target="#send_message" data-toggle="modal">{{__('app/inmsg.compose')}}</a>
+          <a href="#" class="btn btn-success btn-block mb-3 elevation-3" data-target="#send_message" data-toggle="modal">{{__('app/inmsg.compose')}}</a>
 
-          <div class="card elevation-3">
+          <div class="card card-dark elevation-3">
             <div class="card-header">
               <h3 class="card-title">{{__('app/inmsg.folders')}}</h3>
             </div>
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.inbox', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.inbox')) active @endif">
+                  <a href="{{ route('app.inmsg.inbox', app()->getLocale()) }}" class="nav-link">
                     <i class="fas fa-inbox"></i> {{__('app/inmsg.inbox')}}
                     @if (!session()->get('inbox_count') == 0)
                     <span class="badge bg-warning float-right">{{ session()->get('inbox_count') }}</span>
@@ -38,17 +38,17 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.sent', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.sent')) active @endif">
+                  <a href="{{ route('app.inmsg.sent', app()->getLocale()) }}" class="nav-link">
                     <i class="far fa-envelope"></i> {{__('app/inmsg.sent')}}
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.archive', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.archive')) active @endif">
+                  <a href="{{ route('app.inmsg.archive', app()->getLocale()) }}" class="nav-link">
                     <i class="fa fa-archive"></i> {{__('app/inmsg.archived')}}
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('app.inmsg.trash', app()->getLocale()) }}" class="nav-link @if (Route::is('app.inmsg.trash')) active @endif">
+                  <a href="{{ route('app.inmsg.trash', app()->getLocale()) }}" class="nav-link">
                     <i class="far fa-trash-alt"></i> {{__('app/inmsg.trash')}}
                   </a>
                 </li>

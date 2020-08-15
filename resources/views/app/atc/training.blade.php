@@ -204,7 +204,7 @@
   <div class="row">
     <div class="col-md-12">
       {{-- Training sessions table --}}
-      <div class="card card-secondary elevation-3">
+      <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/atc/atc_training_center.upcoming_sess')}}</h3>
         </div>
