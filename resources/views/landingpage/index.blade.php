@@ -65,7 +65,7 @@
                 </li>
               </ul>
             </div>
-            <div class="card-body">
+            <div class="card-body overflow-auto">
               <div class="tab-content">
                 <div class="tab-pane active" role="tabpanel" id="atc-tab-1">
                   @if (count($book0) == 0)
@@ -293,7 +293,7 @@
             <h6 class="text-muted">Only approach & tower positions and planes for now</h6>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 overflow-auto">
           <h3 class="mt-3  mb-3">{{__('lp/lp_index.online_atc_title')}}</h3>
           <ul class="list-unstyled ml-0 mt-3 p-0 onlineControllers">
             <li>
