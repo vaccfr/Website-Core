@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/discord', function() {
-    redirect("https://discord.gg/f279VCy");
+    return redirect('https://discord.gg/f279VCy');
 });
 
 // Landing page routes
@@ -47,7 +47,7 @@ Route::group([
     // Discord OAUTH Redirect
     Route::get('/discord-validate', 'App\DiscordController@redirectCode')->name('discord.redirect');
     Route::get('/discord', function() {
-        redirect("https://discord.gg/f279VCy");
+        return redirect('https://discord.gg/f279VCy');
     });
 
     // Member dashboard routes with locales
