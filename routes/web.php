@@ -20,6 +20,10 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
+Route::get('/discord', function() {
+    redirect("https://discord.gg/f279VCy");
+});
+
 // Landing page routes
 Route::group([
     'middleware' => 'setlocale',
@@ -42,6 +46,9 @@ Route::group([
 
     // Discord OAUTH Redirect
     Route::get('/discord-validate', 'App\DiscordController@redirectCode')->name('discord.redirect');
+    Route::get('/discord', function() {
+        redirect("https://discord.gg/f279VCy");
+    });
 
     // Member dashboard routes with locales
     Route::group([

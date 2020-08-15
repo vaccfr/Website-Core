@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col-md-4">
       <!-- Profile Image -->
-      <div class="card card-info card-outline elevation-3">
+      <div class="card card-info card-outline elevation-3" style="height: 400px">
         <div class="card-body box-profile">
           <h3 class="profile-username text-center">{{ Auth::user()->fullname() }}</h3>
 
@@ -57,48 +57,10 @@
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
-
-      <div class="card card-dark elevation-3">
-        <div class="card-header">
-          <h3 class="card-title">Link my Discord Account</h3>
-        </div>
-        <div class="card-body">
-          @if (!is_null($userDiscord))
-          <div class="form-group">
-            <label for="duname">Linked Discord Username</label>
-            <input type="text" class="form-control" id="duname" value="{{ $userDiscord['username'] }}" disabled>
-          </div>
-          <form
-            action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
-            method="GET">
-            <button type="submit" class="btn btn-warning mt-2">Link another account</button>
-          </form>
-          @else
-          <form
-            action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
-            method="GET">
-            <button type="submit" class="btn btn-info mt-2">Link my Discord</button>
-          </form>
-          @endif
-        </div>
-      </div>
-      <div class="card card-dark elevation-3">
-        <div class="card-header">
-          <h3 class="card-title">{{__('app/user/usersettings.gdpr_title')}}</h3>
-        </div>
-        <div class="card-body">
-          <form>
-            <button type="submit" class="btn btn-info">{{__('app/user/usersettings.gdpr_view')}}</button>
-          </form>
-          <form>
-            <button type="submit" class="btn btn-danger mt-2">{{__('app/user/usersettings.gdpr_del')}}</button>
-          </form>
-        </div>
-      </div>
     </div>
 
     <div class="col-md-4">
-      <div class="card card-dark elevation-3">
+      <div class="card card-dark elevation-3" style="height: 400px">
         <div class="card-header">
           <h3 class="card-title">{{__('app/user/usersettings.det_title')}}</h3>
         </div>
@@ -146,7 +108,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card card-dark elevation-3">
+      <div class="card card-dark elevation-3" style="height: 400px">
         <div class="card-header">
           <h3 class="card-title">{{__('app/user/usersettings.em_title')}}</h3>
         </div>
@@ -198,6 +160,47 @@
             <button type="submit" class="btn btn-success">{{__('app/user/usersettings.submit')}}</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-dark elevation-3">
+        <div class="card-header">
+          <h3 class="card-title">Link my Discord Account</h3>
+        </div>
+        <div class="card-body">
+          @if (!is_null($userDiscord))
+          <div class="form-group">
+            <label for="duname">Linked Discord Username</label>
+            <input type="text" class="form-control" id="duname" value="{{ $userDiscord['username'] }}" disabled>
+          </div>
+          <form
+            action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
+            method="GET">
+            <button type="submit" class="btn btn-warning mt-2">Link another account</button>
+          </form>
+          @else
+          <form
+            action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
+            method="GET">
+            <button type="submit" class="btn btn-info mt-2">Link my Discord</button>
+          </form>
+          @endif
+        </div>
+      </div>
+      <div class="card card-dark elevation-3">
+        <div class="card-header">
+          <h3 class="card-title">{{__('app/user/usersettings.gdpr_title')}}</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <button type="submit" class="btn btn-info">{{__('app/user/usersettings.gdpr_view')}}</button>
+          </form>
+          <form>
+            <button type="submit" class="btn btn-danger mt-2">{{__('app/user/usersettings.gdpr_del')}}</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
