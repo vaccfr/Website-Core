@@ -59,13 +59,23 @@ class DiscordController extends Controller
             return redirect()->route('app.user.settings', app()->getLocale())->with("toast-error", 'Discord SSO error');
         }
 
-        DiscordData::updateOrCreate(['user_id' => Auth::user()->id], [
-            'discord_id' => $user_data->id,
-            'sso_code' => $ssocode,
-            'username' => $user_data->username."#".$user_data->discriminator,
-            'sso_access_token' => $access_token,
-            'sso_refresh_token' => $refresh_token,
-        ]);
+        $existing = DiscordData::where('user_id', auth()->user()->id)->first();
+        if (is_null($existing)) {
+            DiscordData::create([
+                'discord_id' => $user_data->id,
+                'sso_code' => $ssocode,
+                'username' => $user_data->username."#".$user_data->discriminator,
+                'sso_access_token' => $access_token,
+                'sso_refresh_token' => $refresh_token,
+            ]);
+        } else {
+            $existing->discord_id = $user_data->id;
+            $existing->sso_code = $ssocode;
+            $existing->username = $user_data->username."#".$user_data->discriminator;
+            $existing->sso_access_token = $access_token;
+            $existing->sso_refresh_token = $refresh_token;
+            $existing->save();
+        }
 
         $user = Auth::user();
         $user->linked_discord = true;
