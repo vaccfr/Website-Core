@@ -21,7 +21,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">{{__('app/admin/dashboard.members')}}</span>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">{{__('app/admin/dashboard.atc_members')}}</span>
@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-calendar"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">{{__('app/admin/dashboard.atc_book_tod')}}</span>
@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col-md-12">
         <!-- /.card -->
-        <div class="card">
+        <div class="card card-dark elevation-3">
           <div class="card-header">
             <h3 class="card-title">{{__('app/admin/dashboard.members')}}</h3>
           </div>

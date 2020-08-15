@@ -21,7 +21,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
-        <div class="card card-dark">
+        <div class="card card-dark elevation-3">
           <div class="card-header">
             <h3 class="card-title">ATIS URL</h3>
           </div>

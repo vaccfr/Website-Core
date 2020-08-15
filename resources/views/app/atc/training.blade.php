@@ -24,7 +24,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <div class="small-box bg-success">
+      <div class="small-box bg-success elevation-3">
         <div class="inner">
           <h3>{{ $sessionsCount }}</h3>
 
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="small-box bg-warning">
+      <div class="small-box bg-warning elevation-3">
         <div class="inner">
           <h3>{{ $trainingPlatform }}</h3>
 
@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="small-box bg-info">
+      <div class="small-box bg-info elevation-3">
         <div class="inner">
           <h3>{{ $mentorObj->fname." ".$mentorObj->lname }}</h3>
 
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card card-outline card-info">
+      <div class="card card-outline card-info elevation-3">
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
@@ -172,7 +172,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card elevation-3">
         <div class="card-body">
           <div class="steps">
             <ul class="steps-container">
@@ -204,7 +204,7 @@
   <div class="row">
     <div class="col-md-12">
       {{-- Training sessions table --}}
-      <div class="card card-secondary">
+      <div class="card card-secondary elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/atc/atc_training_center.upcoming_sess')}}</h3>
         </div>

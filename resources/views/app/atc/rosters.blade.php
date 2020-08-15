@@ -21,7 +21,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <div class="card card-secondary card-tabs">
+      <div class="card card-secondary card-tabs elevation-3">
         <div class="card-header p-0 pt-1">
           <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
             <li class="nav-item">

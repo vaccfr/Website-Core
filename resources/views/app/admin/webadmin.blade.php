@@ -21,7 +21,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-bug"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Exceptions today</span>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-users"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Total visitors today</span>
@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-user-check"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Members only</span>
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-user-tag"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Visitors only</span>
@@ -60,11 +60,11 @@
     <div class="row">
       <div class="col-md-12">
         <!-- /.card -->
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-primary collapsed-card elevation-3">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">Exception Logs</h3>
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
               </button>
             </div>
           </div>

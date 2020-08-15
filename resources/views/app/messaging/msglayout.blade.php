@@ -21,9 +21,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-          <a href="#" class="btn btn-primary btn-block mb-3" data-target="#send_message" data-toggle="modal">{{__('app/inmsg.compose')}}</a>
+          <a href="#" class="btn btn-primary btn-block mb-3 elevation-3" data-target="#send_message" data-toggle="modal">{{__('app/inmsg.compose')}}</a>
 
-          <div class="card">
+          <div class="card elevation-3">
             <div class="card-header">
               <h3 class="card-title">{{__('app/inmsg.folders')}}</h3>
             </div>

@@ -23,14 +23,14 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">{{__('app/staff/atc_mine.pill_one')}}</span>
             <span class="info-box-number">{{ $studentCount }}</span>
           </div>
         </div>
-        <div class="card card-outline card-info">
+        <div class="card card-outline card-info elevation-3">
           <div class="card-header">
             <h3 class="card-title">{{__('app/staff/atc_mine.toolbox_title')}}</h3>
           </div>
@@ -55,7 +55,7 @@
         <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         @foreach ($students as $s)
-          <div class="card card-outline collapsed-card @if(true) card-success @else card-danger @endif">
+          <div class="card card-outline collapsed-card @if(true) card-success @else card-danger @endif elevation-3">
             <div class="card-header" data-card-widget="collapse">
               <h3 class="card-title">{{ $s['user']['fname'] }} {{ $s['user']['lname'] }} - {{ $s['user']['atc_rating_short'] }} - {{ $s['mentoringRequest']['icao'] }}</h3>
               <div class="card-tools">

@@ -26,14 +26,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
-      <div class="info-box">
+      <div class="info-box elevation-3">
         <span class="info-box-icon bg-info"><i class="fas fa-calendar-alt"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Upcoming Events</span>
           <span class="info-box-number">{{ $eventCount }}</span>
         </div>
       </div>
-      <div class="card card-outline card-secondary">
+      <div class="card card-outline card-secondary elevation-3">
         <div class="card-header">
           <h3 class="card-title">Tools</h3>
         </div>
@@ -108,7 +108,7 @@
       </div>
     </div>
     <div class="col-md-5">
-      <div class="card card-secondary">
+      <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">Events List</h3>
         </div>
@@ -163,7 +163,7 @@
       </div>
     </div>
     <div class="col-md-5">
-      <div class="card card-success">
+      <div class="card card-success elevation-3">
         <div class="card-header">
           <h3 class="card-title" id="selevent_title">(no event selected)</h3>
         </div>

@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col-md-4">
       <!-- Profile Image -->
-      <div class="card card-primary card-outline">
+      <div class="card card-primary card-outline elevation-3">
         <div class="card-body box-profile">
           <h3 class="profile-username text-center">{{ $user->fullname() }}</h3>
 
@@ -67,7 +67,7 @@
       <div class="row">
         <div class="col-md-6">
           {{-- Edit User details --}}
-          <div class="card card-primary">
+          <div class="card card-primary elevation-3">
             <div class="card-header">
               <h3 class="card-title">{{__('app/admin/useredit.edit_details', ['FNAME' => $user->fname])}}</h3>
             </div>
@@ -107,7 +107,7 @@
         </div>
         <div class="col-md-6">
           {{-- Edit ATC Mentor status --}}
-          <div class="card card-primary">
+          <div class="card card-primary elevation-3">
             <div class="card-header">
               <h3 class="card-title">{{__('app/admin/useredit.edit_atc_mentor', ['FNAME' => $user->fname])}}</h3>
             </div>
@@ -145,7 +145,7 @@
       <div class="row">
         <div class="col-md-6">
           {{-- Edit User staff access --}}
-          <div class="card card-primary">
+          <div class="card card-primary elevation-3">
             <div class="card-header">
               <h3 class="card-title">{{__('app/admin/useredit.edit_staff', ['FNAME' => $user->fname])}}</h3>
             </div>

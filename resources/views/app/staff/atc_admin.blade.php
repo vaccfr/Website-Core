@@ -21,14 +21,14 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2">
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">{{__('app/admin/atc_admin.pill_one')}}</span>
             <span class="info-box-number">{{ $rosterCount }}</span>
           </div>
         </div>
-        <div class="info-box">
+        <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">{{__('app/admin/atc_admin.pill_two')}}</span>
@@ -38,7 +38,7 @@
       </div>
       <div class="col-md-10">
         <!-- /.card -->
-        <div class="card card-outline card-primary collapsed-card">
+        <div class="card card-outline card-primary collapsed-card elevation-3">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.roster_members')}}</h3>
             <div class="card-tools">
@@ -145,7 +145,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <div class="card card-outline card-primary collapsed-card">
+        <div class="card card-outline card-primary collapsed-card elevation-3">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.solo_appr')}}</h3>
             <div class="card-tools">
@@ -195,7 +195,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        <div class="card card-outline card-primary collapsed-card">
+        <div class="card card-outline card-primary collapsed-card elevation-3">
           <div class="card-header" data-card-widget="collapse">
             <h3 class="card-title">{{__('app/admin/atc_admin.mentoring_reqs')}}</h3>
             <div class="card-tools">
