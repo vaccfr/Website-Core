@@ -14,6 +14,7 @@ class CreateDiscordDataTable extends Migration
     public function up()
     {
         Schema::create('discord_data', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('user_id')->unique();
             $table->bigInteger('discord_id');
             $table->string('username');
