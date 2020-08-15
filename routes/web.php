@@ -40,6 +40,9 @@ Route::group([
     Route::get('/validateLogin/{code}/{ip}', 'SSO\AuthController@computeLogin')->name('auth.redirect');
     Route::get('/logout', 'SSO\AuthController@logout')->name('auth.logout');
 
+    // Discord OAUTH Redirect
+    Route::get('/discord-validate', 'App\DiscordController@redirectCode')->name('discord.redirect');
+
     // Member dashboard routes with locales
     Route::group([
         'middleware' => 'auth:web',
@@ -54,6 +57,7 @@ Route::group([
                 Route::get('/', function () {
                     return redirect()->route('app.user.settings', app()->getLocale());
                 });
+                Route::get('/link-discord', 'App\DiscordController@link')->name('app.user.linkdiscord');
                 Route::get('/settings', 'App\MainController@usersettings')->name('app.user.settings');
                 Route::post('/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');
                 Route::post('/settings/editemail', 'App\MainController@userEmailPrefEdit')->name('app.user.settings.editemail');

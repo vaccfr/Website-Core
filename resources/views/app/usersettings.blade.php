@@ -60,11 +60,23 @@
 
       <div class="card card-dark elevation-3">
         <div class="card-header">
+          <h3 class="card-title">Link my Discord Account</h3>
+        </div>
+        <div class="card-body">
+          <form
+            action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
+            method="GET">
+            <button type="submit" class="btn btn-info mt-2">Link my Discord</button>
+          </form>
+        </div>
+      </div>
+      <div class="card card-dark elevation-3">
+        <div class="card-header">
           <h3 class="card-title">{{__('app/user/usersettings.gdpr_title')}}</h3>
         </div>
         <div class="card-body">
           <form>
-            <button type="submit" class="btn btn-primary">{{__('app/user/usersettings.gdpr_view')}}</button>
+            <button type="submit" class="btn btn-info">{{__('app/user/usersettings.gdpr_view')}}</button>
           </form>
           <form>
             <button type="submit" class="btn btn-danger mt-2">{{__('app/user/usersettings.gdpr_del')}}</button>
@@ -115,7 +127,7 @@
           <!-- /.card-body -->
           <div class="card-footer">
             <input type="hidden" name="userid" value="{{ Auth::user()->id }}">
-            <button type="submit" class="btn btn-primary">{{__('app/user/usersettings.submit')}}</button>
+            <button type="submit" class="btn btn-success">{{__('app/user/usersettings.submit')}}</button>
           </div>
         </form>
       </div>
@@ -171,7 +183,7 @@
           <!-- /.card-body -->
           <div class="card-footer">
             <input type="hidden" name="userid" value="{{ Auth::user()->id }}">
-            <button type="submit" class="btn btn-primary">{{__('app/user/usersettings.submit')}}</button>
+            <button type="submit" class="btn btn-success">{{__('app/user/usersettings.submit')}}</button>
           </div>
         </form>
       </div>
