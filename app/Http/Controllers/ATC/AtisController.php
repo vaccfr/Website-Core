@@ -218,6 +218,10 @@ class AtisController extends Controller
         return "Q F E ".$this->enunciate(str_pad($qnh-intval($elev/$this->feet_per_hpa), 4, "0", STR_PAD_LEFT));
     }
 
+    private function replaceAllAccents($input) {
+        return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $input);
+    }
+
     public function index(Request $request, $atis_letter, $deprwy, $arrrwy, $app, $dep) {
         $atis_text = "";
         
@@ -247,7 +251,7 @@ class AtisController extends Controller
             $atis_text .= "Bonsoir. ";
 
         // General information
-        $atis_text .= "This is ".$ad_info[0]." information ".$this->enunciate($atis_letter)." ";
+        $atis_text .= "This is ".$this->replaceAllAccents($ad_info[0])." information ".$this->enunciate($atis_letter)." ";
         $atis_text .= "recorded at ".$this->enunciate(gmdate("Hi"))." U T C. ";
         $atis_text .= $this->getRunways($deprwy, $arrrwy);
         $atis_text .= $this->getApproach($app);
