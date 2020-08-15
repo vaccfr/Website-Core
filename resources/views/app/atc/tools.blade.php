@@ -19,40 +19,23 @@
 
 @section('page-content')
   <div class="container-fluid">
-    <div class="card card-primary card-tabs">
-      <div class="card-header p-0 pt-1">
-        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-          <li class="nav-item">
-            <a
-              class="nav-link active"
-              id="atis-url-tab"
-              data-toggle="pill"
-              href="#atis-url"
-              role="tab"
-              aria-controls="atis-url"
-              aria-selected="true">
-                ATIS URL
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              id="tools2-tab"
-              data-toggle="pill"
-              href="#tools2"
-              role="tab"
-              aria-controls="tools2"
-              aria-selected="false">
-                (empty)
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="card-body">
-        <div class="tab-content" id="custom-tabs-one-tabContent">
-          <div class="tab-pane fade show active" id="atis-url" role="tabpanel" aria-labelledby="atis-url-tab">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-dark">
+          <div class="card-header">
+            <h3 class="card-title">ATIS URL</h3>
+          </div>
+          <div class="card-body">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="atisurl">ATIS URL:</label>
+                  <input class="form-control" id="atisurl" type="text" readonly value="{{ $url }}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
                 <div class="card card-primary">
                   <form role="form" action="{{ route('app.atc.tools.atisgen', app()->getLocale()) }}" method="POST">
                     @csrf
@@ -76,20 +59,10 @@
                   </form>
                 </div>
               </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <label for="atisurl">ATIS URL:</label>
-                  <input class="form-control" id="atisurl" type="text" readonly value="{{ $url }}">
-                </div>
-              </div>
             </div>
-          </div>
-          <div class="tab-pane fade" id="tools2" role="tabpanel" aria-labelledby="tools2-tab">
-            
           </div>
         </div>
       </div>
-      <!-- /.card -->
     </div>
   </div>
 @endsection
