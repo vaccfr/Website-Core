@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Models\Users\DiscordData;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiscordController extends Controller
 {
@@ -21,6 +23,8 @@ class DiscordController extends Controller
         $token_url = 'https://discord.com/api/oauth2/token';
         $user_url = 'https://discordapp.com/api/users/@me';
 
+        $ssocode = request('code');
+
         try {
             $response = (new Client)->post($token_url, [
                 'headers' => [
@@ -30,7 +34,7 @@ class DiscordController extends Controller
                     'client_id' => config('discordsso.client_id'),
                     'client_secret' => config('discordsso.client_secret'),
                     'grant_type' => 'authorization_code',
-                    'code' => request('code'),
+                    'code' => $ssocode,
                     'redirect_uri' => route('discord.redirect', app()->getLocale()),
                     'scope' => 'identify'
                 ]
@@ -52,9 +56,21 @@ class DiscordController extends Controller
             $user_data = json_decode($response->getBody());
 
         } catch(ClientException $e){
-            dd($e);
             return redirect()->route('app.user.settings', app()->getLocale())->with("toast-error", 'Discord SSO error');
         }
-        dd($user_data);
+
+        DiscordData::updateOrCreate(['user_id' => Auth::user()->id], [
+            'discord_id' => $user_data->id,
+            'sso_code' => $ssocode,
+            'username' => $user_data->username."#".$user_data->discriminator,
+            'sso_access_token' => $access_token,
+            'sso_refresh_token' => $refresh_token,
+        ]);
+
+        $user = Auth::user();
+        $user->linked_discord = true;
+        $user->save();
+
+        return redirect()->route('app.user.settings', app()->getLocale())->with("toast-success", 'Discord Account Linked!');
     }
 }

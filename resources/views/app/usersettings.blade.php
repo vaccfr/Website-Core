@@ -63,11 +63,23 @@
           <h3 class="card-title">Link my Discord Account</h3>
         </div>
         <div class="card-body">
+          @if (!is_null($userDiscord))
+          <div class="form-group">
+            <label for="duname">Linked Discord Username</label>
+            <input type="text" class="form-control" id="duname" value="{{ $userDiscord['username'] }}" disabled>
+          </div>
+          <form
+            action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
+            method="GET">
+            <button type="submit" class="btn btn-warning mt-2">Link another account</button>
+          </form>
+          @else
           <form
             action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
             method="GET">
             <button type="submit" class="btn btn-info mt-2">Link my Discord</button>
           </form>
+          @endif
         </div>
       </div>
       <div class="card card-dark elevation-3">

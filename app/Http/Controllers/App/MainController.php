@@ -70,9 +70,12 @@ class MainController extends Controller
         } else {
             $utypes = config('vatfrance.visiting_usertypes');
         }
+
+        $userDiscord = Auth::user()->discord;
         return view('app.usersettings', [
             'usertypes' => $utypes,
             'useremail' => $useremail,
+            'userDiscord' => $userDiscord,
         ]);
     }
 
