@@ -290,7 +290,6 @@
                 </script>
               </div>
             </main>
-            <h6 class="text-muted">Only approach & tower positions and planes for now</h6>
           </div>
         </div>
         <div class="col-md-6">
