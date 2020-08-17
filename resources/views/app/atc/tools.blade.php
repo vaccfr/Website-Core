@@ -94,7 +94,7 @@
                     <td>{{$p['frequency']}}</td>
                   </tr>
                   @endforeach
-                  @if (!is_null($a['atis_frequency']))
+                  @if (!strlen($a['atis_frequency']) == 0)
                   <tr>
                     <td>{{$a['icao']}}_ATIS</td>
                     <td>{{$a['city']}} {{$a['airport']}}</td>
