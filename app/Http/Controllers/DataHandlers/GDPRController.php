@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\DataHandlers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ATC\ATCRosterMember;
+use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Booking;
+use App\Models\ATC\Mentor;
 use App\Models\Users\DiscordData;
 use App\Models\Users\User;
 use App\Models\Users\UserEmailPreference;
@@ -20,7 +23,12 @@ class GDPRController extends Controller
         $userSettings = UserSetting::where('id', auth()->user()->id)->first();
         $userEmail = UserEmailPreference::where('id', auth()->user()->id)->first();
         $userDiscord = DiscordData::where('user_id', auth()->user()->id)->first();
+
+        // ATC
         $atcBookings = Booking::where('user_id', auth()->user()->id)->get();
+        $atcRoster = ATCRosterMember::where('id', auth()->user()->id)->first();
+        $atcStudent = ATCStudent::where('id', auth()->user()->id)->first();
+        $atcMentor = Mentor::where('id', auth()->user()->id)->first();
 
         $pdf = PDF::loadView('gdpr_gb', compact(
             'userData',
@@ -28,6 +36,9 @@ class GDPRController extends Controller
             'userEmail',
             'userDiscord',
             'atcBookings',
+            'atcRoster',
+            'atcStudent',
+            'atcMentor',
             ))->setPaper('a4', 'landscape');
         $dateToday = Carbon::today()->format('Y-m-d');
         return $pdf->stream($dateToday.'_GDPR_DATA_'.auth()->user()->vatsim_id.'.pdf');

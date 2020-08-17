@@ -171,10 +171,8 @@
     <h3>ATC Related Data</h3>
     <h5>Generated for {{ Auth::user()->fname }} {{ Auth::user()->lname }} (CID: {{ Auth::user()->vatsim_id }}) | {{ Illuminate\Support\Carbon::now()->format('Y-m-d H:i:s') }}</h5>
     <p>This section includes all controller data related to your account. <br><i>For security reasons, some data elements might be censored or omitted. Please contact us for any questions</i></p>
+    @if (count($atcBookings) == 0)
     <h5>ATC Bookings</h5>
-    @if (is_null($atcBookings))
-      <p><i>No ATC Bookings Found</i></p>
-    @else
     <table class="table table-striped" style="text-align: center;">
       <thead>
         <tr>
@@ -191,6 +189,70 @@
             <td>@if ($atcb['training'] == true) Yes @else No @endif</td>
           </tr>
           @endforeach
+      </tbody>
+    </table>
+    @endif
+    @if (!is_null($atcRoster))
+    <hr>
+    <h5>Roster Details</h5>
+    <table class="table table-striped" style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">Approved ATC</th>
+          <th scope="col">Approved LFMN TWR</th>
+          <th scope="col">Approved LFMN APP</th>
+          <th scope="col">Approved LFPG TWR</th>
+          <th>Approved LFPG APP</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>@if ($atcRoster->approved_flag == true) Yes @else No @endif</td>
+              <td>@if ($atcRoster->appr_lfmn_twr == true) Yes @else No @endif</td>
+              <td>@if ($atcRoster->appr_lfmn_app == true) Yes @else No @endif</td>
+              <td>@if ($atcRoster->appr_lfpg_twr == true) Yes @else No @endif</td>
+              <td>@if ($atcRoster->appr_lfpg_app == true) Yes @else No @endif</td>
+          </tr>
+      </tbody>
+    </table>
+    @endif
+    @if (!is_null($atcStudent))
+    <hr>
+    <h5>Student Details</h5>
+    <table class="table table-striped" style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">Active</th>
+          <th scope="col">Status</th>
+          <th>Progress Level</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>@if ($atcStudent->active == true) Yes @else No @endif</td>
+              <td>{{$atcStudent->status}}</td>
+              <td>{{$atcStudent->progress}}</td>
+          </tr>
+      </tbody>
+    </table>
+    @endif
+    @if (!is_null($atcMentor))
+    <hr>
+    <h5>Student Details</h5>
+    <table class="table table-striped" style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">Allowed Tuition Rank</th>
+          <th scope="col">Student Count</th>
+          <th>Active</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>{{$atcMentor->allowed_rank}}</td>
+              <td>{{$atcMentor->student_count}}</td>
+              <td>@if ($atcMentor->active == true) Yes @else No @endif</td>
+            </tr>
       </tbody>
     </table>
     @endif
