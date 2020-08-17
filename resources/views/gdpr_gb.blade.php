@@ -135,12 +135,12 @@
       </thead>
       <tbody>
           <tr>
-              <td>@if ($userData->event_emails == true) Yes @else No @endif</td>
-              <td>@if ($userData->atc_booking_emails == true) Yes @else No @endif</td>
-              <td>@if ($userData->atc_mentoring_emails == true) Yes @else No @endif</td>
-              <td>@if ($userData->website_update_emails == true) Yes @else No @endif</td>
-              <td>@if ($userData->news_emails == true) Yes @else No @endif</td>
-              <td>@if ($userData->internal_messaging_emails == true) Yes @else No @endif</td>
+              <td>@if ($userEmail->event_emails == true) Yes @else No @endif</td>
+              <td>@if ($userEmail->atc_booking_emails == true) Yes @else No @endif</td>
+              <td>@if ($userEmail->atc_mentoring_emails == true) Yes @else No @endif</td>
+              <td>@if ($userEmail->website_update_emails == true) Yes @else No @endif</td>
+              <td>@if ($userEmail->news_emails == true) Yes @else No @endif</td>
+              <td>@if ($userEmail->internal_messaging_emails == true) Yes @else No @endif</td>
           </tr>
       </tbody>
     </table>
