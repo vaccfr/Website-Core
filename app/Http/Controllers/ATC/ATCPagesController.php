@@ -60,7 +60,28 @@ class ATCPagesController extends Controller
             $birds = "&birds=1";
             $birds_form = true;
         }
-        $baseURL = config('app.url')."/api/atis/\$atiscode/\$deprwy(\$atisairport)/\$arrrwy(\$atisairport)/".$apptype."/".$sid."/?m=\$metar(\$atisairport)".$birds;
+
+        $info = "";
+        $info_form = null;
+        if ($request->has('info') && request('info') != "0") {
+            $info = "&info=".request('info');
+            $info_form = request('info');
+        }
+
+        $ctwy = "";
+        $ctwy_form = null;
+        if ($request->has('ctwy') && request('ctwy') != "0") {
+            $ctwy = "&ctwy=".request('ctwy');
+            $ctwy_form = request('ctwy');
+        }
+
+        $crwy = "";
+        $crwy_form = null;
+        if ($request->has('crwy') && request('crwy') != "0") {
+            $crwy = "&crwy=".request('crwy');
+            $crwy_form = request('crwy');
+        }
+        $baseURL = config('app.url')."/api/atis/\$atiscode/\$deprwy(\$atisairport)/\$arrrwy(\$atisairport)/".$apptype."/".$sid."/?m=\$metar(\$atisairport)".$birds."".$info."".$ctwy."".$crwy;
 
         $airports = Airport::with('positions')->get();
 
@@ -70,6 +91,9 @@ class ATCPagesController extends Controller
             'sid' => $sid_form,
             'birds' => $birds_form,
             'airport' => $airports,
+            'info' => $info_form,
+            'crwy' => $crwy_form,
+            'ctwy' => $ctwy_form,
         ]);
     }
 
@@ -79,11 +103,26 @@ class ATCPagesController extends Controller
         if ($request->get('birds') == "on") {
             $birds = "1";
         }
+        $info = "0";
+        if (!is_null($request->get('info'))) {
+            $info = request('info');
+        }
+        $crwy = "0";
+        if (!is_null($request->get('crwy'))) {
+            $crwy = request('crwy');
+        }
+        $ctwy = "0";
+        if (!is_null($request->get('ctwy'))) {
+            $ctwy = request('ctwy');
+        }
         return redirect()->route('app.atc.tools', [
             'locale' => app()->getLocale(),
             'apptype' => $request->get('apptype'),
             'sid' => $request->get('sid'),
             'birds' => $birds,
+            'info' => $info,
+            'crwy' => $crwy,
+            'ctwy' => $ctwy,
         ]);
     }
 }

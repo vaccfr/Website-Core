@@ -51,6 +51,18 @@
                         <label for="sid">SID</label>
                         <input type="text" class="form-control" id="sid" name="sid" value="{{ $sid }}" placeholder='Ex: "2A" / Ex: "3A, 3B"'>
                       </div>
+                      <div class="form-group">
+                        <label for="info">Info</label>
+                        <input type="text" class="form-control" id="info" name="info" value="{{ $info }}" placeholder='Ex: "Tall sailboat masts on approach path"'>
+                      </div>
+                      <div class="form-group">
+                        <label for="crwy">Closed runway(s)</label>
+                        <input type="text" class="form-control" id="crwy" name="crwy" value="{{ $crwy }}" placeholder='Ex: "26L,26R" / Ex: "04L"'>
+                      </div>
+                      <div class="form-group">
+                        <label for="ctwy">Closed taxiway(s)</label>
+                        <input type="text" class="form-control" id="ctwy" name="ctwy" value="{{ $ctwy }}" placeholder='Ex: "A" / Ex: "Q, E, B2"'>
+                      </div>
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="birds" name="birds" @if ($birds == true) checked @endif>
                         <label class="form-check-label" for="birds">{{__('app/atc/tools.atis_birds')}}</label>

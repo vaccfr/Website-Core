@@ -222,6 +222,41 @@ class AtisController extends Controller
         return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $input);
     }
 
+    private function makeClosedRWY($input)
+    {
+        $data = explode(',', $input);
+        $rwy = [];
+        foreach ($data as $d) {
+            $r = $this->splitRunways($d);
+            array_push($rwy, $r);
+        }
+        if (count($rwy) == 1) {
+            $output = "Runway ";
+            $output .= $rwy[0];
+            $output .= ' is currently closed. ';
+        } else {
+            $output = "Runways ";
+            $output .= join(', ', $rwy);
+            $output .= ' are currently closed. ';
+        }
+        return $output;
+    }
+
+    private function makeClosedTWY($input)
+    {
+        $twy = explode(',', $input);
+        if (count($twy) == 1) {
+            $output = "Taxiway ";
+            $output .= $twy[0];
+            $output .= ' is currently closed. ';
+        } else {
+            $output = "Taxiways ";
+            $output .= join(', ', $twy);
+            $output .= ' are currently closed. ';
+        }
+        return $output;
+    }
+
     public function index(Request $request, $atis_letter, $deprwy, $arrrwy, $app, $dep) {
         $atis_text = "";
         
@@ -262,6 +297,12 @@ class AtisController extends Controller
         $atis_text .= $this->getAutomatedAdditionalInformation($d->getIcao(), $arrrwy);
         $atis_text .= strlen($request->input('info', '')) > 0 ? $request->input('info').". " : "";
         $atis_text .= $request->has('birds') ? "Bird activity reported. " : "";
+        if ($request->has('crwy')) {
+            $atis_text .= $this->makeClosedRWY(request('crwy'));
+        }
+        if ($request->has('ctwy')) {
+            $atis_text .= $this->makeClosedTWY(request('ctwy'));
+        }
         
         // Weather
         if ($d->getSurfaceWind())
