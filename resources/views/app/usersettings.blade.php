@@ -225,7 +225,8 @@
           <h3 class="card-title">{{__('app/user/usersettings.gdpr_title')}}</h3>
         </div>
         <div class="card-body">
-          <form>
+          <form method="POST" action="{{ route('app.user.dl-gdpr', app()->getLocale()) }}" target="_blank">
+            @csrf
             <button type="submit" class="btn btn-info">{{__('app/user/usersettings.gdpr_view')}}</button>
           </form>
           <form>
