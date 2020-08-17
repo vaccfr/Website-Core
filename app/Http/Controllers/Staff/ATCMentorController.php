@@ -73,6 +73,10 @@ class ATCMentorController extends Controller
         $student->status = "In Training";
         $student->save();
 
+        $mentor = Mentor::where('id', auth()->user()->id)->first();
+        $mentor->student_count++;
+        $mentor->save();
+
         return redirect()->route('app.staff.atc.all', app()->getLocale())->with('toast-info', trans('app/alerts.training_accepted'));
     }
 
@@ -348,6 +352,10 @@ class ATCMentorController extends Controller
         $mentoring->taken = false;
         $mentoring->mentor_id = null;
         $mentoring->save();
+
+        $mentor = Mentor::where('id', auth()->user()->id)->first();
+        $mentor->student_count--;
+        $mentor->save();
 
         return redirect()->route('app.staff.atc.mine', app()->getLocale())->with('pop-success', trans('app/alerts.mentoring_terminated'));
     }
