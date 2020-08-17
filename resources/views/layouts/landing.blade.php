@@ -174,11 +174,10 @@
     
   @if (App::environment() == 'livedev')
   <script lang="javascript">
-      Swal.fire(
-          'Warning!',
-          "This is a development version, not a working website!",
-          'info'
-      )
+      Toast.fire({
+        icon: 'info',
+        title: 'This website is under active development.'
+      });
   </script>
   @endif
   @include('cookieConsent::index')
