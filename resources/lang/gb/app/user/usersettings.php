@@ -8,6 +8,14 @@ return [
     'gdpr_view' => 'View your data',
     'gdpr_del' => 'Delete your account and data',
 
+    // Discord
+    'dis_title' => 'Link my Discord Account',
+    'dis_unamelabel' => 'Linked Discord Account',
+    'dis_joinbtn' => 'Join Server',
+    'dis_linknewbtn' => 'Link New Account',
+    'dis_unlinkbtn' => 'Unlink Account',
+    'dis_linkbtn' => 'Link my Discord Account',
+
     // User details
     'det_title' => 'Edit your Details',
     'det_custom_email' => 'Custom email (leave blank to remove)',

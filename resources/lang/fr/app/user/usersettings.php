@@ -8,6 +8,14 @@ return [
     'gdpr_view' => 'Voir vos données',
     'gdpr_del' => 'Supprimer votre compte et vos données',
 
+    // Discord
+    'dis_title' => 'Relier mon Compte Discord',
+    'dis_unamelabel' => 'Compte Relié',
+    'dis_joinbtn' => 'Rejoindre Serveur',
+    'dis_linknewbtn' => 'Lier un autre Compte',
+    'dis_unlinkbtn' => 'Dissocier Compte',
+    'dis_linkbtn' => 'Relier mon Compte Discord',
+
     // User details
     'det_title' => 'Données Personnelles',
     'det_custom_email' => 'Email Personnalisé (laisser vide pour supprimer)',

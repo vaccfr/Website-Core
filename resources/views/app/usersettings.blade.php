@@ -167,12 +167,12 @@
     <div class="col-md-4">
       <div class="card card-dark elevation-3">
         <div class="card-header">
-          <h3 class="card-title">Link my Discord Account</h3>
+          <h3 class="card-title">{{__('app/user/usersettings.dis_title')}}</h3>
         </div>
         <div class="card-body">
           @if (!is_null($userDiscord))
           <div class="form-group">
-            <label for="duname">Linked Discord Account</label>
+            <label for="duname">{{__('app/user/usersettings.dis_unamelabel')}}</label>
             <input type="text" class="form-control" id="duname" value="{{ $userDiscord['username'] }}" disabled>
           </div>
           <div class="row">
@@ -181,21 +181,21 @@
                 action="{{ route('discord.invite') }}"
                 method="GET"
                 target="_blank">
-                <button type="submit" class="btn btn-info btn-block mt-2">Join Discord</button>
+                <button type="submit" class="btn btn-info btn-block mt-2">{{__('app/user/usersettings.dis_joinbtn')}}</button>
               </form>
             </div>
             <div class="col-md-4">
               <form
                 action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
                 method="GET">
-                <button type="submit" class="btn btn-warning btn-block mt-2">Link new account</button>
+                <button type="submit" class="btn btn-warning btn-block mt-2">{{__('app/user/usersettings.dis_linknewbtn')}}</button>
               </form>
             </div>
             <div class="col-md-4">
               <form
                 action="{{ route('app.user.unlinkdiscord', app()->getLocale()) }}"
                 method="GET">
-                <button type="submit" class="btn btn-danger btn-block mt-2">Unlink</button>
+                <button type="submit" class="btn btn-danger btn-block mt-2">{{__('app/user/usersettings.dis_unlinkbtn')}}</button>
               </form>
             </div>
           </div>
@@ -206,14 +206,14 @@
                 action="{{ route('discord.invite') }}"
                 method="GET"
                 target="_blank">
-                <button type="submit" class="btn btn-info btn-block mt-2">Join Discord</button>
+                <button type="submit" class="btn btn-info btn-block mt-2">{{__('app/user/usersettings.dis_joinbtn')}}</button>
               </form>
             </div>
             <div class="col-md-6">
               <form
                 action="{{ route('app.user.linkdiscord', app()->getLocale()) }}"
                 method="GET">
-                <button type="submit" class="btn btn-success btn-block mt-2">Link my Discord</button>
+                <button type="submit" class="btn btn-success btn-block mt-2">{{__('app/user/usersettings.dis_linkbtn')}}</button>
               </form>
             </div>
           </div>
