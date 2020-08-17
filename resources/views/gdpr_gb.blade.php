@@ -171,7 +171,7 @@
     <h3>ATC Related Data</h3>
     <h5>Generated for {{ Auth::user()->fname }} {{ Auth::user()->lname }} (CID: {{ Auth::user()->vatsim_id }}) | {{ Illuminate\Support\Carbon::now()->format('Y-m-d H:i:s') }}</h5>
     <p>This section includes all controller data related to your account. <br><i>For security reasons, some data elements might be censored or omitted. Please contact us for any questions</i></p>
-    @if (count($atcBookings) == 0)
+    @if (count($atcBookings) > 0)
     <h5>ATC Bookings</h5>
     <table class="table table-striped" style="text-align: center;">
       <thead>
@@ -255,6 +255,28 @@
               <td>@if ($atcMentoringReq->mail_consent == true) Yes @else No @endif</td>
               <td>@if ($atcMentoringReq->taken == true) Yes @else No @endif</td>
             </tr>
+      </tbody>
+    </table>
+    @endif
+    @if (count($atcSolo) > 0)
+    <hr>
+    <h5>Solo Approvals</h5>
+    <table class="table table-striped" style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">Position</th>
+          <th scope="col">Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+          @foreach ($atcSolo as $atcsolo)
+          <tr>
+            <td>{{$atcsolo['position']}}</td>
+            <td>{{$atcsolo['start_date']}}</td>
+            <td>{{$atcsolo['end_date']}}</td>
+          </tr>
+          @endforeach
       </tbody>
     </table>
     @endif
