@@ -374,8 +374,17 @@ class AdminController extends Controller
 
         $request = MentoringRequest::where('id', $request->get('appid'))->firstOrFail();
         $stuId = $request->student_id;
+        $isTaken = $request->taken;
         $request->delete();
         $student = ATCStudent::where('id', $stuId)->firstOrFail();
+        if ($isTaken == true) {
+            $mentor = $student->mentor_id;
+            $mentorEdit = Mentor::where('id', $mentor)->first();
+            if (!is_null($mentorEdit)) {
+                $mentorEdit->student_count--;
+                $mentorEdit->save();
+            }
+        }
         $student->delete();
 
         return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', trans('app/alerts.mentoring_deleted'));

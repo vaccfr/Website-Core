@@ -218,7 +218,7 @@
     @endif
     @if (!is_null($atcStudent))
     <hr>
-    <h5>Student Details</h5>
+    <h5>ATC Student Details</h5>
     <table class="table table-striped" style="text-align: center;">
       <thead>
         <tr>
@@ -236,9 +236,31 @@
       </tbody>
     </table>
     @endif
+    @if (!is_null($atcMentoringReq))
+    <hr>
+    <h5>ATC Mentoring Requests</h5>
+    <table class="table table-striped" style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">ICAO</th>
+          <th scope="col">Motivation</th>
+          <th scope="col">Mail Consent</th>
+          <th>Taken</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>{{$atcMentoringReq->icao}}</td>
+              <td>{{$atcMentoringReq->motivation}}</td>
+              <td>@if ($atcMentoringReq->mail_consent == true) Yes @else No @endif</td>
+              <td>@if ($atcMentoringReq->taken == true) Yes @else No @endif</td>
+            </tr>
+      </tbody>
+    </table>
+    @endif
     @if (!is_null($atcMentor))
     <hr>
-    <h5>Student Details</h5>
+    <h5>ATC Mentor Details</h5>
     <table class="table table-striped" style="text-align: center;">
       <thead>
         <tr>

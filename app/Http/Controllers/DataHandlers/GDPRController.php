@@ -7,6 +7,7 @@ use App\Models\ATC\ATCRosterMember;
 use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Booking;
 use App\Models\ATC\Mentor;
+use App\Models\ATC\MentoringRequest;
 use App\Models\Users\DiscordData;
 use App\Models\Users\User;
 use App\Models\Users\UserEmailPreference;
@@ -28,6 +29,7 @@ class GDPRController extends Controller
         $atcBookings = Booking::where('user_id', auth()->user()->id)->get();
         $atcRoster = ATCRosterMember::where('id', auth()->user()->id)->first();
         $atcStudent = ATCStudent::where('id', auth()->user()->id)->first();
+        $atcMentoringReq = MentoringRequest::where('student_id', auth()->user()->id)->first();
         $atcMentor = Mentor::where('id', auth()->user()->id)->first();
 
         $pdf = PDF::loadView('gdpr_gb', compact(
@@ -38,6 +40,7 @@ class GDPRController extends Controller
             'atcBookings',
             'atcRoster',
             'atcStudent',
+            'atcMentoringReq',
             'atcMentor',
             ))->setPaper('a4', 'landscape');
         $dateToday = Carbon::today()->format('Y-m-d');
