@@ -84,4 +84,17 @@ class DiscordController extends Controller
 
         return redirect()->route('app.user.settings', app()->getLocale())->with("toast-success", 'Discord Account Linked!');
     }
+
+    public function unlink(Request $request)
+    {
+        $data = DiscordData::where('user_id', Auth::user()->id)->first();
+
+        if (is_null($data)) {
+            return redirect()->route('app.user.settings', app()->getLocale())->with("toast-error", 'Error occured - Discord data not found');
+        }
+
+        $data->delete();
+
+        return redirect()->route('app.user.settings', app()->getLocale())->with("toast-success", 'Discord Account Unlinked!');
+    }
 }

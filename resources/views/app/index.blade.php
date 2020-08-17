@@ -87,19 +87,19 @@
       </div>
       <div class="col-md-4">
         <div class="info-box elevation-3">
-          <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">{{__('app/app_indexpage.pilot_hours')}}</span>
-            <span class="info-box-number">{{ $pilotTimes }}</span>
+          <span class="info-box-icon bg-info"><i class="fas fa-map-marker-alt"></i></span>
+          <div class="info-box-content" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
+            <span class="info-box-text">{{__('app/app_indexpage.most_ctr_pos')}}</span>
+            <span class="info-box-number">{{ $mostControlled }}</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="info-box elevation-3">
-          <span class="info-box-icon bg-info"><i class="fas fa-map-marker-alt"></i></span>
-          <div class="info-box-content" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
-            <span class="info-box-text">{{__('app/app_indexpage.most_ctr_pos')}}</span>
-            <span class="info-box-number">{{ $mostControlled }}</span>
+          <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">{{__('app/app_indexpage.pilot_hours')}}</span>
+            <span class="info-box-number">{{ $pilotTimes }}</span>
           </div>
         </div>
       </div>
@@ -110,6 +110,8 @@
           <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
             <h3 class="card-title">{{__('app/app_indexpage.your_last_atc')}}</h3>
           </div>
+        </div>
+        <div class="card elevation-3">
           <div class="card-body">
             <table
               id="atc_sessions_table"
@@ -142,6 +144,8 @@
           <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
             <h3 class="card-title">{{__('app/app_indexpage.your_last_flights')}}</h3>
           </div>
+        </div>
+        <div class="card elevation-3">
           <div class="card-body">
             <table
               id="flights_table"
