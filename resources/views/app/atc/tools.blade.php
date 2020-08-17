@@ -94,6 +94,14 @@
                     <td>{{$p['frequency']}}</td>
                   </tr>
                   @endforeach
+                  @if (!is_null($a['atis_frequency']))
+                  <tr>
+                    <td>{{$a['icao']}}_ATIS</td>
+                    <td>{{$a['city']}} {{$a['airport']}}</td>
+                    <td>ATIS</td>
+                    <td>{{$a['atis_frequency']}}</td>
+                  </tr>
+                  @endif
                 @endforeach
               </tbody>
             </table>
