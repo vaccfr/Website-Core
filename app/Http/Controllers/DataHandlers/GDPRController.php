@@ -20,7 +20,7 @@ class GDPRController extends Controller
         $userSettings = UserSetting::where('id', auth()->user()->id)->first();
         $userEmail = UserEmailPreference::where('id', auth()->user()->id)->first();
         $userDiscord = DiscordData::where('user_id', auth()->user()->id)->first();
-        $atcBookings = Booking::where('user_id', auth()->user()->id)->first();
+        $atcBookings = Booking::where('user_id', auth()->user()->id)->get();
 
         $pdf = PDF::loadView('gdpr_gb', compact(
             'userData',
