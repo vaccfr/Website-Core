@@ -12,7 +12,7 @@ return [
     'dis_title' => 'Relier mon Compte Discord',
     'dis_unamelabel' => 'Compte Relié',
     'dis_joinbtn' => 'Rejoindre Serveur',
-    'dis_linknewbtn' => 'Lier un autre Compte',
+    'dis_linknewbtn' => 'Modifier Compte',
     'dis_unlinkbtn' => 'Dissocier Compte',
     'dis_linkbtn' => 'Relier mon Compte Discord',
 
