@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Home | {{ Auth::user()->fname }}
+  Statistics | {{ Auth::user()->fname }}
 @endsection
 
 @section('page-header')
@@ -10,12 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>{{__('app/app_indexpage.welcomeback')}}, {{ Auth::user()->fname }}!</h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('app.user.settings', app()->getLocale()) }}">{{__('app/app_menus.my_settings')}}</a></li>
-          </ol>
+          <h1>Statistiques {{ Auth::user()->fname }}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -24,57 +19,6 @@
 
 @section('page-content')
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card card-widget widget-user elevation-3">
-          <div class="widget-user-header text-white" style="background: url({{ asset('media/img/lp/banner3.jpg') }}) center center;">
-            <h3 class="widget-user-username">{{ Auth::user()->fullname() }}</h3>
-            <h5 class="widget-user-desc">{{ Auth::user()->account_type }}</h5>
-            <div class="widget-user-image">
-              <img class="img-circle elevation-3" src="{{ asset('media/img/dashboard/default_upp.png') }}" alt="User Avatar">
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="row">
-              <div class="col-sm-3 border-right">
-                <div class="description-block">
-                  <span class="description-text">Vatsim ID</span>
-                  <h5 class="description-header">{{ Auth::user()->vatsim_id }}</h5>
-                </div>
-                <!-- /.description-block -->
-              </div>
-              <div class="col-sm-3 border-right">
-                <div class="description-block">
-                  <span class="description-text">{{__('app/app_indexpage.atc_rank')}}</span>
-                  <h5 class="description-header">{{ Auth::user()->fullAtcRank() }}</h5>
-                </div>
-                <!-- /.description-block -->
-              </div>
-              <!-- /.col -->
-              <div class="col-sm-3 border-right">
-                <div class="description-block">
-                  <span class="description-text">{{__('app/app_indexpage.pilot_rank')}}</span>
-                  <h5 class="description-header">P{{ Auth::user()->pilot_rating }}</h5>
-                </div>
-                <!-- /.description-block -->
-              </div>
-              <div class="col-sm-3">
-                <div class="description-block">
-                  <span class="description-text">{{__('app/app_indexpage.approved_atc')}}</span>
-                  <h5 class="description-header">@if (Auth::user()->isApprovedAtc() == true)
-                    {{__('app/app_indexpage.approved')}}
-                  @else
-                    {{__('app/app_indexpage.not_approved')}}
-                  @endif</h5>
-                </div>
-                <!-- /.description-block -->
-              </div>
-            </div>
-            <!-- /.row -->
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-4">
         <div class="info-box elevation-3">
@@ -187,7 +131,7 @@
       "ordering": false,
       "autoWidth": true,
       "info": false,
-      "scrollY": 400,
+      "scrollY": 450,
       "language": {
         "emptyTable": "{{__('app/app_indexpage.no_last_atc')}}"
       }
@@ -199,7 +143,7 @@
       "ordering": false,
       "autoWidth": true,
       "info": false,
-      "scrollY": 400,
+      "scrollY": 450,
       "language": {
         "emptyTable": "{{__('app/app_indexpage.no_last_flights')}}"
       }

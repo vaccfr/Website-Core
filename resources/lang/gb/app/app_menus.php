@@ -5,6 +5,7 @@ return [
   'mail' => 'Pigeon Voyageur &trade;',
   'forum' => 'Forum',
   'events' => 'Events',
+  'stats' => 'Statistics',
   'general' => 'General',
   'staff_org' => 'Staff members',
   'statutes' => 'vACC statutes',

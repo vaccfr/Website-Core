@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-info elevation-4">
+<aside class="main-sidebar sidebar-dark-info elevation-4" style="position: fixed;">
   <!-- Brand Logo -->
   <a href="{{ route('app.index', app()->getLocale()) }}" class="brand-link">
     <img src="{{ asset('media/img/new_favicon.png') }}"
@@ -34,6 +34,12 @@
           <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
             <i class="nav-icon fa fa-comments"></i>
             <p>{{__('app/app_menus.forum')}}</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('app.user.stats', app()->getLocale()) }}" class="nav-link @if (Route::is('app.user.stats')) active @endif">
+            <i class="nav-icon fa fa-chart-bar"></i>
+            <p>{{__('app/app_menus.stats')}}</p>
           </a>
         </li>
         <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/general')) menu-open @endif">

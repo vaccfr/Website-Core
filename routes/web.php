@@ -58,9 +58,7 @@ Route::group([
             Route::get('/general/stafforg', 'App\MainController@staffOrg')->name('app.general.stafforg');
 
             Route::group(['prefix' => '/user'], function() {
-                Route::get('/', function () {
-                    return redirect()->route('app.user.settings', app()->getLocale());
-                });
+                Route::get('/', 'App\MainController@statsPage')->name('app.user.stats');
                 Route::get('/link-discord', 'App\DiscordController@link')->name('app.user.linkdiscord');
                 Route::get('/unlink-discord', 'App\DiscordController@unlink')->name('app.user.unlinkdiscord');
                 Route::get('/settings', 'App\MainController@usersettings')->name('app.user.settings');
