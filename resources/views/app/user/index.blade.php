@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>{{__('app/app_indexpage.welcomeback')}}, {{ Auth::user()->fname }}!</h1>
+          <h1>{{__('app/user/index.welcomeback')}}, {{ Auth::user()->fname }}!</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -45,7 +45,7 @@
               </div>
               <div class="col-sm-3 border-right">
                 <div class="description-block">
-                  <span class="description-text">{{__('app/app_indexpage.atc_rank')}}</span>
+                  <span class="description-text">{{__('app/user/index.atc_rank')}}</span>
                   <h5 class="description-header">{{ Auth::user()->fullAtcRank() }}</h5>
                 </div>
                 <!-- /.description-block -->
@@ -53,18 +53,18 @@
               <!-- /.col -->
               <div class="col-sm-3 border-right">
                 <div class="description-block">
-                  <span class="description-text">{{__('app/app_indexpage.pilot_rank')}}</span>
+                  <span class="description-text">{{__('app/user/index.pilot_rank')}}</span>
                   <h5 class="description-header">P{{ Auth::user()->pilot_rating }}</h5>
                 </div>
                 <!-- /.description-block -->
               </div>
               <div class="col-sm-3">
                 <div class="description-block">
-                  <span class="description-text">{{__('app/app_indexpage.approved_atc')}}</span>
+                  <span class="description-text">{{__('app/user/index.approved_atc')}}</span>
                   <h5 class="description-header">@if (Auth::user()->isApprovedAtc() == true)
-                    {{__('app/app_indexpage.approved')}}
+                    {{__('app/user/index.approved')}}
                   @else
-                    {{__('app/app_indexpage.not_approved')}}
+                    {{__('app/user/index.not_approved')}}
                   @endif</h5>
                 </div>
                 <!-- /.description-block -->
@@ -79,7 +79,7 @@
       <div class="col-md-4">
         <div class="card card-info elevation-3">
           <div class="card-header">
-            <h3 class="card-title">Events this week</h3>
+            <h3 class="card-title">{{__('app/user/index.ev_title')}}</h3>
           </div>
         </div>
         <div class="card elevation-0" style="background-color: #f8f9fa;">
@@ -106,7 +106,7 @@
             @empty
             <div class="card elevation-3">
               <div class="card-header">
-                <h3 class="card-title"><i>No Events this Week</i></h3>
+                <h3 class="card-title"><i>{{__('app/user/index.ev_noevents')}}</i></h3>
               </div>
             </div>
             @endforelse
@@ -116,7 +116,7 @@
       <div class="col-md-4">
         <div class="card card-info elevation-3">
           <div class="card-header">
-            <h3 class="card-title">Latests News & Announcements</h3>
+            <h3 class="card-title">{{__('app/user/index.n_title')}}</h3>
           </div>
         </div>
         <div class="card elevation-0" style="background-color: #f8f9fa;">
@@ -139,7 +139,7 @@
             @empty
             <div class="card elevation-3">
               <div class="card-header">
-                <h3 class="card-title"><i>No News Items</i></h3>
+                <h3 class="card-title"><i>{{__('app/user/index.n_nonews')}}</i></h3>
               </div>
             </div>
             @endforelse
@@ -149,22 +149,22 @@
       <div class="col-md-4">
         <div class="card card-info elevation-3">
           <div class="card-header">
-            <h3 class="card-title">ATC Bookings Today</h3>
+            <h3 class="card-title">{{__('app/user/index.b_title')}}</h3>
           </div>
         </div>
         <div class="card elevation-3">
           @if (count($bookings) == 0)
           <div class="card-header">
-            <h3 class="card-title"><i>No Bookings Today</i></h6>
+            <h3 class="card-title"><i>{{__('app/user/index.b_nobook')}}</i></h6>
           </div>
           @else
           <div class="card-body p-0">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th style="width: 30%;">Position</th>
-                  <th style="width: 20%;">Heure</th>
-                  <th style="width: 50%;">Qui</th>
+                  <th style="width: 30%;">{{__('app/user/index.b_pos')}}</th>
+                  <th style="width: 20%;">{{__('app/user/index.b_time')}}</th>
+                  <th style="width: 50%;">{{__('app/user/index.b_who')}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -184,10 +184,4 @@
 
     </div>
   </div>
-  <script src="{{ asset('dashboard/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('dashboard/adminlte/dist/js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
-  <script>
-
-  </script>
 @endsection
