@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Statistiques {{ Auth::user()->fname }}</h1>
+          <h1>{{__('app/user/stats.page_title', ['FNAME' => Auth::user()->fname])}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -24,7 +24,7 @@
         <div class="info-box elevation-3">
           <span class="info-box-icon bg-info"><i class="fas fa-headphones"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">{{__('app/app_indexpage.atc_hours')}}</span>
+            <span class="info-box-text">{{__('app/user/stats.atc_hours')}}</span>
             <span class="info-box-number">{{ $atcTimes }}</span>
           </div>
         </div>
@@ -32,8 +32,8 @@
       <div class="col-md-4">
         <div class="info-box elevation-3">
           <span class="info-box-icon bg-info"><i class="fas fa-map-marker-alt"></i></span>
-          <div class="info-box-content" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
-            <span class="info-box-text">{{__('app/app_indexpage.most_ctr_pos')}}</span>
+          <div class="info-box-content" data-toggle="tooltip" data-placement="top" title="{{__('app/user/stats.last_100_conns')}}">
+            <span class="info-box-text">{{__('app/user/stats.most_ctr_pos')}}</span>
             <span class="info-box-number">{{ $mostControlled }}</span>
           </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="info-box elevation-3">
           <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">{{__('app/app_indexpage.pilot_hours')}}</span>
+            <span class="info-box-text">{{__('app/user/stats.pilot_hours')}}</span>
             <span class="info-box-number">{{ $pilotTimes }}</span>
           </div>
         </div>
@@ -51,8 +51,8 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card card-outline card-dark elevation-3">
-          <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
-            <h3 class="card-title">{{__('app/app_indexpage.your_last_atc')}}</h3>
+          <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/user/stats.last_100_conns')}}">
+            <h3 class="card-title">{{__('app/user/stats.your_last_atc')}}</h3>
           </div>
         </div>
         <div class="card elevation-3">
@@ -63,10 +63,10 @@
               data-order='[[ 2, "desc" ]]'>
               <thead>
               <tr>
-                <th>{{__('app/app_indexpage.callsign')}}</th>
-                <th>{{__('app/app_indexpage.sess_time')}}</th>
-                <th>{{__('app/app_indexpage.sess_start')}}</th>
-                <th>{{__('app/app_indexpage.sess_end')}}</th>
+                <th>{{__('app/user/stats.callsign')}}</th>
+                <th>{{__('app/user/stats.sess_time')}}</th>
+                <th>{{__('app/user/stats.sess_start')}}</th>
+                <th>{{__('app/user/stats.sess_end')}}</th>
               </tr>
               </thead>
               <tbody>
@@ -85,8 +85,8 @@
       </div>
       <div class="col-md-6">
         <div class="card card-outline card-dark elevation-3">
-          <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/app_indexpage.last_100_conns')}}">
-            <h3 class="card-title">{{__('app/app_indexpage.your_last_flights')}}</h3>
+          <div class="card-header" data-toggle="tooltip" data-placement="top" title="{{__('app/user/stats.last_100_conns')}}">
+            <h3 class="card-title">{{__('app/user/stats.your_last_flights')}}</h3>
           </div>
         </div>
         <div class="card elevation-3">
@@ -97,10 +97,10 @@
               data-order='[[ 2, "desc" ]]'>
               <thead>
               <tr>
-                <th>{{__('app/app_indexpage.fl_callsign')}}</th>
+                <th>{{__('app/user/stats.fl_callsign')}}</th>
                 {{-- <th>Flight duration</th> --}}
-                <th>{{__('app/app_indexpage.fl_start')}}</th>
-                <th>{{__('app/app_indexpage.fl_end')}}</th>
+                <th>{{__('app/user/stats.fl_start')}}</th>
+                <th>{{__('app/user/stats.fl_end')}}</th>
               </tr>
               </thead>
               <tbody>
@@ -133,7 +133,7 @@
       "info": false,
       "scrollY": 450,
       "language": {
-        "emptyTable": "{{__('app/app_indexpage.no_last_atc')}}"
+        "emptyTable": "{{__('app/user/stats.no_last_atc')}}"
       }
     });
     $('#flights_table').DataTable({
@@ -145,7 +145,7 @@
       "info": false,
       "scrollY": 450,
       "language": {
-        "emptyTable": "{{__('app/app_indexpage.no_last_flights')}}"
+        "emptyTable": "{{__('app/user/stats.no_last_flights')}}"
       }
     });
     $(document).ready(function(){
