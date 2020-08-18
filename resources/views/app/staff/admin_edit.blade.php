@@ -30,6 +30,13 @@
 
           <ul class="list-group list-group-unbordered mb-3">
             <li class="list-group-item">
+              <b>{{__('app/admin/useredit.discord')}}</b> <a class="float-right">@if ($user->linked_discord == true)
+                {{$user['discord']['username']}}
+              @else
+                <i>{{__('app/admin/useredit.not_linked')}}</i>
+              @endif</a>
+            </li>
+            <li class="list-group-item">
               <b>{{__('app/admin/useredit.atc_rank')}}</b> <a class="float-right">{{ $user->fullAtcRank() }}</a>
             </li>
             <li class="list-group-item">

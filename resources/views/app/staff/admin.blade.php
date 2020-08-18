@@ -69,6 +69,7 @@
                 <th>{{__('app/admin/dashboard.account')}}</th>
                 <th>{{__('app/admin/dashboard.staff')}}</th>
                 <th>{{__('app/admin/dashboard.atc_approv')}}</th>
+                <th>{{__('app/admin/dashboard.linked_discord')}}</th>
                 <th>{{__('app/admin/dashboard.atc_rank')}}</th>
                 <th>{{__('app/admin/dashboard.pil_rank')}}</th>
                 <th>{{__('app/admin/dashboard.last_login')}}</th>
@@ -96,6 +97,13 @@
                         <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
                       @endif
                     </td>
+                    <td>
+                      @if($m['linked_discord'] == true)
+                        <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
+                      @else
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
+                      @endif
+                    </td>
                     <td>{{ $m['atc_rating_short'] }}</td>
                     <td>P{{ $m['pilot_rating'] }}</td>
                     <td>{{ $m['last_login'] }}</td>
@@ -110,7 +118,7 @@
                           </form>
                         </div>
                         <div class="col-sm-6">
-                          <button type="button" class="btn btn-block btn-warning btn-flat">{{__('app/admin/dashboard.restrict')}}</button>
+                          <button type="button" class="btn btn-block btn-warning btn-flat" disabled>{{__('app/admin/dashboard.restrict')}}</button>
                         </div>
                       </div>
                     </td>

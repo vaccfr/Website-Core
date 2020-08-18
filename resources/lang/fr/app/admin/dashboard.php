@@ -11,6 +11,7 @@ return [
   'account' => 'Compte',
   'staff' => 'Staff',
   'atc_approv' => 'ATC Approuvé',
+  'linked_discord' => 'Associé Discord',
   'atc_rank' => 'Grade ATC',
   'pil_rank' => 'Grade Pilote',
   'last_login' => 'Dernière connexion',

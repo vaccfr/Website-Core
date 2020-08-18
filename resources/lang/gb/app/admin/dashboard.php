@@ -11,6 +11,7 @@ return [
   'account' => 'Account',
   'staff' => 'Staff',
   'atc_approv' => 'ATC Approval',
+  'linked_discord' => 'Linked Discord',
   'atc_rank' => 'ATC Rank',
   'pil_rank' => 'Pilot Rank',
   'last_login' => 'Last Login',

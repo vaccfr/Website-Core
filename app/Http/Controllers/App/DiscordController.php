@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use App\Models\Users\DiscordData;
+use App\Models\Users\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
@@ -88,12 +89,15 @@ class DiscordController extends Controller
     public function unlink(Request $request)
     {
         $data = DiscordData::where('user_id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->first();
 
         if (is_null($data)) {
             return redirect()->route('app.user.settings', app()->getLocale())->with("toast-error", 'Error occured - Discord data not found');
         }
 
         $data->delete();
+        $user->linked_discord = false;
+        $user->save();
 
         return redirect()->route('app.user.settings', app()->getLocale())->with("toast-success", 'Discord Account Unlinked!');
     }

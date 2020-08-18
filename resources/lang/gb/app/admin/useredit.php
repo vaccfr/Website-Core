@@ -7,6 +7,8 @@ return [
   'edit_staff' => 'Edit :FNAME\'s Staff access',
 
   // Fields
+  'discord' => 'Discord Account',
+  'not_linked' => '(Not linked)',
   'atc_rank' => 'ATC Rank',
   'pilot_rank' => 'Pilot Rank',
   'approved_atc' => 'ATC Status',

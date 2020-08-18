@@ -35,7 +35,7 @@ class AdminController extends Controller
 
     public function editUser(Request $request)
     {
-        $user = User::where('id', $request->get('userid'))->firstOrFail();
+        $user = User::where('id', $request->get('userid'))->with('discord')->firstOrFail();
 
         if ($user->subdiv_id == "FRA") {
             $utypes = config('vatfrance.usertypes');
