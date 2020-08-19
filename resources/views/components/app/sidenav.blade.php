@@ -31,7 +31,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('app.index', app()->getLocale()) }}" class="nav-link">
+          <a href="https://forum.vatfrance.org/" target="_blank" class="nav-link">
             <i class="nav-icon fa fa-comments"></i>
             <p>{{__('app/app_menus.forum')}}</p>
           </a>
