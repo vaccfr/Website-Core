@@ -30,6 +30,11 @@ Route::group([
     'prefix' => '{locale}',
 ], function() {
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
+    Route::group(['prefix' => '/atc'], function() {
+        Route::get('/', function() {return redirect()->route('landingpage.home', app()->getLocale());});
+        Route::get('/training', 'Landingpage\MainController@trainingATC')->name('landingpage.atc.training');
+        Route::get('/visiting', 'Landingpage\MainController@visitingATC')->name('landingpage.atc.visiting');
+    });
     Route::get('/events', 'Landingpage\MainController@events')->name('landingpage.home.events');
     Route::get('/feedback', 'Landingpage\MainController@feedback')->name('landingpage.home.feedback');
     Route::get('/contact', 'Landingpage\MainController@contact')->name('landingpage.home.contact');

@@ -54,6 +54,16 @@ class MainController extends Controller
         ]);
     }
 
+    public function trainingATC()
+    {
+        return view('landingpage.atc.training_'.app()->getLocale());
+    }
+
+    public function visitingATC()
+    {
+        return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
+    }
+
     public function events()
     {
         // return view('landingpage.events');
@@ -67,7 +77,7 @@ class MainController extends Controller
 
     public function contact()
     {
-        return view('landingpage.contact');
+        return view('landingpage.contact.contact');
     }
 
     public function contactForm(Request $request)
@@ -97,7 +107,7 @@ class MainController extends Controller
 
     public function reqatc()
     {
-        return view('landingpage.reqatc');
+        return view('landingpage.contact.reqatc');
     }
 
     public function reqatcForm(Request $request)

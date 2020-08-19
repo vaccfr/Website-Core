@@ -36,8 +36,10 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">Staff </a>
+            <a class="dropdown-item" href="#">Staff vACC</a>
             <a class="dropdown-item" href="{{ route('landingpage.home.policies', app()->getLocale()) }}">{{__('lp/lp_menu.st_and_pol')}}</a>
+            <a href="{{ route('discord.invite') }}" target="_blank" class="dropdown-item">Discord Server</a>
+            <a href="ts3server://www.vatfrance.org/" class="dropdown-item">Teamspeak3 Server</a>
           </div>
         </li>
 
@@ -76,8 +78,8 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">{{__('lp/lp_menu.atc_tr')}}</a>
-            <a class="dropdown-item" href="#">{{__('lp/lp_menu.vis_contrl')}}</a>
+            <a class="dropdown-item" href="{{ route('landingpage.atc.training', app()->getLocale()) }}">{{__('lp/lp_menu.atc_tr')}}</a>
+            <a class="dropdown-item" href="{{ route('landingpage.atc.visiting', app()->getLocale()) }}">{{__('lp/lp_menu.vis_contrl')}}</a>
           </div>
         </li>
 

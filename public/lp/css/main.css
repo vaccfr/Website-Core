@@ -433,13 +433,13 @@ header.masthead .masthead-content .masthead-subheading {
 
 .intro {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/img/peter.png');
+    url('../../media/img/lp/peter.png');
   background-repeat: no-repeat;
   background-position: left;
   background-size: 100vh;
   padding: 100px 0;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/img/peter.png');
+    url('../../media/img/lp/peter.png');
   background-repeat: no-repeat;
   background-position: left;
 }
