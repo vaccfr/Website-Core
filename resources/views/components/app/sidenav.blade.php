@@ -213,7 +213,7 @@
               </ul>
             </li>
           @endif
-          @if (Auth::user()->isAtcMentor() == true  || Auth::user()->isAdmin() == true)
+          @if (Auth::user()->isAtcMentor() == true)
             <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/staff/atc')) menu-open @endif">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-graduation-cap"></i>
@@ -238,7 +238,7 @@
               </ul>
             </li>
           @endif
-          @if (Auth::user()->isPilotMentor() == true || Auth::user()->isAdmin() == true)
+          @if (Auth::user()->isPilotMentor() == true)
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-graduation-cap"></i>
@@ -263,12 +263,29 @@
               </ul>
             </li>
           @endif
-          @if (Auth::user()->isEventsStaff() == true || Auth::user()->isAdmin() == true)
-          <li class="nav-item">
-            <a href="{{ route('app.staff.events.dashboard', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.events.dashboard')) active @endif">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>Events Dashboard</p>
+          @if (Auth::user()->isEventsStaff() == true)
+          <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/staff/news-events')) menu-open @endif">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Events & News
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('app.staff.events.dashboard', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.events.dashboard')) active @endif">
+                  <i class="fas fa-calendar-alt nav-icon"></i>
+                  <p>Events Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>News Dashboard</p>
+                </a>
+              </li>
+            </ul>
           </li>
           @endif
           @if (Auth::user()->isAdmin() == true)

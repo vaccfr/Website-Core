@@ -172,8 +172,11 @@ Route::group([
                 Route::group(['prefix' => '/pilot'], function() {
                     
                 });
-                Route::group(['prefix' => '/events', 'middleware' => 'EVENTSSTAFF'], function() {
-                    Route::get('/', 'Staff\EventsManagerController@dashboard')->name('app.staff.events.dashboard');
+                Route::group(['prefix' => '/news-events', 'middleware' => 'EVENTSSTAFF'], function() {
+                    Route::get('/', function() {
+                        return redirect()->route('app.staff.events.dashboard', app()->getLocale());
+                    });
+                    Route::get('/e', 'Staff\EventsManagerController@dashboard')->name('app.staff.events.dashboard');
 
                     Route::post('/newevent', 'Staff\EventsManagerController@newEvent')->name('app.staff.events.newevent');
                     Route::post('/delevent', 'Staff\EventsManagerController@delEvent')->name('app.staff.events.delevent');
