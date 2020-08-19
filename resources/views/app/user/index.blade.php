@@ -79,7 +79,10 @@
       <div class="col-md-4">
         <div class="card card-info elevation-3">
           <div class="card-header">
-            <h3 class="card-title">{{__('app/user/index.ev_title')}}</h3>
+            <h3 class="card-title">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              {{__('app/user/index.ev_title')}}
+            </h3>
           </div>
         </div>
         <div class="card elevation-0" style="background-color: #f8f9fa;">
@@ -116,7 +119,10 @@
       <div class="col-md-4">
         <div class="card card-info elevation-3">
           <div class="card-header">
-            <h3 class="card-title">{{__('app/user/index.n_title')}}</h3>
+            <h3 class="card-title">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              {{__('app/user/index.n_title')}}
+            </h3>
           </div>
         </div>
         <div class="card elevation-0" style="background-color: #f8f9fa;">
@@ -149,7 +155,10 @@
       <div class="col-md-4">
         <div class="card card-info elevation-3">
           <div class="card-header">
-            <h3 class="card-title">{{__('app/user/index.b_title')}}</h3>
+            <h3 class="card-title">
+              <i class="nav-icon far fa-calendar-check"></i>
+              {{__('app/user/index.b_title')}}
+            </h3>
           </div>
         </div>
         <div class="card elevation-3">
