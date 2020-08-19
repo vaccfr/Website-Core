@@ -87,7 +87,7 @@
           </a> to connect to your VATFrance account! <br>
           Other links: <br>
           - Our <a href="{{ route('discord.invite') }}" target="_blank">Discord Server</a> <br>
-          - Our <a href="ts3server://www.vatfrance.org/">Teamspeak3 Server</a>
+          - Our <a href="{{ route('ts3.invite') }}">Teamspeak3 Server</a>
         </div>
       </li>
   </ul>
