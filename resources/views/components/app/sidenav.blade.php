@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-info elevation-4" style="position: fixed;">
+<aside class="main-sidebar sidebar-dark-info elevation-4" style="position: fixed; height: 100vh;">
   <!-- Brand Logo -->
   <a href="{{ route('app.index', app()->getLocale()) }}" class="brand-link">
     <img src="{{ asset('media/img/new_favicon.png') }}"

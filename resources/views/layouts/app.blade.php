@@ -29,8 +29,8 @@
   <link href="{{ asset('css/cookie-consent.css') }}" rel="stylesheet" />
   <style type="text/css">
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
   }
   ::-webkit-scrollbar-button {
     width: 0px;
