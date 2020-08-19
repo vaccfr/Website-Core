@@ -24,6 +24,7 @@ return [
   'make_staff' => 'Donner autorisations staff',
   'make_admin' => 'Donner permissions Administrateur',
   'make_exec' => 'Donner permissions Staff Executif (moderateur)',
+  'make_events' => 'Donner permissions Events et Annonces',
   'staff_title' => 'Nom du Poste',
   'make_atc_mentor' => 'Donner autorisations Mentor ATC',
   'allowed_mentor_lvl' => 'Grade ATC maximal d\'enseignement',

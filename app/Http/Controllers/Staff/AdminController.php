@@ -257,6 +257,29 @@ class AdminController extends Controller
                 break;
         }
 
+        switch ($currentUser->isEventsStaff()) {
+            case false:
+                if (!is_null($request->get('eventswitch'))) {
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
+                        'events' => 1,
+                    ]);
+                }
+                break;
+            
+            case true:
+                if (is_null($request->get('eventswitch'))) {
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
+                        'events' => 0,
+                    ]);
+                }
+                break;
+            
+            default:
+                break;
+        }
+
         // Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
         //     'id' => $currentUser->id,
         //     'title' => 

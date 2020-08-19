@@ -180,6 +180,12 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="events-rights-switch" name="eventswitch" @if ($user->isEventsStaff() == true) checked @endif>
+                    <label class="custom-control-label" for="events-rights-switch">{{__('app/admin/useredit.make_events')}}</label>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="stafftitle">{{__('app/admin/useredit.staff_title')}}</label>
                   <input type="text" class="form-control" name="stafftitle" id="stafftitle" @if (!is_null($staff->title)) value="{{ $staff->title }}" @else placeholder="{{__('app/admin/useredit.staff_title')}}" @endif>
                 </div>             
