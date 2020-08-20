@@ -73,6 +73,7 @@ class Kernel extends HttpKernel
         'ATCMENTOR' => \App\Http\Middleware\Users\ATCMentor::class,
         'EVENTSSTAFF' => \App\Http\Middleware\Users\EventsStaff::class,
         'BETATESTER' => \App\Http\Middleware\Users\BetaTesters::class,
+        'BANNEDUSER' => \App\Http\Middleware\Users\BannedUser::class,
 
         'COFRANCEAPI' => \App\Http\Middleware\CoFrance\CoFranceAuth::class,
 

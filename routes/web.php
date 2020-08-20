@@ -67,8 +67,8 @@ Route::group([
 
             Route::group(['prefix' => '/user'], function() {
                 Route::get('/', 'App\MainController@statsPage')->name('app.user.stats');
-                Route::get('/link-discord', 'App\DiscordController@link')->name('app.user.linkdiscord');
-                Route::get('/unlink-discord', 'App\DiscordController@unlink')->name('app.user.unlinkdiscord');
+                Route::get('/link-discord', 'App\DiscordController@link')->name('app.user.linkdiscord')->middleware('BANNEDUSER');
+                Route::get('/unlink-discord', 'App\DiscordController@unlink')->name('app.user.unlinkdiscord')->middleware('BANNEDUSER');
                 Route::get('/settings', 'App\MainController@usersettings')->name('app.user.settings');
                 Route::post('/gdpr-download', 'DataHandlers\GDPRController@download')->name('app.user.dl-gdpr');
                 Route::post('/settings/edit', 'App\MainController@usersettingsedit')->name('app.user.settings.edit');

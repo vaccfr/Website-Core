@@ -230,7 +230,7 @@
             <button type="submit" class="btn btn-info">{{__('app/user/usersettings.gdpr_view')}}</button>
           </form>
           <form>
-            <button type="submit" class="btn btn-danger mt-2">{{__('app/user/usersettings.gdpr_del')}}</button>
+            <button type="submit" class="btn btn-danger mt-2" disabled>{{__('app/user/usersettings.gdpr_del')}}</button>
           </form>
         </div>
       </div>
