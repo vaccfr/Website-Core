@@ -21,9 +21,6 @@ class BannedUser
             return redirect()->back();
         }
         $userDiscord = DiscordData::where('user_id', auth()->user()->id)->first();
-        if (is_null($userDiscord)) {
-            return redirect()->back();
-        }
         if ($userDiscord->banned == true) {
             return redirect()->back()->with('toast-error', 'You are banned from VATFrance Discord Server');
         }
