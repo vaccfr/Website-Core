@@ -55,13 +55,16 @@
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#atc-tab-1" data-toggle="tab">{{ $day0 }}</a>
+                  <a class="nav-link active" href="#atc-tab-1" data-toggle="tab">{{ Illuminate\Support\Carbon::now()->format('D. d/m') }}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#atc-tab-2" data-toggle="tab">{{ $day1 }}</a>
+                  <a class="nav-link" href="#atc-tab-2" data-toggle="tab">{{ Illuminate\Support\Carbon::now()->addDays(1)->format('D. d/m') }}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#atc-tab-3" data-toggle="tab">{{ $day2 }}</a>
+                  <a class="nav-link" href="#atc-tab-3" data-toggle="tab">{{ Illuminate\Support\Carbon::now()->addDays(2)->format('D. d/m') }}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#atc-tab-4" data-toggle="tab">{{ Illuminate\Support\Carbon::now()->addDays(3)->format('D. d/m') }}</a>
                 </li>
               </ul>
             </div>
@@ -136,6 +139,33 @@
                     </thead>
                     <tbody>
                       @foreach ($book2 as $b)
+                      <tr>
+                        <th scope="row">{{$b['position']}}</th>
+                        <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                        <td>{{$b['time']}}</td>
+                        <td>{{$b['user']['atc_rating_short']}}</td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                  @endif
+                </div>
+
+                <div class="tab-pane" role="tabpanel" id="atc-tab-4">
+                  @if (count($book3) == 0)
+                  {{__('lp/lp_index.nobook_3')}}
+                  @else
+                  <table class="table">
+                    <thead class="thead">
+                      <tr>
+                        <th scope="col">{{__('lp/lp_index.position')}}</th>
+                        <th scope="col">{{__('lp/lp_index.name')}}</th>
+                        <th scope="col">{{__('lp/lp_index.hours')}}</th>
+                        <th scope="col">{{__('lp/lp_index.rating')}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($book3 as $b)
                       <tr>
                         <th scope="row">{{$b['position']}}</th>
                         <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>

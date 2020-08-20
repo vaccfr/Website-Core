@@ -33,9 +33,12 @@ class MainController extends Controller
         ->with('user')
         ->orderBy('time', 'ASC')
         ->get();
-        $dayToday = Carbon::now()->format('D. d/m');
-        $dayTomorrow = Carbon::now()->addDays(1)->format('D. d/m');
-        $dayAfterTomorrow = Carbon::now()->addDays(2)->format('D. d/m');
+        $bookingsDay3 = Booking::where('date', Carbon::now()
+        ->addDays(3)
+        ->format('d.m.Y'))
+        ->with('user')
+        ->orderBy('time', 'ASC')
+        ->get();
         $onlineATC = app(VatsimDataController::class)->getOnlineATC();
         $livemap = app(VatsimDataController::class)->livemapDataGenerator();
         $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
@@ -45,9 +48,7 @@ class MainController extends Controller
             'book0' => $bookingsToday,
             'book1' => $bookingsTomorrow,
             'book2' => $bookingsAfterTomorrow,
-            'day0' => $dayToday,
-            'day1' => $dayTomorrow,
-            'day2' => $dayAfterTomorrow,
+            'book3' => $bookingsDay3,
             'atconline' => $onlineATC,
             'eventsList' => $eventsList,
             'livemap' => $livemap,
