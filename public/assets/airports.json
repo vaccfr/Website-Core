@@ -220,7 +220,7 @@
         "frequency": "125.170",
         "type": "Approche",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFBO_TWR",
@@ -233,8 +233,8 @@
         "code": "LFBO_DEL",
         "frequency": "121.700",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       },
       {
         "code": "LFBO_GND",
@@ -687,8 +687,8 @@
         "code": "LFSB_DEL",
         "frequency": "120.500",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       }
     ]
   },
@@ -869,15 +869,15 @@
         "code": "LFLL_DEL",
         "frequency": "121.700",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       },
       {
         "code": "LFLL_DEP",
         "frequency": "133.150",
         "type": "Depart",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFLL_GND",
@@ -1056,8 +1056,8 @@
         "code": "LFML_DEL",
         "frequency": "121.720",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       },
       {
         "code": "LFML_GND",
@@ -1078,7 +1078,7 @@
         "frequency": "120.200",
         "type": "Approche",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFML_TWR",
@@ -1108,22 +1108,22 @@
         "code": "LFMN_DEL",
         "frequency": "121.700",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       },
       {
         "code": "LFMN_DEP",
         "frequency": "130.820",
         "type": "Depart",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFMN_F_APP",
         "frequency": "124.170",
         "type": "Arrivee",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFMN_GND",
@@ -1195,7 +1195,7 @@
         "frequency": "120.750",
         "type": "Approche",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFMT_APP",
@@ -1424,8 +1424,8 @@
         "code": "LFPB_DEL",
         "frequency": "121.950",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       }
     ]
   },
@@ -1442,7 +1442,7 @@
         "frequency": "119.850",
         "type": "Arrivee",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFPG_APP",
@@ -1455,15 +1455,15 @@
         "code": "LFPG_DEL",
         "frequency": "126.650",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       },
       {
         "code": "LFPG_DEP",
         "frequency": "133.370",
         "type": "Depart",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFPG_GND",
@@ -1477,21 +1477,21 @@
         "frequency": "124.500",
         "type": "Depart",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFPG_S_APP",
         "frequency": "126.420",
         "type": "Approche",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFPG_S_DEL",
         "frequency": "121.720",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       },
       {
         "code": "LFPG_S_GND",
@@ -1552,15 +1552,15 @@
         "code": "LFPO_DEL",
         "frequency": "121.050",
         "type": "Prevol",
-        "rank": "S3",
-        "solo_rank": ""
+        "rank": "S1",
+        "solo_rank": "S1"
       },
       {
         "code": "LFPO_DEP",
         "frequency": "127.750",
         "type": "Depart",
         "rank": "S3",
-        "solo_rank": ""
+        "solo_rank": "S2"
       },
       {
         "code": "LFPO_GND",

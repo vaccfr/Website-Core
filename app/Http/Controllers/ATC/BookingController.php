@@ -60,6 +60,9 @@ class BookingController extends Controller
         ->with(['positions' => function($q) {
             $q->whereIn('rank', app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short));
         }])
+        ->with(['positions' => function($q) {
+            $q->whereIn('solo_rank', app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short));
+        }])
         ->get();
 
         $bookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)->get();
