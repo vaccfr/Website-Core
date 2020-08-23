@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff;
 use App\Events\Mentoring\EventNewAtcSession;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
+use App\Mail\Mentoring\RequestRejectMail;
 use App\Models\ATC\Airport;
 use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Mentor;
@@ -16,6 +17,7 @@ use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ATCMentorController extends Controller
@@ -93,10 +95,34 @@ class ATCMentorController extends Controller
         $reqid = $request->get('requestid');
 
         $request = MentoringRequest::where('id', $reqid)->firstOrFail();
+        $userid = $request->student_id;
         $request->delete();
 
         $student = ATCStudent::where('id', $request->student_id)->firstOrFail();
         $student->delete();
+
+        $user = User::where('id', $userid)->first();
+        if (!is_null($user)) {
+            Mail::to(config('vatfrance.ATC_staff_email'))->send(new RequestRejectMail(
+                $user, [
+                    'student' => $user->fname.' '.$user->lname.' - '.$user->vatsim_id,
+                    'rejector' => auth()->user()->fname.' '.auth()->user()->lname,
+                    'body' => request('msgbody'),
+                ]
+            ));
+
+            $useremail = $user->email;
+            if (!is_null($user->custom_email)) {
+                $useremail = $user->custom_email;
+            }
+            Mail::to($useremail)->send(new RequestRejectMail(
+                $user, [
+                    'student' => $user->fname.' '.$user->lname.' - '.$user->vatsim_id,
+                    'rejector' => auth()->user()->fname.' '.auth()->user()->lname,
+                    'body' => request('msgbody'),
+                ]
+            ));
+        }
 
         return redirect()->route('app.staff.atc.all', app()->getLocale())->with('toast-info', trans('app/alerts.training_rejected'));
     }
