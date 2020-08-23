@@ -44,6 +44,7 @@ return [
 
   // ATC Mentor Controller
   'training_accepted' => 'New student added to your list',
+  'training_rejected' => 'Request rejected',
   'session_completed' => 'Session completed',
   'incorr_args' => 'Incorrect arguments',
   'report_added' => 'Report added',

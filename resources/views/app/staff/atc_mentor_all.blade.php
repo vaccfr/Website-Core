@@ -20,7 +20,7 @@
 @section('page-content')
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-4">
         <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-user"></i></span>
           <div class="info-box-content">
@@ -28,6 +28,8 @@
             <span class="info-box-number">{{ $appsCount }}</span>
           </div>
         </div>
+      </div>
+      <div class="col-md-4">
         <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-headphones"></i></span>
           <div class="info-box-content">
@@ -35,6 +37,8 @@
             <span class="info-box-number">{{ $activeCount }}</span>
           </div>
         </div>
+      </div>
+      <div class="col-md-4">
         <div class="info-box elevation-3">
           <span class="info-box-icon bg-warning"><i class="fas fa-calendar"></i></span>
           <div class="info-box-content">
@@ -43,11 +47,13 @@
           </div>
         </div>
       </div>
-      <div class="col-md-10">
+    </div>
+    <div class="row">
+      <div class="col-md-12">
         <!-- /.card -->
         <div class="card card-dark elevation-3">
           <div class="card-header">
-            <h3 class="card-title">{{__('app/admin/dashboard.members')}}</h3>
+            <h3 class="card-title">{{__('app/staff/atc_all.table_title')}}</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -102,6 +108,13 @@
                               data-toggle="modal"
                               data-target="#send-message-{{ $a['user']['vatsim_id'] }}">
                                 {{__('app/staff/atc_mine.btn_sendmsg')}}
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-danger btn-flat"
+                              data-toggle="modal"
+                              data-target="#reject-{{ $a['user']['vatsim_id'] }}">
+                                {{__('app/staff/atc_all.btn_reject')}}
                             </button>
                           </form>
                         @else
@@ -159,6 +172,33 @@
                           <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.close')}}</button>
                             <button type="submit" class="btn btn-success">{{__('app/staff/atc_mine.spmm_sendmsg')}}</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  {{-- Reject Request  --}}
+                  <div class="modal fade" id="reject-{{ $a['user']['vatsim_id'] }}">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">{{__('app/staff/atc_all.rej_title', ['FNAME' => $a['user']['fname']])}}</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_all.close')}}">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form action="{{ route('app.staff.atc.all.reject', app()->getLocale()) }}" method="post">
+                          @csrf
+                          <div class="modal-body">
+                            <div class="form-group">
+                              <label for="msgbody">{{__('app/staff/atc_all.rej_justif')}}</label>
+                              <textarea class="form-control" rows="10" name="msgbody" id="msgbody" placeholder="{{__('app/staff/atc_all.rej_justif')}}..." required></textarea>
+                            </div>
+                          </div>
+                          <input type="hidden" value="{{ $a['id'] }}" name="requestid">
+                          <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_all.rej_close')}}</button>
+                            <button type="submit" class="btn btn-success">{{__('app/staff/atc_all.rej_confirm')}}</button>
                           </div>
                         </form>
                       </div>

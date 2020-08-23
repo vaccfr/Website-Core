@@ -80,6 +80,27 @@ class ATCMentorController extends Controller
         return redirect()->route('app.staff.atc.all', app()->getLocale())->with('toast-info', trans('app/alerts.training_accepted'));
     }
 
+    public function rejectTraining(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'requestid' => ['required'],
+            'msgbody' => ['required'],
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('app.staff.atc.all', app()->getLocale());
+        }
+
+        $reqid = $request->get('requestid');
+
+        $request = MentoringRequest::where('id', $reqid)->firstOrFail();
+        $request->delete();
+
+        $student = ATCStudent::where('id', $request->student_id)->firstOrFail();
+        $student->delete();
+
+        return redirect()->route('app.staff.atc.all', app()->getLocale())->with('toast-info', trans('app/alerts.training_rejected'));
+    }
+
     public function myStudents()
     {
         $studySessions = config('vatfrance.student_progress_'.app()->getLocale());

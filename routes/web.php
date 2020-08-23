@@ -166,6 +166,7 @@ Route::group([
                     Route::get('/mystudents', 'Staff\ATCMentorController@myStudents')->name('app.staff.atc.mine');
 
                     Route::post('/all/take', 'Staff\ATCMentorController@takeTraining')->name('app.staff.atc.all.take');
+                    Route::post('/all/reject', 'Staff\ATCMentorController@rejectTraining')->name('app.staff.atc.all.reject');
                     Route::post('/mystudents/booksession', 'Staff\ATCMentorController@bookSession')->name('app.staff.atc.mine.booksession');
                     Route::post('/mystudents/acceptsession', 'Staff\ATCMentorController@acceptSession')->name('app.staff.atc.mine.acceptsession');
                     Route::post('/mystudents/cancelsession', 'Staff\ATCMentorController@cancelSession')->name('app.staff.atc.mine.cancelsession');
