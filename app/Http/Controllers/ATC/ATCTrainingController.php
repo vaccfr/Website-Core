@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ATC;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
+use App\Mail\Mentoring\NewRequestMail;
 use App\Models\ATC\Airport;
 use App\Models\ATC\ATCStudent;
 use App\Models\ATC\MentoringRequest;
@@ -12,6 +13,7 @@ use App\Models\Users\User;
 use Carbon\Carbon;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ATCTrainingController extends Controller
@@ -110,6 +112,11 @@ class ATCTrainingController extends Controller
             'id' => auth()->user()->id,
             'vatsim_id' => auth()->user()->vatsim_id,
         ]);
+
+        Mail::to(config('vatfrance.ATC_staff_email'))->send(new NewRequestMail([
+            'sender' => auth()->user()->fullname()." - ".auth()->user()->vatsim_id,
+            'body' => $request->get('reqmotivation'),
+        ]));
 
         return redirect()->route('app.atc.training', app()->getLocale())->with('pop-success', trans('app/alerts.success_application'));
     }

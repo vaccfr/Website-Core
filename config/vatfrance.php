@@ -1,6 +1,9 @@
 <?php
 
 return [
+  'staff_email' => 'staff@vatfrance.org',
+  'ATC_staff_email' => 'atc@vatfrance.org',
+  'test_atcstaff' => 'peter.pare.new@gmail.com',
   'usertypes' => [
     'Guest',
     'Pilot',
