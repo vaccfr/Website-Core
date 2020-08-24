@@ -68,8 +68,8 @@ class EventsManagerController extends Controller
             $imgID = null;
         }
 
-        if ($request->has('url')) {
-            $url = request('url');
+        if ($request->has('eventurl')) {
+            $url = request('eventurl');
         } else {
             $url = "#";
         }
@@ -130,7 +130,7 @@ class EventsManagerController extends Controller
         $event->date = $request->get('editdate');
         $event->start_time = $request->get('editstarttime');
         $event->end_time = $request->get('editendtime');
-        $event->url = $request->get('eventurl');
+        $event->url = $request->get('editurl');
         $event->save();
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event content edited');
     }

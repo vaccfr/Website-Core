@@ -371,7 +371,7 @@
               </a>
               <div class="card-body">
                 <h4 class="card-title">{{$e['title']}} <br> {{$e['date']}} | {{$e['start_time']}} - {{$e['end_time']}}</h4>
-                <p class="card-text">{{$e['description']}}</p>
+                <p class="card-text">{!!nl2br($e['description'])!!}</p>
               </div>
             </div>
             @endforeach

@@ -95,7 +95,7 @@
               <script>
                 $("#post_{{$n['id']}}").click(function() {
                   $("#selpost_title").text("{{$n['title']}}");
-                  $("#selpost_description").html(`{{$n["content"]}}`);
+                  $("#selpost_description").html(`{!!$n["content"]!!}`);
                   $("#selpost_author").attr('value', '{{$n["author"]["fname"]}} {{$n["author"]["lname"]}}');
                   $("#selpost_date").attr('value', '{{ Illuminate\Support\Carbon::createFromFormat("Y-m-d H:i:s", $n["created_at"])->format("Y.m.d | H:i\z") }}');
                   $("#selpost_editbtn").html('<button class="btn btn-info btn-flat float-right ml-2" type="button" data-toggle="modal" data-target="#edit_post">{{__("app/staff/news.l_editbtn")}}</button>');

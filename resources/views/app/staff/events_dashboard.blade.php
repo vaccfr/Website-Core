@@ -117,7 +117,7 @@
               <script>
                 $("#event_{{$e['id']}}").click(function() {
                   $("#selevent_title").text("{{$e['title']}} -- {{$e['date']}} | {{$e['start_time']}} - {{$e['end_time']}}");
-                  $("#selevent_description").text("{{$e['description']}}");
+                  $("#selevent_description").text(`{!!$e["description"]!!}`);
                   if ("{{$e['has_image']}}" == "1") {
                     $("#selevent_img_div").html('<img id="selevent_img" src="' + "{{config('app.url')}}/{{$e['image_url']}}" + '" alt="Event Picture" class="img-fluid" />');
                     $("#edit_img_div").html('<img id="selevent_img" src="' + "{{config('app.url')}}/{{$e['image_url']}}" + '" alt="Event Picture" class="img-fluid" />');
@@ -134,7 +134,7 @@
                   $("#editurl").attr('value', '{{$e["url"]}}');
                   $("#editstarttime").attr('value', '{{$e["start_time"]}}');
                   $("#editendtime").attr('value', '{{$e["end_time"]}}');
-                  $("#editdescription").text('{{$e["description"]}}');
+                  $("#editdescription").text(`{!!$e["description"]!!}`);
                   $("#editeventid").attr('value', '{{$e["id"]}}');
                   $("#editeventidimg").attr('value', '{{$e["id"]}}');
                   $("#selevent_delbtn").show();
@@ -161,7 +161,7 @@
         <div class="card-body">
           <div class="form-group">
             <label for="selevent_description_label">{{__('app/staff/events.nev_description')}}</label>
-            <textarea name="selevent_description" id="selevent_description" rows="5" class="form-control" readonly>({{__('app/staff/events.v_noevsel')}})</textarea>
+            <textarea name="selevent_description" id="selevent_description" rows="10" class="form-control" readonly>({{__('app/staff/events.v_noevsel')}})</textarea>
           </div>
           <div id="selevent_img_div"></div>
         </div>

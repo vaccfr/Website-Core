@@ -107,7 +107,7 @@
                 </a>
               </div>
               <div class="card-footer">
-                {{$e['description']}}
+                {!!nl2br($e['description'])!!}
               </div>
             </div>
             @empty
