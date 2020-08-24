@@ -38,7 +38,6 @@ Route::group([
         Route::get('/training', 'Landingpage\MainController@trainingATC')->name('landingpage.atc.training');
         Route::get('/visiting', 'Landingpage\MainController@visitingATC')->name('landingpage.atc.visiting');
     });
-    Route::get('/events', 'Landingpage\MainController@events')->name('landingpage.home.events');
     Route::get('/feedback', 'Landingpage\MainController@feedback')->name('landingpage.home.feedback');
     Route::get('/contact', 'Landingpage\MainController@contact')->name('landingpage.home.contact');
     Route::post('/contact/submit', 'Landingpage\MainController@contactForm')->middleware('auth:web')->name('landingpage.home.contact.submit');
@@ -185,11 +184,12 @@ Route::group([
                     Route::get('/', function() {
                         return redirect()->route('app.staff.events.dashboard', app()->getLocale());
                     });
-                    Route::get('/e', 'Staff\EventsManagerController@dashboard')->name('app.staff.events.dashboard');
+                    Route::get('/events', 'Staff\EventsManagerController@dashboard')->name('app.staff.events.dashboard');
 
                     Route::post('/newevent', 'Staff\EventsManagerController@newEvent')->name('app.staff.events.newevent');
                     Route::post('/delevent', 'Staff\EventsManagerController@delEvent')->name('app.staff.events.delevent');
                     Route::post('/editevent', 'Staff\EventsManagerController@editEvent')->name('app.staff.events.editevent');
+                    Route::post('/editevent-img', 'Staff\EventsManagerController@editImage')->name('app.staff.events.editimg');
                 });
                 Route::group(['prefix' => 'webadmin', 'middleware' => 'ADMIN'], function() {
                     Route::get('/', 'Staff\WebadminController@dashboard')->name('app.staff.webadmin.dashboard');

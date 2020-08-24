@@ -18,6 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('date');
+            $table->string('url');
             $table->string('start_time');
             $table->string('end_time');
             $table->boolean('has_image')->default(false);

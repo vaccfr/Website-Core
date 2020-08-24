@@ -84,10 +84,6 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('landingpage.home.events', app()->getLocale()) }}">{{__('lp/lp_menu.events')}}</a>
-        </li>
-
-        <li class="nav-item">
           <a class="nav-link" href="{{ route('landingpage.home.feedback', app()->getLocale()) }}">{{__('lp/lp_menu.feedback')}}</a>
         </li>
         

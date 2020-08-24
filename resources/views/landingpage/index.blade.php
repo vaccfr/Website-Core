@@ -362,11 +362,13 @@
           <div class="card-columns">
             @foreach ($eventsList as $e)
             <div class="card">
-              <img class="card-img-top" src="@if ($e['has_image'] == true)
-                  {{config('app.url')}}/{{$e['image_url']}}
-              @else
-                  {{asset('media/img/placeholders/events_placeholder_noimg.png')}}
-              @endif" alt="Card image cap">
+              <a href="{{ $e['url'] }}" target="_blank">
+                <img class="card-img-top" src="@if ($e['has_image'] == true)
+                    {{config('app.url')}}/{{$e['image_url']}}
+                @else
+                    {{asset('media/img/placeholders/events_placeholder_noimg.png')}}
+                @endif" alt="Card image cap">
+              </a>
               <div class="card-body">
                 <h4 class="card-title">{{$e['title']}} <br> {{$e['date']}} | {{$e['start_time']}} - {{$e['end_time']}}</h4>
                 <p class="card-text">{{$e['description']}}</p>

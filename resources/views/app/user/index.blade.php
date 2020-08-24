@@ -96,11 +96,15 @@
                 </span>
               </div>
               <div class="card-body" style="padding: 0 0 0 0;">
-                <img class="img-fluid pad" src="@if ($e['has_image'] == true)
-                {{config('app.url')}}/{{$e['image_url']}}
-            @else
-                {{asset('media/img/placeholders/events_placeholder_noimg.png')}}
-            @endif" alt="Placeholder">
+                <a href="{{ $e['url'] }}" target="_blank">
+                  <img class="img-fluid pad" src="
+                    @if ($e['has_image'] == true)
+                      {{config('app.url')}}/{{$e['image_url']}}
+                    @else
+                      {{asset('media/img/placeholders/events_placeholder_noimg.png')}}
+                    @endif"
+                  alt="Placeholder">
+                </a>
               </div>
               <div class="card-footer">
                 {{$e['description']}}

@@ -68,11 +68,18 @@ class EventsManagerController extends Controller
             $imgID = null;
         }
 
+        if ($request->has('url')) {
+            $url = request('url');
+        } else {
+            $url = "#";
+        }
+
         $event = Event::create([
             'id' => (new Snowflake)->id(),
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'date' => $request->get('date'),
+            'url' => $url,
             'start_time' => $request->get('starttime'),
             'end_time' => $request->get('endtime'),
             'has_image' => $hasImgBool,
@@ -123,6 +130,43 @@ class EventsManagerController extends Controller
         $event->date = $request->get('editdate');
         $event->start_time = $request->get('editstarttime');
         $event->end_time = $request->get('editendtime');
+        $event->url = $request->get('eventurl');
+        $event->save();
+        return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event content edited');
+    }
+
+    public function editImage(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'eventid' => ['required'],
+            'newimage' => ['required', 'mimes:jpeg,png,jpg', 'max:5120'],
+        ]);
+
+        if ($validator->fails()) {
+            dd($validator->errors());
+            return redirect()->back()->with('toast-error', 'Image is invalid.');
+        } else {
+            $imgName = Str::random(50);
+            $imgExtension = $request->newimage->extension();
+            $request->newimage->storeAs('/public/event_images', $imgName.".".$imgExtension);
+            $imgUrl = Storage::url('event_images/'.$imgName.'.'.$imgExtension);
+
+            $imgID = (new Snowflake)->id();
+            $file = File::create([
+                'id' => $imgID,
+                'name' => $imgName.'.'.$imgExtension,
+                'url' => $imgUrl,
+            ]);
+        }
+
+        $event = Event::where('id', $request->get('eventid'))->first();
+        if (is_null($event)) {
+            return redirect()->back()->with('toast-error', 'Event was not found and could not be edited');
+        }
+
+        $event->has_image = true;
+        $event->image_id = $imgID;
+        $event->image_url = $imgUrl;
         $event->save();
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event content edited');
     }
