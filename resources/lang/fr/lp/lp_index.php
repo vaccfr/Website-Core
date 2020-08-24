@@ -21,4 +21,6 @@ return [
   'hours' => 'Heure',
   'rating' => 'Grade',
   'livesince' => 'Depuis',
+
+  'ann_event_title' => 'Annonces & Evènements',
 ];

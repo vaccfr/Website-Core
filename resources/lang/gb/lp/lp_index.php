@@ -21,4 +21,6 @@ return [
   'hours' => 'Time',
   'rating' => 'Rating',
   'livesince' => 'Live Since',
+
+  'ann_event_title' => 'Announcements & Events',
 ];

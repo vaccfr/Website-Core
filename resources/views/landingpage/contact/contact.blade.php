@@ -4,7 +4,7 @@
   Contact
 @endsection
 
-@section('page-masthead')
+{{-- @section('page-masthead')
 <header class="masthead-50">
   <div class="container h-100 bg-overlay justify-content-center">
     <div class="row h-75 align-items-center">
@@ -14,6 +14,14 @@
     </div>
   </div>
 </header>
+@endsection --}}
+
+@section('page-masthead')
+<section class="intro">
+  <div class="container_ATC">
+    <h1>Contact us</h1>
+  </div>
+</section>
 @endsection
 
 @section('page-content')

@@ -358,7 +358,7 @@
           </ul>
         </div>
         <div class="container-fluid py-4">
-          <h3 class="mt-3  mb-3">Announcements and Events</h3>
+          <h3 class="mt-3  mb-3">{{__('lp/lp_index.ann_event_title')}}</h3>
           <div class="card-columns">
             @foreach ($eventsList as $e)
             <div class="card">
