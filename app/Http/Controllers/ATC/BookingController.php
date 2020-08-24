@@ -66,7 +66,8 @@ class BookingController extends Controller
         ->get();
 
         $bookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)
-        ->where('date', '<=', Carbon::now()->format('d.m.Y'))
+        ->where('date', '>=', Carbon::now()->format('d.m.Y'))
+        ->where('start_time', '>=', Carbon::now()->format('H:i'))
         ->get();
         return view('app.atc.mybookings', [
             'positions' => $positions,
