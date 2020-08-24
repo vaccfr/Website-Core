@@ -191,6 +191,9 @@ Route::group([
                     Route::post('/editevent-img', 'Staff\EventsManagerController@editImage')->name('app.staff.events.editimg');
 
                     Route::get('/news', 'Staff\NewsController@dashboard')->name('app.staff.news.dashboard');
+                    Route::post('/news-add', 'Staff\NewsController@newItem')->name('app.staff.news.add');
+                    Route::post('/news-edit', 'Staff\NewsController@editItem')->name('app.staff.news.edit');
+                    Route::post('/news-delete', 'Staff\NewsController@deleteItem')->name('app.staff.news.delete');
                 });
                 Route::group(['prefix' => 'webadmin', 'middleware' => 'ADMIN'], function() {
                     Route::get('/', 'Staff\WebadminController@dashboard')->name('app.staff.webadmin.dashboard');

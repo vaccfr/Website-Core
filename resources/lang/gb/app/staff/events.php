@@ -35,4 +35,5 @@ return [
   'edi_title' => 'Edit Event Image',
 
   'are_u_sure' => 'Are you sure?',
+  'are_u_sure_2' => 'This action cannot be reversed',
 ];

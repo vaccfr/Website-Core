@@ -7,6 +7,7 @@ use App\Http\Controllers\DataHandlers\Utilities;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\ATC\Booking;
 use App\Models\General\Event;
+use App\Models\General\News;
 use App\Models\Users\User;
 use App\Models\Users\UserEmailPreference;
 use Illuminate\Http\Request;
@@ -26,10 +27,16 @@ class MainController extends Controller
         ->where('date', '<=', Carbon::now()->addDays(7)->format('d.m.Y'))
         ->get();
 
+        $newslist = News::orderBy('created_at', 'DESC')
+        ->with('author')
+        ->with('author.staff')
+        ->get();
+
         return view('app.user.index', [
             'news' => [],
             'events' => $eventsList,
             'bookings' => $bookingsToday,
+            'news' => $newslist,
         ]);
     }
 

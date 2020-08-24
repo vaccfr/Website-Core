@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>News Manager</h1>
+          <h1>{{__('app/staff/news.page_header')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -29,63 +29,35 @@
       <div class="info-box elevation-3">
         <span class="info-box-icon bg-info"><i class="fas fa-newspaper"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">News Items</span>
-          <span class="info-box-number"></span>
+          <span class="info-box-text">{{__('app/staff/news.pill_one')}}</span>
+          <span class="info-box-number">0</span>
         </div>
       </div>
-      <button class="btn btn-flat btn-success btn-block" data-target="#new_event" data-toggle="modal">New Item</button>
-      <div class="modal fade" id="new_event">
+      <button class="btn btn-flat btn-success btn-block" data-target="#new_post" data-toggle="modal">{{__('app/staff/news.btn_newpost')}}</button>
+      <div class="modal fade" id="new_post">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Create new event</h4>
+              <h4 class="modal-title">{{__('app/staff/news.cr_title')}}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="{{ route('app.staff.events.newevent', app()->getLocale()) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('app.staff.news.add', app()->getLocale()) }}" method="post">
               @csrf
               <div class="modal-body">
                 <div class="form-group">
-                  <label for="ne_title">Title</label>
-                  <input class="form-control" type="text" name="title" id="ne_title" placeholder="Event title..." required />
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="eventdate">Date</label>
-                      <input type="text" class="form-control" id="eventdate" name="date" placeholder="{{__('app/atc/atc_mybookings.date_placeholder')}}" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="starttime">Start</label>
-                      <input type="text" class="form-control" id="starttime" name="starttime" placeholder="{{__('app/atc/atc_mybookings.st_time_placeholder')}}" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="endtime">End</label>
-                      <input type="text" class="form-control" id="endtime" name="endtime" placeholder="{{__('app/atc/atc_mybookings.en_time_placeholder')}}" required>
-                    </div>
-                  </div>
+                  <label for="title">{{__('app/staff/news.cr_tit')}}</label>
+                  <input class="form-control" type="text" name="title" id="title" placeholder="{{__('app/staff/news.cr_tit_plac')}}" required />
                 </div>
                 <div class="form-group">
-                  <label for="eventurl">URL</label>
-                  <input class="form-control" type="text" name="eventurl" id="eventurl" placeholder="Event URL..." />
-                </div>
-                <div class="form-group">
-                  <label for="ne_description">Description</label>
-                  <textarea class="form-control" name="description" id="ne_description" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="event_img">Upload image (700 x 400 px | max. 5 MB)</label>
-                  <input type="file" class="form-control" id="event_img" name="event_img" accept="image/*">
+                  <label for="content">{{__('app/staff/news.cr_content')}}</label>
+                  <textarea class="form-control" name="content" id="content" rows="10" required placeholder="{{__('app/staff/news.cr_content_plac')}}"></textarea>
                 </div>
               </div>
               <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
-                <button type="submit" class="btn btn-success">{{__('app/staff/atc_mine.confirm')}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/news.cancel')}}</button>
+                <button type="submit" class="btn btn-success">{{__('app/staff/news.create')}}</button>
               </div>
             </form>
           </div>
@@ -97,76 +69,112 @@
     <div class="col-md-5">
       <div class="card card-dark elevation-3">
         <div class="card-header">
-          <h3 class="card-title">Events List</h3>
+          <h3 class="card-title">{{__('app/staff/news.l_title')}}</h3>
         </div>
         <div class="card-body">
-
+          <table class="table">
+            <thead>
+              <th>{{__('app/staff/news.cr_tit')}}</th>
+              <th>{{__('app/staff/news.l_status')}}</th>
+              <th></th>
+            </thead>
+            <tbody>
+              @if (count($newslist) > 0)
+              @foreach ($newslist as $n)
+              <tr>
+                <td>{{$n['title']}}</td>
+                <td>
+                  @if ($n['published'] == true)
+                  {{__('app/staff/news.l_published')}}
+                  @else
+                  {{__('app/staff/news.l_draft')}}
+                  @endif
+                </td>
+                <td align="right"><button class="btn btn-info btn-flat" id="post_{{$n['id']}}">{{__('app/staff/news.l_btn')}}</button></td>
+              </tr>
+              <script>
+                $("#post_{{$n['id']}}").click(function() {
+                  $("#selpost_title").text("{{$n['title']}}");
+                  $("#selpost_description").html(`{{$n["content"]}}`);
+                  $("#selpost_author").attr('value', '{{$n["author"]["fname"]}} {{$n["author"]["lname"]}}');
+                  $("#selpost_date").attr('value', '{{ Illuminate\Support\Carbon::createFromFormat("Y-m-d H:i:s", $n["created_at"])->format("Y.m.d | H:i\z") }}');
+                  $("#selpost_editbtn").html('<button class="btn btn-info btn-flat float-right ml-2" type="button" data-toggle="modal" data-target="#edit_post">{{__("app/staff/news.l_editbtn")}}</button>');
+                  $("#selpost_delbtn").html('<button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#delete_event">{{__("app/staff/news.l_del")}}</button>');
+                  $("#selpost_postid").attr('value', '{{$n["id"]}}');
+                  $("#edittitle").attr('value', '{{$n["title"]}}');
+                  $("#editcontent").text(`{!!$n["content"]!!}`);
+                  $("#editpostid").attr('value', '{{$n["id"]}}');
+                  $("#selpost_delbtn").show();
+                })
+              </script>
+              @endforeach
+              @else
+              <tr>
+                <td>{{__('app/staff/news.l_nopost')}}</td>
+                <td>-</td>
+                <td align="right"><button class="btn btn-flat btn-success" data-target="#new_post" data-toggle="modal">{{__('app/staff/news.btn_newpost')}}</button></td>
+              </tr>
+              @endif
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
     <div class="col-md-5">
       <div class="card card-info elevation-3">
         <div class="card-header">
-          <h3 class="card-title" id="selevent_title">(no event selected)</h3>
+          <h3 class="card-title" id="selpost_title">({{__('app/staff/news.no_post')}})</h3>
         </div>
         <div class="card-body">
           <div class="form-group">
-            <label for="selevent_description_label">Description</label>
-            <textarea name="selevent_description" id="selevent_description" rows="5" class="form-control" readonly>(no event selected)</textarea>
+            <label for="selpost_description_label">{{__('app/staff/news.cr_content')}}</label>
+            <textarea name="selpost_description" id="selpost_description" rows="15" class="form-control" readonly>({{__('app/staff/news.no_post')}})</textarea>
           </div>
-          <div id="selevent_img_div"></div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="selpost_author">{{__('app/staff/news.author')}}</label>
+                <input class="form-control" type="text" id="selpost_author" name="selpost_author" disabled />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="selpost_date">{{__('app/staff/news.date')}}</label>
+                <input class="form-control" type="text" id="selpost_date" name="selpost_date" disabled />
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card-footer">
-          <div id="selevent_editbtn"></div>
-          <div id="selevent_editpicbtn"></div>
-          <div id="selevent_delbtn"></div>
+          <div id="selpost_editbtn"></div>
+          <div id="selpost_delbtn"></div>
         </div>
       </div>
-      <div class="modal fade" id="edit_event">
+      <div class="modal fade" id="edit_post">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Edit Event content</h4>
+              <h4 class="modal-title">{{__('app/staff/news.ed_title')}}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="{{ route('app.staff.events.editevent', app()->getLocale()) }}" method="post">
+            <form action="{{ route('app.staff.news.edit', app()->getLocale()) }}" method="post">
               @csrf
               <div class="modal-body">
                 <div class="form-group">
-                  <label for="edittitle">Title</label>
-                  <input class="form-control" type="text" name="edittitle" id="edittitle" placeholder="Event title..." required />
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="editdate">Date</label>
-                      <input type="text" class="form-control" id="editdate" name="editdate" placeholder="{{__('app/atc/atc_mybookings.date_placeholder')}}" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="editstarttime">Start</label>
-                      <input type="time" class="form-control" id="editstarttime" name="editstarttime" placeholder="{{__('app/atc/atc_mybookings.st_time_placeholder')}}" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="editendtime">End</label>
-                      <input type="time" class="form-control" id="editendtime" name="editendtime" placeholder="{{__('app/atc/atc_mybookings.en_time_placeholder')}}" required>
-                    </div>
-                  </div>
+                  <label for="edittitle">{{__('app/staff/news.cr_tit')}}</label>
+                  <input class="form-control" type="text" name="edittitle" id="edittitle" placeholder="{{__('app/staff/news.cr_tit_plac')}}" required />
                 </div>
                 <div class="form-group">
-                  <label for="editdescription">Description</label>
-                  <textarea class="form-control" name="editdescription" id="editdescription" rows="5" required></textarea>
+                  <label for="editcontent">{{__('app/staff/news.cr_content')}}</label>
+                  <textarea class="form-control" name="editcontent" id="editcontent" rows="15" required placeholder="{{__('app/staff/news.cr_content_plac')}}"></textarea>
                 </div>
               </div>
               <div class="modal-footer justify-content-between">
-                <input type="hidden" name="eventid" id="editeventid" value="">
-                <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
+                <input type="hidden" name="postid" id="editpostid" value="">
+                <button type="submit" class="btn btn-danger">{{__('app/staff/news.confirm')}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/news.cancel')}}</button>
               </div>
             </form>
           </div>
@@ -176,20 +184,20 @@
         <div class="modal-dialog modal-md">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">{{__('app/staff/atc_mine.tm_sure')}}</h4>
+              <h4 class="modal-title">{{__('app/staff/news.are_u_sure')}}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="{{ route('app.staff.events.delevent', app()->getLocale()) }}" method="post">
+            <form action="{{ route('app.staff.news.delete', app()->getLocale()) }}" method="post">
               @csrf
               <div class="modal-body">
-                Are you sure?
+                {{__('app/staff/news.are_u_sure_2')}}
               </div>
               <div class="modal-footer justify-content-between">
-                <input type="hidden" name="eventid" id="selevent_eventid" value="">
-                <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
+                <input type="hidden" name="postid" id="selpost_postid" value="">
+                <button type="submit" class="btn btn-danger">{{__('app/staff/news.confirm')}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/news.cancel')}}</button>
               </div>
             </form>
           </div>
@@ -199,41 +207,6 @@
   </div>
 </div>
 <script>
-  $('#selevent_delbtn').hide();
-  d = new Date();
-  flatpickr("#eventdate", {
-      enableTime: false,
-      dateFormat: "d.m.Y",
-      minDate: "today",
-      allowInput: true,
-  });
-
-  flatpickr("#starttime", {
-      enableTime: true,
-      noCalendar: true,
-      dateFormat: "H:i",
-      defaultHour: d.getUTCHours(),
-      defaultMinute: 00,
-      allowInput: true,
-      time_24hr: true,
-      minuteIncrement: 15
-  });
-  flatpickr("#endtime", {
-      enableTime: true,
-      noCalendar: true,
-      dateFormat: "H:i",
-      defaultHour: d.getUTCHours()+1,
-      defaultMinute: 00,
-      allowInput: true,
-      time_24hr: true,
-      minuteIncrement: 15
-  });
-
-  flatpickr("#editdate", {
-      enableTime: false,
-      dateFormat: "d.m.Y",
-      minDate: "today",
-      allowInput: true,
-  });
+  $('#selpost_delbtn').hide();
 </script>
 @endsection

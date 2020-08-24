@@ -35,4 +35,5 @@ return [
   'edi_title' => 'Editer l\'image de l\'évènement',
 
   'are_u_sure' => 'Etes-vous sur?',
+  'are_u_sure_2' => 'Cette action est irréversible',
 ];

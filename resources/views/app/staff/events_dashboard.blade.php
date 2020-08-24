@@ -256,7 +256,7 @@
         <div class="modal-dialog modal-md">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">{{__('app/staff/atc_mine.tm_sure')}}</h4>
+              <h4 class="modal-title">{{__('app/staff/events.are_u_sure')}}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -264,7 +264,7 @@
             <form action="{{ route('app.staff.events.delevent', app()->getLocale()) }}" method="post">
               @csrf
               <div class="modal-body">
-                {{__('app/staff/events.are_u_sure')}}
+                {{__('app/staff/events.are_u_sure_2')}}
               </div>
               <div class="modal-footer justify-content-between">
                 <input type="hidden" name="eventid" id="selevent_eventid" value="">

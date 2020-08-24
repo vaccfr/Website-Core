@@ -88,11 +88,11 @@
         <div class="card elevation-0" style="background-color: #f8f9fa;">
           <div class="card-body p-0">
             @forelse ($events as $e)
-            <div class="card elevation-3">
+            <div class="card card-dark elevation-3">
               <div class="card-header">
                 <h3 class="card-title">{{$e['title']}}</h3>
                 <span class="float-right">
-                  {{$e['date']}} | {{$e['start_time']}} - {{$e['end_time']}}
+                  {{$e['date']}} | {{$e['start_time']}}z - {{$e['end_time']}}z
                 </span>
               </div>
               <div class="card-body" style="padding: 0 0 0 0;">
@@ -132,18 +132,20 @@
         <div class="card elevation-0" style="background-color: #f8f9fa;">
           <div class="card-body p-0">
             @forelse ($news as $n)
-            <div class="card elevation-3">
+            <div class="card card-dark elevation-3">
               <div class="card-header">
-                <h3 class="card-title">Titre de mon annonce!</h3>
+                <h3 class="card-title">{{ $n['title'] }}</h3>
                 <span class="float-right">
-                  Date - Heure
+                  {{ Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $n['created_at'])->format('Y.m.d | H:i\z') }}
                 </span>
               </div>
               <div class="card-body">
-                Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié),
-                le Lorem ipsum ou Lipsum, qui permet donc de faire office de texte d'attente.
-                L'avantage de le mettre en latin est que l'opérateur sait au premier coup d'oeil que la page contenant ces lignes n'est pas valide,
-                et surtout l'attention du client n'est pas dérangée par le contenu, il demeure concentré seulement sur l'aspect graphique.
+                {!!nl2br($n['content'])!!}
+              </div>
+              <div class="card-footer">
+                <i>Author: {{$n['author']['fname']}} {{$n['author']['lname']}} @if (!is_null($n['author']['staff']['title']))
+                    ({{$n['author']['staff']['title']}})
+                @endif</i>
               </div>
             </div>
             @empty
