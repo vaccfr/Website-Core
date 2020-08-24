@@ -111,7 +111,7 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <form action="{{ route('app.staff.admin.edit', ['locale' => app()->getLocale()]) }}" method="get">
-                            <input type="hidden" value="{{ $m['id'] }}" name="userid">
+                            <input type="hidden" value="{{ $m['vatsim_id'] }}" name="cid">
                             <button type="submit" class="btn btn-block btn-info btn-flat">
                               {{__('app/admin/dashboard.edit')}}
                             </button>
