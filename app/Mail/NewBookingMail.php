@@ -39,6 +39,6 @@ class NewBookingMail extends Mailable
             'data' => $this->data,
             'calendarLinks' => $this->calendarLinks,
         ])
-        ->subject('Added ATC Booking');
+        ->subject('ATC Bookings - Ajout d\'un Booking');
     }
 }

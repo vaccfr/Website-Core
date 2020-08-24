@@ -33,6 +33,6 @@ class NewAtcSessionMail extends Mailable
             'user' => $this->user,
             'data' => $this->data,
         ])
-        ->subject('ATC Training - New Session Request');
+        ->subject('ATC Training - Nouvelle Demande de Session');
     }
 }

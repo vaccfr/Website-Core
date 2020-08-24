@@ -33,6 +33,6 @@ class InternalMessageMail extends Mailable
             'user' => $this->user,
             'data' => $this->data,
         ])
-        ->subject('New Private Message - Pigeon Voyageur');
+        ->subject('Nouveau Message Privé - Pigeon Voyageur');
     }
 }

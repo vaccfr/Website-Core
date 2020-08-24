@@ -36,6 +36,6 @@ class DeleteBookingMail extends Mailable
             'user' => $this->user,
             'data' => $this->data,
         ])
-        ->subject('Deleted ATC Booking');
+        ->subject('ATC Bookings - Suppression de Booking');
     }
 }
