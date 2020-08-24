@@ -68,7 +68,7 @@ class EventsManagerController extends Controller
             $imgID = null;
         }
 
-        if ($request->has('eventurl')) {
+        if ($request->has('eventurl') && !is_null(request('eventurl'))) {
             $url = request('eventurl');
         } else {
             $url = "#";
