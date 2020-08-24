@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Events Dashboard | {{ Auth::user()->fname }}
+  News Manager | {{ Auth::user()->fname }}
 @endsection
 
 @section('page-header')
@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Events Dashboard</h1>
+          <h1>News Manager</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -27,30 +27,13 @@
   <div class="row">
     <div class="col-md-2">
       <div class="info-box elevation-3">
-        <span class="info-box-icon bg-info"><i class="fas fa-calendar-alt"></i></span>
+        <span class="info-box-icon bg-info"><i class="fas fa-newspaper"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Upcoming Events</span>
-          <span class="info-box-number">{{ $eventCount }}</span>
+          <span class="info-box-text">News Items</span>
+          <span class="info-box-number"></span>
         </div>
       </div>
-      <div class="card card-outline card-secondary elevation-3">
-        <div class="card-header">
-          <h3 class="card-title">Tools</h3>
-        </div>
-        <div class="card-body p-0">
-          <table class="table">
-            <thead>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <button class="btn btn-flat btn-success btn-block" data-target="#new_event" data-toggle="modal">New Event</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <button class="btn btn-flat btn-success btn-block" data-target="#new_event" data-toggle="modal">New Item</button>
       <div class="modal fade" id="new_event">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -117,52 +100,7 @@
           <h3 class="card-title">Events List</h3>
         </div>
         <div class="card-body">
-          <table class="table">
-            <thead>
-              <th>Title</th>
-              <th>Date</th>
-              <th></th>
-            </thead>
-            <tbody>
-              @if (count($events2come) > 0)
-              @foreach ($events2come as $e)
-              <tr>
-                <td>{{$e['title']}}</td>
-                <td>{{$e['date']}}</td>
-                <td align="right"><button class="btn btn-info btn-flat" id="event_{{$e['id']}}">View</button></td>
-              </tr>
-              <script>
-                $("#event_{{$e['id']}}").click(function() {
-                  $("#selevent_title").text("{{$e['title']}} -- {{$e['date']}} | {{$e['start_time']}} - {{$e['end_time']}}");
-                  $("#selevent_description").text("{{$e['description']}}");
-                  if ("{{$e['has_image']}}" == "1") {
-                    $("#selevent_img_div").html('<img id="selevent_img" src="' + "{{config('app.url')}}/{{$e['image_url']}}" + '" alt="Event Picture" class="img-fluid" />');
-                  } else {
-                    $("#selevent_img_div").html('<p>(no image found for this event)</p>');
-                  }
-                  $("#selevent_editpicbtn").html('<button class="btn btn-info btn-flat float-right" type="button" data-toggle="modal" data-target="#edit_picture">Edit image</button>');
-                  $("#selevent_editbtn").html('<button class="btn btn-info btn-flat float-right ml-2" type="button" data-toggle="modal" data-target="#edit_event">Edit content</button>');
-                  $("#selevent_delbtn").html('<button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#delete_event">Cancel Event</button>');
-                  $("#selevent_eventid").attr('value', '{{$e["id"]}}');
-                  $("#edittitle").attr('value', '{{$e["title"]}}');
-                  $("#editdate").attr('value', '{{$e["date"]}}');
-                  $("#editstarttime").attr('value', '{{$e["start_time"]}}');
-                  $("#editendtime").attr('value', '{{$e["end_time"]}}');
-                  $("#editdescription").text('{{$e["description"]}}');
-                  $("#editeventid").attr('value', '{{$e["id"]}}');
-                  $("#selevent_delbtn").show();
-                })
-              </script>
-              @endforeach
-              @else
-              <tr>
-                <td>No events found</td>
-                <td>-</td>
-                <td align="right"><button class="btn btn-flat btn-success" data-target="#new_event" data-toggle="modal">New Event</button></td>
-              </tr>
-              @endif
-            </tbody>
-          </table>
+
         </div>
       </div>
     </div>

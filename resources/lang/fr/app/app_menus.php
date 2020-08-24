@@ -36,6 +36,9 @@ return [
   'staff_pil_ment' => 'Mentoring Pilotes',
   'staff_pil_ment_overview' => 'Vue d\'ensemble',
   'staff_pil_ment_my_students' => 'Mes élèves',
+  'staff_eventstitle' => 'Events & News',
+  'staff_events' => 'Gestionnaire Events',
+  'staff_news' => 'Gestionnaire News',
 
   'local_time' => 'Heure locale',
   'utc_time' => 'UTC',

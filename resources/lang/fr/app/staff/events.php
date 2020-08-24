@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'page_header' => 'Events Manager',
+  'page_header' => 'Gestionnaire d\'évènements',
   'pill_one' => 'Evènements à venir',
   'btn_newevent' => 'Nouvel Evènement',
 

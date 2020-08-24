@@ -185,11 +185,12 @@ Route::group([
                         return redirect()->route('app.staff.events.dashboard', app()->getLocale());
                     });
                     Route::get('/events', 'Staff\EventsManagerController@dashboard')->name('app.staff.events.dashboard');
-
                     Route::post('/newevent', 'Staff\EventsManagerController@newEvent')->name('app.staff.events.newevent');
                     Route::post('/delevent', 'Staff\EventsManagerController@delEvent')->name('app.staff.events.delevent');
                     Route::post('/editevent', 'Staff\EventsManagerController@editEvent')->name('app.staff.events.editevent');
                     Route::post('/editevent-img', 'Staff\EventsManagerController@editImage')->name('app.staff.events.editimg');
+
+                    Route::get('/news', 'Staff\NewsController@dashboard')->name('app.staff.news.dashboard');
                 });
                 Route::group(['prefix' => 'webadmin', 'middleware' => 'ADMIN'], function() {
                     Route::get('/', 'Staff\WebadminController@dashboard')->name('app.staff.webadmin.dashboard');

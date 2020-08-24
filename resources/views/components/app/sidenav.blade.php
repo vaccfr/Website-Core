@@ -268,7 +268,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
-                Events & News
+                {{__('app/app_menus.staff_eventstitle')}}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -276,13 +276,13 @@
               <li class="nav-item">
                 <a href="{{ route('app.staff.events.dashboard', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.events.dashboard')) active @endif">
                   <i class="fas fa-calendar-alt nav-icon"></i>
-                  <p>Events Dashboard</p>
+                  <p>{{__('app/app_menus.staff_events')}}</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>News Dashboard</p>
+                <a href="{{ route('app.staff.news.dashboard', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.news.dashboard')) active @endif">
+                  <i class="fas fa-newspaper nav-icon"></i>
+                  <p>{{__('app/app_menus.staff_news')}}</p>
                 </a>
               </li>
             </ul>
