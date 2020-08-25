@@ -141,6 +141,26 @@ Route::group([
                 });
             });
 
+            // Pilot Routes
+            Route::group([
+                'prefix' => '/pilot'
+            ], function() {
+                Route::get('/', function () {
+                    return redirect()->route('app.index', app()->getLocale());
+                });
+                Route::group(['prefix' => '/trainingcenter'], function() {
+                    Route::get('/', function () {
+                        return redirect()->route('app.pilot.training', app()->getLocale());
+                    });
+                    Route::get('/dashboard', 'Pilot\PilotTrainingController@index')->name('app.pilot.training'); // Pilot Training route
+                    
+                    Route::post('/submit-application', 'Pilot\PilotTrainingController@mentoringRequest')->name('app.pilot.training.mentoringRequest');
+                    // Route::post('/acceptsession', 'ATC\ATCTrainingController@acceptSession')->name('app.pilot.training.acceptsession');
+                    // Route::post('/cancelsession', 'ATC\ATCTrainingController@cancelSession')->name('app.pilot.training.cancelsession');
+                    // Route::post('/requestsession', 'ATC\ATCTrainingController@requestSession')->name('app.pilot.training.requestsession');
+                });
+            });
+
             // Staff Routes
             Route::group([
                 'middleware' => 'STAFF',

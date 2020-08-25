@@ -2,19 +2,19 @@
 
 return [
   // Left side
-  'header_title' => 'Training Center ATC de :FNAME',
+  'header_title' => 'Training Center Pilote de :FNAME',
   'welcome_title' => 'Bienvenue!',
-  'welcome_msg' => 'Bienvenue dans le nouveau "ATC Training Center" de VatFrance!<br>
+  'welcome_msg' => 'Bienvenue dans le nouveau "Pilot Training Center" de VatFrance!<br>
   Cette partie est dédiée à l\'apprentissage du contrôle en réseau sur Vatsim au sein de la région française.
   Elle a été concue spécialement par des mentors pour accompagner au mieux les élèves et leurs mentors le long de leur apprentissage.<br><br>
-  Avec une interface simple, unique et intuitive, le ATC Training Center vous guidera pendant vos nombreuses sessions, ainsi que vos tests et examens.<br><br>
+  Avec une interface simple, unique et intuitive, le Pilot Training Center vous guidera pendant vos nombreuses sessions, ainsi que vos tests et examens.<br><br>
   Pour commencer votre mentoring, remplissez le formulaire. Nous sommes impatients de vous rencontrer!',
   'welcome_submsg' => 'Le délais de réponse et de prise en charge varie en fonction de la disponibilité de nos instructeurs bénévoles. Merci pour votre patience.',
 
   // Right side
   'form_title' => 'Demande de Mentoring',
-  'choose_pos' => 'Choisissez une plateforme (sous réserve de disponibilité)',
-  'select' => 'Plateforme',
+  'choose_pos' => 'Choisissez un type de Mentoring',
+  'select' => 'Type de Mentoring',
   'your_motiv' => 'Motivation',
   'strt_typ' => 'Décrivez votre motivation ici',
   'allowmail' => 'Autoriser votre futur mentor à voir votre adresse email à des fins de communication',

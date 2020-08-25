@@ -10,7 +10,7 @@ class PilotMentoringRequest extends Model
     protected $table = "pilot_mentoring_requests";
 
     protected $fillable = [
-        'id', 'student_id', 'motivation', 'mail_consent', 'taken', 'mentor_id'
+        'id', 'student_id', 'training_type', 'motivation', 'mail_consent', 'taken', 'mentor_id'
     ];
 
     // Relationships

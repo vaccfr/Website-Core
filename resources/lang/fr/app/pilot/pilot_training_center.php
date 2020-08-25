@@ -2,7 +2,7 @@
 
 return [
   // Titles
-  'header_title' => 'Training Center ATC de :FNAME',
+  'header_title' => 'Training Center de :FNAME',
   'upcoming_sess' => 'Sessions',
   'past_sess' => 'Sessions passées',
   'sess_req' => 'Demande de Session avec :MENTOR',

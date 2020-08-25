@@ -63,17 +63,17 @@ class ATCTrainingController extends Controller
                 ]);
             }
         } else {
+            if (auth()->user()->subdiv_id != "FRA") {
+                return view('app.atc.training_req', [
+                    'show' => "NOREGION",
+                ]);
+            }
+
             $platforms = Airport::orderBy('city', 'ASC')->get();
             return view('app.atc.training_req', [
                 'platforms' => $platforms,
                 'excl' => config('vatfrance.excluded_mentoring_airports'),
                 'show' => "NORMAL",
-            ]);
-        }
-        
-        if (auth()->user()->subdiv_id !== "FRA") {
-            return view('app.atc.training_req', [
-                'show' => "NOREGION",
             ]);
         }
 

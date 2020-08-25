@@ -16,6 +16,7 @@ class CreatePilotMentoringRequestsTable extends Migration
         Schema::create('pilot_mentoring_requests', function (Blueprint $table) {
             $table->bigInteger('id')->unique();
             $table->bigInteger('student_id');
+            $table->string('training_type');
             $table->longText('motivation');
             $table->boolean('mail_consent');
             $table->boolean('taken')->default(false);

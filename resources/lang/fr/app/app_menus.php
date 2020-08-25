@@ -15,6 +15,7 @@ return [
   'atc_bookings' => 'Bookings',
   'atc_all_bookings' => 'Tous les Bookings ATC',
   'atc_my_bookings' => 'Mes Bookings ATC',
+  'atc_training' => 'ATC Training Center',
   'loas' => 'LOAs',
   'be' => 'Belgique',
   'es' => 'Espagne',
@@ -24,6 +25,7 @@ return [
   'tools' => 'Outils',
   'atc_dl' => 'Téléchargements',
 
+  'pilot_training' => 'Pilot Training Center',
   'pilots_header' => 'Pilotes',
   'pilots_bookings' => 'Bookings',
   'pilots_all_bookings' => 'Tous les Bookings Pilote',
