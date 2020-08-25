@@ -8,7 +8,7 @@ use RestCord\DiscordClient;
 
 class DiscordAnnouncer extends Controller
 {
-    public function sendAnnouncement($title, $url, $imgurl, $content, $author_name, $date, $starttime, $endtime, $timestamp)
+    public function sendEventAnnouncement($title, $url, $imgurl, $content, $author_name, $date, $starttime, $endtime, $timestamp)
     {
         if ($url == "#") {
             $url = config('app.url');
@@ -19,7 +19,7 @@ class DiscordAnnouncer extends Controller
         $discord = new DiscordClient(['token' => config('discordsso.bot_token')]);
         $discord->channel->createMessage([
             'channel.id' => config('discordsso.announcements_channel'),
-            // 'content' => '@everyone',
+            'content' => '@here',
             'embed' => [
                 'author' =>[
                     'name' => 'Date: '.$date.' | '.$starttime.' - '.$endtime,
@@ -50,7 +50,7 @@ class DiscordAnnouncer extends Controller
         return $msgid;
     }
 
-    public function editAnnouncement($msgid, $title, $url, $imgurl, $content, $author_name, $date, $starttime, $endtime, $timestamp)
+    public function editEventAnnouncement($msgid, $title, $url, $imgurl, $content, $author_name, $date, $starttime, $endtime, $timestamp)
     {
         if ($url == "#") {
             $url = config('app.url');
@@ -62,7 +62,7 @@ class DiscordAnnouncer extends Controller
         $discord->channel->editMessage([
             'channel.id' => config('discordsso.announcements_channel'),
             'message.id' => (int)$msgid,
-            'content' => '@everyone',
+            'content' => '@here',
             'embed' => [
                 'author' =>[
                     'name' => 'Date: '.$date.' | '.$starttime.' - '.$endtime,
@@ -85,5 +85,10 @@ class DiscordAnnouncer extends Controller
                 "timestamp" => $timestamp,
             ]
         ]);
+    }
+
+    public function sendAnnouncement(Request $request)
+    {
+        # code...
     }
 }

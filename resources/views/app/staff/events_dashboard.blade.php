@@ -131,7 +131,7 @@
                   $("#selevent_eventid").attr('value', '{{$e["id"]}}');
                   $("#edittitle").attr('value', '{{$e["title"]}}');
                   $("#editdate").attr('value', '{{$e["date"]}}');
-                  $("#editurl").attr('value', '{{$e["url"]}}');
+                  $("#editurl").attr('value', `{!!$e["url"]!!}`);
                   $("#editstarttime").attr('value', '{{$e["start_time"]}}');
                   $("#editendtime").attr('value', '{{$e["end_time"]}}');
                   $("#editdescription").text(`{!!$e["description"]!!}`);

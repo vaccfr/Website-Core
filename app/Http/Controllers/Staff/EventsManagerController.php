@@ -63,10 +63,12 @@ class EventsManagerController extends Controller
                         'url' => $imgUrl,
                     ]);
                     $hasImgBool = true;
+                    $imgUrlDiscord = config('app.url').$imgUrl;
                 }
             }
         } else {
             $imgUrl = null;
+            $imgUrlDiscord = null;
             $imgID = null;
         }
 
@@ -79,8 +81,8 @@ class EventsManagerController extends Controller
         $date = date_create_from_format('d.m.Y H:i', request('date').' '.request('starttime'));
         $timestamp = $date->format(DateTime::ATOM);
 
-        $dmsgid = app(DiscordAnnouncer::class)->sendAnnouncement(
-            request('title'), $url, $imgUrl, request('description'), $request->user()->fname." ".$request->user()->lname, request('date'), request('starttime'), request('endtime'), $timestamp
+        $dmsgid = app(DiscordAnnouncer::class)->sendEventAnnouncement(
+            request('title'), $url, $imgUrlDiscord, request('description'), $request->user()->fname." ".$request->user()->lname, request('date'), request('starttime'), request('endtime'), $timestamp
         );
 
         $event = Event::create([
@@ -146,9 +148,10 @@ class EventsManagerController extends Controller
         if (!is_null($event->discord_msg_id)) {
             $date = date_create_from_format('d.m.Y H:i', request('editdate').' '.request('editstarttime'));
             $timestamp = $date->format(DateTime::ATOM);
+            $imgurl = config('app.url').$event->image_url;
 
-            $dmsgid = app(DiscordAnnouncer::class)->editAnnouncement(
-                $event->discord_msg_id, request('edittitle'), $event->url, $event->image_url, request('editdescription'), $request->user()->fname." ".$request->user()->lname, request('editdate'), request('editstarttime'), request('editendtime'), $timestamp
+            $dmsgid = app(DiscordAnnouncer::class)->editEventAnnouncement(
+                $event->discord_msg_id, request('edittitle'), $event->url, $imgurl, request('editdescription'), $request->user()->fname." ".$request->user()->lname, request('editdate'), request('editstarttime'), request('editendtime'), $timestamp
             );
         }
 
