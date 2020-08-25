@@ -13,6 +13,7 @@ use App\Models\Users\UserEmailPreference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class MainController extends Controller
 {
@@ -23,13 +24,23 @@ class MainController extends Controller
         ->orderBy('time', 'ASC')
         ->get();
 
-        $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
-        ->orderBy('date', 'ASC')
-        ->get();
+        // $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
+        // ->orderBy('date', 'ASC')
+        // ->get();
+        // $eventsList_filtered = [];
+        // foreach ($eventsList as $e => $v) {
+        //     if (!count($eventsList_filtered) > 5) {
+        //         array_push($eventsList_filtered, $e);
+        //     }
+        // }
+
+        $eventList = Event::orderBy('date', 'ASC')->get();
         $eventsList_filtered = [];
-        foreach ($eventsList as $e => $v) {
-            if (!count($eventsList_filtered) > 5) {
-                array_push($eventsList_filtered, $e);
+        foreach ($eventList as $e => $v) {
+            $date = date_create_from_format('d.m.Y', $v['date']);
+            $timestamp = $date->format(DateTime::ATOM);
+            if ($timestamp >= Carbon::now()->format('c') && count($eventsList_filtered) < 5) {
+                array_push($eventsList_filtered, $v);
             }
         }
 
@@ -40,7 +51,7 @@ class MainController extends Controller
 
         return view('app.user.index', [
             'news' => [],
-            'events' => $eventsList,
+            'events' => $eventsList_filtered,
             'bookings' => $bookingsToday,
             'news' => $newslist,
         ]);
