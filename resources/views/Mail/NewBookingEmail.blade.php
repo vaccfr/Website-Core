@@ -7,7 +7,7 @@ Une nouvelle réservation a été enregistrée sur votre compte.
 <b>Date:</b> {{ $data['date'] }}<br>
 <b>Heure:</b> {{ $data['time'] }}<br>
 <br>
-Vous pouvez consulter et éditer vos réservations ici : <a href="{{ route('app.atc.mybookings', 'fr') }}" target="_blank" rel="noopener noreferrer"></a>.
+Vous pouvez consulter et éditer vos réservations <a href="{{ route('app.atc.mybookings', 'fr') }}" target="_blank" rel="noopener noreferrer">ici</a>.
 <br>
 
 Merci,<br>

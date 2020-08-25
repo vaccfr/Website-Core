@@ -7,7 +7,7 @@ Votre réservation a été supprimée.
 <b>Date:</b> {{ $data['date'] }}<br>
 <b>Heure:</b> {{ $data['time'] }}<br>
 <br>
-Vous pouvez consulter vos réservation ici <a href="{{ route('app.atc.mybookings', 'fr') }}" target="_blank" rel="noopener noreferrer"></a>.
+Vous pouvez consulter vos réservation <a href="{{ route('app.atc.mybookings', 'fr') }}" target="_blank" rel="noopener noreferrer">ici</a>.
 <br>
 
 Merci,<br>
