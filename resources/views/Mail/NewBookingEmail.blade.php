@@ -16,7 +16,6 @@ Merci,<br>
 <br>
 @if (!is_null($calendarLinks['ics']))
 <div align="center">
-  <a href="{{ $calendarLinks['ics'] }}" class="button button-primary" target="_blank" rel="noopener">Ajouter au calendrier</a>
   <a href="{{ $calendarLinks['google'] }}" class="button button-primary" target="_blank" rel="noopener">Ajouter au calendrier Google</a>
 </div>
 @endif
