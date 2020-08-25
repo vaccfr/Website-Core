@@ -20,7 +20,7 @@ Merci,<br>
   If you wish to unsubscribe from emails, you may edit your preferences in
   <a href="{{ route('app.user.settings', 'gb') }}" target="_blank" rel="noopener noreferrer">your user settings panel</a>.
   Ce mail a été généré automatiquement.
-  Si vous souhaitez ne plus en recvoir, vous pouvez éditer vos préférences ici : 
+  Si vous souhaitez ne plus en recvoir, vous pouvez éditer vos préférences
   <a href="{{ route('app.user.settings', 'fr') }}" target="_blank" rel="noopener noreferrer">dans vos réglages utilisateur</a>.
 @endcomponent
 @endcomponent
