@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\DiscordAnnouncer;
 use App\Models\Data\File;
 use App\Models\General\Event;
+use DateTime;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -74,6 +76,13 @@ class EventsManagerController extends Controller
             $url = "#";
         }
 
+        $date = date_create_from_format('d.m.Y H:i', request('date').' '.request('starttime'));
+        $timestamp = $date->format(DateTime::ATOM);
+
+        $dmsgid = app(DiscordAnnouncer::class)->sendAnnouncement(
+            request('title'), $url, $imgUrl, request('description'), $request->user()->fname." ".$request->user()->lname, request('date'), request('starttime'), request('endtime'), $timestamp
+        );
+
         $event = Event::create([
             'id' => (new Snowflake)->id(),
             'title' => $request->get('title'),
@@ -86,6 +95,7 @@ class EventsManagerController extends Controller
             'image_id' => $imgID,
             'image_url' => $imgUrl,
             'publisher_id' => $request->user()->id,
+            'discord_msg_id' => $dmsgid,
         ]);
 
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('pop-success', 'New event registered!');
@@ -132,6 +142,16 @@ class EventsManagerController extends Controller
         $event->end_time = $request->get('editendtime');
         $event->url = $request->get('editurl');
         $event->save();
+
+        if (!is_null($event->discord_msg_id)) {
+            $date = date_create_from_format('d.m.Y H:i', request('editdate').' '.request('editstarttime'));
+            $timestamp = $date->format(DateTime::ATOM);
+
+            $dmsgid = app(DiscordAnnouncer::class)->editAnnouncement(
+                $event->discord_msg_id, request('edittitle'), $event->url, $event->image_url, request('editdescription'), $request->user()->fname." ".$request->user()->lname, request('editdate'), request('editstarttime'), request('editendtime'), $timestamp
+            );
+        }
+
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event content edited');
     }
 

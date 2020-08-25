@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->bigInteger('image_id')->nullable();
             $table->string('image_url')->nullable();
             $table->bigInteger('publisher_id');
+            $table->bigInteger('discord_msg_id')->nullable();
             $table->timestamps();
         });
     }

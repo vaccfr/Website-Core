@@ -3,6 +3,7 @@
 use App\Mail\Mentoring\NewAtcSessionMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use RestCord\DiscordClient;
 
 /*
 |--------------------------------------------------------------------------
