@@ -51,13 +51,31 @@
     </li>
     <li class="nav-item dropdown">
       <a href="#" data-toggle="dropdown" class="nav-link">
-        <i class="flag-icon flag-icon-{{app()->getLocale()}}"></i>
+        @switch(app()->getLocale())
+          @case('fr')
+            <i class="flag-icon flag-icon-fr"></i>
+            @break
+          @case('en')
+            <i class="flag-icon flag-icon-gb"></i>
+            @break
+          @default
+                
+        @endswitch
       </a>
       <div class="dropdown-menu">
         @foreach (config('app.available_locales') as $locale)
           <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}" class="dropdown-item"
             @if (app()->getLocale() == $locale) style="font-weight: bold" @endif>
-            <i class="flag-icon flag-icon-{{$locale}}"></i> {{ strtoupper($locale) }}
+            @switch($locale)
+              @case('fr')
+                <i class="flag-icon flag-icon-fr"></i> {{ strtoupper($locale) }}
+                @break
+              @case('en')
+                <i class="flag-icon flag-icon-gb"></i> {{ strtoupper($locale) }}
+                @break
+              @default
+                    
+            @endswitch
           </a>
         @endforeach
       </div>

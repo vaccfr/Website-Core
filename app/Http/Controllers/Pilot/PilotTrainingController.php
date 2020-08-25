@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pilot;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\Utilities;
 use App\Mail\Mentoring\NewRequestMail;
 use App\Models\ATC\Airport;
 use App\Models\Pilot\PilotMentoringRequest;
@@ -36,7 +37,7 @@ class PilotTrainingController extends Controller
                 ->get();
 
                 if (!is_null($existingRequest)) {
-                    $trainingPlatform = $existingRequest->icao;
+                    $trainingPlatform = $existingRequest->training_type;
                 } else {
                     $trainingPlatform = "N/A";
                 }

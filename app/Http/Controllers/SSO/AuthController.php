@@ -40,7 +40,7 @@ class AuthController extends Controller
         }
         session()->forget('token');
 
-        if (app()->getLocale() == "gb") {
+        if (app()->getLocale() == "en") {
             $query = http_build_query([
                 'client_id' => config('vatsimsso.en_client_id'),
                 'redirect_uri' => config('vatsimsso.en_redirect'),
@@ -75,7 +75,7 @@ class AuthController extends Controller
             $previousUrl = route('app.index', app()->getLocale());
         }
         try {
-            if (app()->getLocale() == "gb") {
+            if (app()->getLocale() == "en") {
                 $response = (new Client)->post('https://auth.vatsim.net/oauth/token', [
                     'form_params' => [
                         'grant_type' => 'authorization_code',

@@ -39,7 +39,7 @@ return [
     'LFPO',
     'LFPB',
   ],
-  'student_progress_gb' => [
+  'student_progress_en' => [
     1 => [
       'title' => 'Intro',
       'type' => 'Study',
