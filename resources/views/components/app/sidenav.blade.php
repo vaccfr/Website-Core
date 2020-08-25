@@ -245,7 +245,7 @@
             </li>
           @endif
           @if (Auth::user()->isPilotMentor() == true)
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/staff/pilot')) menu-open @endif">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-graduation-cap"></i>
                 <p>
@@ -255,13 +255,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('app.staff.pilot.all', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.pilot.all')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__('app/app_menus.staff_pil_ment_overview')}}</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('app.staff.pilot.mine', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.pilot.mine')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__('app/app_menus.staff_pil_ment_my_students')}}</p>
                   </a>

@@ -217,6 +217,7 @@
             <div class="card-header">
               <h3 class="card-title">{{__('app/admin/useredit.edit_pilot_mentor', ['FNAME' => $user->fname])}}</h3>
             </div>
+            @if (Auth::user()->isAdmin() == true)
             <form role="form" action="{{ route('app.staff.admin.edit.pilotmentor', app()->getLocale()) }}" method="POST">
               @csrf
               <div class="card-body">
@@ -245,6 +246,11 @@
                 <button type="submit" class="btn btn-success">{{__('app/admin/useredit.submit')}}</button>
               </div>
             </form>
+            @else
+            <div class="card-body">
+              <i>En développement</i>
+            </div>
+            @endif
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 namespace App\Models\Pilot;
 
+use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Model;
 
 class PilotStudent extends Model

@@ -35,7 +35,7 @@ Route::group([
 ], function() {
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
     Route::group(['prefix' => '/atc'], function() {
-        Route::get('/', function() {return redirect()->route('landingpage.home', app()->getLocale());});
+        Route::get('/', function() {return redirect()->route('landingpage.atc.training', app()->getLocale());});
         Route::get('/training', 'Landingpage\MainController@trainingATC')->name('landingpage.atc.training');
         Route::get('/visiting', 'Landingpage\MainController@visitingATC')->name('landingpage.atc.visiting');
     });
@@ -183,10 +183,10 @@ Route::group([
                     Route::post('/atcadmin/delapplication', 'Staff\AdminController@delApplication')->name('app.staff.atcadmin.delapplication');
                 });
                 Route::group(['prefix' => '/atc', 'middleware' => 'ATCMENTOR'], function() {
-                    Route::get('/all', 'Staff\ATCMentorController@allview')->name('app.staff.atc.all');
+                    Route::get('/', 'Staff\ATCMentorController@allview')->name('app.staff.atc.all');
                     Route::get('/mystudents', 'Staff\ATCMentorController@myStudents')->name('app.staff.atc.mine');
 
-                    Route::post('/all/take', 'Staff\ATCMentorController@takeTraining')->name('app.staff.atc.all.take');
+                    Route::post('/take', 'Staff\ATCMentorController@takeTraining')->name('app.staff.atc.all.take');
                     Route::post('/all/reject', 'Staff\ATCMentorController@rejectTraining')->name('app.staff.atc.all.reject');
                     Route::post('/mystudents/booksession', 'Staff\ATCMentorController@bookSession')->name('app.staff.atc.mine.booksession');
                     Route::post('/mystudents/acceptsession', 'Staff\ATCMentorController@acceptSession')->name('app.staff.atc.mine.acceptsession');
@@ -200,7 +200,11 @@ Route::group([
                     Route::post('/mystudents/terminate', 'Staff\ATCMentorController@terminate')->name('app.staff.atc.mine.terminate');
                 });
                 Route::group(['prefix' => '/pilot'], function() {
-                    
+                    Route::get('/', 'Staff\PilotMentorController@allview')->name('app.staff.pilot.all');
+                    Route::get('/mystudents', 'Staff\PilotMentorController@myStudents')->name('app.staff.pilot.mine');
+
+                    Route::post('/take', 'Staff\PilotMentorController@takeTraining')->name('app.staff.pilot.all.take');
+                    Route::post('/reject', 'Staff\PilotMentorController@rejectTraining')->name('app.staff.pilot.all.reject');
                 });
                 Route::group(['prefix' => '/news-events', 'middleware' => 'EVENTSSTAFF'], function() {
                     Route::get('/', function() {
