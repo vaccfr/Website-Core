@@ -37,7 +37,7 @@ class DiscordAnnouncer extends Controller
                     ],
                 ],
                 'footer' => [
-                    'text' => 'Auteur: '.$author_name,
+                    'text' => 'Auteur • '.$author_name.' | Date de l\'event',
                 ],
                 "timestamp" => $timestamp,
             ]
@@ -80,7 +80,7 @@ class DiscordAnnouncer extends Controller
                     ],
                 ],
                 'footer' => [
-                    'text' => 'Auteur: '.$author_name,
+                    'text' => 'Auteur • '.$author_name.' | Date de l\'event',
                 ],
                 "timestamp" => $timestamp,
             ]

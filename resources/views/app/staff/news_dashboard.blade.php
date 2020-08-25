@@ -30,7 +30,7 @@
         <span class="info-box-icon bg-info"><i class="fas fa-newspaper"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">{{__('app/staff/news.pill_one')}}</span>
-          <span class="info-box-number">0</span>
+          <span class="info-box-number">{{count($newslist)}}</span>
         </div>
       </div>
       <button class="btn btn-flat btn-success btn-block" data-target="#new_post" data-toggle="modal">{{__('app/staff/news.btn_newpost')}}</button>

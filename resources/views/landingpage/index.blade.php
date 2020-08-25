@@ -192,7 +192,7 @@
           <div class="fluid-container">
             <main role="main">
               <div id="map" style="height: calc(50vh - 120px)" class="mt-2">
-                <div style="position: absolute; z-index: 500; background: rgba(0,0,0,0.5); color:white; font-size: 10px; padding: 3px;">Flights: <span>{{$livemap['planeCount']}}</span> / ATC: <span>{{$livemap['atcCount']}}</span></div>
+                <div style="position: absolute; top:0px; right: 0px; z-index: 500; background: rgba(0,0,0,0.5); color:white; font-size: 10px; padding: 3px;">Flights: <span>{{$livemap['planeCount']}}</span> / ATC: <span>{{$livemap['atcCount']}}</span></div>
                 <!--note for Peter: populate the X's with actual data danke-->
                 <script src="{{ asset('lp/js/rotate_marker.js') }}"></script>
                 <script>
