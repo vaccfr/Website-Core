@@ -19,7 +19,7 @@ class DiscordAnnouncer extends Controller
         $discord = new DiscordClient(['token' => config('discordsso.bot_token')]);
         $discord->channel->createMessage([
             'channel.id' => config('discordsso.announcements_channel'),
-            'content' => '@everyone',
+            // 'content' => '@everyone',
             'embed' => [
                 'author' =>[
                     'name' => 'Date: '.$date.' | '.$starttime.' - '.$endtime,
