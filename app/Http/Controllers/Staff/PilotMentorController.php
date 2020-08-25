@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\Utilities;
 use App\Mail\Mentoring\RequestRejectMail;
 use App\Models\ATC\Airport;
 use App\Models\Pilot\PilotMentor;
@@ -121,7 +122,7 @@ class PilotMentorController extends Controller
 
     public function myStudents()
     {
-        $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
+        $studySessions = config('vatfrance.pilot_progress_'.app()->getLocale());
         $progSteps = 100/(int)count($studySessions);
 
         $students = PilotStudent::where('mentor_id', auth()->user()->id)

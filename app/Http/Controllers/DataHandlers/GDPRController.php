@@ -34,7 +34,7 @@ class GDPRController extends Controller
         $atcMentor = Mentor::where('id', auth()->user()->id)->first();
         $atcSolo = SoloApproval::where('student_id', auth()->user()->id)->get();
 
-        $pdf = PDF::loadView('gdpr_gb', compact(
+        $pdf = PDF::loadView('gdpr_en', compact(
             'userData',
             'userSettings',
             'userEmail',

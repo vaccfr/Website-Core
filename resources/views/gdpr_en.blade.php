@@ -144,6 +144,7 @@
           </tr>
       </tbody>
     </table>
+    @if (!is_null($userDiscord))
     <h5>Discord Data</h5>
     <table class="table table-striped" style="text-align: center;">
       <thead>
@@ -167,6 +168,7 @@
           </tr>
       </tbody>
     </table>
+    @endif
     <div class="page-break"></div>
     <h3>ATC Related Data</h3>
     <h5>Generated for {{ Auth::user()->fname }} {{ Auth::user()->lname }} (CID: {{ Auth::user()->vatsim_id }}) | {{ Illuminate\Support\Carbon::now()->format('Y-m-d H:i:s') }}</h5>

@@ -57,7 +57,7 @@
         @foreach ($students as $s)
           <div class="card card-outline collapsed-card @if(true) card-success @else card-danger @endif elevation-3">
             <div class="card-header" data-card-widget="collapse">
-              <h3 class="card-title">{{ $s['user']['fname'] }} {{ $s['user']['lname'] }} ({{ $s['user']['vatsim_id'] }}) - {{ $s['user']['atc_rating_short'] }} - {{ $s['mentoringRequest']['icao'] }}</h3>
+              <h3 class="card-title">{{ $s['user']['fname'] }} {{ $s['user']['lname'] }} ({{ $s['user']['vatsim_id'] }}) - {{ $s['user']['atc_rating_short'] }} - {{ $s['mentoringRequest']['training_type'] }}</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                 </button>
@@ -327,8 +327,7 @@
               <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#book-session-{{ $s['user']['vatsim_id'] }}">{{__('app/staff/pilot_mine.btn_booksess')}}</button>
               <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#send-message-{{ $s['user']['vatsim_id'] }}">{{__('app/staff/pilot_mine.btn_sendmsg')}}</button>
               <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-progress-{{ $s['user']['vatsim_id']}}">{{__('app/staff/pilot_mine.btn_editprog')}}</button>
-              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-solo{{ $s['user']['vatsim_id']}}">{{__('app/staff/pilot_mine.btn_soloval')}}</button>
-              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit-airport{{ $s['user']['vatsim_id']}}">{{__('app/staff/pilot_mine.btn_editairport')}}</button>
+              <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#edit_trainingtype_{{ $s['user']['vatsim_id']}}">{{__('app/staff/pilot_mine.btn_editairport')}}</button>
               <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#terminate-{{ $s['user']['vatsim_id']}}">{{__('app/staff/pilot_mine.btn_terminate')}}</button>
               {{-- Book session modal  --}}
               <div class="modal fade" id="book-session-{{ $s['user']['vatsim_id'] }}">
@@ -461,109 +460,8 @@
                   </div>
                 </div>
               </div>
-              {{-- Approve Solo  --}}
-              <div class="modal fade" id="edit-solo{{ $s['user']['vatsim_id']}}">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title">{{__('app/staff/pilot_mine.asm_title', ['STUDENT' => $s['user']['fname']])}}</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/pilot_mine.close')}}">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="{{ route('app.staff.atc.mine.soloadd', app()->getLocale()) }}" method="post">
-                        @csrf
-                        <div class="row border-bottom">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="selectpos">{{__('app/staff/pilot_mine.asm_selectpos')}}</label>
-                              <select class="form-control" name="selectpos" id="selectpos">
-                                @foreach ($positions as $pos)
-                                  @if (count($pos['positions']) > 0)
-                                    <optgroup label="{{ $pos['city'] }} {{ $pos['airport'] }}"></optgroup>
-                                    @foreach ($pos['positions'] as $solopos)
-                                      <option value="{{ $solopos['code'] }}">{{ $solopos['code'] }}</option>
-                                    @endforeach
-                                    <optgroup></optgroup>
-                                  @endif
-                                @endforeach
-                              </select>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="start-date-solo-{{ $s['user']['vatsim_id'] }}">{{__('app/staff/pilot_mine.asm_selectdate')}}</label>
-                                  <input type="text" class="form-control" id="start-date-solo-{{ $s['user']['vatsim_id'] }}" name="startdate" placeholder="{{__('app/staff/pilot_mine.asm_selectdate')}}">
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="length">{{__('app/staff/pilot_mine.asm_duration')}}</label>
-                                  <select class="form-control" name="length" id="length">
-                                    @foreach ($soloLengths as $sl)
-                                      <option value="{{ $sl }}">{{ $sl }} {{__('app/staff/pilot_mine.days')}}</option>
-                                    @endforeach
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-12 mb-3">
-                            <input type="hidden" name="userid" value="{{ $s['user']['id'] }}">
-                            <button type="submit" class="btn btn-success btn-flat mr-0">{{__('app/staff/pilot_mine.submit')}}</button>
-                          </div>
-                        </div>
-                      </form>
-                        <div class="row">
-                          <div class="col-md-12 mt-3">
-                            <h4>{{__('app/staff/pilot_mine.asm_curr_appr')}}</h4>
-                            <table
-                              id="solo_sessions_{{ $s['user']['vatsim_id'] }}"
-                              class="table table-bordered table-hover"
-                              data-order='[[ 1, "desc" ]]'>
-                              <thead>
-                                <tr>
-                                  <th>{{__('app/staff/pilot_mine.position')}}</th>
-                                  <th>{{__('app/staff/pilot_mine.start_date')}}</th>
-                                  <th>{{__('app/staff/pilot_mine.end_date')}}</th>
-                                  <th>{{__('app/staff/pilot_mine.valid')}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                  @foreach ($s['soloApprovals'] as $slapp)
-                                    <tr>
-                                      <td>{{ $slapp['position'] }}</td>
-                                      <td>{{ $slapp['start_date'] }}</td>
-                                      <td>{{ $slapp['end_date'] }}</td>
-                                      <td>
-                                        @if (\Illuminate\Support\Carbon::now()->format('d.m.Y') > \Illuminate\Support\Carbon::parse($slapp['end_date'])->format('d.m.Y'))
-                                        <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
-                                        @else
-                                        <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
-                                        @endif
-                                      </td>
-                                      <td>
-                                        <form action="{{ route('app.staff.atc.mine.solodel', app()->getLocale()) }}" method="post">
-                                          @csrf
-                                          <input type="hidden" name="soloid" value="{{ $slapp['id'] }}">
-                                          <button type="submit" class="btn btn-flat btn-danger">{{__('app/staff/pilot_mine.cancel')}}</button>
-                                        </form>
-                                      </td>
-                                    </tr>
-                                  @endforeach
-                                </tbody>
-                            </table>
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-                  <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-              </div>
               {{-- Edit training airport  --}} 
-              <div class="modal fade" id="edit-airport{{ $s['user']['vatsim_id']}}">
+              <div class="modal fade" id="edit_trainingtype_{{ $s['user']['vatsim_id']}}">
                 <div class="modal-dialog modal-md">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -578,14 +476,14 @@
                         <div class="form-group">
                           <label for="icao">{{__('app/staff/pilot_mine.eta_label', ['FNAME' => $s['user']['fname']])}}</label>
                           <select class="form-control" name="icao" id="icao">
-                            @if (is_null($s['mentoringRequest']['icao']))
+                            @if (is_null($s['mentoringRequest']['training_type']))
                               <option value="0" disabled selected>{{__('app/staff/pilot_mine.epm_choose')}}...</option>
                             @else
-                              <option value="{{ $s['mentoringRequest']['icao'] }}">{{ $s['mentoringRequest']['icao'] }}</option>
+                              <option value="{{ $s['mentoringRequest']['training_type'] }}" disabled selected>{{ $s['mentoringRequest']['training_type'] }}</option>
                             @endif
-                            @foreach ($airports as $apt)
-                              <option value="{{ $apt['icao'] }}">{{ $apt['city'] }} {{ $apt['airport'] }} ({{ $apt['icao'] }})</option>
-                            @endforeach
+                            <option value="IFR">IFR</option>
+                            <option value="VFR">VFR</option>
+                            <option value="IFR & VFR">IFR & VFR</option>
                           </select>
                         </div>
                       </div>
