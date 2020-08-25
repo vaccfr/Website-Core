@@ -23,7 +23,7 @@ class PilotTrainingController extends Controller
         $existingRequest = PilotMentoringRequest::where('student_id', auth()->user()->id)->first();
         if (!is_null($activeStudent)) {
             if ($activeStudent->active == true) {
-                $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
+                $studySessions = config('vatfrance.pilot_progress_'.app()->getLocale());
                 $progSteps = 100/(int)count($studySessions);
 
                 $sessions = PilotTrainingSession::where('student_id', $activeStudent->id)
@@ -112,5 +112,74 @@ class PilotTrainingController extends Controller
         // ]));
 
         return redirect()->route('app.pilot.training', app()->getLocale())->with('pop-success', trans('app/alerts.success_application'));
+    }
+
+    public function requestSession(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'mentorid' => ['required'],
+            'reqdetails' => ['required'],
+            'sessiondate' => ['required', 'date_format:d.m.Y'],
+            'starttime' => ['required', 'before:endtime', 'date_format:H:i'],
+            'endtime' => ['required', 'after:starttime', 'date_format:H:i'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.session_req_error'));
+        }
+
+        // dd(htmlspecialchars($request->get('sessiondate')));
+
+        PilotTrainingSession::create([
+            'id' => (new Snowflake)->id(),
+            'student_id' => auth()->user()->id,
+            'mentor_id' => $request->get('mentorid'),
+            'description' => $request->get('reqdetails'),
+            'date' => $request->get('sessiondate'),
+            'time' => $request->get('starttime') . ' - ' . $request->get('endtime'),
+            'start_time' => $request->get('starttime'),
+            'end_time' => $request->get('endtime'),
+            'requested_by' => 'Student ('.auth()->user()->fname.' '.auth()->user()->lname.')',
+            'accepted_by_student' => true,
+            'accepted_by_mentor' => false,
+            'status' => 'Awaiting mentor approval',
+            'student_comment' => $request->get('reqcomment'),
+        ]);
+
+        return redirect()->route('app.pilot.training', app()->getLocale())->with('toast-success', trans('app/alerts.session_req_succ'));
+    }
+
+    public function acceptSession(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'sessionid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
+        }
+
+        $session = PilotTrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
+        $session->status = "Confirmed";
+        $session->accepted_by_student = true;
+        $session->save();
+
+        return redirect()->route('app.pilot.training', app()->getLocale())->with('toast-success', trans('app/alerts.session_accepted'));
+    }
+
+    public function cancelSession(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'sessionid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
+        }
+
+        $session = PilotTrainingSession::where('id', $request->get('sessionid'))->firstOrFail();
+        $session->delete();
+
+        return redirect()->route('app.pilot.training', app()->getLocale())->with('toast-success', trans('app/alerts.session_cancelled'));
     }
 }

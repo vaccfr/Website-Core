@@ -10,7 +10,7 @@ return [
   // Widgets
   'ment_sessions' => 'Sessions en Mentoring',
   'class_h' => 'Heures d\'apprentissage',
-  'teaching_p' => 'Plateforme d\'entraînement',
+  'teaching_p' => 'Type d\'entraînement',
   'curr_ment' => 'Mentor actuel',
   'req_session' => 'Demande de Session Mentoring',
   'send_msg_btn' => 'Envoyer Message à :MENTOR',

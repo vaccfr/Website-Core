@@ -131,4 +131,48 @@ return [
       'type' => 'Exam',
     ],
   ],
+  'pilot_progress_fr' => [
+    1 => [
+      'title' => 'P0',
+      'type' => 'Exam',
+    ],
+    2 => [
+      'title' => 'P1',
+      'type' => 'Exam',
+    ],
+    3 => [
+      'title' => 'P2',
+      'type' => 'Exam',
+    ],
+    4 => [
+      'title' => 'P3',
+      'type' => 'Exam',
+    ],
+    5 => [
+      'title' => 'P4',
+      'type' => 'Exam',
+    ],
+  ],
+  'pilot_progress_en' => [
+    1 => [
+      'title' => 'P0',
+      'type' => 'Exam',
+    ],
+    2 => [
+      'title' => 'P1',
+      'type' => 'Exam',
+    ],
+    3 => [
+      'title' => 'P2',
+      'type' => 'Exam',
+    ],
+    4 => [
+      'title' => 'P3',
+      'type' => 'Exam',
+    ],
+    5 => [
+      'title' => 'P4',
+      'type' => 'Exam',
+    ],
+  ],
 ];

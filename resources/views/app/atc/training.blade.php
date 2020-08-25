@@ -235,14 +235,14 @@
                   <td>{{ $training['requested_by'] }}</td>
                   <td>
                     @if (!is_null($training['mentor_comment']))
-                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment_{{ $training['id'] }}"><i class="far fa-eye"></i></button>
                     @else
                       {{__('app/atc/atc_training_center.no_comment')}}
                     @endif
                   </td>
                   <td>
                     @if (!is_null($training['student_comment']))
-                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment_{{ $training['id'] }}"><i class="far fa-eye"></i></button>
                     @else
                       {{__('app/atc/atc_training_center.no_comment')}}
                     @endif
@@ -306,7 +306,7 @@
                   </td>
                 </tr>
                 @if (!is_null($training['mentor_comment']))
-                <div class="modal fade" id="mentor_comment">
+                <div class="modal fade" id="mentor_comment_{{ $training['id'] }}">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -326,7 +326,7 @@
                 </div>
                 @endif
                 @if (!is_null($training['student_comment']))
-                <div class="modal fade" id="student_comment">
+                <div class="modal fade" id="student_comment_{{ $training['id'] }}">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">

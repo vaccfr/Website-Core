@@ -10,7 +10,7 @@ return [
   // Widgets
   'ment_sessions' => 'Mentoring Sessions',
   'class_h' => 'Class Hours',
-  'teaching_p' => 'Teaching Platform',
+  'teaching_p' => 'Training Type',
   'curr_ment' => 'Current Mentor',
   'req_session' => 'Request Mentoring Session',
   'send_msg_btn' => 'Send Message to :MENTOR',

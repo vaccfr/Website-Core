@@ -88,24 +88,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('app.atc.training.requestsession', app()->getLocale()) }}" method="post">
+        <form action="{{ route('app.pilot.training.requestsession', app()->getLocale()) }}" method="post">
           @csrf
           <div class="modal-body">
-            <div class="form-group">
-              <label for="reqposition">{{__('app/pilot/pilot_training_center.pos')}}</label>
-              <select class="form-control" name="reqposition" id="reqposition">
-                <option value="" disabled selected>{{__('app/pilot/pilot_training_center.select')}}...</option>
-                @foreach ($positions as $p)
-                  @if (count($p['positions']) > 0)
-                    <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
-                    @foreach ($p['positions'] as $pos)
-                      <option value="{{ $pos['code'] }}">{{ $pos['code'] }}</option>
-                    @endforeach
-                    <optgroup label=""></optgroup>
-                  @endif
-                @endforeach
-              </select>
-            </div>
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
@@ -127,8 +112,12 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="reqdetails">{{__('app/pilot/pilot_training_center.pos')}}</label>
+              <textarea class="form-control" rows="5" name="reqdetails" id="reqdetails" style="resize: none;" placeholder="..." required></textarea>
+            </div>
+            <div class="form-group">
               <label for="reqcomment">{{__('app/pilot/pilot_training_center.comment_for')}}</label>
-              <textarea class="form-control" rows="3" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="..."></textarea>
+              <textarea class="form-control" rows="5" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="..."></textarea>
             </div>
           </div>
           <input type="hidden" name="mentorid" value="{{ $mentorObj->id }}">
@@ -216,7 +205,7 @@
             data-order='[[ 1, "desc" ]]'>
             <thead>
             <tr>
-              <th>{{__('app/pilot/pilot_training_center.callsign')}}</th>
+              <th>Details</th>
               <th>{{__('app/pilot/pilot_training_center.when')}}</th>
               <th>{{__('app/pilot/pilot_training_center.mentor')}}</th>
               <th>{{__('app/pilot/pilot_training_center.prop_by')}}</th>
@@ -229,20 +218,20 @@
             <tbody>
               @foreach ($sessions as $training)
                 <tr>
-                  <td>{{ $training['position'] }}</td>
+                  <td><button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#session_details_{{ $training['id'] }}"><i class="far fa-eye"></i></button></td>
                   <td>{{ $training['date'] }} {{ $training['time'] }}</td>
                   <td>{{ $training['mentorUser']['fname'] }} {{ $training['mentorUser']['lname'] }} ({{ $training['mentorUser']['vatsim_id'] }})</td>
                   <td>{{ $training['requested_by'] }}</td>
                   <td>
                     @if (!is_null($training['mentor_comment']))
-                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#mentor_comment_{{ $training['id'] }}"><i class="far fa-eye"></i></button>
                     @else
                       {{__('app/pilot/pilot_training_center.no_comment')}}
                     @endif
                   </td>
                   <td>
                     @if (!is_null($training['student_comment']))
-                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#student_comment_{{ $training['id'] }}"><i class="far fa-eye"></i></button>
                     @else
                       {{__('app/pilot/pilot_training_center.no_comment')}}
                     @endif
@@ -252,7 +241,7 @@
                     @if ($training['accepted_by_mentor'] == false && $training['accepted_by_student'] == true)
 
                       {{-- Only accepted by student --}}
-                      <form action="{{ route('app.atc.training.cancelsession', app()->getLocale()) }}" method="POST">
+                      <form action="{{ route('app.pilot.training.cancelsession', app()->getLocale()) }}" method="POST">
                         @csrf
                           <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
                           <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
@@ -263,7 +252,7 @@
                       @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == false)
 
                         {{-- Only accepted by mentor --}}
-                        <form action="{{ route('app.atc.training.acceptsession', app()->getLocale()) }}" method="POST">
+                        <form action="{{ route('app.pilot.training.acceptsession', app()->getLocale()) }}" method="POST">
                           @csrf
                           <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
                           <button type="submit" class="btn btn-block btn-success btn-flat"><i class="fa fa-check"></i></button>
@@ -279,7 +268,7 @@
                         @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == true && $training['completed'] == false)
 
                           {{-- Training accepted by both --}}
-                          <form action="{{ route('app.atc.training.cancelsession', app()->getLocale()) }}" method="POST">
+                          <form action="{{ route('app.pilot.training.cancelsession', app()->getLocale()) }}" method="POST">
                             @csrf
                           <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
                           <button type="submit" class="btn btn-block btn-danger btn-flat"><i class="fa fa-times"></i></button>
@@ -305,8 +294,26 @@
                     @endif
                   </td>
                 </tr>
+                <div class="modal fade" id="session_details_{{ $training['id'] }}">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">{{__('app/pilot/pilot_training_center.mentor_comment')}}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>{!! nl2br($training['description']) !!}</p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/pilot/pilot_training_center.close')}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 @if (!is_null($training['mentor_comment']))
-                <div class="modal fade" id="mentor_comment">
+                <div class="modal fade" id="mentor_comment_{{ $training['id'] }}">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -326,7 +333,7 @@
                 </div>
                 @endif
                 @if (!is_null($training['student_comment']))
-                <div class="modal fade" id="student_comment">
+                <div class="modal fade" id="student_comment_{{ $training['id'] }}">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
