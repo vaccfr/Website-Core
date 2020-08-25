@@ -42,7 +42,7 @@ class MainController extends Controller
         $onlineATC = app(VatsimDataController::class)->getOnlineATC();
         $livemap = app(VatsimDataController::class)->livemapDataGenerator();
         $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
-        ->orderBy('created_at', 'DESC')
+        ->orderBy('date', 'ASC')
         ->get();
         return view('landingpage.index', [
             'book0' => $bookingsToday,

@@ -24,8 +24,14 @@ class MainController extends Controller
         ->get();
 
         $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
-        ->where('date', '<=', Carbon::now()->addDays(7)->format('d.m.Y'))
+        ->orderBy('date', 'ASC')
         ->get();
+        $eventsList_filtered = [];
+        foreach ($eventsList as $e => $v) {
+            if (!count($eventsList_filtered) > 5) {
+                array_push($eventsList_filtered, $e);
+            }
+        }
 
         $newslist = News::orderBy('created_at', 'DESC')
         ->with('author')
