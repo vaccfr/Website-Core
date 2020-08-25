@@ -63,6 +63,13 @@
                 {{__('app/admin/useredit.not_approved')}}
               @endif</a>
             </li>
+            <li class="list-group-item">
+              <b>{{__('app/admin/useredit.pil_mentor_status')}}</b> <a class="float-right">@if ($user->isPilotMentor() == true)
+                {{__('app/admin/useredit.approved')}}
+              @else
+                {{__('app/admin/useredit.not_approved')}}
+              @endif</a>
+            </li>
           </ul>
         </div>
         <!-- /.card-body -->
@@ -204,7 +211,42 @@
             @endif
           </div>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          {{-- Edit ATC Mentor status --}}
+          <div class="card card-dark elevation-3">
+            <div class="card-header">
+              <h3 class="card-title">{{__('app/admin/useredit.edit_pilot_mentor', ['FNAME' => $user->fname])}}</h3>
+            </div>
+            <form role="form" action="{{ route('app.staff.admin.edit.pilotmentor', app()->getLocale()) }}" method="POST">
+              @csrf
+              <div class="card-body">
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="pilotmentorswitch" name="pilotmentorswitch" @if ($user->isPilotMentor() == true) checked @endif>
+                    <label class="custom-control-label" for="pilotmentorswitch">{{__('app/admin/useredit.make_pilot_mentor')}}</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>{{__('app/admin/useredit.allowed_mentor_lvl')}}</label>
+                    <select class="form-control" name="allowedrank" id="allowedrank">
+                      @foreach ($pilot_mentoring_ranks as $r)
+                        @if ($r == $curr_pil_mentor_rank)
+                          <option value="{{ $r }}" selected>{{ $r }}</option>
+                        @else
+                          <option value="{{ $r }}">{{ $r }}</option>
+                        @endif
+                      @endforeach
+                    </select>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <input type="hidden" name="userid" value="{{ $user->id }}">
+                <button type="submit" class="btn btn-success">{{__('app/admin/useredit.submit')}}</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -10,6 +10,7 @@ use App\Models\ATC\Booking;
 use App\Models\ATC\Mentor;
 use App\Models\ATC\MentoringRequest;
 use App\Models\ATC\SoloApproval;
+use App\Models\Pilot\PilotMentor;
 use App\Models\Users\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -54,6 +55,17 @@ class AdminController extends Controller
             $currentMentorRank = $currentMentorRank->allowed_rank;
         }
 
+        $pilot_ranks = [];
+        foreach (array_keys(config('vatfrance.pilot_ranks')) as $r) {
+            if ((int)$user->pilot_rating >= (int)$r) {
+                array_push($pilot_ranks, config('vatfrance.pilot_ranks')[$r]);
+            }
+        }
+        $currentPilotMentorRank = PilotMentor::where('id', $user->id)->first();
+        if (!is_null($currentPilotMentorRank)) {
+            $currentPilotMentorRank = $currentPilotMentorRank->allowed_rank;
+        }
+
         if (Auth::user()->isAdmin() == true) {
             $staffData = Staff::where('id', $user->id)->first();
         } else {
@@ -65,7 +77,9 @@ class AdminController extends Controller
             'staff' => $staffData,
             'usertypes' => $utypes,
             'mentoring_ranks' => $ranks,
+            'pilot_mentoring_ranks' => $pilot_ranks,
             'curr_mentor_rank' => $currentMentorRank,
+            'curr_pil_mentor_rank' => $currentPilotMentorRank,
         ]);
     }
 
@@ -170,6 +184,54 @@ class AdminController extends Controller
             'locale' => app()->getLocale(),
             'cid' => $currentUser->vatsim_id,
         ])->with('toast-info', trans('app/alerts.atc_mentor_edited'));
+    }
+
+    public function editUserPilotmentor(Request $request)
+    {
+        $currentUser = User::where('id', $request->get('userid'))->firstOrFail();
+        $currentMentor = PilotMentor::where('id', $request->get('userid'))->first();
+
+        switch ($currentUser->isPilotMentor()) {
+            case false:
+                if (!is_null($request->get('pilotmentorswitch'))) {
+                    PilotMentor::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
+                        'allowed_rank' => $request->get('allowedrank'),
+                    ]);
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
+                        'pilot_dpt' => 1,
+                    ]);
+                    $currentUser->is_staff = true;
+                    $currentUser->save();
+                }
+                break;
+            
+            case true:
+                if (is_null($request->get('pilotmentorswitch'))) {
+                    $todel = PilotMentor::where('vatsim_id', $currentUser->vatsim_id)->firstOrFail();
+                    $todel->delete();
+                    $currentUser->save();
+                    Staff::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
+                        'pilot_dpt' => 0,
+                    ]);
+                } elseif ($currentMentor->allowed_rank !== $request->get('allowedrank')) {
+                    PilotMentor::updateOrCreate(['vatsim_id' => $currentUser->vatsim_id], [
+                        'id' => $currentUser->id,
+                        'allowed_rank' => $request->get('allowedrank'),
+                    ]);
+                }
+                break;
+            
+            default:
+                break;
+        }
+
+        return redirect()->route('app.staff.admin.edit', [
+            'locale' => app()->getLocale(),
+            'cid' => $currentUser->vatsim_id,
+        ])->with('toast-info', trans('app/alerts.pilot_mentor_edited'));
     }
 
     public function editUserFormStaff(Request $request)

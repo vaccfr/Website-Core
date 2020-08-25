@@ -4,6 +4,7 @@ return [
   'header_title' => 'Dashboard Administrateur - Editer :FNAME',
   'edit_details' => 'Editer Compte de :FNAME',
   'edit_atc_mentor' => 'Editer statut mentor ATC de :FNAME',
+  'edit_pilot_mentor' => 'Editer statut mentor Pilote de :FNAME',
   'edit_staff' => 'Editer les accès Staff de :FNAME',
 
   // Fields
@@ -14,6 +15,7 @@ return [
   'approved_atc' => 'Statut ATC',
   'staff_status' => 'Statut Staff',
   'mentor_status' => 'Statut Mentor ATC',
+  'pil_mentor_status' => 'Statut Mentor Pilote',
   'approved' => 'Approuvé',
   'not_approved' => 'Non approuvé',
 
@@ -27,6 +29,7 @@ return [
   'make_events' => 'Donner permissions Events et Annonces',
   'staff_title' => 'Nom du Poste',
   'make_atc_mentor' => 'Donner autorisations Mentor ATC',
+  'make_pilot_mentor' => 'Donner autorisations Mentor Pilote',
   'allowed_mentor_lvl' => 'Grade ATC maximal d\'enseignement',
 
   'submit' => 'Soumettre',

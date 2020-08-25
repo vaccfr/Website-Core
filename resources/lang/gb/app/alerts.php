@@ -37,6 +37,7 @@ return [
   // Admin Controller
   'details_edited' => 'User details edited',
   'atc_mentor_edited' => 'User ATC Mentor status edited',
+  'pilot_mentor_edited' => 'User Pilot Mentor status edited',
   'staff_edited' => 'User staff access edited',
   'mod_atcappr_success' => 'Modified ATC Approval for :FNAME',
   'solo_deleted' => 'Solo validation deleted',
