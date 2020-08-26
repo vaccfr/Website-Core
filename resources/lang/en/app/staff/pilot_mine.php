@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'header_title' => 'ATC Mentoring - My students',
+  'header_title' => 'Pilot Mentoring - My students',
 
   // Pills
   'pill_one' => 'Students',
@@ -11,9 +11,9 @@ return [
   'email_share' => ':FNAME has agreed to share their email with you. You can contact them at',
   'c_progress' => ':FNAME\'s progress',
   'c_sessions' => 'All Training Sessions',
-  'position' => 'Position',
   'when' => 'When',
   'sched_by' => 'Scheduled by',
+  'sess_details' => 'Session Details',
   'mentor_comm' => 'Mentor comment',
   'student_comm' => 'Student comment',
   'status' => 'Status',
@@ -35,12 +35,14 @@ return [
   'btn_sendmsg' => 'Send Message',
   'btn_editprog' => 'Edit Progress',
   'btn_soloval' => 'Solo Validation',
-  'btn_editairport' => 'Edit Training Airport',
+  'btn_editairport' => 'Edit Training Type',
   'btn_terminate' => 'Terminate Mentoring',
 
   // Book Session Modal
   'bsm_title' => 'Book a session with :STUDENT',
   'send_req' => 'Send Request',
+  'book_details' => 'Session Details',
+  'comment_for_stu' => 'Comment for your student',
 
   // Edit Progress Modal
   'epm_title' => 'Edit :STUDENT\'s progress',
@@ -53,23 +55,15 @@ return [
   'spmm_msg' => 'Message',
   'spmm_your_msg' => 'Your message',
   'spmm_sendmsg' => 'Send message',
-  
-  // Approve Solo modal
-  'asm_title' => 'Manage :STUDENT\'s solo approvals',
-  'asm_selectpos' => 'Select position to approve',
-  'asm_selectdate' => 'Start Date',
-  'asm_duration' => 'Duration',
-  'days' => 'days',
-  'submit' => 'Submit',
 
   'asm_curr_appr' => 'Current Solo Approvals',
   'start_date' => 'Start Date',
   'end_date' => 'End Date',
   'valid' => 'Valid',
 
-  // (TBC) Edit Training Airport Modal
-  'eta_title' => 'Edit Training Airport',
-  'eta_label' => 'Edit :FNAME\'s training airport',
+  // (TBC) Edit Training Type Modal
+  'eta_title' => 'Edit Training Type',
+  'eta_label' => 'Edit :FNAME\'s training type',
 
   // Terminate Modal
   'tm_sure' => 'Are you sure?',

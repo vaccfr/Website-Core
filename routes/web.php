@@ -205,6 +205,14 @@ Route::group([
 
                     Route::post('/take', 'Staff\PilotMentorController@takeTraining')->name('app.staff.pilot.all.take');
                     Route::post('/reject', 'Staff\PilotMentorController@rejectTraining')->name('app.staff.pilot.all.reject');
+                    Route::post('/mystudents/booksession', 'Staff\PilotMentorController@bookSession')->name('app.staff.pilot.mine.booksession');
+                    Route::post('/mystudents/acceptsession', 'Staff\PilotMentorController@acceptSession')->name('app.staff.pilot.mine.acceptsession');
+                    Route::post('/mystudents/cancelsession', 'Staff\PilotMentorController@cancelSession')->name('app.staff.pilot.mine.cancelsession');
+                    Route::post('/mystudents/completesession', 'Staff\PilotMentorController@completeSession')->name('app.staff.pilot.mine.completesession');
+                    Route::post('/mystudents/sessionreport', 'Staff\PilotMentorController@writeSessionReport')->name('app.staff.pilot.mine.sessionreport');
+                    Route::post('/mystudents/progress', 'Staff\PilotMentorController@editProgress')->name('app.staff.pilot.mine.progress');
+                    Route::post('/mystudents/modapt', 'Staff\PilotMentorController@modifyTraining')->name('app.staff.pilot.mine.modapt');
+                    Route::post('/mystudents/terminate', 'Staff\PilotMentorController@terminate')->name('app.staff.pilot.mine.terminate');
                 });
                 Route::group(['prefix' => '/news-events', 'middleware' => 'EVENTSSTAFF'], function() {
                     Route::get('/', function() {

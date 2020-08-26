@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'header_title' => 'Mentoring ATC - Mes étudiants',
+  'header_title' => 'Mentoring Pilote - Mes étudiants',
 
   // Pills
   'pill_one' => 'Etudiants',
@@ -14,6 +14,7 @@ return [
   'position' => 'Position',
   'when' => 'Quand',
   'sched_by' => 'Planifié par',
+  'sess_details' => 'Details de la session',
   'mentor_comm' => 'Commentaire Mentor',
   'student_comm' => 'Commentaire Etudiant',
   'status' => 'Statut',
@@ -35,12 +36,14 @@ return [
   'btn_sendmsg' => 'Envoyer Message',
   'btn_editprog' => 'Modifier Progression',
   'btn_soloval' => 'Validation Solo',
-  'btn_editairport' => 'Modifier Aéroport',
+  'btn_editairport' => 'Modifier Type d\'entrainement',
   'btn_terminate' => 'Terminer Mentoring',
 
   // Book Session Modal
   'bsm_title' => 'Booker une session avec :STUDENT',
   'send_req' => 'Envoyer requête',
+  'book_details' => 'Details de la Sessions',
+  'comment_for_stu' => 'Commentaire pour votre étudiant',
 
   // Edit Progress Modal
   'epm_title' => 'Editer progression de :STUDENT',
@@ -68,8 +71,8 @@ return [
   'valid' => 'Valide',
 
   // (TBC) Edit Training Airport Modal
-  'eta_title' => 'Modifier Aéroport d\'entrainment',
-  'eta_label' => 'Modifier Aéroport d\'entrainment de :FNAME',
+  'eta_title' => 'Modifier Type d\'entrainment',
+  'eta_label' => 'Modifier Type d\'entrainment de :FNAME',
 
   // Terminate Modal
   'tm_sure' => 'Etes-vous sur?',

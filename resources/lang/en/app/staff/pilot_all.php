@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'header_title' => 'ATC Mentoring - Overview',
+    'header_title' => 'Pilot Mentoring - Overview',
 
     'apps' => 'Applications',
     'active_stu' => 'Active Students',

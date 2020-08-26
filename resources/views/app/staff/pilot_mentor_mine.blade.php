@@ -55,9 +55,9 @@
         <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         @foreach ($students as $s)
-          <div class="card card-outline collapsed-card @if(true) card-success @else card-danger @endif elevation-3">
+          <div class="card card-outline @if(true) card-success @else card-danger @endif elevation-3">
             <div class="card-header" data-card-widget="collapse">
-              <h3 class="card-title">{{ $s['user']['fname'] }} {{ $s['user']['lname'] }} ({{ $s['user']['vatsim_id'] }}) - {{ $s['user']['atc_rating_short'] }} - {{ $s['mentoringRequest']['training_type'] }}</h3>
+              <h3 class="card-title">{{ $s['user']['fname'] }} {{ $s['user']['lname'] }} ({{ $s['user']['vatsim_id'] }}) - P{{ $s['user']['pilot_rating'] }} - {{ $s['mentoringRequest']['training_type'] }}</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                 </button>
@@ -118,7 +118,7 @@
                     data-order='[[ 1, "desc" ]]'>
                     <thead>
                     <tr>
-                      <th>{{__('app/staff/pilot_mine.position')}}</th>
+                      <th>Details</th>
                       <th>{{__('app/staff/pilot_mine.when')}}</th>
                       <th>{{__('app/staff/pilot_mine.sched_by')}}</th>
                       <th>{{__('app/staff/pilot_mine.mentor_comm')}}</th>
@@ -130,7 +130,7 @@
                     <tbody>
                       @foreach ($s['sessions'] as $training)
                         <tr>
-                          <td>{{ $training['position'] }}</td>
+                          <td><button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#session_details_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}"><i class="far fa-eye"></i></button></td>
                           <td>{{ $training['date'] }} {{ $training['time'] }}</td>
                           <td>{{ $training['requested_by'] }}</td>
                           <td>
@@ -159,7 +159,7 @@
                               @if ($training['accepted_by_mentor'] == false && $training['accepted_by_student'] == true)
 
                                 {{-- Only accepted by student --}}
-                                <form action="{{ route('app.staff.atc.mine.acceptsession', app()->getLocale()) }}" method="POST">
+                                <form action="{{ route('app.staff.pilot.mine.acceptsession', app()->getLocale()) }}" method="POST">
                                   @csrf
                                   <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
                                   <button type="submit" class="btn btn-block btn-success btn-flat"><i class="fa fa-check"></i></button>
@@ -171,7 +171,7 @@
                                 @if ($training['accepted_by_mentor'] == true && $training['accepted_by_student'] == true && $training['completed'] == false)
 
                                   {{-- Training accepted by both --}}
-                                  <form action="{{ route('app.staff.atc.mine.completesession', app()->getLocale()) }}" method="POST">
+                                  <form action="{{ route('app.staff.pilot.mine.completesession', app()->getLocale()) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="sessionid" value="{{ $training['id'] }}">
                                     <button type="submit" class="btn btn-block btn-success btn-flat">{{__('app/staff/pilot_mine.complete')}}</button>
@@ -199,6 +199,24 @@
                             @endif
                           </td>
                         </tr>
+                        <div class="modal fade" id="session_details_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">{{__('app/staff/pilot_mine.sess_details')}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p>{!! nl2br($training['description']) !!}</p>
+                              </div>
+                              <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/pilot/pilot_training_center.close')}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         @if (!is_null($training['mentor_comment']))
                         <div class="modal fade" id="mentor_comment_{{ $training['id'] }}-{{ $s['user']['vatsim_id']}}">
                           <div class="modal-dialog modal-lg">
@@ -268,7 +286,7 @@
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
-                              <form action="{{ route('app.staff.atc.mine.cancelsession', app()->getLocale()) }}" method="post">
+                              <form action="{{ route('app.staff.pilot.mine.cancelsession', app()->getLocale()) }}" method="post">
                                 @csrf
                                 <div class="modal-body">
                                   <p>{{__('app/staff/pilot_mine.cancel_sess_sure')}}</p>
@@ -293,7 +311,7 @@
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
-                              <form action="{{ route('app.staff.atc.mine.sessionreport', app()->getLocale()) }}" method="post">
+                              <form action="{{ route('app.staff.pilot.mine.sessionreport', app()->getLocale()) }}" method="post">
                                 @csrf
                                 <div class="modal-body">
                                   <div class="form-group">
@@ -339,24 +357,9 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <form action="{{ route('app.staff.atc.mine.booksession', app()->getLocale()) }}" method="post">
+                    <form action="{{ route('app.staff.pilot.mine.booksession', app()->getLocale()) }}" method="post">
                       @csrf
                       <div class="modal-body">
-                        <div class="form-group">
-                          <label for="reqposition">{{__('app/atc/atc_training_center.pos')}}</label>
-                          <select class="form-control" name="reqposition" id="reqposition">
-                            <option value="" disabled selected>{{__('app/atc/atc_training_center.select')}}...</option>
-                            @foreach ($positions as $p)
-                              @if (count($p['positions']) > 0)
-                                <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
-                                @foreach ($p['positions'] as $pos)
-                                  <option value="{{ $pos['code'] }}">{{ $pos['code'] }}</option>
-                                @endforeach
-                                <optgroup label=""></optgroup>
-                              @endif
-                            @endforeach
-                          </select>
-                        </div>
                         <div class="row">
                           <div class="col-md-4">
                             <div class="form-group">
@@ -378,7 +381,11 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="reqcomment">{{__('app/atc/atc_training_center.comment_for')}}</label>
+                          <label for="reqdetails">{{__('app/staff/pilot_mine.book_details')}}</label>
+                          <textarea class="form-control" rows="5" name="reqdetails" id="reqdetails" style="resize: none;" placeholder="..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="reqcomment">{{__('app/staff/pilot_mine.comment_for_stu')}}</label>
                           <textarea class="form-control" rows="3" name="reqcomment" id="reqcomment" style="resize: none;" placeholder="..."></textarea>
                         </div>
                       </div>
@@ -401,7 +408,7 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <form action="{{ route('app.staff.atc.mine.progress', app()->getLocale()) }}" method="post">
+                    <form action="{{ route('app.staff.pilot.mine.progress', app()->getLocale()) }}" method="post">
                       @csrf
                       <div class="modal-body">
                         <div class="form-group">
@@ -470,12 +477,12 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <form action="{{ route('app.staff.atc.mine.modapt', app()->getLocale()) }}" method="post">
+                    <form action="{{ route('app.staff.pilot.mine.modapt', app()->getLocale()) }}" method="post">
                       @csrf
                       <div class="modal-body">
                         <div class="form-group">
-                          <label for="icao">{{__('app/staff/pilot_mine.eta_label', ['FNAME' => $s['user']['fname']])}}</label>
-                          <select class="form-control" name="icao" id="icao">
+                          <label for="trainingtype">{{__('app/staff/pilot_mine.eta_label', ['FNAME' => $s['user']['fname']])}}</label>
+                          <select class="form-control" name="trainingtype" id="trainingtype">
                             @if (is_null($s['mentoringRequest']['training_type']))
                               <option value="0" disabled selected>{{__('app/staff/pilot_mine.epm_choose')}}...</option>
                             @else
@@ -506,7 +513,7 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <form action="{{ route('app.staff.atc.mine.terminate', app()->getLocale()) }}" method="post">
+                    <form action="{{ route('app.staff.pilot.mine.terminate', app()->getLocale()) }}" method="post">
                       @csrf
                       <div class="modal-body">
                         <p>{{__('app/staff/pilot_mine.tm_text', ['STUDENT' => $s['user']['fname']])}}</p>
