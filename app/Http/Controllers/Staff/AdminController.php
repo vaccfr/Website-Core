@@ -264,7 +264,7 @@ class AdminController extends Controller
                     }
                     return redirect()->route('app.staff.admin.edit', [
                         'locale' => app()->getLocale(),
-                        'userid' => $currentUser->id,
+                        'cid' => $currentUser->vatsim_id,
                     ])->with('toast-info', trans('app/alerts.staff_edited'));
                 }
                 break;
