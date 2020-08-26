@@ -42,16 +42,28 @@ class MainController extends Controller
         ->get();
         $onlineATC = app(VatsimDataController::class)->getOnlineATC();
         $livemap = app(VatsimDataController::class)->livemapDataGenerator();
-        $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
-        ->orderBy('date', 'ASC')
-        ->get();
+
+        // $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
+        // ->orderBy('date', 'ASC')
+        // ->get();
+
+        $eventList = Event::orderBy('date', 'ASC')->get();
+        $eventsList_filtered = [];
+        foreach ($eventList as $e => $v) {
+            $date = date_create_from_format('d.m.Y', $v['date']);
+            $timestamp = $date->format(DateTime::ATOM);
+            if ($timestamp >= Carbon::now()->format('c') && count($eventsList_filtered) < 5) {
+                array_push($eventsList_filtered, $v);
+            }
+        }
+
         return view('landingpage.index', [
             'book0' => $bookingsToday,
             'book1' => $bookingsTomorrow,
             'book2' => $bookingsAfterTomorrow,
             'book3' => $bookingsDay3,
             'atconline' => $onlineATC,
-            'eventsList' => $eventsList,
+            'eventsList' => $eventsList_filtered,
             'livemap' => $livemap,
         ]);
     }
