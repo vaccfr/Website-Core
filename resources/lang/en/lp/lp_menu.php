@@ -25,11 +25,18 @@ return [
   'contact_us' => 'Contact us',
   'req_atc' => 'Request ATC',
 
+  //Contact Page
+  'title_contact' => 'Contact us',
   'warning_contact' => 'To avoid any identity theft and to keep you and our users safe,<br>
   you must be authenticated to use the contact form.<br>
   Authentication is simple and uses the official VATSIM SSO.',
+  'title_reqatc' => 'Request ATC',
   'warning_reqatc' => 'To avoid any identity theft and to keep you and our users safe,<br>
   you must be authenticated to submit an ATC request.<br>
+  Authentication is simple and uses the official VATSIM SSO.',
+  'title_feedback' => 'Submit feedback',
+  'warning_feedback' => 'To avoid any identity theft and to keep you and our users safe,<br>
+  you must be authenticated to submit an ATC feedback.<br>
   Authentication is simple and uses the official VATSIM SSO.',
 
   'login_w_sso' => 'Log in with SSO',

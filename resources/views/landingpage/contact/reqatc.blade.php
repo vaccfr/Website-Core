@@ -22,7 +22,7 @@
 @section('page-masthead')
 <section class="intro">
   <div class="container_ATC">
-    <h1>Request ATC</h1>
+    <h1>{!!__('lp/lp_menu.title_reqatc')!!}</h1>
   </div>
 </section>
 @endsection

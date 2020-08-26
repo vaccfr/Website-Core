@@ -57,5 +57,7 @@ return [
   // Landing Page Main Controller
   'contact_success' => 'Votre question a été envoyée avec succès. Nous vous répondrons dès que possible.',
   'atc_req_fields_error' => 'Une erreur est survenue. Verifiez les données du formulaire.',
-  'atcreq_success' => 'Votre question a été envoyée avec succès. Nous vous répondrons dès que possible.',
+  'atcreq_success' => 'Votre requête a été envoyée avec succès. Nous vous répondrons dès que possible.',
+  'feedback_success' => 'Votre feedback a été envoyé avec succès. Merci pour votre aide!',
+
 ];

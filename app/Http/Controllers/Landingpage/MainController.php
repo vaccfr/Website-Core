@@ -8,6 +8,7 @@ use App\Models\ATC\ATCRequest;
 use App\Models\ATC\Booking;
 use App\Models\General\ContactForm;
 use App\Models\General\Event;
+use App\Models\General\FeedbackForm;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -73,7 +74,35 @@ class MainController extends Controller
 
     public function feedback()
     {
-        return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
+        return view('landingpage.contact.feedback');
+        // return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
+    }
+
+    public function feedbackForm(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'cid' => ['required'],
+            'controller_cid' => ['required'],
+            'date' => ['required'],
+            'message' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            dd($validator->errors());
+            return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
+        }
+
+        $newID = (new Snowflake)->id();
+        FeedbackForm::create([
+            'id' => $newID,
+            'name' => request('name'),
+            'vatsim_id' => request('cid'),
+            'controller_cid' => request('controller_cid'),
+            'message' => request('message'),
+        ]);
+
+        return redirect()->route('landingpage.home.contact', app()->getLocale())->with('pop-success', trans('app/alerts.feedback_success'));
     }
 
     public function contact()

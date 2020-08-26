@@ -40,6 +40,7 @@ Route::group([
         Route::get('/visiting', 'Landingpage\MainController@visitingATC')->name('landingpage.atc.visiting');
     });
     Route::get('/feedback', 'Landingpage\MainController@feedback')->name('landingpage.home.feedback');
+    Route::post('/feedback/submit', 'Landingpage\MainController@feedbackForm')->middleware('auth:web')->name('landingpage.home.feedback.submit');
     Route::get('/contact', 'Landingpage\MainController@contact')->name('landingpage.home.contact');
     Route::post('/contact/submit', 'Landingpage\MainController@contactForm')->middleware('auth:web')->name('landingpage.home.contact.submit');
     Route::get('/requestatc', 'Landingpage\MainController@reqatc')->name('landingpage.home.reqatc');

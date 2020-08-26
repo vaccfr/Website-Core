@@ -25,11 +25,17 @@ return [
   'contact_us' => 'Contactez-nous',
   'req_atc' => 'Requêtes ATC',
 
-  'warning_contact' => 'Pour éviter toutes usurpations d\'identité et pour garantir la sécurité de nos membres et vous,<br>
+  'title_contact' => 'Contactez-nous',
+  'warning_contact' => 'Pour éviter toutes usurpations d\'identité et pour garantir votre sécurité et celle de nos membres,<br>
   vous devez être authentifié afin de soumettre une demande de contact.<br>
   L\'authentification est simple et se fait avec le portail sécurisé du SSO VATSIM',
-  'warning_reqatc' => 'Pour éviter toutes usurpations d\'identité et pour garantir la sécurité de nos membres et vous,<br>
+  'title_reqatc' => 'Requête ATC',
+  'warning_reqatc' => 'Pour éviter toutes usurpations d\'identité et pour garantir votre sécurité et celle de nos membres,<br>
   vous devez être authentifié afin de soumettre une requête ATC.<br>
+  L\'authentification est simple et se fait avec le portail sécurisé du SSO VATSIM',
+  'title_feedback' => 'Feedback ATC',
+  'warning_feedback' => 'Pour éviter toutes usurpations d\'identité et pour garantir votre sécurité et celle de nos membres,<br>
+  vous devez être authentifié afin de soumettre un feedback.<br>
   L\'authentification est simple et se fait avec le portail sécurisé du SSO VATSIM',
 
   'login_w_sso' => 'M\'authentifier avec le SSO',

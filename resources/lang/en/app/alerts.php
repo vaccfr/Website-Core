@@ -58,4 +58,5 @@ return [
   'contact_success' => 'Your question was submitted successfully. We will get back to you as soon as we can.',
   'atc_req_fields_error' => 'An error occured. Make sure you filled all the fields properly.',
   'atcreq_success' => 'Your request was submitted successfully. We will get back to you as soon as we can.',
+  'feedback_success' => 'Your feedback was submitted successfully. Thank you for your help!',
 ];
