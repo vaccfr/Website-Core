@@ -27,6 +27,9 @@ Route::get('/discord', function() {
 Route::get('/ts3', function() {
     return redirect('ts3server://www.vatfrance.org/');
 })->name('ts3.invite');
+Route::get('/pilotbrief', function() {
+    return redirect()->route('landingpage.pilot.charts', app()->getLocale());
+})->name('redirect.pilotbrief');
 
 // Landing page routes
 Route::group([
@@ -34,6 +37,11 @@ Route::group([
     'prefix' => '{locale}',
 ], function() {
     Route::get('/', 'Landingpage\MainController@index')->name('landingpage.home');
+    Route::group(['prefix' => '/pilot'], function() {
+        Route::get('/', function() {return redirect()->route('landingpage.pilot.charts', app()->getLocale());});
+        Route::get('/charts', 'Landingpage\PilotChartsController@index')->name('landingpage.pilot.charts');
+        // Route::get('/training', 'Landingpage\PilotChartsController@trainingATC')->name('landingpage.pilot.training');
+    });
     Route::group(['prefix' => '/atc'], function() {
         Route::get('/', function() {return redirect()->route('landingpage.atc.training', app()->getLocale());});
         Route::get('/training', 'Landingpage\MainController@trainingATC')->name('landingpage.atc.training');

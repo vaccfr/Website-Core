@@ -94,11 +94,6 @@ td {
   border: 0;
 }
 
-.table-charts {
-  width: 50%;
-  margin: 0 auto;
-}
-
 .position {
   color: #000000;
 }
@@ -198,7 +193,45 @@ header.masthead {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  text-align: center;
+}
+
+.animated_bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .animated_bg__video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .animated_bg__video {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+.masthead-container {
+  position:absolute;
+  bottom: 50px;
+}
+
+h1.masthead-heading, h2.masthead-subheading {
+  width: fit-content;
+  background-size: 2px 2px;
+  padding: 2px;
+  background-image: /*linear-gradient(to right, rgba(192, 192, 192, 0.75), rgba(192, 192, 192, 0.75)),*/
+  linear-gradient(to right, black 50%, rgba(255, 255, 255, 0)),
+  linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0));
+background-blend-mode: normal, difference, normal;
+background-size: 2px 2px;
+
 }
 
 header.masthead-50 {
@@ -558,90 +591,4 @@ time {
     border-width: 8px 16px 8px 0;
     border-color: transparent #3552f2 transparent transparent;
   }
-}
-
-.formsearch {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 1s;
-  width: 50px;
-  height: 50px;
-  background: white;
-  box-sizing: border-box;
-  border-radius: 25px;
-  border: 4px solid white;
-  padding: 5px;
-}
-
-.inputsearch {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 42.5px;
-  line-height: 30px;
-  outline: 0;
-  border: 0;
-  display: none;
-  font-size: 1em;
-  border-radius: 20px;
-  padding: 0 20px;
-}
-
-.fa {
-  box-sizing: border-box;
-  padding: 10px;
-  width: 42.5px;
-  height: 42.5px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 50%;
-  color: #07051a;
-  text-align: center;
-  font-size: 1.2em;
-  transition: all 1s;
-}
-
-.formsearch:hover {
-  width: 200px;
-  cursor: pointer;
-}
-
-.formsearch:hover input {
-  display: block;
-}
-
-.formsearch:hover .fa {
-  background: #07051a;
-  color: white;
-}
-
-.chartcard {
-  width: 70%;
-  height: 100px;
-  background: #fff;
-  margin: 40px auto;
-}
-
-.chartcard h3 {
-  font-size: 2.5vh !important;
-  text-align: center;
-  position: relative;
-  top: 3vh;
-}
-
-.shadow {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.shadow:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.collapse{
-  transition: max-height 0.2s ease-out;
 }

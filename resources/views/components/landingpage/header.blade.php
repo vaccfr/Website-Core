@@ -58,7 +58,7 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <a class="dropdown-item" href="#">{{__('lp/lp_menu.charts')}}</a>
+            <a class="dropdown-item" href="{{ route('landingpage.pilot.charts', app()->getLocale()) }}">{{__('lp/lp_menu.charts')}}</a>
             <a class="dropdown-item" href="#">{{__('lp/lp_menu.pilot_tr')}}</a>
           </div>
         </li>
