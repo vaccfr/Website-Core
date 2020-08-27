@@ -7,6 +7,7 @@ use App\Models\ATC\Airport;
 use App\Models\ATC\ATCRosterMember;
 use App\Models\ATC\Mentor;
 use App\Models\ATC\SoloApproval;
+use App\Models\Users\User;
 use Illuminate\Http\Request;
 
 class ATCPagesController extends Controller
@@ -14,6 +15,12 @@ class ATCPagesController extends Controller
     public function atcRoster()
     {
         $rosterMembers = ATCRosterMember::orderBy('vatsim_id', 'ASC')
+        ->where('visiting', false)
+        ->with('user')
+        ->get();
+
+        $visitingAtc = ATCRosterMember::orderBy('vatsim_id', 'ASC')
+        ->where('visiting', true)
         ->with('user')
         ->get();
 
@@ -30,6 +37,7 @@ class ATCPagesController extends Controller
             'atc_roster' => $rosterMembers,
             'mentors' => $mentors,
             'soloApproved' => $soloApproved,
+            'visiting_roster' => $visitingAtc,
         ]);
     }
 

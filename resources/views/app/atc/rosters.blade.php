@@ -54,7 +54,7 @@
                 aria-controls="solo-approval"
                 aria-selected="false">{{__('app/atc/rosters.solo_tab')}}</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a
                 class="nav-link" 
                 id="domtom-approval-tab"
@@ -63,15 +63,15 @@
                 role="tab"
                 aria-controls="domtom-approval"
                 aria-selected="false">{{__('app/atc/rosters.domtom_tab')}}</a>
-            </li>
+            </li> --}}
             <li class="nav-item">
               <a
                 class="nav-link" 
                 id="visiting-approval-tab"
                 data-toggle="pill"
-                href="#domtom-approval"
+                href="#visiting-approval"
                 role="tab"
-                aria-controls="domtom-approval"
+                aria-controls="visiting-approval"
                 aria-selected="false">{{__('app/atc/rosters.visiting_tab')}}</a>
             </li>
           </ul>
@@ -300,11 +300,45 @@
                 </tbody>
               </table>
             </div>
-            <div class="tab-pane fade" id="domtom-approval" role="tabpanel" aria-labelledby="domtom-approval-tab">
+            {{-- <div class="tab-pane fade" id="domtom-approval" role="tabpanel" aria-labelledby="domtom-approval-tab">
                Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis. 
-            </div>
+            </div> --}}
             <div class="tab-pane fade" id="visiting-approval" role="tabpanel" aria-labelledby="visiting-approval-tab">
-              Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis. 
+              <table
+                id="atc_roster"
+                class="table table-bordered table-hover"
+                data-order='[[ 1, "desc" ]]'>
+                <thead>
+                <tr>
+                  <th>{{__('app/atc/rosters.cid')}}</th>
+                  <th>{{__('app/atc/rosters.name')}}</th>
+                  <th>{{__('app/admin/dashboard.region')}}</th>
+                  <th>{{__('app/atc/rosters.rating')}}</th>
+                  <th>{{__('app/atc/rosters.approved')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach ($visiting_roster as $atc)
+                    <tr>
+                      <td>{{ $atc['user']['vatsim_id'] }}</td>
+                      @if ($atc['user']['hide_details'] == false)
+                      <td>{{ $atc['user']['fname'] }} {{ $atc['user']['lname'] }}</td>
+                      @else
+                      <td><i>{{__('app/atc/rosters.hidden')}}</i></td>
+                      @endif
+                      <td>{{ $atc['user']['subdiv_id'] }} ({{ $atc['user']['subdiv_name'] }})</td>
+                      <td>{{ $atc['user']['atc_rating_short'] }}</td>
+                      <td>
+                        @if ($atc['approved_flag'] == true)
+                        <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
+                        @else
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
+                        @endif
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
            </div>
           </div>
         </div>

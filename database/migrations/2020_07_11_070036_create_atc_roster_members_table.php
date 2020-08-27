@@ -20,6 +20,7 @@ class CreateATCRosterMembersTable extends Migration
             $table->string('lname');
             $table->string('rating');
             $table->string('rating_short');
+            $table->boolean('visiting')->default(false);
             $table->boolean('approved_flag');
             $table->boolean('appr_lfpg_twr')->default(false);
             $table->boolean('appr_lfpg_app')->default(false);

@@ -10,7 +10,7 @@ class ATCRosterMember extends Model
     protected $table = "atc_roster_members";
 
     protected $fillable = [
-        'id', 'vatsim_id', 'fname', 'lname', 'rating', 'rating_short', 'approved_flag',
+        'id', 'vatsim_id', 'fname', 'lname', 'rating', 'rating_short', 'visiting', 'approved_flag',
         'appr_lfpg_twr', 'appr_lfpg_app', 'appr_lfmn_twr', 'appr_lfmn_app', 
     ];
 

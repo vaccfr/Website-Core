@@ -108,7 +108,18 @@ class AdminController extends Controller
                     $userATCRoster = ATCRosterMember::where('id', $request->get('userid'))->first();
                     if (!is_null($userATCRoster)) {
                         $userATCRoster->approved_flag = true;
+                        $userATCRoster->visiting = false;
                         $userATCRoster->save();
+                    } else {
+                        ATCRosterMember::create([
+                            'id' => $currentUser->id,
+                            'vatsim_id' => $currentUser->vatsim_id,
+                            'fname' => $currentUser->fname,
+                            'lname' => $currentUser->lname,
+                            'rating' => $currentUser->atc_rating,
+                            'rating_short' => $currentUser->atc_rating_short,
+                            'approved_flag' => true,
+                        ]);
                     }
                 }
                 break;
@@ -137,8 +148,20 @@ class AdminController extends Controller
                     $currentUser->save();
                     $userATCRoster = ATCRosterMember::where('id', $request->get('userid'))->first();
                     if (!is_null($userATCRoster)) {
+                        $userATCRoster->visiting = true;
                         $userATCRoster->approved_flag = true;
                         $userATCRoster->save();
+                    } else {
+                        ATCRosterMember::create([
+                            'id' => $currentUser->id,
+                            'vatsim_id' => $currentUser->vatsim_id,
+                            'fname' => $currentUser->fname,
+                            'lname' => $currentUser->lname,
+                            'rating' => $currentUser->atc_rating,
+                            'rating_short' => $currentUser->atc_rating_short,
+                            'visiting' => true,
+                            'approved_flag' => true,
+                        ]);
                     }
                 }
                 break;
