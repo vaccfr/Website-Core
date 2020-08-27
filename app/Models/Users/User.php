@@ -113,6 +113,15 @@ class User extends Authenticatable
     public function isApprovedAtc()
     {
         $rep = false;
+        if ($this->isApprovedRegularAtc() == true || $this->isApprovedVisitingAtc() == true) {
+            $rep = true;
+        }
+        return $rep;
+    }
+
+    public function isApprovedRegularAtc()
+    {
+        $rep = false;
         if ($this->is_approved_atc == true) {
             $rep = true;
         }
