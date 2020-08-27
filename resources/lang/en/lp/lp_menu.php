@@ -34,7 +34,9 @@ return [
   'warning_reqatc' => 'To avoid any identity theft and to keep you and our users safe,<br>
   you must be authenticated to submit an ATC request.<br>
   Authentication is simple and uses the official VATSIM SSO.',
+
   'title_feedback' => 'Submit feedback',
+  'subhead_feedback' => 'Leave your feedback or appreciation about your time flying with us',
   'warning_feedback' => 'To avoid any identity theft and to keep you and our users safe,<br>
   you must be authenticated to submit an ATC feedback.<br>
   Authentication is simple and uses the official VATSIM SSO.',

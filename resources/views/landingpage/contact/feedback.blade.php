@@ -20,6 +20,7 @@
 <section class="intro">
   <div class="container_ATC">
     <h1>{!!__('lp/lp_menu.title_feedback')!!} &darr;</h1>
+    <h6>{!!__('lp/lp_menu.subhead_feedback')!!}</h6>
   </div>
 </section>
 @endsection

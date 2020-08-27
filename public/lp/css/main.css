@@ -678,3 +678,13 @@ time {
 .collapse{
   transition: max-height 0.2s ease-out;
 }
+
+.lol {
+  color: yellow;
+  font-size: 1rem;
+}
+
+.lol:hover {
+  color: whatever;
+  font-size: 1rem;
+}

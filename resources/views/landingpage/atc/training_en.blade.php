@@ -19,7 +19,7 @@
       <div class="ATC_TEXT">
         <time>First Steps</time>
         To start your ATC Training with VATFrance, you must first create a VATSIM account.
-        You can then use this account to <a href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" target="_blank" rel="noopener noreferrer">
+        You can then use this account to <a class="lol" href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" target="_blank" rel="noopener noreferrer">
           log into your account</a> and request your mentoring.
       </div>
     </li>
@@ -81,13 +81,13 @@
       <li>
         <div class="ATC_TEXT">
           <time>Are you ready to take on the challenge?</time>
-          <a href="https://www.vatsim.net/join" target="_blank">Create your account</a>  today with VATSIM, then 
-          <a href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" target="_blank" rel="noopener noreferrer">
+          <a class="lol" href="https://www.vatsim.net/join" target="_blank">Create your account</a>  today with VATSIM, then 
+          <a class="lol" href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" target="_blank" rel="noopener noreferrer">
             click here
           </a> to connect to your VATFrance account! <br>
           Other links: <br>
-          - Our <a href="{{ route('discord.invite') }}" target="_blank">Discord Server</a> <br>
-          - Our <a href="{{ route('ts3.invite') }}">Teamspeak3 Server</a>
+          - Our <a class="lol" href="{{ route('discord.invite') }}" target="_blank">Discord Server</a> <br>
+          - Our <a class="lol" href="{{ route('ts3.invite') }}">Teamspeak3 Server</a>
         </div>
       </li>
   </ul>

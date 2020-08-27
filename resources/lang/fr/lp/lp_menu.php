@@ -29,11 +29,14 @@ return [
   'warning_contact' => 'Pour éviter toutes usurpations d\'identité et pour garantir votre sécurité et celle de nos membres,<br>
   vous devez être authentifié afin de soumettre une demande de contact.<br>
   L\'authentification est simple et se fait avec le portail sécurisé du SSO VATSIM',
+
   'title_reqatc' => 'Requête ATC',
   'warning_reqatc' => 'Pour éviter toutes usurpations d\'identité et pour garantir votre sécurité et celle de nos membres,<br>
   vous devez être authentifié afin de soumettre une requête ATC.<br>
   L\'authentification est simple et se fait avec le portail sécurisé du SSO VATSIM',
+
   'title_feedback' => 'Feedback ATC',
+  'subhead_feedback' => 'Laissez-nous votre ressenti ou vos appréciations sur votre vol',
   'warning_feedback' => 'Pour éviter toutes usurpations d\'identité et pour garantir votre sécurité et celle de nos membres,<br>
   vous devez être authentifié afin de soumettre un feedback.<br>
   L\'authentification est simple et se fait avec le portail sécurisé du SSO VATSIM',
