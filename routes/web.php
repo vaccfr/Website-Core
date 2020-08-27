@@ -40,7 +40,7 @@ Route::group([
     Route::group(['prefix' => '/pilot'], function() {
         Route::get('/', function() {return redirect()->route('landingpage.pilot.charts', app()->getLocale());});
         Route::get('/charts', 'Landingpage\PilotChartsController@index')->name('landingpage.pilot.charts');
-        // Route::get('/training', 'Landingpage\PilotChartsController@trainingATC')->name('landingpage.pilot.training');
+        Route::get('/training', 'Landingpage\MainController@trainingPilote')->name('landingpage.pilot.training');
     });
     Route::group(['prefix' => '/atc'], function() {
         Route::get('/', function() {return redirect()->route('landingpage.atc.training', app()->getLocale());});

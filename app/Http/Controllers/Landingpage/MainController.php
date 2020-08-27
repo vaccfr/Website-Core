@@ -69,6 +69,11 @@ class MainController extends Controller
         ]);
     }
 
+    public function trainingPilote()
+    {
+        return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
+    }
+
     public function trainingATC()
     {
         return view('landingpage.atc.training_'.app()->getLocale());

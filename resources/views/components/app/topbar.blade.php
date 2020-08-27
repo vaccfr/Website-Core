@@ -45,6 +45,11 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
+      <a href="{{ route('discord.invite', app()->getLocale()) }}" target="_blank" class="nav-link">
+        Discord
+      </a>
+    </li>
+    <li class="nav-item">
       <a href="{{ route('landingpage.home', app()->getLocale()) }}" class="nav-link">
         {{__('app/app_menus.return_lp')}}
       </a>

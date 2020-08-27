@@ -166,12 +166,12 @@
             <p>Coming soon!</p>
           </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="{{ route('app.pilot.training', app()->getLocale()) }}" class="nav-link @if (Route::is('app.pilot.training')) active @endif">
             <i class="nav-icon fa fa-graduation-cap"></i>
             <p>{{__('app/app_menus.pilot_training')}}</p>
           </a>
-        </li>
+        </li> --}}
         {{-- <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-paper-plane"></i>
