@@ -42,7 +42,13 @@
             <p>{{__('app/app_menus.stats')}}</p>
           </a>
         </li>
-        <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/general')) menu-open @endif">
+        <li class="nav-item">
+          <a href="{{ route('app.general.stafforg', app()->getLocale()) }}" class="nav-link @if (Route::is('app.general.stafforg')) active @endif">
+            <i class="nav-icon fas fa-info"></i>
+            <p>{{__('app/app_menus.staff_org')}}</p>
+          </a>
+        </li>
+        {{-- <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/general')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
             <p>
@@ -70,7 +76,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
 
         {{-- ATC Section of the menu --}}
         @if (strpos(Auth::user()->account_type, 'ATC') !== False)
