@@ -21,6 +21,7 @@ return [
 
   // Form fields
   'approve_atc' => 'Approved ATC',
+  'approve_visiting_atc' => 'Approved Visiting ATC',
   'mod_usertype' => 'Modify User Type',
 
   'make_staff' => 'Make Staff',

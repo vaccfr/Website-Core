@@ -8,6 +8,6 @@ return [
   'stats' => 'Statistics',
   'upcoming_events' => 'Upcoming Events',
   'welcome' => 'Welcome',
-  'vacc_director' => 'VATFrance Division Director',
+  'vacc_director' => 'French vACC Director',
   'atc_bookings' => 'ATC Bookings',
 ];

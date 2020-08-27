@@ -21,6 +21,7 @@ return [
 
   // Form fields
   'approve_atc' => 'ATC Approuvé',
+  'approve_visiting_atc' => 'Approved Visiting ATC',
   'mod_usertype' => 'Modifier type de compte',
 
   'make_staff' => 'Donner autorisations staff',

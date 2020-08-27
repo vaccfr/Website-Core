@@ -91,12 +91,21 @@
               @csrf
               <div class="card-body">
                 @if (strpos($user->account_type, 'ATC') !== False)
-                  <div class="form-group">
-                    <div class="custom-control custom-switch custom-switch-on-success">
-                      <input type="checkbox" class="custom-control-input" id="approved-atc-switch" name="approveatc" @if ($user->isApprovedAtc() == true) checked @endif>
-                      <label class="custom-control-label" for="approved-atc-switch">{{__('app/admin/useredit.approve_atc')}}</label>
-                    </div>
+                @if ($user->subdiv_id !== 'FRA')
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="approved-visiting-atc-switch" name="approvevisitingatc" @if ($user->isApprovedVisitingAtc() == true) checked @endif>
+                    <label class="custom-control-label" for="approved-visiting-atc-switch">{{__('app/admin/useredit.approve_visiting_atc')}}</label>
                   </div>
+                </div>
+                @else
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="approved-atc-switch" name="approveatc" @if ($user->isApprovedAtc() == true) checked @endif>
+                    <label class="custom-control-label" for="approved-atc-switch">{{__('app/admin/useredit.approve_atc')}}</label>
+                  </div>
+                </div>
+                @endif                
                 @endif
                 <div class="form-group">
                   <label>{{__('app/admin/useredit.mod_usertype')}}</label>

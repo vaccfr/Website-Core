@@ -8,6 +8,6 @@ return [
   'stats' => 'Statistiques',
   'upcoming_events' => 'Évènements à venir',
   'welcome' => 'Bienvenue',
-  'vacc_director' => 'Directeur de la Division VATFrance',
+  'vacc_director' => 'Directeur vACC France',
   'atc_bookings' => 'Bookings ATC',
 ];

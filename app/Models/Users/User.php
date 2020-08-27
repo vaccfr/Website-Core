@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'vatsim_id', 'fname', 'lname', 'email', 'custom_email', 'account_type', 'is_approved_atc',
+        'id', 'vatsim_id', 'fname', 'lname', 'email', 'custom_email', 'account_type', 'is_approved_atc', 'is_approved_visiting_atc',
         'atc_rating', 'atc_rating_short', 'atc_rating_long', 'pilot_rating', 
         'division_id', 'division_name', 'region_id', 'region_name', 'subdiv_id', 'subdiv_name',
         'is_staff', 'is_betatester', 'linked_discord', 'hide_details', 'last_login', 'login_ip',
@@ -114,6 +114,15 @@ class User extends Authenticatable
     {
         $rep = false;
         if ($this->is_approved_atc == true) {
+            $rep = true;
+        }
+        return $rep;
+    }
+
+    public function isApprovedVisitingAtc()
+    {
+        $rep = false;
+        if ($this->is_approved_visiting_atc == true) {
             $rep = true;
         }
         return $rep;

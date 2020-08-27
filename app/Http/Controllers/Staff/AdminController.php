@@ -101,8 +101,39 @@ class AdminController extends Controller
                 break;
             
             case false:
-                if (!is_null($request->get('approveatc'))) {
+                if (!is_null($request->get('approveatc')) && $currentUser->subdiv_id == 'FRA') {
                     $currentUser->is_approved_atc = true;
+                    $currentUser->is_approved_visiting_atc = false;
+                    $currentUser->save();
+                    $userATCRoster = ATCRosterMember::where('id', $request->get('userid'))->first();
+                    if (!is_null($userATCRoster)) {
+                        $userATCRoster->approved_flag = true;
+                        $userATCRoster->save();
+                    }
+                }
+                break;
+            
+            default:
+                break;
+        }
+
+        switch ($currentUser->is_approved_visiting_atc) {
+            case true:
+                if (is_null($request->get('approvevisitingatc'))) {
+                    $currentUser->is_approved_visiting_atc = false;
+                    $currentUser->save();
+                    $userATCRoster = ATCRosterMember::where('id', $request->get('userid'))->first();
+                    if (!is_null($userATCRoster)) {
+                        $userATCRoster->approved_flag = false;
+                        $userATCRoster->save();
+                    }
+                }
+                break;
+            
+            case false:
+                if (!is_null($request->get('approvevisitingatc')) && $currentUser->subdiv_id != 'FRA') {
+                    $currentUser->is_approved_visiting_atc = true;
+                    $currentUser->is_approved_atc = false;
                     $currentUser->save();
                     $userATCRoster = ATCRosterMember::where('id', $request->get('userid'))->first();
                     if (!is_null($userATCRoster)) {

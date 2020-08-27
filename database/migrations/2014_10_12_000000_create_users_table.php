@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('custom_email')->nullable();
             $table->string('account_type')->default('Guest');
             $table->boolean('is_approved_atc')->default(false);
+            $table->boolean('is_approved_visiting_atc')->default(false);
             $table->string('atc_rating');
             $table->string('atc_rating_short');
             $table->string('atc_rating_long');
