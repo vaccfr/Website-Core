@@ -182,6 +182,8 @@ Route::group([
                     Route::get('/', 'Staff\AdminController@index')->name('app.staff.admin');
                     Route::get('/edit', 'Staff\AdminController@editUser')->name('app.staff.admin.edit');
                     Route::get('/atcadmin', 'Staff\AdminController@atcAdmin')->name('app.staff.atcadmin');
+                    Route::post('/atcadmin/validate', 'Staff\AdminController@validateATCReq')->name('app.staff.atcadmin.v');
+                    Route::post('/atcadmin/refuse', 'Staff\AdminController@refuseATCReq')->name('app.staff.atcadmin.r');
 
                     Route::post('/edit/details', 'Staff\AdminController@editUserFormDetails')->name('app.staff.admin.edit.details');
                     Route::post('/edit/atcmentor', 'Staff\AdminController@editUserAtcMentor')->name('app.staff.admin.edit.atcmentor');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Staff;
+use App\Models\ATC\ATCRequest;
 use App\Models\ATC\ATCRosterMember;
 use App\Models\ATC\ATCStudent;
 use App\Models\ATC\Booking;
@@ -426,13 +427,55 @@ class AdminController extends Controller
             $query->select('id', 'vatsim_id', 'fname', 'lname');
         }])
         ->get();
+        $atcrequests = ATCRequest::all();
         return view('app.staff.atc_admin', [
             'rosterCount' => count($roster),
             'approvedRosterCount' => count($roster->where('approved_flag', true)),
             'roster' => $roster,
             'soloApproved' => $soloApproved,
             'apps' => $applications,
+            'atcrequests' => $atcrequests,
         ]);
+    }
+
+    public function validateATCReq(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'reqid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('toast-error', 'Error.');
+        }
+
+        $req = ATCRequest::where('id', request('reqid'))->first();
+        if (is_null($req)) {
+            return redirect()->back()->with('toast-error', 'Error.');
+        }
+        $req->assigned = true;
+        $req->save();
+
+        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', 'Validated');
+    }
+
+    public function refuseATCReq(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'reqid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('toast-error', 'Error.');
+        }
+
+        $req = ATCRequest::where('id', request('reqid'))->first();
+        if (is_null($req)) {
+            return redirect()->back()->with('toast-error', 'Error.');
+        }
+        $req->assigned = false;
+        $req->save();
+
+        return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', 'Validated');
     }
 
     public function approveSpecialPosition(Request $request)

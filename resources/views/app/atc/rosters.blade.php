@@ -305,7 +305,7 @@
             </div> --}}
             <div class="tab-pane fade" id="visiting-approval" role="tabpanel" aria-labelledby="visiting-approval-tab">
               <table
-                id="atc_roster"
+                id="visiting_roster"
                 class="table table-bordered table-hover"
                 data-order='[[ 1, "desc" ]]'>
                 <thead>
@@ -362,6 +362,14 @@
     "info": true,
   });
   $('#atc_mentors').DataTable({
+    "paging": false,
+    "lengthChange": true,
+    "searching": true,
+    "ordering": true,
+    "autoWidth": true,
+    "info": true,
+  });
+  $('#visiting_roster').DataTable({
     "paging": false,
     "lengthChange": true,
     "searching": true,
