@@ -172,15 +172,6 @@
       )
     </script>
   @endif
-    
-  @if (App::environment() == 'livedev')
-  <script lang="javascript">
-      Toast.fire({
-        icon: 'info',
-        title: 'This website is under active development.'
-      });
-  </script>
-  @endif
   @include('cookieConsent::index')
   <script>
     $(document).ready(function () {
