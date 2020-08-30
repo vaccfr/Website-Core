@@ -68,7 +68,7 @@ class BookingController extends Controller
         ->get();
 
         $myBookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)
-        ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
+        ->whereDate('end_date', '>=', Carbon::now()->format('Y-m-d'))
         ->get();
 
         $mentoring = MentoringRequest::where('student_id', auth()->user()->id)->with('mentorUser')->first();
