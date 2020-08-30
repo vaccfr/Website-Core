@@ -79,7 +79,7 @@
       </style>
   </head>
 
-  <body>
+  <body onload="startTime()">
     @include('components.landingpage.header')
 
     @yield('page-masthead')

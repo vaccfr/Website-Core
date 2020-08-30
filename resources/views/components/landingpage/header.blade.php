@@ -160,6 +160,28 @@
             @endforeach
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">
+            <span id="utc_time"></span> UTC
+          </a>
+        </li>
+        <script>
+          // Local and UTC time scripts
+          function startTime() {
+            var today = new Date();
+            var uh = today.getUTCHours();
+            var um = today.getUTCMinutes();
+            var us = today.getUTCSeconds();
+            um = checkTime(um);
+            us = checkTime(us);
+            document.getElementById('utc_time').innerHTML = uh + ":" + um + ":" + us;
+            var t = setTimeout(startTime, 500);
+          };
+          function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+          };
+        </script>
       </ul>
     </div>
   </div>
