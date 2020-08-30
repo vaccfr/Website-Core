@@ -48,7 +48,7 @@
                 <h3>{{__('app/atc/atc_allbookings.bookings_for', ['DATE' => $bookingDate[$loop->index]])}}</h3>
                 <table
                   id="booking_table_{{ $loop->index }}"
-                  class="table table-bordered table-hover mt-3"
+                  class="table table-hover mt-3"
                   data-order='[[ 2, "asc" ]]'>
                   <thead>
                   <tr>

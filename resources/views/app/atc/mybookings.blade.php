@@ -81,6 +81,42 @@
             </div>
           </form>
         </div>
+        <div class="card card-dark elevation-3">
+          <div class="card-header">
+            <h3 class="card-title">Bookings</h3>
+          </div>
+          <div class="card-body">
+            <table
+              id="bookings_today"
+              class="table table-hover mt-3"
+              data-order='[[ 2, "asc" ]]'>
+              <thead>
+              <tr>
+                <th>{{__('app/atc/atc_allbookings.position')}}</th>
+                <th>{{__('app/atc/atc_allbookings.name')}}</th>
+                <th>{{__('app/atc/atc_allbookings.hours')}}</th>
+                <th>{{__('app/atc/atc_allbookings.rating')}}</th>
+                <th>{{__('app/atc/atc_allbookings.mentoring')}}</th>
+              </tr>
+              </thead>
+              <tbody>
+                @foreach ($bookingToday as $b)
+                  <tr>
+                    <td>{{$b['position']}}</td>
+                    <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                    <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i')}}z - {{date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i')}}z</td>
+                    <td>{{$b['user']['atc_rating_short']}}</td>
+                    <td>@if ($b['training'] == true)
+                      <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
+                    @else
+                      <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
+                    @endif</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <div class="col-md-6">
         <div class="card card-dark elevation-3">
@@ -91,7 +127,7 @@
           <div class="card-body">
             <table
               id="atc_sessions_table"
-              class="table table-bordered table-hover"
+              class="table table-hover"
               data-order='[[ 1, "asc" ]]'>
               <thead>
               <tr>
@@ -138,12 +174,28 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
   <script>
     $('#atc_sessions_table').DataTable({
-      "paging": true,
+      "paging": false,
+      "info": false,
       "lengthChange": false,
       "searching": false,
       "ordering": false,
       "autoWidth": false,
-      "scrollY": 400,
+      "scrollY": 550,
+      "language": {
+        "emptyTable": "Pas de bookings trouvés"
+      }
+    });
+    $('#bookings_today').DataTable({
+      "paging": false,
+      "info": false,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": false,
+      "autoWidth": false,
+      "scrollY": 200,
+      "language": {
+        "emptyTable": "Pas de bookings trouvés"
+      }
     });
   </script>
   <script>

@@ -60,6 +60,10 @@ class BookingController extends Controller
         }])
         ->get();
 
+        $bookingToday = Booking::whereDate('start_date', Carbon::now()->format('Y-m-d'))
+        ->with('user')
+        ->get();
+
         $myBookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)
         ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
         ->get();
@@ -78,6 +82,7 @@ class BookingController extends Controller
             'myBookings' => $myBookings,
             'isMentored' => $isMentored,
             'mentorName' => $mentorName,
+            'bookingToday' => $bookingToday,
             ]);
     }
 
@@ -103,6 +108,34 @@ class BookingController extends Controller
         } else {
             $hasMentoring = false;
             $hasMentoringVB = 0;
+        }
+        $bookingOnDay = Booking::whereDate('start_date', date_create_from_format('d.m.Y H:i', request('bookingdate').' '.request('starttime'))->format('Y-m-d'))->get();
+        $deny = false;
+        $startHour = date_create_from_format('H:i', request('starttime'))->format('H');
+        $startMin = date_create_from_format('H:i', request('starttime'))->format('i');
+        $endHour = date_create_from_format('H:i', request('endtime'))->format('H');
+        $endMin = date_create_from_format('H:i', request('endtime'))->format('i');
+        foreach ($bookingOnDay as $i => $b) {
+            if ($b['position'] == request('positionselect')) {
+                $bStartHour = date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H');
+                $bStartMin = date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('i');
+                $bEndMin = date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('i');
+                $bEndHour = date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H');
+
+                if ($startHour >= $bStartHour && $startHour <= $bEndHour) {
+                    if ($startMin >= $bStartMin && $startMin <= $bEndMin) {
+                        $deny = true;
+                    }
+                }
+                if ($endHour <= $bEndHour && $endHour >= $bStartHour) {
+                    if ($endMin >= $bEndMin && $endMin <= $bStartMin) {
+                        $deny = true;
+                    }
+                }
+            }
+        }
+        if ($deny == true) {
+            return redirect()->back()->with('pop-error', 'Cette position est déjà prise à cette date.');
         }
 
         $startTimestamp = date_create_from_format('d.m.Y H:i', request('bookingdate').' '.request('starttime'))->format('Y-m-d H:i:s');
