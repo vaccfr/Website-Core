@@ -112,7 +112,7 @@ class EventsManagerController extends Controller
         if (is_null($event)) {
             return redirect()->back()->with('toast-error', 'Event was not found and could not be deleted');
         }
-
+        $res = app(DiscordAnnouncer::class)->delEventAnnouncement($event->discord_msg_id);
         $event->delete();
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event deleted');
     }
@@ -215,7 +215,7 @@ class EventsManagerController extends Controller
         if ($res == false) {
             return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-error', 'Error occured deleting');
         } else {
-            return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Delete message');
+            return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Deleted message');
         }
     }
 

@@ -94,6 +94,17 @@
               </tr>
               <script>
                 $("#post_{{$n['id']}}").click(function() {
+                  if ("{{$n['discord_msg_id']}}" == "") {
+                    $("#selevent_discord").html('<button class="btn btn-success btn-flat float-right" type="button" data-toggle="modal" data-target="#discord">Publier sur Discord</button>');
+                    $("#dform_form").attr('action', '{{ route("app.staff.news.dpub", app()->getLocale()) }}')
+                    $("#dform_id").attr('value', '{{$n["id"]}}');
+                    $("#dform_text").text('Publier sur Discord?');
+                  } else {
+                    $("#selevent_discord").html('<button class="btn btn-warning btn-flat float-right" type="button" data-toggle="modal" data-target="#discord">Supprimer de Discord</button>');
+                    $("#dform_form").attr('action', '{{ route("app.staff.news.ddel", app()->getLocale()) }}')
+                    $("#dform_id").attr('value', '{{$n["id"]}}');
+                    $("#dform_text").text('Supprimer de Discord?');
+                  }
                   $("#selpost_title").text("{{$n['title']}}");
                   $("#selpost_description").html(`{!!$n["content"]!!}`);
                   $("#selpost_author").attr('value', '{{$n["author"]["fname"]}} {{$n["author"]["lname"]}}');
@@ -147,7 +158,25 @@
         </div>
         <div class="card-footer">
           <div id="selpost_editbtn"></div>
+          <div id="selevent_discord"></div>
           <div id="selpost_delbtn"></div>
+        </div>
+      </div>
+      <div class="modal fade" id="discord">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <form id="dform_form" action="" method="post">
+              @csrf
+              <div class="modal-body">
+                <p id="dform_text"></p>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <input type="hidden" name="postid" id="dform_id" value="">
+                <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <div class="modal fade" id="edit_post">

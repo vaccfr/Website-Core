@@ -19,7 +19,7 @@ class DiscordAnnouncer extends Controller
         $discord = new DiscordClient(['token' => config('discordsso.bot_token')]);
         $discord->channel->createMessage([
             'channel.id' => config('discordsso.events_channel'),
-            'content' => '@here',
+            'content' => '@everyone',
             'embed' => [
                 'author' =>[
                     'name' => 'Date: '.$date.' | '.$starttime.'z - '.$endtime.'z',
@@ -62,7 +62,7 @@ class DiscordAnnouncer extends Controller
         $discord->channel->editMessage([
             'channel.id' => config('discordsso.events_channel'),
             'message.id' => (int)$msgid,
-            'content' => '@here',
+            'content' => '@everyone',
             'embed' => [
                 'author' =>[
                     'name' => 'Date: '.$date.' | '.$starttime.'z - '.$endtime.'z',
@@ -101,8 +101,76 @@ class DiscordAnnouncer extends Controller
         }
     }
 
-    public function sendAnnouncement(Request $request)
+    public function sendAnnouncement($title, $content, $author_name, $timestamp)
     {
-        # code...
+        $discord = new DiscordClient(['token' => config('discordsso.bot_token')]);
+        $discord->channel->createMessage([
+            'channel.id' => config('discordsso.announcements_channel'),
+            'content' => '@everyone',
+            'embed' => [
+                'title' => $title,
+                'url' => config('app.url'),
+                'color' => 1,
+                'fields' => [
+                    [
+                        'name' => 'Contenu',
+                        'value' => $content,
+                    ],
+                ],
+                'footer' => [
+                    'text' => 'Auteur • '.$author_name.' | Date de publication',
+                ],
+                "timestamp" => $timestamp,
+            ]
+        ]);
+
+        $msgs = $discord->channel->getChannelMessages([
+            'channel.id' => config('discordsso.announcements_channel'),
+        ]);
+        $msgid = $msgs[0]->id;
+        return $msgid;
+    }
+
+    public function editAnnouncement($msgid, $title, $content, $author_name, $timestamp)
+    {
+        try {
+            $discord = new DiscordClient(['token' => config('discordsso.bot_token')]);
+            $discord->channel->editMessage([
+                'channel.id' => config('discordsso.announcements_channel'),
+                'message.id' => (int)$msgid,
+                'content' => '@everyone',
+                'embed' => [
+                    'title' => $title,
+                    'url' => config('app.url'),
+                    'color' => 1,
+                    'fields' => [
+                        [
+                            'name' => 'Contenu',
+                            'value' => $content,
+                        ],
+                    ],
+                    'footer' => [
+                        'text' => 'Auteur • '.$author_name.' | Date de publication',
+                    ],
+                    "timestamp" => $timestamp,
+                ]
+            ]);
+        } catch (\Throwable $th) {
+            //
+        }
+    }
+
+    public function delAnnouncement($msgid)
+    {
+        try {
+            $discord = new DiscordClient(['token' => config('discordsso.bot_token')]);
+            $discord->channel->deleteMessage([
+                'channel.id' => config('discordsso.announcements_channel'),
+                'message.id' => (int)$msgid,
+            ]);
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }

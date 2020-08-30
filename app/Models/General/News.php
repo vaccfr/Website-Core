@@ -10,7 +10,7 @@ class News extends Model
     protected $table = "news";
 
     protected $fillable = [
-        'id', 'title', 'content', 'published', 'author_id',
+        'id', 'title', 'content', 'published', 'author_id', 'discord_msg_id',
     ];
 
     // Relationships

@@ -19,6 +19,7 @@ class CreateNewsTable extends Migration
             $table->longText('content');
             $table->boolean('published')->default(true);
             $table->bigInteger('author_id');
+            $table->bigInteger('discord_msg_id')->nullable();
             $table->timestamps();
         });
     }

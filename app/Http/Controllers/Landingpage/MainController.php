@@ -44,10 +44,6 @@ class MainController extends Controller
         $onlineATC = app(VatsimDataController::class)->getOnlineATC();
         $livemap = app(VatsimDataController::class)->livemapDataGenerator();
 
-        // $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
-        // ->orderBy('date', 'ASC')
-        // ->get();
-
         $eventList = Event::orderBy('start_date', 'ASC')
         ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
         ->where('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d H:i:s'))
