@@ -180,7 +180,7 @@
       "searching": false,
       "ordering": false,
       "autoWidth": false,
-      "scrollY": 550,
+      "scrollY": 575,
       "language": {
         "emptyTable": "Pas de bookings trouvés"
       }
@@ -192,7 +192,7 @@
       "searching": false,
       "ordering": false,
       "autoWidth": false,
-      "scrollY": 200,
+      "scrollY": 225,
       "language": {
         "emptyTable": "Pas de bookings trouvés"
       }
