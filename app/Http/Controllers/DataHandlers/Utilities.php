@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DataHandlers;
 use App\Http\Controllers\Controller;
 use App\Models\Users\UserEmailPreference;
 use DateTime;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -161,5 +162,26 @@ class Utilities extends Controller
         }
 
         return $data;
+    }
+
+    public function getDiscordOnlineUsers()
+    {
+        $url = "https://discordapp.com/api/guilds/649009573692440594/widget.json";
+
+        if (app(CacheController::class)->checkCache('discordOnlineUsers', false)) {
+            $clients = app(CacheController::class)->getCache('discordOnlineUsers', false);
+        } else {
+            $clients = 0;
+            try {
+                $response = (new Client)->get($url);
+                $response = json_decode((string) $response->getBody(), true);
+                $clients = $response['presence_count'];
+            } catch(\Throwable $e) {
+                $clients = 'N/A';
+            }
+            
+            app(CacheController::class)->putCache('discordOnlineUsers', $clients, 30, false);
+        }
+        return $clients;
     }
 }
