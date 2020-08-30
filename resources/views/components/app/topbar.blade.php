@@ -10,7 +10,7 @@
         <span>
           {{__('app/app_menus.local_time')}}:
         </span>
-        <span id="local_time"></span>
+        <span id="local_time">--:--:--</span>
       </a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
@@ -18,7 +18,7 @@
         <span>
           {{__('app/app_menus.utc_time')}}: 
         </span>
-        <span id="utc_time"></span>
+        <span id="utc_time">--:--:--</span>
       </a>
     </li>
     <li class="nav-item dropdown">
@@ -54,9 +54,9 @@
         Online Discord: {{ app(App\Http\Controllers\DataHandlers\Utilities::class)->getDiscordOnlineUsers() }}
       </a>
       <div class="dropdown-menu dropdown-menu-xl">
-        <iframe src="https://discordapp.com/widget?id=649009573692440594&theme=dark" width="360" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-        <div class="dropdown-divider"></div>
         <a href="{{ route('discord.invite', app()->getLocale()) }}" target="_blank" class="dropdown-item dropdown-footer">{{__('app/user/usersettings.dis_joinbtn')}}</a>
+        <div class="dropdown-divider"></div>
+        <iframe src="https://discordapp.com/widget?id=649009573692440594&theme=dark" width="360" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
       </div>
     </li>
   </ul>

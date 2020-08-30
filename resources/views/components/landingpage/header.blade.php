@@ -162,7 +162,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="javascript:void(0)">
-            <span id="utc_time"></span> UTC
+            <span id="utc_time">--:--:--</span> UTC
           </a>
         </li>
         <script>

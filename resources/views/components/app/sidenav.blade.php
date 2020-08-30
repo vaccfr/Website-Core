@@ -42,19 +42,7 @@
             <p>{{__('app/app_menus.stats')}}</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="{{ route('app.general.stafforg', app()->getLocale()) }}" class="nav-link @if (Route::is('app.general.stafforg')) active @endif">
-            <i class="nav-icon fas fa-info"></i>
-            <p>{{__('app/app_menus.staff_org')}}</p>
-          </a>
-        </li>
-        {{-- <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-question"></i>
-            <p>FAQ</p>
-          </a>
-        </li> --}}
-        {{-- <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/general')) menu-open @endif">
+        <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/general')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
             <p>
@@ -65,24 +53,24 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{ route('app.general.stafforg', app()->getLocale()) }}" class="nav-link @if (Route::is('app.general.stafforg')) active @endif">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="nav-icon fas fa-sitemap"></i>
                 <p>{{__('app/app_menus.staff_org')}}</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+              <a href="{{ route('landingpage.home.policies', app()->getLocale()) }}" target="_blank" class="nav-link">
+                <i class="fas fa-scroll nav-icon"></i>
                 <p>{{__('app/app_menus.statutes')}}</p>
               </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>{{__('app/app_menus.policies')}}</p>
+                <i class="nav-icon fas fa-question"></i>
+                <p>FAQ</p>
               </a>
-            </li>
+            </li> --}}
           </ul>
-        </li> --}}
+        </li>
 
         {{-- ATC Section of the menu --}}
         @if (strpos(Auth::user()->account_type, 'ATC') !== False)
@@ -228,6 +216,12 @@
                     <p>ATC Admin</p>
                   </a>
                 </li>
+                {{-- <li class="nav-item">
+                  <a href="{{ route('app.staff.faqmaker', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.atcadmin')) active @endif">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>FAQ Dashboard</p>
+                  </a>
+                </li> --}}
               </ul>
             </li>
           @endif

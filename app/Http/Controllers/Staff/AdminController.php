@@ -571,4 +571,9 @@ class AdminController extends Controller
 
         return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', trans('app/alerts.mentoring_deleted'));
     }
+
+    public function faqMaker()
+    {
+        return view('app.staff.faqmaker');
+    }
 }

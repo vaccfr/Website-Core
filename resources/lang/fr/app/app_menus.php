@@ -8,7 +8,7 @@ return [
   'stats' => 'Statistiques',
   'general' => 'General',
   'staff_org' => 'Organisation Staff',
-  'statutes' => 'Statuts VatFrance',
+  'statutes' => 'Statuts VATFrance',
   'policies' => 'Politiques',
 
   'atc_header' => 'ATC',
