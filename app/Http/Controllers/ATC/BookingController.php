@@ -34,6 +34,7 @@ class BookingController extends Controller
 
         $bookingToday = Booking::whereDate('start_date', Carbon::now()->format('Y-m-d'))
         ->with('user')
+        ->orderBy('start_date', 'ASC')
         ->get();
         array_push($allBookings, $bookingToday);
         for ($i=1; $i < 15; $i++) { 
@@ -41,6 +42,7 @@ class BookingController extends Controller
             ->addDays($i)
             ->format('Y-m-d'))
             ->with('user')
+            ->orderBy('start_date', 'ASC')
             ->get();
             array_push($allBookings, $booking);
         }
@@ -62,6 +64,7 @@ class BookingController extends Controller
 
         $bookingToday = Booking::whereDate('start_date', Carbon::now()->format('Y-m-d'))
         ->with('user')
+        ->orderBy('start_date', 'ASC')
         ->get();
 
         $myBookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)
