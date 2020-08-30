@@ -126,12 +126,12 @@
                     $("#edit_img_div").html("<p>({{__('app/staff/events.no_img')}})</p>");
                   }
                   if ("{{$e['discord_msg_id']}}" == "") {
-                    $("#selevent_discord").html('<button class="btn btn-success btn-flat float-right" type="button" data-toggle="modal" data-target="#discord">Publish on Discord</button>');
+                    $("#selevent_discord").html('<button class="btn btn-success btn-flat float-right" type="button" data-toggle="modal" data-target="#discord">Publier sur Discord</button>');
                     $("#dform_form").attr('action', '{{ route("app.staff.events.dpub", app()->getLocale()) }}')
                     $("#dform_id").attr('value', '{{$e["id"]}}');
                     $("#dform_text").text('Publish on Discord?');
                   } else {
-                    $("#selevent_discord").html('<button class="btn btn-warning btn-flat float-right" type="button" data-toggle="modal" data-target="#discord">Delete on Discord</button>');
+                    $("#selevent_discord").html('<button class="btn btn-warning btn-flat float-right" type="button" data-toggle="modal" data-target="#discord">Supprimer de Discord</button>');
                     $("#dform_form").attr('action', '{{ route("app.staff.events.ddel", app()->getLocale()) }}')
                     $("#dform_id").attr('value', '{{$e["id"]}}');
                     $("#dform_text").text('Delete from Discord?');

@@ -19,7 +19,7 @@ class DiscordAnnouncer extends Controller
         $discord = new DiscordClient(['token' => config('discordsso.bot_token')]);
         $discord->channel->createMessage([
             'channel.id' => config('discordsso.events_channel'),
-            // 'content' => '@here',
+            'content' => '@here',
             'embed' => [
                 'author' =>[
                     'name' => 'Date: '.$date.' | '.$starttime.'z - '.$endtime.'z',
@@ -62,7 +62,7 @@ class DiscordAnnouncer extends Controller
         $discord->channel->editMessage([
             'channel.id' => config('discordsso.events_channel'),
             'message.id' => (int)$msgid,
-            // 'content' => '@here',
+            'content' => '@here',
             'embed' => [
                 'author' =>[
                     'name' => 'Date: '.$date.' | '.$starttime.'z - '.$endtime.'z',
