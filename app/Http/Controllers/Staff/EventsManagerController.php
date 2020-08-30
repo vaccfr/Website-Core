@@ -18,8 +18,8 @@ class EventsManagerController extends Controller
 {
     public function dashboard()
     {
-        $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
-        ->orderBy('created_at', 'DESC')
+        $eventsList = Event::orderBy('start_date', 'ASC')
+        ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
         ->get();
         return view('app.staff.events_dashboard', [
             'events2come' => $eventsList,
@@ -79,25 +79,26 @@ class EventsManagerController extends Controller
         }
 
         $date = date_create_from_format('d.m.Y H:i', request('date').' '.request('starttime'));
-        $timestamp = $date->format(DateTime::ATOM);
+        $eventStartDate = $date->format('Y-m-d H:i:s');
 
-        $dmsgid = app(DiscordAnnouncer::class)->sendEventAnnouncement(
-            request('title'), $url, $imgUrlDiscord, request('description'), $request->user()->fname." ".$request->user()->lname, request('date'), request('starttime'), request('endtime'), $timestamp
-        );
+        $date = date_create_from_format('d.m.Y H:i', request('date').' '.request('endtime'));
+        $eventEndDate = $date->format('Y-m-d H:i:s');
+
+        // $dmsgid = app(DiscordAnnouncer::class)->sendEventAnnouncement(
+        //     request('title'), $url, $imgUrlDiscord, request('description'), $request->user()->fname." ".$request->user()->lname, request('date'), request('starttime'), request('endtime'), $eventStartDate
+        // );
 
         $event = Event::create([
             'id' => (new Snowflake)->id(),
             'title' => $request->get('title'),
             'description' => $request->get('description'),
-            'date' => $request->get('date'),
+            'start_date' => $eventStartDate,
+            'end_date' => $eventEndDate,
             'url' => $url,
-            'start_time' => $request->get('starttime'),
-            'end_time' => $request->get('endtime'),
             'has_image' => $hasImgBool,
             'image_id' => $imgID,
             'image_url' => $imgUrl,
             'publisher_id' => $request->user()->id,
-            'discord_msg_id' => $dmsgid,
         ]);
 
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('pop-success', 'New event registered!');
@@ -137,21 +138,24 @@ class EventsManagerController extends Controller
             return redirect()->back()->with('toast-error', 'Event was not found and could not be edited');
         }
 
+        $date = date_create_from_format('d.m.Y H:i', request('editdate').' '.request('editstarttime'));
+        $eventStartDate = $date->format('Y-m-d H:i:s');
+
+        $date = date_create_from_format('d.m.Y H:i', request('editdate').' '.request('editendtime'));
+        $eventEndDate = $date->format('Y-m-d H:i:s');
+
         $event->title = $request->get('edittitle');
         $event->description = $request->get('editdescription');
-        $event->date = $request->get('editdate');
-        $event->start_time = $request->get('editstarttime');
-        $event->end_time = $request->get('editendtime');
+        $event->start_date = $eventStartDate;
+        $event->end_date = $eventEndDate;
         $event->url = $request->get('editurl');
         $event->save();
 
         if (!is_null($event->discord_msg_id)) {
-            $date = date_create_from_format('d.m.Y H:i', request('editdate').' '.request('editstarttime'));
-            $timestamp = $date->format(DateTime::ATOM);
             $imgurl = config('app.url').$event->image_url;
 
             $dmsgid = app(DiscordAnnouncer::class)->editEventAnnouncement(
-                $event->discord_msg_id, request('edittitle'), $event->url, $imgurl, request('editdescription'), $request->user()->fname." ".$request->user()->lname, request('editdate'), request('editstarttime'), request('editendtime'), $timestamp
+                $event->discord_msg_id, request('edittitle'), $event->url, $imgurl, request('editdescription'), $request->user()->fname." ".$request->user()->lname, request('editdate'), request('editstarttime'), request('editendtime'), $eventStartDate
             );
         }
 

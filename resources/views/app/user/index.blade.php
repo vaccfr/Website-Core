@@ -92,7 +92,7 @@
               <div class="card-header">
                 <h3 class="card-title">{{$e['title']}}</h3>
                 <span class="float-right">
-                  {{$e['date']}} | {{$e['start_time']}}z - {{$e['end_time']}}z
+                  {{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('d.m.Y')}} | {{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('H:i')}}z - {{date_create_from_format('Y-m-d H:i:s', $e['end_date'])->format('H:i')}}z
                 </span>
               </div>
               <div class="card-body" style="padding: 0 0 0 0;">

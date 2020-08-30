@@ -48,15 +48,10 @@ class MainController extends Controller
         // ->orderBy('date', 'ASC')
         // ->get();
 
-        $eventList = Event::orderBy('date', 'ASC')->get();
-        $eventsList_filtered = [];
-        foreach ($eventList as $e => $v) {
-            $date = date_create_from_format('d.m.Y', $v['date']);
-            $timestamp = $date->format(DateTime::ATOM);
-            if ($timestamp >= Carbon::now()->format('c') && count($eventsList_filtered) < 5) {
-                array_push($eventsList_filtered, $v);
-            }
-        }
+        $eventList = Event::orderBy('start_date', 'ASC')
+        ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
+        ->where('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d H:i:s'))
+        ->get();
 
         return view('landingpage.index', [
             'book0' => $bookingsToday,
@@ -64,7 +59,7 @@ class MainController extends Controller
             'book2' => $bookingsAfterTomorrow,
             'book3' => $bookingsDay3,
             'atconline' => $onlineATC,
-            'eventsList' => $eventsList_filtered,
+            'eventsList' => $eventList,
             'livemap' => $livemap,
         ]);
     }

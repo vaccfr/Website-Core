@@ -111,12 +111,12 @@
               @foreach ($events2come as $e)
               <tr>
                 <td>{{$e['title']}}</td>
-                <td>{{$e['date']}}</td>
+                <td>{{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('d.m.Y')}}</td>
                 <td align="right"><button class="btn btn-info btn-flat" id="event_{{$e['id']}}">{{__('app/staff/events.evl_view')}}</button></td>
               </tr>
               <script>
                 $("#event_{{$e['id']}}").click(function() {
-                  $("#selevent_title").text("{{$e['title']}} -- {{$e['date']}} | {{$e['start_time']}} - {{$e['end_time']}}");
+                  $("#selevent_title").text("{{$e['title']}} -- {{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('d.m.Y')}} | {{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('H:i')}} - {{date_create_from_format('Y-m-d H:i:s', $e['end_date'])->format('H:i')}}");
                   $("#selevent_description").text(`{!!$e["description"]!!}`);
                   if ("{{$e['has_image']}}" == "1") {
                     $("#selevent_img_div").html('<img id="selevent_img" src="' + "{{config('app.url')}}/{{$e['image_url']}}" + '" alt="Event Picture" class="img-fluid" />');
@@ -130,10 +130,10 @@
                   $("#selevent_delbtn").html('<button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#delete_event">{{__("app/staff/events.v_cancel")}}</button>');
                   $("#selevent_eventid").attr('value', '{{$e["id"]}}');
                   $("#edittitle").attr('value', '{{$e["title"]}}');
-                  $("#editdate").attr('value', '{{$e["date"]}}');
+                  $("#editdate").attr('value', '{{date_create_from_format("Y-m-d H:i:s", $e["start_date"])->format("d.m.Y")}}');
                   $("#editurl").attr('value', `{!!$e["url"]!!}`);
-                  $("#editstarttime").attr('value', '{{$e["start_time"]}}');
-                  $("#editendtime").attr('value', '{{$e["end_time"]}}');
+                  $("#editstarttime").attr('value', '{{date_create_from_format("Y-m-d H:i:s", $e["start_date"])->format("H:i")}}');
+                  $("#editendtime").attr('value', '{{date_create_from_format("Y-m-d H:i:s", $e["end_date"])->format("H:i")}}');
                   $("#editdescription").text(`{!!$e["description"]!!}`);
                   $("#editeventid").attr('value', '{{$e["id"]}}');
                   $("#editeventidimg").attr('value', '{{$e["id"]}}');

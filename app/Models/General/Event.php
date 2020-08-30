@@ -11,7 +11,7 @@ class Event extends Model
     protected $table = "events";
 
     protected $fillable = [
-        'id', 'title', 'description', 'url', 'date', 'start_time', 'end_time', 'has_image', 'image_id', 'image_url', 'publisher_id', 'discord_msg_id',
+        'id', 'title', 'description', 'url', 'start_date', 'end_date', 'has_image', 'image_id', 'image_url', 'publisher_id', 'discord_msg_id',
     ];
 
     // Relationships

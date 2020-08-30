@@ -24,25 +24,10 @@ class MainController extends Controller
         ->orderBy('time', 'ASC')
         ->get();
 
-        // $eventsList = Event::where('date', '>=', Carbon::now()->format('d.m.Y'))
-        // ->orderBy('date', 'ASC')
-        // ->get();
-        // $eventsList_filtered = [];
-        // foreach ($eventsList as $e => $v) {
-        //     if (!count($eventsList_filtered) > 5) {
-        //         array_push($eventsList_filtered, $e);
-        //     }
-        // }
-
-        $eventList = Event::orderBy('date', 'ASC')->get();
-        $eventsList_filtered = [];
-        foreach ($eventList as $e => $v) {
-            $date = date_create_from_format('d.m.Y', $v['date']);
-            $timestamp = $date->format(DateTime::ATOM);
-            if ($timestamp >= Carbon::now()->format('c') && count($eventsList_filtered) < 5) {
-                array_push($eventsList_filtered, $v);
-            }
-        }
+        $eventList = Event::orderBy('start_date', 'ASC')
+        ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
+        ->where('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d H:i:s'))
+        ->get();
 
         $newslist = News::orderBy('created_at', 'DESC')
         ->with('author')
@@ -51,7 +36,7 @@ class MainController extends Controller
 
         return view('app.user.index', [
             'news' => [],
-            'events' => $eventsList_filtered,
+            'events' => $eventList,
             'bookings' => $bookingsToday,
             'news' => $newslist,
         ]);

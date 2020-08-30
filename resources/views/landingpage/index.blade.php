@@ -370,7 +370,7 @@
                 @endif" alt="Card image cap">
               </a>
               <div class="card-body">
-                <h4 class="card-title">{{$e['title']}} <br> {{$e['date']}} | {{$e['start_time']}} - {{$e['end_time']}}</h4>
+                <h4 class="card-title">{{$e['title']}} <br> {{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('d.m.Y')}} | {{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('H:i')}}z - {{date_create_from_format('Y-m-d H:i:s', $e['end_date'])->format('H:i')}}z</h4>
                 <p class="card-text">{!!nl2br($e['description'])!!}</p>
               </div>
             </div>
