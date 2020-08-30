@@ -73,7 +73,7 @@
             
             @case("NOREGION")
               <div class="card-body">
-                <p class="text-danger" style="font-weight: bolder;">{{__('app/atc/atc_training_center_req.err_noregion') }}</p>
+                <p class="text-danger" style="font-weight: bolder;">{!!__('app/atc/atc_training_center_req.err_noregion') !!}</p>
               </div>
               @break
             @case("APPLIED")

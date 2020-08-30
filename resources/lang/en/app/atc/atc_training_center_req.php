@@ -31,7 +31,8 @@ return [
   'err_msg' => 'An error occured.',
 
   //NOREGION
-  'err_noregion' => 'You must be affiliated to the French Region with your Vatsim Account before you can request mentoring.',
+  'err_noregion' => 'You must be affiliated to the French Region with your Vatsim Account before you can request mentoring.<br>
+  You can do so by visiting the <a href="https://members.vateud.net/" target="_blank">VATEUD membership management dashboard</a>',
 
   //APPLIED
   'err_applied' => 'You have already requested training. Please wait for a response',
