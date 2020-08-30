@@ -136,7 +136,7 @@
               <div class="card-header">
                 <h3 class="card-title">{{ $n['title'] }}</h3>
                 <span class="float-right">
-                  {{ Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $n['created_at'])->format('Y.m.d | H:i\z') }}
+                  {{ Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $n['created_at'])->format('d.m.Y | H:i\z') }}
                 </span>
               </div>
               <div class="card-body">
