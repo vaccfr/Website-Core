@@ -67,10 +67,12 @@
                   </div>
                 </div>
               </div>
+              @if ($isMentored == true)
               <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="is-mentoring">
-                <label class="form-check-label" for="is-mentoring">{{__('app/atc/atc_mybookings.mentor_checkbox', ['NAME' => '{MENTOR HERE}'])}}</label>
+                <input type="checkbox" class="form-check-input" id="is-mentoring" name="ismentoring">
+                <label class="form-check-label" for="is-mentoring">{{__('app/atc/atc_mybookings.mentor_checkbox', ['NAME' => $mentorName])}}</label>
               </div>
+              @endif
             </div>
             <!-- /.card-body -->
 
@@ -95,14 +97,22 @@
               <tr>
                 <th>{{__('app/atc/atc_mybookings.callsign')}}</th>
                 <th>{{__('app/atc/atc_mybookings.when_date')}}</th>
+                <th>Mentoring</th>
                 <th>{{__('app/atc/atc_mybookings.actions_col')}}</th>
               </tr>
               </thead>
               <tbody>
-                @foreach ($bookings as $b)
+                @foreach ($myBookings as $b)
                   <tr>
                     <td>{{ $b['position'] }}</td>
                     <td>{{ $b['date'] }} - {{ $b['time'] }}</td>
+                    <td>
+                      @if ($b['training'] == true)
+                      <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
+                      @else
+                      <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
+                      @endif
+                    </td>
                     <td>
                       <form action="{{ route('do.atc.booking.delete', ['locale' => app()->getLocale(), 'unique_id' => $b['unique_id']]) }}" method="GET">
                         @csrf

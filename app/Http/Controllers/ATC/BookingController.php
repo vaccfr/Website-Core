@@ -9,6 +9,7 @@ use App\Http\Controllers\DataHandlers\Utilities;
 use App\Models\ATC\Airport;
 use App\Models\ATC\ATCStation;
 use App\Models\ATC\Booking;
+use App\Models\ATC\MentoringRequest;
 use Exception;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
@@ -50,12 +51,6 @@ class BookingController extends Controller
     }
     public function MyBookingsPage()
     {
-        // $allowedRanks = app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short);
-        // $stations = ATCStation::orderBy('code', 'ASC')
-        // ->whereIn('rank', $allowedRanks)
-        // ->with('parent')
-        // ->get();
-
         $positions = Airport::orderBy('city', 'ASC')
         ->with(['positions' => function($q) {
             $q->whereIn('rank', app(Utilities::class)->getAuthedRanks(auth()->user()->atc_rating_short));
@@ -65,13 +60,24 @@ class BookingController extends Controller
         }])
         ->get();
 
-        $bookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)
+        $myBookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)
         ->where('date', '>=', Carbon::now()->format('d.m.Y'))
         ->get();
+
+        $mentoring = MentoringRequest::where('student_id', auth()->user()->id)->with('mentorUser')->first();
+        if (!is_null($mentoring)) {
+            $isMentored = true;
+            $mentorName = $mentoring->mentorUser->fname.' '.$mentoring->mentorUser->lname;
+        } else {
+            $isMentored = false;
+            $mentorName = null;
+        }
+
         return view('app.atc.mybookings', [
             'positions' => $positions,
-            // 'stations' => $stations,
-            'bookings' => $bookings,
+            'myBookings' => $myBookings,
+            'isMentored' => $isMentored,
+            'mentorName' => $mentorName,
             ]);
     }
 
@@ -89,6 +95,13 @@ class BookingController extends Controller
         if ($validatedData->fails()) {
             return redirect()->back()->with('pop-error', trans('app/alerts.booking_error_fields'));
         }
+        if ($request->has('ismentoring')) {
+            if (request('ismentoring') == "on") {
+                $hasMentoring = true;
+            }
+        } else {
+            $hasMentoring = false;
+        }
 
         Booking::create([
             'unique_id' => htmlspecialchars(Str::random(32)),
@@ -100,7 +113,7 @@ class BookingController extends Controller
             'time' => htmlspecialchars($request->get('starttime')) . ' - ' . htmlspecialchars($request->get('endtime')),
             'start_time' => htmlspecialchars($request->get('starttime')),
             'end_time' => htmlspecialchars($request->get('endtime')),
-            'training' => false,
+            'training' => $hasMentoring,
         ]);
 
         $booking = Booking::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->first();

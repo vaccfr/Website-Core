@@ -3,6 +3,7 @@
 namespace App\Models\ATC;
 
 use App\Models\Users\User;
+use App\Models\ATC\Mentor;
 use Illuminate\Database\Eloquent\Model;
 
 class MentoringRequest extends Model
@@ -23,5 +24,10 @@ class MentoringRequest extends Model
     public function mentor()
     {
         return $this->hasOne(Mentor::class, 'id', 'mentor_id');
+    }
+
+    public function mentorUser()
+    {
+        return $this->hasOne(User::class, 'id', 'mentor_id');
     }
 }
