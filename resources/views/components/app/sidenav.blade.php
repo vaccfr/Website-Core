@@ -48,6 +48,12 @@
             <p>{{__('app/app_menus.staff_org')}}</p>
           </a>
         </li>
+        {{-- <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-question"></i>
+            <p>FAQ</p>
+          </a>
+        </li> --}}
         {{-- <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/general')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
