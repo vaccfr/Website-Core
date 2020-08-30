@@ -187,7 +187,7 @@
                 <tr>
                   <td>{{$b['position']}}</th>
                   <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}z</td>
-                  <td>{{$b['user']['fname']}} {{$b['user']['lname']}} - {{$b['user']['atc_rating_short']}}</td>
+                  <td @if ($b['training'] == true) style="color: blueviolet;" @endif>{{$b['user']['fname']}} {{$b['user']['lname']}} - {{$b['user']['atc_rating_short']}}</td>
                 </tr>
                 @endforeach
               </tbody>
