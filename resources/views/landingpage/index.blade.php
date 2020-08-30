@@ -87,8 +87,8 @@
                       @foreach ($book0 as $b)
                       <tr>
                         <th scope="row">{{$b['position']}}</th>
-                        <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                        <td>{{$b['time']}}</td>
+                        <td @if ($b['training'] == true) style="color: blueviolet;" @endif>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                       </tr>
                       @endforeach
@@ -101,7 +101,7 @@
                   @if (count($book1) == 0)
                   {{__('lp/lp_index.nobook_1')}}
                   @else
-                  <table class="table">
+                  <table class="table table-borderless mt-n3">
                     <thead class="thead">
                       <tr>
                         <th scope="col">{{__('lp/lp_index.position')}}</th>
@@ -114,8 +114,8 @@
                       @foreach ($book1 as $b)
                       <tr>
                         <th scope="row">{{$b['position']}}</th>
-                        <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                        <td>{{$b['time']}}</td>
+                        <td @if ($b['training'] == true) style="color: blueviolet;" @endif>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                       </tr>
                       @endforeach
@@ -128,7 +128,7 @@
                   @if (count($book2) == 0)
                   {{__('lp/lp_index.nobook_2')}}
                   @else
-                  <table class="table">
+                  <table class="table table-borderless mt-n3">
                     <thead class="thead">
                       <tr>
                         <th scope="col">{{__('lp/lp_index.position')}}</th>
@@ -141,8 +141,8 @@
                       @foreach ($book2 as $b)
                       <tr>
                         <th scope="row">{{$b['position']}}</th>
-                        <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                        <td>{{$b['time']}}</td>
+                        <td @if ($b['training'] == true) style="color: blueviolet;" @endif>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                       </tr>
                       @endforeach
@@ -155,7 +155,7 @@
                   @if (count($book3) == 0)
                   {{__('lp/lp_index.nobook_3')}}
                   @else
-                  <table class="table">
+                  <table class="table table-borderless mt-n3">
                     <thead class="thead">
                       <tr>
                         <th scope="col">{{__('lp/lp_index.position')}}</th>
@@ -168,8 +168,8 @@
                       @foreach ($book3 as $b)
                       <tr>
                         <th scope="row">{{$b['position']}}</th>
-                        <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                        <td>{{$b['time']}}</td>
+                        <td @if ($b['training'] == true) style="color: blueviolet;" @endif>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
+                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                       </tr>
                       @endforeach

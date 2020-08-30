@@ -25,7 +25,7 @@ class AdminController extends Controller
         $members = User::get();
         $memberCount = count($members);
         $atcCount = count(ATCRosterMember::get());
-        $bookingCount = count(Booking::where('date', Carbon::now()->format('d.m.Y'))->with('user')->get());
+        $bookingCount = count(Booking::whereDate('start_date', Carbon::now()->format('Y-m-d'))->with('user')->get());
         return view('app.staff.admin', [
             'members' => $members,
             'memberCount' => $memberCount,

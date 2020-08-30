@@ -32,14 +32,14 @@ class BookingController extends Controller
             array_push($allDates, $day);
         }
 
-        $bookingToday = Booking::where('date', Carbon::now()->format('d.m.Y'))
+        $bookingToday = Booking::whereDate('start_date', Carbon::now()->format('Y-m-d'))
         ->with('user')
         ->get();
         array_push($allBookings, $bookingToday);
         for ($i=1; $i < 15; $i++) { 
-            $booking = Booking::where('date', Carbon::now()
+            $booking = Booking::whereDate('start_date', Carbon::now()
             ->addDays($i)
-            ->format('d.m.Y'))
+            ->format('Y-m-d'))
             ->with('user')
             ->get();
             array_push($allBookings, $booking);
@@ -61,7 +61,7 @@ class BookingController extends Controller
         ->get();
 
         $myBookings = Booking::where('vatsim_id', auth()->user()->vatsim_id)
-        ->where('date', '>=', Carbon::now()->format('d.m.Y'))
+        ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
         ->get();
 
         $mentoring = MentoringRequest::where('student_id', auth()->user()->id)->with('mentorUser')->first();
@@ -98,10 +98,15 @@ class BookingController extends Controller
         if ($request->has('ismentoring')) {
             if (request('ismentoring') == "on") {
                 $hasMentoring = true;
+                $hasMentoringVB = 1;
             }
         } else {
             $hasMentoring = false;
+            $hasMentoringVB = 0;
         }
+
+        $startTimestamp = date_create_from_format('d.m.Y H:i', request('bookingdate').' '.request('starttime'))->format('Y-m-d H:i:s');
+        $endTimestamp = date_create_from_format('d.m.Y H:i', request('bookingdate').' '.request('endtime'))->format('Y-m-d H:i:s');
 
         Booking::create([
             'unique_id' => htmlspecialchars(Str::random(32)),
@@ -109,15 +114,24 @@ class BookingController extends Controller
             'user_id' => auth()->user()->id,
             'vatsim_id' => auth()->user()->vatsim_id,
             'position' => htmlspecialchars($request->get('positionselect')),
-            'date' => htmlspecialchars($request->get('bookingdate')),
-            'time' => htmlspecialchars($request->get('starttime')) . ' - ' . htmlspecialchars($request->get('endtime')),
-            'start_time' => htmlspecialchars($request->get('starttime')),
-            'end_time' => htmlspecialchars($request->get('endtime')),
+            'start_date' => $startTimestamp,
+            'end_date' => $endTimestamp,
             'training' => $hasMentoring,
         ]);
 
         $booking = Booking::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->first();
-        return redirect('http://vatbook.euroutepro.com/atc/insert.asp?Local_URL='.$redirectURI.'&Local_ID=' . $booking->id . '&b_day=' . substr($booking->date, 0, 2) . '&b_month=' . substr($booking->date, 3, 2) . '&b_year=' . substr($booking->date, 6, 10) . '&Controller=' . auth()->user()->fname . '%20' . auth()->user()->lname . '&Position=' . $booking->position .  '&sTime='  . substr($booking->start_time, 0, 2) . substr($booking->start_time, 3) . '&eTime=' . substr($booking->end_time, 0, 2) . substr($booking->end_time, 3) . '&T=' . $booking->training . '&E=0&voice=1');
+        return redirect('http://vatbook.euroutepro.com/atc/insert.asp?Local_URL='.$redirectURI
+                        .'&Local_ID='.$booking->id
+                        .'&b_day='.date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('d')
+                        .'&b_month='.date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('m')
+                        .'&b_year='.date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('Y')
+                        .'&Controller='.auth()->user()->fname.' '.auth()->user()->lname
+                        .'&Position='.$booking->position
+                        .'&sTime='.date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('Hi')
+                        .'&eTime='.date_create_from_format('Y-m-d H:i:s', $booking->end_date)->format('Hi')
+                        .'&T='.$hasMentoringVB
+                        .'&E=0&voice=1'
+                    );
     }
 
     public function validateBooking(Request $request)
@@ -129,10 +143,10 @@ class BookingController extends Controller
         if ((new Utilities)->checkEmailPreference(auth()->user()->id, 'atc_booking') == true) {
             event(new EventNewATCBooking(Auth::user(), [
                 'position' => $booking->position,
-                'date' => $booking->date,
-                'time' => $booking->time,
-                'start_time' => $booking->start_time,
-                'end_time' => $booking->end_time,
+                'date' => date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('d.m.Y'),
+                'time' => date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('H:i').' '.date_create_from_format('Y-m-d H:i:s', $booking->end_date)->format('H:i'),
+                'start_time' => date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('H:i'),
+                'end_time' => date_create_from_format('Y-m-d H:i:s', $booking->end_date)->format('H:i'),
             ]));
         }
 
@@ -147,7 +161,10 @@ class BookingController extends Controller
             return redirect()->back();
         }
 
-        return redirect('http://vatbook.euroutepro.com/atc/delete.asp?Local_URL='.$redirectURI.'&EU_ID=' . $booking->vatbook_id . '&Local_ID=' . $booking->id);
+        return redirect('http://vatbook.euroutepro.com/atc/delete.asp?Local_URL='.$redirectURI
+            .'&EU_ID='.$booking->vatbook_id
+            .'&Local_ID=' . $booking->id
+        );
     }
 
     public function validateDelete(Request $request)
@@ -156,10 +173,10 @@ class BookingController extends Controller
         if (!is_null($booking)) {
             $dataToSend = [
                 'position' => $booking->position,
-                'date' => $booking->date,
-                'time' => $booking->time,
-                'start_time' => $booking->start_time,
-                'end_time' => $booking->end_time,
+                'date' => date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('d.m.Y'),
+                'time' => date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('H:i').' '.date_create_from_format('Y-m-d H:i:s', $booking->end_date)->format('H:i'),
+                'start_time' => date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('H:i'),
+                'end_time' => date_create_from_format('Y-m-d H:i:s', $booking->end_date)->format('H:i'),
             ];
             $booking->delete();
             try {

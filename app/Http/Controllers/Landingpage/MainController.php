@@ -19,27 +19,27 @@ class MainController extends Controller
 {
     public function index()
     {
-        $bookingsToday = Booking::where('date', Carbon::now()->format('d.m.Y'))
+        $bookingsToday = Booking::whereDate('start_date', Carbon::now()->format('Y-m-d'))
         ->with('user')
-        ->orderBy('time', 'ASC')
+        ->orderBy('start_date', 'ASC')
         ->get();
-        $bookingsTomorrow = Booking::where('date', Carbon::now()
+        $bookingsTomorrow = Booking::whereDate('start_date', Carbon::now()
         ->addDays(1)
-        ->format('d.m.Y'))
+        ->format('Y-m-d'))
         ->with('user')
-        ->orderBy('time', 'ASC')
+        ->orderBy('start_date', 'ASC')
         ->get();
-        $bookingsAfterTomorrow = Booking::where('date', Carbon::now()
+        $bookingsAfterTomorrow = Booking::whereDate('start_date', Carbon::now()
         ->addDays(2)
-        ->format('d.m.Y'))
+        ->format('Y-m-d'))
         ->with('user')
-        ->orderBy('time', 'ASC')
+        ->orderBy('start_date', 'ASC')
         ->get();
-        $bookingsDay3 = Booking::where('date', Carbon::now()
+        $bookingsDay3 = Booking::whereDate('start_date', Carbon::now()
         ->addDays(3)
-        ->format('d.m.Y'))
+        ->format('Y-m-d'))
         ->with('user')
-        ->orderBy('time', 'ASC')
+        ->orderBy('start_date', 'ASC')
         ->get();
         $onlineATC = app(VatsimDataController::class)->getOnlineATC();
         $livemap = app(VatsimDataController::class)->livemapDataGenerator();

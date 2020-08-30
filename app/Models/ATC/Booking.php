@@ -10,7 +10,7 @@ class Booking extends Model
     protected $table = 'bookings';
 
     protected $fillable = [
-        'id', 'user_id', 'vatsim_id', 'position', 'date', 'time', 'training', 'unique_id', 'start_time', 'end_time', 'vatbook_id'
+        'id', 'user_id', 'vatsim_id', 'position', 'start_date', 'end_date', 'training', 'unique_id', 'vatbook_id'
     ];
 
     // Relationships

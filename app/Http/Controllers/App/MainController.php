@@ -19,14 +19,14 @@ class MainController extends Controller
 {
     public function index()
     {
-        $bookingsToday = Booking::where('date', Carbon::now()->format('d.m.Y'))
+        $bookingsToday = Booking::whereDate('start_date', Carbon::now()->format('Y-m-d'))
         ->with('user')
-        ->orderBy('time', 'ASC')
+        ->orderBy('start_date', 'ASC')
         ->get();
 
         $eventList = Event::orderBy('start_date', 'ASC')
-        ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
-        ->where('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d H:i:s'))
+        ->whereDate('start_date', '>=', Carbon::now()->format('Y-m-d'))
+        ->whereDate('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d'))
         ->get();
 
         $newslist = News::orderBy('created_at', 'DESC')

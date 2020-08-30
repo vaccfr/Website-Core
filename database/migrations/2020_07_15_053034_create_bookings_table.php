@@ -18,12 +18,10 @@ class CreateBookingsTable extends Migration
             $table->bigInteger('user_id');
             $table->integer('vatsim_id');
             $table->string('position');
-            $table->string('date');
-            $table->string('time');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->boolean('training');
             $table->string('unique_id')->nullable();
-            $table->string('start_time');
-            $table->string('end_time');
             $table->integer('vatbook_id')->nullable();
             $table->timestamps();
         });

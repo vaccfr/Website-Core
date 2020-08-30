@@ -64,7 +64,7 @@
                       <tr>
                         <td>{{$b['position']}}</td>
                         <td>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                        <td>{{$b['time']}}</td>
+                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i')}}z - {{date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i')}}z</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                         <td>@if ($b['training'] == true)
                           <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
