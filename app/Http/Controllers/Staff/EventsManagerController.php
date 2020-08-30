@@ -63,12 +63,10 @@ class EventsManagerController extends Controller
                         'url' => $imgUrl,
                     ]);
                     $hasImgBool = true;
-                    $imgUrlDiscord = config('app.url').$imgUrl;
                 }
             }
         } else {
             $imgUrl = null;
-            $imgUrlDiscord = null;
             $imgID = null;
         }
 
@@ -83,10 +81,6 @@ class EventsManagerController extends Controller
 
         $date = date_create_from_format('d.m.Y H:i', request('date').' '.request('endtime'));
         $eventEndDate = $date->format('Y-m-d H:i:s');
-
-        // $dmsgid = app(DiscordAnnouncer::class)->sendEventAnnouncement(
-        //     request('title'), $url, $imgUrlDiscord, request('description'), $request->user()->fname." ".$request->user()->lname, request('date'), request('starttime'), request('endtime'), $eventStartDate
-        // );
 
         $event = Event::create([
             'id' => (new Snowflake)->id(),
@@ -160,6 +154,69 @@ class EventsManagerController extends Controller
         }
 
         return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Event content edited');
+    }
+
+    public function publishDiscord(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'eventid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('toast-error', 'Error occured');
+        }
+
+        $event = Event::where('id', $request->get('eventid'))->first();
+        if (is_null($event)) {
+            return redirect()->back()->with('toast-error', 'Event not found.');
+        }
+
+        $timestamp = date_create_from_format('Y-m-d H:i:s', $event->start_date)->format(DateTime::ATOM);
+        if (is_null($event->image_url)) {
+            $imgUrlDiscord = null;
+        } else {
+            $imgUrlDiscord = config('app.url').$event->image_url;
+        }
+        $dmsgid = app(DiscordAnnouncer::class)->sendEventAnnouncement(
+            $event->title,
+            $event->url,
+            $imgUrlDiscord,
+            $event->description,
+            $request->user()->fname." ".$request->user()->lname,
+            date_create_from_format('Y-m-d H:i:s', $event->start_date)->format('d.m.Y'),
+            date_create_from_format('Y-m-d H:i:s', $event->start_date)->format('H:i'),
+            date_create_from_format('Y-m-d H:i:s', $event->end_date)->format('H:i'),
+            $timestamp
+        );
+        $event->discord_msg_id = $dmsgid;
+        $event->save();
+
+        return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Published on Discord');
+    }
+
+    public function deleteDiscord(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'eventid' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('toast-error', 'Error occured');
+        }
+
+        $event = Event::where('id', $request->get('eventid'))->first();
+        if (is_null($event)) {
+            return redirect()->back()->with('toast-error', 'Event not found.');
+        }
+
+        $res = app(DiscordAnnouncer::class)->delEventAnnouncement($event->discord_msg_id);
+        $event->discord_msg_id = null;
+        $event->save();
+        if ($res == false) {
+            return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-error', 'Error occured deleting');
+        } else {
+            return redirect()->route('app.staff.events.dashboard', app()->getLocale())->with('toast-info', 'Delete message');
+        }
     }
 
     public function editImage(Request $request)

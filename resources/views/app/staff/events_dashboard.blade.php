@@ -125,7 +125,18 @@
                     $("#selevent_img_div").html("<p>({{__('app/staff/events.no_img')}})</p>");
                     $("#edit_img_div").html("<p>({{__('app/staff/events.no_img')}})</p>");
                   }
-                  $("#selevent_editpicbtn").html('<button class="btn btn-info btn-flat float-right" type="button" data-toggle="modal" data-target="#edit_picture">{{__("app/staff/events.v_editimg")}}</button>');
+                  if ("{{$e['discord_msg_id']}}" == "") {
+                    $("#selevent_discord").html('<button class="btn btn-success btn-flat float-right" type="button" data-toggle="modal" data-target="#discord">Publish on Discord</button>');
+                    $("#dform_form").attr('action', '{{ route("app.staff.events.dpub", app()->getLocale()) }}')
+                    $("#dform_id").attr('value', '{{$e["id"]}}');
+                    $("#dform_text").text('Publish on Discord?');
+                  } else {
+                    $("#selevent_discord").html('<button class="btn btn-warning btn-flat float-right" type="button" data-toggle="modal" data-target="#discord">Delete on Discord</button>');
+                    $("#dform_form").attr('action', '{{ route("app.staff.events.ddel", app()->getLocale()) }}')
+                    $("#dform_id").attr('value', '{{$e["id"]}}');
+                    $("#dform_text").text('Delete from Discord?');
+                  }
+                  $("#selevent_editpicbtn").html('<button class="btn btn-info btn-flat float-right ml-2" type="button" data-toggle="modal" data-target="#edit_picture">{{__("app/staff/events.v_editimg")}}</button>');
                   $("#selevent_editbtn").html('<button class="btn btn-info btn-flat float-right ml-2" type="button" data-toggle="modal" data-target="#edit_event">{{__("app/staff/events.v_edit")}}</button>');
                   $("#selevent_delbtn").html('<button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#delete_event">{{__("app/staff/events.v_cancel")}}</button>');
                   $("#selevent_eventid").attr('value', '{{$e["id"]}}');
@@ -168,7 +179,25 @@
         <div class="card-footer">
           <div id="selevent_editbtn"></div>
           <div id="selevent_editpicbtn"></div>
+          <div id="selevent_discord"></div>
           <div id="selevent_delbtn"></div>
+        </div>
+      </div>
+      <div class="modal fade" id="discord">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <form id="dform_form" action="" method="post">
+              @csrf
+              <div class="modal-body">
+                <p id="dform_text"></p>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <input type="hidden" name="eventid" id="dform_id" value="">
+                <button type="submit" class="btn btn-danger">{{__('app/staff/atc_mine.confirm')}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_mine.cancel')}}</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <div class="modal fade" id="edit_event">

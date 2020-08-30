@@ -234,6 +234,8 @@ Route::group([
                     Route::post('/delevent', 'Staff\EventsManagerController@delEvent')->name('app.staff.events.delevent');
                     Route::post('/editevent', 'Staff\EventsManagerController@editEvent')->name('app.staff.events.editevent');
                     Route::post('/editevent-img', 'Staff\EventsManagerController@editImage')->name('app.staff.events.editimg');
+                    Route::post('/discord-pub', 'Staff\EventsManagerController@publishDiscord')->name('app.staff.events.dpub');
+                    Route::post('/discord-del', 'Staff\EventsManagerController@deleteDiscord')->name('app.staff.events.ddel');
 
                     Route::get('/news', 'Staff\NewsController@dashboard')->name('app.staff.news.dashboard');
                     Route::post('/news-add', 'Staff\NewsController@newItem')->name('app.staff.news.add');

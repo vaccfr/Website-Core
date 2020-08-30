@@ -6,4 +6,5 @@ return [
 
   'bot_token' => env('DISCORD_BOT_TOKEN'),
   'announcements_channel' => 687605154295578639,
+  'events_channel' => 749443291896086610,
 ];
