@@ -1,8 +1,8 @@
 <p align="center"><img src="https://raw.githubusercontent.com/VATFrance/VATFrance-Graphics-Standards-Manual/master/VATFrance_WIDE_ALT.png" width="auto"></p>
 
 <p align="center"><b>v. Alpha 1</b><br>Official repository of the new VATFrance Website rewrite<br>
-<a href="https://new.vatfrance.org/fr" target="_blank">https://new.vatfrance.org/fr</a> <i>(Version française)</i><br>
-<a href="https://new.vatfrance.org/gb" target="_blank">https://new.vatfrance.org/gb</a> <i>(English version)</i>
+<a href="https://www.vatfrance.org/fr" target="_blank">https://vatfrance.org/fr</a> <i>(Version française)</i><br>
+<a href="https://www.vatfrance.org/gb" target="_blank">https://vatfrance.org/gb</a> <i>(English version)</i>
 </p>
 
 ---
