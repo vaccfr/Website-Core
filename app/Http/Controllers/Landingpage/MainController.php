@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Landingpage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
+use App\Mail\General\NewATCRequestMail;
 use App\Mail\General\NewContactRequestMail;
 use App\Mail\General\NewFeedbackMail;
 use App\Models\ATC\ATCRequest;
@@ -243,6 +244,10 @@ class MainController extends Controller
             'route' => $request->get('route'),
             'message' => $request->get('message'),
         ]);
+
+        $eventData = ATCRequest::where('id', $newID)->first();
+
+        Mail::to('ppare.vatsim@gmail.com')->send(new NewATCRequestMail($eventData));
 
         return redirect()->route('landingpage.home.reqatc', app()->getLocale())->with('pop-success', trans('app/alerts.atcreq_success'));
     }
