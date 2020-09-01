@@ -131,7 +131,7 @@ class MainController extends Controller
             'message' => request('message'),
         ]);
 
-        return redirect()->route('landingpage.home.contact', app()->getLocale())->with('pop-success', trans('app/alerts.feedback_success'));
+        return redirect()->route('landingpage.home.feedback', app()->getLocale())->with('pop-success', trans('app/alerts.feedback_success'));
     }
 
     public function contact()
