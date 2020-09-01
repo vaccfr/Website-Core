@@ -128,7 +128,7 @@ class MainController extends Controller
             return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
         }
 
-        if (request('cid') !== request('controller_cid')) {
+        if (request('cid') == request('controller_cid')) {
             return redirect()->back()->with('pop-error', 'You cannot submit feedback for yourself.');
         }
         $user = User::where('vatsim_id', request('controller_cid'))->first();
