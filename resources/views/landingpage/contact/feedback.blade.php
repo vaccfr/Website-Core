@@ -1,7 +1,7 @@
 @extends('layouts.landing')
 
 @section('page-title')
-  Contact
+  Feedback
 @endsection
 
 {{-- @section('page-masthead')
