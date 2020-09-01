@@ -115,15 +115,49 @@
 
           <div class="col-md-6">
             <div class="form-group">
+                <label for="form_email">Controller Position *</label>
+                <input
+                  id="position"
+                  type="text"
+                  name="position"
+                  class="form-control"
+                  required="required"
+                  placeholder="E.g.: LFPG_APP"
+                />
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
               <label for="form_date"> Date (dd/mm/yyyy) *</label>
               <input
                 id="dateSelect"
                 type="date"
                 name="date"
                 class="form-control"
-                placeholder="Please enter the event date *"
+                placeholder="Please enter the occurence date *"
                 required="required"
-                data-error="Event date is required."
+                data-error="Occurence date is required."
+                max="2100-01-01"
+              />
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="form_date"> Time UTC (HH:MM) *</label>
+              <input
+                id="dateSelect"
+                type="time"
+                name="time"
+                class="form-control"
+                placeholder="00:00"
+                required="required"
+                data-error="Occurence time is required."
               />
               <div class="help-block with-errors"></div>
             </div>
@@ -170,6 +204,9 @@
 </div>
 <!-- /.container-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="{{ asset('dashboard/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('dashboard/jquery/jquery.validate.js') }}"></script>
+<script src="{{ asset('dashboard/jquery/additional-methods.js') }}"></script>
 <script>
   const Toast = Swal.mixin({
     toast: true,
@@ -177,6 +214,13 @@
     showConfirmButton: false,
     timer: 3000
   });
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = yyyy + '-' + mm + '-' + dd ;
+  $('#dateSelect').attr('max', today);
 </script>
 @if ($cidIndicatedFlash == true)
   <script lang="javascript">
@@ -187,6 +231,7 @@
     )
   </script>
 @endif
+
 @endif
 @endsection
 

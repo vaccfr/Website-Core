@@ -18,6 +18,8 @@ class CreateFeedbackFormsTable extends Migration
             $table->string('name');
             $table->integer('vatsim_id');
             $table->integer('controller_cid');
+            $table->string('position');
+            $table->timestamp('occurence_date')->nullable();
             $table->longText('message');
             $table->timestamps();
         });

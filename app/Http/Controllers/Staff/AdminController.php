@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Mail\General\RespondContactMail;
 use App\Models\Admin\Staff;
 use App\Models\ATC\ATCRequest;
 use App\Models\ATC\ATCRosterMember;
@@ -11,11 +12,14 @@ use App\Models\ATC\Booking;
 use App\Models\ATC\Mentor;
 use App\Models\ATC\MentoringRequest;
 use App\Models\ATC\SoloApproval;
+use App\Models\General\ContactForm;
+use App\Models\General\FeedbackForm;
 use App\Models\Pilot\PilotMentor;
 use App\Models\Users\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -570,6 +574,53 @@ class AdminController extends Controller
         $student->delete();
 
         return redirect()->route('app.staff.atcadmin', app()->getLocale())->with('toast-success', trans('app/alerts.mentoring_deleted'));
+    }
+
+    public function contactFeedbackManager()
+    {
+        $contacts = ContactForm::orderBy('created_at', 'DESC')->get();
+        $atcFeedback = FeedbackForm::orderBy('created_at', 'DESC')
+        ->with('target')
+        ->get(); 
+        return view('app.staff.contact_manager', [
+            'contacts' => $contacts,
+            'atcFeedback' => $atcFeedback,
+        ]);
+    }
+
+    public function contactFeedbackManagerRespond(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required'],
+            'msgbody' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
+        }
+
+        $contact = ContactForm::where('id', request('id'))->first();
+        if (is_null($contact)) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
+        }
+        $user = User::where('vatsim_id', $contact->vatsim_id)->first();
+        if (is_null($user)) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.error_occured'));
+        }
+
+        $useremail = $user->email;
+        if (!is_null($user->custom_email)) {
+            $useremail = $user->custom_email;
+        }
+
+        Mail::to($useremail)
+        ->send(new RespondContactMail($user, $contact->message, request('msgbody')));
+        Mail::to(config('vatfrance.staff_email'))
+        ->send(new RespondContactMail($user, $contact->message, request('msgbody')));
+
+        $contact->responded = true;
+        $contact->save();
+        return redirect()->route('app.staff.cofbmanager', app()->getLocale())->with('toast-success', 'Réponse envoyée!');
     }
 
     public function faqMaker()

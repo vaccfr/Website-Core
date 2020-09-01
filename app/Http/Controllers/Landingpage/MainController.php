@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Landingpage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
+use App\Mail\General\NewContactRequestMail;
+use App\Mail\General\NewFeedbackMail;
 use App\Models\ATC\ATCRequest;
 use App\Models\ATC\Booking;
 use App\Models\General\ContactForm;
@@ -15,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller
 {
@@ -113,16 +117,17 @@ class MainController extends Controller
             'name' => ['required'],
             'cid' => ['required'],
             'controller_cid' => ['required'],
+            'position' => ['required', 'string', 'max:10'],
             'date' => ['required'],
+            'time' => ['required'],
             'message' => ['required'],
         ]);
 
         if ($validator->fails()) {
-            dd($validator->errors());
             return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
         }
 
-        if (request('cid') == request('controller_cid')) {
+        if (request('cid') !== request('controller_cid')) {
             return redirect()->back()->with('pop-error', 'You cannot submit feedback for yourself.');
         }
         $user = User::where('vatsim_id', request('controller_cid'))->first();
@@ -130,12 +135,27 @@ class MainController extends Controller
             return redirect()->back()->with('pop-error', 'User not found');
         }
 
+        $useremail = $user->email;
+        if (!is_null($user->custom_email)) {
+            $useremail = $user->custom_email;
+        }
+
+        $occurence = date_create_from_format('Y-m-d H:i', request('date').' '.request('time'))->format('Y-m-d H:i:s');
+
+        Mail::to($useremail)->send(new NewFeedbackMail($user, Auth::user(), [
+            'position' => request('position'),
+            'datetime' => $occurence,
+            'msg' => request('message'),
+        ]));
+
         $newID = (new Snowflake)->id();
         FeedbackForm::create([
             'id' => $newID,
             'name' => request('name'),
             'vatsim_id' => request('cid'),
             'controller_cid' => request('controller_cid'),
+            'position' => request('position'),
+            'occurence_date' => $occurence,
             'message' => request('message'),
         ]);
 
@@ -159,6 +179,13 @@ class MainController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
         }
+
+        $user = User::where('vatsim_id', request('cid'))->first();
+        if (is_null($user)) {
+            return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
+        }
+
+        Mail::to(config('vatfrance.staff_email'))->send(new NewContactRequestMail($user, request('message')));
 
         $newID = (new Snowflake)->id();        
         ContactForm::create([

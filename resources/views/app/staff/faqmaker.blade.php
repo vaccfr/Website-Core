@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Template
+  FAQ Maker
 @endsection
 
 @section('page-header')
@@ -23,7 +23,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      
+      <i>Page en construction, merci pour votre patience</i>
     </div>
   </div>
 </div>

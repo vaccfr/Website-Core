@@ -63,12 +63,12 @@
                 <p>{{__('app/app_menus.statutes')}}</p>
               </a>
             </li>
-            {{-- <li class="nav-item">
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-question"></i>
                 <p>FAQ</p>
               </a>
-            </li> --}}
+            </li>
           </ul>
         </li>
 
@@ -216,12 +216,18 @@
                     <p>ATC Admin</p>
                   </a>
                 </li>
-                {{-- <li class="nav-item">
-                  <a href="{{ route('app.staff.faqmaker', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.atcadmin')) active @endif">
+                <li class="nav-item">
+                  <a href="{{ route('app.staff.cofbmanager', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.cofbmanager')) active @endif">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Contact & Feedback</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('app.staff.faqmaker', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.faqmaker')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>FAQ Dashboard</p>
                   </a>
-                </li> --}}
+                </li>
               </ul>
             </li>
           @endif

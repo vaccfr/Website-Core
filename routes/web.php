@@ -183,6 +183,8 @@ Route::group([
                     Route::get('/', 'Staff\AdminController@index')->name('app.staff.admin');
                     Route::get('/edit', 'Staff\AdminController@editUser')->name('app.staff.admin.edit');
                     Route::get('/atcadmin', 'Staff\AdminController@atcAdmin')->name('app.staff.atcadmin');
+                    Route::get('/contact-feedback-manager', 'Staff\AdminController@contactFeedbackManager')->name('app.staff.cofbmanager');
+                    Route::post('/contact-feedback-manager/respond', 'Staff\AdminController@contactFeedbackManagerRespond')->name('app.staff.cofbmanager.corespond');
                     Route::get('/faqmaker', 'Staff\AdminController@faqMaker')->name('app.staff.faqmaker');
                     Route::post('/atcadmin/validate', 'Staff\AdminController@validateATCReq')->name('app.staff.atcadmin.v');
                     Route::post('/atcadmin/refuse', 'Staff\AdminController@refuseATCReq')->name('app.staff.atcadmin.r');
