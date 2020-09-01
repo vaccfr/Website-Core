@@ -139,7 +139,8 @@
                 id="form_message"
                 name="message"
                 class="form-control"
-                placeholder="Please give this ATCO a raise."
+                placeholder="Buy this controller a &#129360;"
+                {{-- placeholder="Please give this ATCO a raise." --}}
                 rows="4"
                 required="required"
                 data-error="Please, leave us a message."
