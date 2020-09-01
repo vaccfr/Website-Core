@@ -148,7 +148,7 @@
               @foreach ($atcFeedback as $f)
               <tr>
                 <td>{{$f['name']}} ({{$f['vatsim_id']}})</td>
-                <td>{{$f['target']['fname']}} {{$f['target']['lname']}} ({{$f['vatsim_id']}})</td>
+                <td>{{$f['target']['fname']}} {{$f['target']['lname']}} ({{$f['controller_cid']}})</td>
                 <td>{{date_create_from_format('Y-m-d H:i:s', $f['occurence_date'])->format('Y.m.d (H:i)')}} - {{$f['position']}}</td>
                 <td>
                   <button
