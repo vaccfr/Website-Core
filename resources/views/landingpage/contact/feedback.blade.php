@@ -167,7 +167,25 @@
   </div>
   <!-- /.8 -->
 </div>
-<!-- /.container-->  
+<!-- /.container-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });
+</script>
+@if ($cidIndicatedFlash == true)
+  <script lang="javascript">
+    Swal.fire(
+      'Feedback',
+      "You are about to provide feedback for {{$cidUser['fname']}} {{$cidUser['lname']}} (CID: {{$cidUser['vatsim_id']}})",
+      'info'
+    )
+  </script>
+@endif
 @endif
 @endsection
 
