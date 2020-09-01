@@ -172,6 +172,17 @@
       )
     </script>
   @endif
+
+  @if ($cidIndicatedFlash == true)
+    <script lang="javascript">
+      Swal.fire(
+        'Feedback',
+        "You are about to provide feedback for {{$cidUser['fname']}} {{$cidUser['lname']}} (CID: {{$cidUser['vatsim_id']}})",
+        'info'
+      )
+    </script>
+  @endif
+
   @include('cookieConsent::index')
   <script>
     $(document).ready(function () {

@@ -30,6 +30,7 @@ Route::get('/ts3', function() {
 Route::get('/pilotbrief', function() {
     return redirect()->route('landingpage.pilot.charts', app()->getLocale());
 })->name('redirect.pilotbrief');
+Route::get('/fb/{cid}', 'Landingpage\MainController@feedbackRedir')->name('redirect.feedback');
 
 // Landing page routes
 Route::group([

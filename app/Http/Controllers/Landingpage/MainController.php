@@ -9,6 +9,7 @@ use App\Models\ATC\Booking;
 use App\Models\General\ContactForm;
 use App\Models\General\Event;
 use App\Models\General\FeedbackForm;
+use App\Models\Users\User;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -83,8 +84,27 @@ class MainController extends Controller
 
     public function feedback()
     {
-        return view('landingpage.contact.feedback');
+        return view('landingpage.contact.feedback', [
+            'cidIndicated' => false,
+            'cidValue' => '',
+            'cidIndicatedFlash' => false,
+            'cidUser' => [],
+        ]);
         // return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
+    }
+
+    public function feedbackRedir($cid)
+    {
+        $user = User::where('vatsim_id', $cid)->first();
+        if (is_null($user)) {
+            return redirect()->route('landingpage.home.feedback', app()->getLocale());
+        }
+        return view('landingpage.contact.feedback', [
+            'cidIndicated' => true,
+            'cidValue' => $cid,
+            'cidIndicatedFlash' => true,
+            'cidUser' => $user,
+        ]);
     }
 
     public function feedbackForm(Request $request)

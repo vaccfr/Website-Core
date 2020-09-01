@@ -101,8 +101,13 @@
                   type="number"
                   name="controller_cid"
                   class="form-control"
-                  placeholder="E.g.: 1267123"
                   required="required"
+                  @if ($cidIndicated == true)
+                  readonly
+                  value="{{$cidValue}}"
+                  @else
+                  placeholder="E.g.: 1267123"
+                  @endif
                 />
               <div class="help-block with-errors"></div>
             </div>
