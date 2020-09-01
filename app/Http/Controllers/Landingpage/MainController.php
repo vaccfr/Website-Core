@@ -247,7 +247,7 @@ class MainController extends Controller
 
         $eventData = ATCRequest::where('id', $newID)->first();
 
-        Mail::to('ppare.vatsim@gmail.com')->send(new NewATCRequestMail($eventData));
+        Mail::to(config('vatfrance.staff_email'))->send(new NewATCRequestMail($eventData));
 
         return redirect()->route('landingpage.home.reqatc', app()->getLocale())->with('pop-success', trans('app/alerts.atcreq_success'));
     }
