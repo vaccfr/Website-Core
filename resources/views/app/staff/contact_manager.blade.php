@@ -57,8 +57,12 @@
                   <button
                     type="button"
                     class="btn btn-info btn-flat"
+                    @if ($c['responded'] == false)
                     data-toggle="modal"
                     data-target="#respond_{{$c['id']}}"
+                    @else
+                    disabled
+                    @endif
                     ><i class="fa fa-pen"></i>
                   </button>
                 </td>
@@ -88,6 +92,7 @@
                   </div>
                 </div>
               </div>
+              @if ($c['responded'] == false)
               <div class="modal fade" id="respond_{{$c['id']}}">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
@@ -114,6 +119,7 @@
                   </div>
                 </div>
               </div>
+              @endif
               @endforeach
             </tbody>
           </table>
