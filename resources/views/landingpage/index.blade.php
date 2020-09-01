@@ -19,10 +19,10 @@
         <h2 class="masthead-subheading">{{__('lp/lp_titles.french_branch')}}</h2>
         @if (Auth::check())
         <a href="{{ route('app.index', app()->getLocale()) }}" 
-          class="btn btn-xl btn-pill btn-primary px-7 mt-4">{{__('lp/lp_menu.dashboard')}}</a>
+          class="btn btn-xl btn-pill btn-primary px-7 mt-2">{{__('lp/lp_menu.dashboard')}}</a>
         @else
         <a href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" 
-          class="btn btn-xl btn-pill btn-primary px-7 mt-4">{{__('lp/lp_titles.join_us')}}!</a>
+          class="btn btn-xl btn-pill btn-primary px-7 mt-2">{{__('lp/lp_titles.join_us')}}!</a>
         @endif
       </div>
     </div>
