@@ -11,8 +11,8 @@
 {!! nl2br($response) !!}
 @endcomponent
 
-@component('mail::button', ['url' => 'discord.invite'])
-Join our Discord !
+@component('mail::button', ['url' => route('discord.invite')])
+Join our Discord / Rejoignez notre Discord !
 @endcomponent
 
 Kind regards,<br>
