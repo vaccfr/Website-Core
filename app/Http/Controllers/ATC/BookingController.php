@@ -162,6 +162,7 @@ class BookingController extends Controller
                         .'&b_month='.date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('m')
                         .'&b_year='.date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('Y')
                         .'&Controller='.auth()->user()->fname.' '.auth()->user()->lname
+                        .'&cid='.auth()->user()->vatsim_id
                         .'&Position='.$booking->position
                         .'&sTime='.date_create_from_format('Y-m-d H:i:s', $booking->start_date)->format('Hi')
                         .'&eTime='.date_create_from_format('Y-m-d H:i:s', $booking->end_date)->format('Hi')
