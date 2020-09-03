@@ -199,6 +199,7 @@
     "ordering": false,
     "autoWidth": false,
     "info": false,
+    "scrollY": 550,
     "language": {
       "emptyTable": "Pas de demandes trouvées"
     }
@@ -210,6 +211,7 @@
     "ordering": false,
     "autoWidth": false,
     "info": false,
+    "scrollY": 550,
     "language": {
       "emptyTable": "Pas de feedbacks ATC trouvés"
     }
