@@ -60,7 +60,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card card-dark elevation-3" style="height: 400px">
+      <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/user/usersettings.det_title')}}</h3>
         </div>
@@ -108,13 +108,13 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card card-dark elevation-3" style="height: 400px">
+      <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{__('app/user/usersettings.em_title')}}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" name="usereditform" id="usereditform" action="{{ route('app.user.settings.editemail', app()->getLocale()) }}" method="POST">
+        <form role="form" name="useremailpref" id="useremailpref" action="{{ route('app.user.settings.editemail', app()->getLocale()) }}" method="POST">
           @csrf
           <div class="card-body">
             <div class="form-group">
