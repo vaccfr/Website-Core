@@ -113,25 +113,25 @@ class BookingController extends Controller
             $hasMentoringVB = 0;
         }
         $bookingOnDay = Booking::whereDate('start_date', date_create_from_format('d.m.Y H:i', request('bookingdate').' '.request('starttime'))->format('Y-m-d'))->get();
+
+        $startHour = date_create_from_format('d.m.Y H:i', request('bookingdate').''.request('starttime'))->format('Y-m-d H:i:s');
+        $endHour = date_create_from_format('d.m.Y H:i', request('bookingdate').''.request('endtime'))->format('Y-m-d H:i:s');
         $deny = false;
-        $startHour = date_create_from_format('H:i', request('starttime'))->format('H');
-        $startMin = date_create_from_format('H:i', request('starttime'))->format('i');
-        $endHour = date_create_from_format('H:i', request('endtime'))->format('H');
-        $endMin = date_create_from_format('H:i', request('endtime'))->format('i');
         foreach ($bookingOnDay as $i => $b) {
             if ($b['position'] == request('positionselect')) {
-                $bStartHour = date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H');
-                $bStartMin = date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('i');
-                $bEndMin = date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('i');
-                $bEndHour = date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H');
+                $bStartHour = $b['start_date'];
+                $bEndHour = $b['end_date'];
 
-                if ($startHour >= $bStartHour && $startHour <= $bEndHour) {
-                    if ($startMin >= $bStartMin && $startMin <= $bEndMin) {
+                if ($startHour >= $bStartHour) {
+                    if ($startHour <= $bEndHour) {
+                        $deny = true;
+                    } elseif ($endHour <= $bEndHour) {
                         $deny = true;
                     }
-                }
-                if ($endHour <= $bEndHour && $endHour >= $bStartHour) {
-                    if ($endMin >= $bEndMin && $endMin <= $bStartMin) {
+                } elseif ($startHour <= $bStartHour) {
+                    if ($endHour >= $bStartHour && $endHour <= $bEndHour) {
+                        $deny = true;
+                    } elseif ($endHour >= $bEndHour) {
                         $deny = true;
                     }
                 }
