@@ -87,7 +87,6 @@
           </a> pour vous connecter sur votre compte vACC France <br>
           Autres liens <br>
           - Notre <a class="lol" href="{{ route('discord.invite') }}" target="_blank">serveur Discord</a> <br>
-          - Notre <a class="lol" href="{{ route('ts3.invite') }}">serveur Teamspeak</a>
         </div>
       </li>
   </ul>

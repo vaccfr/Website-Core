@@ -87,7 +87,6 @@
           </a> to connect to your French vACC account! <br>
           Other links: <br>
           - Our <a class="lol" href="{{ route('discord.invite') }}" target="_blank">Discord Server</a> <br>
-          - Our <a class="lol" href="{{ route('ts3.invite') }}">Teamspeak3 Server</a>
         </div>
       </li>
   </ul>
