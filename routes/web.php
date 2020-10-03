@@ -27,6 +27,9 @@ Route::get('/discord', function() {
 Route::get('/pilotbrief', function() {
     return redirect()->route('landingpage.pilot.charts', app()->getLocale());
 })->name('redirect.pilotbrief');
+Route::get('/lib', function() {
+    return redirect('https://library.vatsim.fr');
+})->name('redirect.library');
 Route::get('/fb/{cid}', 'Landingpage\MainController@feedbackRedir')->name('redirect.feedback');
 
 // Landing page routes
