@@ -173,6 +173,15 @@
     </script>
   @endif
 
+  @if (true)
+    <script lang="javascript">
+      Toast.fire({
+        icon: 'info',
+        title: 'This website is under construction'
+      });
+    </script>
+  @endif
+
   @include('cookieConsent::index')
   <script>
     $(document).ready(function () {

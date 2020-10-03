@@ -39,7 +39,7 @@
             {{__('lp/lp_index.director_text')}}
           </p>
           <p class="text-right">
-            Pierre Ferran <br />
+            --- <br />
             {{__('lp/lp_titles.vacc_director')}}
           </p>
         </div>

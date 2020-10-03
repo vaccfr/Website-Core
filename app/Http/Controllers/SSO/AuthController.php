@@ -116,6 +116,9 @@ class AuthController extends Controller
         }
         
         $response = json_decode($response->getBody());
+        if (!in_array($response->data->cid, $this->authorisedMembers)) {
+            return redirect()->route('landingpage.home', app()->getLocale())->with("toast-error", "Error.");
+        }
         $existingUser = User::where('vatsim_id', $response->data->cid)->first();
         if (is_null($existingUser)) {
             $userid = (new Snowflake)->id();
@@ -237,4 +240,19 @@ class AuthController extends Controller
         event(new EventLogout($user));
         return redirect()->route('landingpage.home', app()->getLocale())->with("toast-success", trans('app/alerts.logged_out'));
     }
+
+    protected $authorisedMembers = [
+        '1267123', // Peter PARE
+        '1469818', // Corentin Zerbib
+        '1288524', // Nick Marinov
+        '1259058', // Pierre Ferran
+        '1086470', // FX
+        '1190244', // Fabrice
+        '1183082', // Cathy
+        '1306415', // Chriss
+        '1461589', // Raphael
+        '1273992', // David P
+        '1478229', // Reda
+        '1371588', // Dominic
+    ];
 }
