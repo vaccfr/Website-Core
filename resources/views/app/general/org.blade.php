@@ -105,7 +105,7 @@
                 <tbody>
                   <tr>
                     <td>Deputy ATC Training Director</td>
-                    <td>Peter Paré - ACCFR31</td>
+                    <td>Peter Paré - ACCFR31 (<i>Ad interim</i>)</td>
                   </tr>
                   <tr>
                     <td>Operations Lead</td>
@@ -117,7 +117,7 @@
                   </tr>
                   <tr>
                     <td>Instructor & Examiner Team</td>
-                    <td><a href="#">View Team</a></td>
+                    <td><a href="{{ route('app.atc.roster', app()->getLocale()) }}">View Team</a></td>
                   </tr>
                 </tbody>
               </table>
