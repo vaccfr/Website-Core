@@ -1,18 +1,18 @@
 [{
-  "label": "Directeur",
+  "label": "Director General",
   "name": "Patrick Fuchez",
   "color": "green",
   "text": "white",
   "children": [
     {
-      "name": "Section ATC",
-      "label": "",
+      "label": "Deputy Director General",
+      "name": "F-X Obert",
       "color": "green",
       "text": "white",
       "children": [
         {
-          "name": "Patrick Fuchez",
-          "label": "Directeur ATC",
+          "name": "F-X Obert",
+          "label": "ATC TD & Director Operations",
           "children": [
             {
               "name": "David Petit",
@@ -31,79 +31,42 @@
               "label": "GNG"
             }
           ]
-        }
-      ]
-    }, {
-      "name": "Section Pilotes",
-      "label": "",
-      "color": "green",
-      "text": "white",
-      "children": [
-        {
-          "name": "Eric Lavorel",
-          "label": "Responsable Section Pilote",
+        }, {
+          "name": "Events",
+          "label": "",
+          "color": "green",
+          "text": "white",
           "children": [
             {
-              "name": "Bastien Serriere",
-              "label": "Instructeur Pilote"
-            }, {
-              "name": "Jean-François Karsenty",
-              "label": "Instructeur Pilote"
-            }, {
-              "name": "Eric Zanni",
-              "label": "Instructeur Pilote"
+              "name": "Guy Boulanger",
+              "label": "Responsable Events"
             }
           ]
-        }
-      ]
-    }, {
-      "name": "Events",
-      "label": "",
-      "color": "green",
-      "text": "white",
-      "children": [
-        {
-          "name": "Guy Boulanger",
-          "label": "Responsable Events"
-        }
-      ]
-    }, {
-      "name": "Communication",
-      "label": "",
-      "color": "green",
-      "text": "white",
-      "children": [
-        {
-          "name": "Jean Louis Richon",
-          "label": "Responsable Communication"
         }, {
-          "name": "Bruno Audoux",
-          "label": "Responsable Communication"
-        }
-      ]
-    }, {
-      "name": "Web",
-      "label": "",
-      "color": "green",
-      "text": "white",
-      "children": [
-        {
-          "name": "Georges Figueras",
-          "label": "Webmaster"
+          "name": "Web",
+          "label": "",
+          "color": "green",
+          "text": "white",
+          "children": [
+            {
+              "name": "Georges Figueras",
+              "label": "Webmaster"
+            }, {
+              "name": "Peter Paré",
+              "label": "Webmaster (nouveau site)"
+            }
+          ]
         }, {
-          "name": "Peter Paré",
-          "label": "Webmaster (nouveau site)"
-        }
-      ]
-    }, {
-      "name": "Militaire",
-      "label": "",
-      "color": "green",
-      "text": "white",
-      "children": [
-        {
-          "name": "Bruno Audoux",
-          "label": "N/A"
+          "name": "Militaire",
+          "label": "",
+          "color": "green",
+          "text": "white",
+          "children": [
+            {
+              "name": "Bruno Audoux",
+              "label": "N/A"
+            }
+          ]
         }
       ]
     }
