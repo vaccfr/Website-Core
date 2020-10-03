@@ -4,7 +4,7 @@ return [
   // Left side
   'header_title' => 'Training Center Pilote de :FNAME',
   'welcome_title' => 'Bienvenue!',
-  'welcome_msg' => 'Bienvenue dans le nouveau "Pilot Training Center" de VatFrance!<br>
+  'welcome_msg' => 'Bienvenue dans le nouveau "Pilot Training Center" de la vACC France!<br>
   Cette partie est dédiée à l\'apprentissage du contrôle en réseau sur Vatsim au sein de la région française.
   Elle a été concue spécialement par des mentors pour accompagner au mieux les élèves et leurs mentors le long de leur apprentissage.<br><br>
   Avec une interface simple, unique et intuitive, le Pilot Training Center vous guidera pendant vos nombreuses sessions, ainsi que vos tests et examens.<br><br>

@@ -44,15 +44,15 @@ class AdminController extends Controller
         $user = User::where('vatsim_id', $request->get('cid'))->with('discord')->firstOrFail();
 
         if ($user->subdiv_id == "FRA") {
-            $utypes = config('vatfrance.usertypes');
+            $utypes = config('vaccfr.usertypes');
         } else {
-            $utypes = config('vatfrance.visiting_usertypes');
+            $utypes = config('vaccfr.visiting_usertypes');
         }
 
         $ranks = [];
-        foreach (array_keys(config('vatfrance.atc_ranks')) as $r) {
+        foreach (array_keys(config('vaccfr.atc_ranks')) as $r) {
             if ((int)$user->atc_rating >= (int)$r) {
-                array_push($ranks, config('vatfrance.atc_ranks')[$r]);
+                array_push($ranks, config('vaccfr.atc_ranks')[$r]);
             }
         }
         $currentMentorRank = Mentor::where('id', $user->id)->first();
@@ -61,9 +61,9 @@ class AdminController extends Controller
         }
 
         $pilot_ranks = [];
-        foreach (array_keys(config('vatfrance.pilot_ranks')) as $r) {
+        foreach (array_keys(config('vaccfr.pilot_ranks')) as $r) {
             if ((int)$user->pilot_rating >= (int)$r) {
-                array_push($pilot_ranks, config('vatfrance.pilot_ranks')[$r]);
+                array_push($pilot_ranks, config('vaccfr.pilot_ranks')[$r]);
             }
         }
         $currentPilotMentorRank = PilotMentor::where('id', $user->id)->first();
@@ -177,14 +177,14 @@ class AdminController extends Controller
 
         switch ($currentUser->subdiv_id) {
             case 'FRA':
-                if (in_array($request->get('editusertype'), config('vatfrance.usertypes'))) {
+                if (in_array($request->get('editusertype'), config('vaccfr.usertypes'))) {
                     $currentUser->account_type = $request->get('editusertype');
                     $currentUser->save();
                 }
                 break;
             
             default:
-                if (in_array($request->get('editusertype'), config('vatfrance.visiting_usertypes'))) {
+                if (in_array($request->get('editusertype'), config('vaccfr.visiting_usertypes'))) {
                     $currentUser->account_type = $request->get('editusertype');
                     $currentUser->save();
                 }
@@ -615,7 +615,7 @@ class AdminController extends Controller
 
         Mail::to($useremail)
         ->send(new RespondContactMail($user, $contact->message, request('msgbody')));
-        Mail::to(config('vatfrance.staff_email'))
+        Mail::to(config('vaccfr.staff_email'))
         ->send(new RespondContactMail($user, $contact->message, request('msgbody')));
 
         $contact->responded = true;

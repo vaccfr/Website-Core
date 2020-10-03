@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/VATFrance/VATFrance-Graphics-Standards-Manual/master/VATFrance_WIDE_ALT.png" width="auto"></p>
 
-<p align="center"><b>v.1.0</b><br>Official repository of the new VATFrance Website rewrite<br>
+<p align="center"><b>v.1.0</b><br>Official repository of the new French vACC Website<br>
 <a href="https://www.vatfrance.org/fr" target="_blank">https://vatfrance.org/fr</a> <i>(Version française)</i><br>
 <a href="https://www.vatfrance.org/gb" target="_blank">https://vatfrance.org/gb</a> <i>(English version)</i>
 </p>
@@ -11,7 +11,7 @@
 
 ### About
 
-This project came about in July / August of 2020 as a new version for the aging VATFrance website. The goal of this project is to build a fully new front- and backend interface and logic for our division, with one key goal: simplicity and efficiency.
+This project came about in July / August of 2020 as a new version for the aging French vACC website. The goal of this project is to build a fully new front- and backend interface and logic for our division, with one key goal: simplicity and efficiency.
 
 This website will feature both a 'guest' landing area, as well as an authenticated member dashboard, available to anyone with a vatsim account.
 
@@ -30,4 +30,4 @@ A special thank you to the following people:
 
 ### License
 
-The VATFrance Website Core is licensed under the **MIT License**. You are free to use code from the repository within the reigns of that license. 
+The French vACC Website Core is licensed under the **---**. You are free to use code from the repository within the reigns of that license. 

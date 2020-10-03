@@ -31,12 +31,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="https://forum.vatfrance.org/" target="_blank" class="nav-link">
-            <i class="nav-icon fa fa-comments"></i>
-            <p>{{__('app/app_menus.forum')}}</p>
-          </a>
-        </li>
-        <li class="nav-item">
           <a href="{{ route('app.user.stats', app()->getLocale()) }}" class="nav-link @if (Route::is('app.user.stats')) active @endif">
             <i class="nav-icon fa fa-chart-bar"></i>
             <p>{{__('app/app_menus.stats')}}</p>

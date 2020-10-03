@@ -35,6 +35,6 @@ class NewFeedbackMail extends Mailable
             'sender' => $this->sender,
             'data' => $this->data,
         ])
-        ->subject('VATFrance - Nouveau Feedback ATC pour '.$this->user->fname.' '.$this->user->lname);
+        ->subject('French vACC - Nouveau Feedback ATC pour '.$this->user->fname.' '.$this->user->lname);
     }
 }

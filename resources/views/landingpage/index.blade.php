@@ -6,12 +6,6 @@
 
 @section('page-masthead')
 <header class="masthead">
-  <div>
-      <video loop muted autoplay playsinline class="animated_bg__video" src="{{ asset('/media/video/lp/vatfrance_bg.mp4') }}">
-          <source src="{{ asset('/media/video/lp/vatfrance_bg.webm') }}" type="video/webm">
-          <source src="{{ asset('/media/video/lp/vatfrance_bg.mp4') }}" type="video/mp4">
-      </video>
-  </div>
   <div class="container-fluid h-100 bg-overlay d-flex align-items-end masthead-container" >
     <div class="row container-fluid no-gutters">
       <div class="col-12">
@@ -45,7 +39,7 @@
             {{__('lp/lp_index.director_text')}}
           </p>
           <p class="text-right">
-            Patrick Fuchez <br />
+            Pierre Ferran <br />
             {{__('lp/lp_titles.vacc_director')}}
           </p>
         </div>

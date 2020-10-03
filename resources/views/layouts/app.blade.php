@@ -6,14 +6,14 @@
   <title>{{ config('app.name') }} | @yield('page-title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" />
-  <meta name="keywords" content="vatsim vatfrance france online flight simulation fsx p3d vateud vateur virtual atc air traffic control euroscope" />
-  <meta name="author" content="Peter Paré, Reda Khermach & Corentin Zerbib - VATFRANCE" />
+  <meta name="description" content="French vACC is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" />
+  <meta name="keywords" content="vatsim vatfrance French vACC france online flight simulation fsx p3d vateud vateur virtual atc air traffic control euroscope" />
+  <meta name="author" content="Peter Paré, Reda Khermach & Corentin Zerbib - French vACC" />
   <meta content="{{ asset('media/img/new_favicon.png') }}" property="og:image" />
-  <meta content="VatFrance - French Division of VATSIM" property="twitter:title" />
-  <meta content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" property="twitter:description" />
-  <meta content="VatFrance - French Division of VATSIM" property="og:title" />
-  <meta content="VatFrance is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" property="og:description" />
+  <meta content="French vACC - French Division of VATSIM" property="twitter:title" />
+  <meta content="French vACC is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" property="twitter:description" />
+  <meta content="French vACC - French Division of VATSIM" property="og:title" />
+  <meta content="French vACC is the Official French Division of the VATSIM Online Virtual Flight Simulation Network. Come check us out!" property="og:description" />
   <link rel="icon" type="image/png" href="{{ asset('media/img/new_favicon.png') }}" />
 
   <!-- Font Awesome -->

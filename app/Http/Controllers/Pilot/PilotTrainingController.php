@@ -23,7 +23,7 @@ class PilotTrainingController extends Controller
         $existingRequest = PilotMentoringRequest::where('student_id', auth()->user()->id)->first();
         if (!is_null($activeStudent)) {
             if ($activeStudent->active == true) {
-                $studySessions = config('vatfrance.pilot_progress_'.app()->getLocale());
+                $studySessions = config('vaccfr.pilot_progress_'.app()->getLocale());
                 $progSteps = 100/(int)count($studySessions);
 
                 $sessions = PilotTrainingSession::where('student_id', $activeStudent->id)
@@ -106,7 +106,7 @@ class PilotTrainingController extends Controller
             'vatsim_id' => auth()->user()->vatsim_id,
         ]);
 
-        // Mail::to(config('vatfrance.ATC_staff_email'))->send(new NewRequestMail([
+        // Mail::to(config('vaccfr.ATC_staff_email'))->send(new NewRequestMail([
         //     'sender' => auth()->user()->fullname()." - ".auth()->user()->vatsim_id,
         //     'body' => $request->get('reqmotivation'),
         // ]));

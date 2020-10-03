@@ -33,6 +33,6 @@ class NewContactRequestMail extends Mailable
             'user' => $this->user,
             'question' => $this->question,
         ])
-        ->subject('VATFrance - Nouvelle Question');
+        ->subject('French vACC - Nouvelle Question');
     }
 }

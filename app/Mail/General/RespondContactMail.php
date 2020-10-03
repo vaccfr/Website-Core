@@ -35,6 +35,6 @@ class RespondContactMail extends Mailable
             'response' => $this->response,
             'user' => $this->user,
         ])
-        ->subject('VATFrance - Response');
+        ->subject('French vACC - Response');
     }
 }

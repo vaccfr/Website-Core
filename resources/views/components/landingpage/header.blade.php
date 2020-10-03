@@ -39,7 +39,6 @@
             <a class="dropdown-item" href="{{ route('app.general.stafforg', app()->getLocale()) }}">Staff vACC</a>
             <a class="dropdown-item" href="{{ route('landingpage.home.policies', app()->getLocale()) }}">{{__('lp/lp_menu.st_and_pol')}}</a>
             <a href="{{ route('discord.invite') }}" target="_blank" class="dropdown-item">Discord Server</a>
-            <a href="{{ route('ts3.invite') }}" class="dropdown-item">Teamspeak3 Server</a>
           </div>
         </li>
 

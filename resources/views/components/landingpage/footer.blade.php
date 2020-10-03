@@ -11,5 +11,5 @@
   </ul>
   <br />
   <!-- <p class="copyright">made with<br />♥</p>-->
-  <span class="copyright">&copy; VatFrance. All rights reserved.</span>
+  <span class="copyright">&copy; French vACC. All rights reserved.</span>
 </footer>

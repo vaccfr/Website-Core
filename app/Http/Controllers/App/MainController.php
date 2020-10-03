@@ -54,9 +54,9 @@ class MainController extends Controller
             $useremail = Auth::user()->custom_email." (custom)";
         }
         if (Auth::user()->subdiv_id == "FRA") {
-            $utypes = config('vatfrance.usertypes');
+            $utypes = config('vaccfr.usertypes');
         } else {
-            $utypes = config('vatfrance.visiting_usertypes');
+            $utypes = config('vaccfr.visiting_usertypes');
         }
 
         $userDiscord = Auth::user()->discord;
@@ -101,14 +101,14 @@ class MainController extends Controller
         }
         switch (Auth::user()->subdiv_id) {
             case 'FRA':
-                if (in_array($request->get('editusertype'), config('vatfrance.usertypes'))) {
+                if (in_array($request->get('editusertype'), config('vaccfr.usertypes'))) {
                     $currentUser->account_type = $request->get('editusertype');
                     $currentUser->save();
                 }
                 break;
             
             default:
-                if (in_array($request->get('editusertype'), config('vatfrance.visiting_usertypes'))) {
+                if (in_array($request->get('editusertype'), config('vaccfr.visiting_usertypes'))) {
                     $currentUser->account_type = $request->get('editusertype');
                     $currentUser->save();
                 }

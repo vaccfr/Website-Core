@@ -10,11 +10,7 @@ return [
 
   'online_atc_title' => 'Online ATC',
 
-  'director_text' => 'Welcome to Vatfrance! We have the privilege to be welcomed by Vatsim as the French division of the network.
-  Our goal is to guide you on your training path to becoming a virtual ATC. If you are a pilot, you may learn techniques
-  and phraseology, which will allow you to fly in virtual controlled skies.
-  We are only a small team, passionate of aviation, both real and virtual.
-  It\'s a please to meet you, come say hello!',
+  'director_text' => 'Welcome to the French vACC! Thank you for visiting our website and we hope to talk to you soon! Don\'t forget to join our Discord server.',
 
   'position' => 'Position',
   'name' => 'Name (ID)',

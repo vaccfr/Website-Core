@@ -24,9 +24,6 @@ Route::get('/', function () {
 Route::get('/discord', function() {
     return redirect('https://discord.gg/f279VCy');
 })->name('discord.invite');
-Route::get('/ts3', function() {
-    return redirect('ts3server://www.vatfrance.org/');
-})->name('ts3.invite');
 Route::get('/pilotbrief', function() {
     return redirect()->route('landingpage.pilot.charts', app()->getLocale());
 })->name('redirect.pilotbrief');

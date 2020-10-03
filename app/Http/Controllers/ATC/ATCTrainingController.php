@@ -24,7 +24,7 @@ class ATCTrainingController extends Controller
         $existingRequest = MentoringRequest::where('student_id', auth()->user()->id)->first();
         if (!is_null($activeStudent)) {
             if ($activeStudent->active == true) {
-                $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
+                $studySessions = config('vaccfr.student_progress_'.app()->getLocale());
                 $progSteps = 100/(int)count($studySessions);
 
                 $sessions = TrainingSession::where('student_id', $activeStudent->id)
@@ -72,7 +72,7 @@ class ATCTrainingController extends Controller
             $platforms = Airport::orderBy('city', 'ASC')->get();
             return view('app.atc.training_req', [
                 'platforms' => $platforms,
-                'excl' => config('vatfrance.excluded_mentoring_airports'),
+                'excl' => config('vaccfr.excluded_mentoring_airports'),
                 'show' => "NORMAL",
             ]);
         }
@@ -91,7 +91,7 @@ class ATCTrainingController extends Controller
 
         if ($validator->fails()) {
             return redirect()->route('app.atc.training', app()->getLocale());
-        } elseif (in_array($request->get('reqposition'), config('vatfrance.excluded_mentoring_airports'))) {
+        } elseif (in_array($request->get('reqposition'), config('vaccfr.excluded_mentoring_airports'))) {
             return redirect()->route('app.atc.training', app()->getLocale());
         }
 
@@ -113,7 +113,7 @@ class ATCTrainingController extends Controller
             'vatsim_id' => auth()->user()->vatsim_id,
         ]);
 
-        Mail::to(config('vatfrance.ATC_staff_email'))->send(new NewRequestMail([
+        Mail::to(config('vaccfr.ATC_staff_email'))->send(new NewRequestMail([
             'sender' => auth()->user()->fullname()." - ".auth()->user()->vatsim_id,
             'body' => $request->get('reqmotivation'),
         ]));

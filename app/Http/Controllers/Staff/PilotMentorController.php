@@ -32,9 +32,9 @@ class PilotMentorController extends Controller
         $myMentor = PilotMentor::where('id', auth()->user()->id)->first();
         $ranks = [];
 
-        foreach (array_keys(config('vatfrance.pilot_ranks')) as $r) {
+        foreach (array_keys(config('vaccfr.pilot_ranks')) as $r) {
             if (!in_array($myMentor->allowed_rank, $ranks)) {
-                array_push($ranks, config('vatfrance.pilot_ranks')[$r]);
+                array_push($ranks, config('vaccfr.pilot_ranks')[$r]);
             }
         }
 
@@ -99,7 +99,7 @@ class PilotMentorController extends Controller
 
         // $user = User::where('id', $userid)->first();
         // if (!is_null($user)) {
-        //     Mail::to(config('vatfrance.ATC_staff_email'))->send(new RequestRejectMail(
+        //     Mail::to(config('vaccfr.ATC_staff_email'))->send(new RequestRejectMail(
         //         $user, [
         //             'student' => $user->fname.' '.$user->lname.' - '.$user->vatsim_id,
         //             'rejector' => auth()->user()->fname.' '.auth()->user()->lname,
@@ -125,7 +125,7 @@ class PilotMentorController extends Controller
 
     public function myStudents()
     {
-        $studySessions = config('vatfrance.pilot_progress_'.app()->getLocale());
+        $studySessions = config('vaccfr.pilot_progress_'.app()->getLocale());
         $progSteps = 100/(int)count($studySessions);
 
         $students = PilotStudent::where('mentor_id', auth()->user()->id)

@@ -31,6 +31,6 @@ class NewATCRequestMail extends Mailable
         return $this->markdown('Mail/General/NewATCRequestEmail', [
             'eventData' => $this->eventData,
         ])
-        ->subject('VATFrance - Nouvelle requête ATC');
+        ->subject('French vACC - Nouvelle requête ATC');
     }
 }

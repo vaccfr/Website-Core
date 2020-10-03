@@ -18,7 +18,7 @@
 @section('page-masthead')
 <section class="intro">
   <div class="container_ATC">
-    <h1>Our Statutes & Policies</h1>
+    <h1>Our Policies</h1>
   </div>
 </section>
 @endsection
@@ -36,14 +36,6 @@
         <li class="nav-item">
           <a
             class="nav-link active"
-            href="#Statutes"
-            data-toggle="tab"
-            >Statutes</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
             href="#Privacy-Policy"
             data-toggle="tab"
             >Privacy Policy</a
@@ -69,17 +61,8 @@
     </div>
     <div class="card-body">
       <div class="tab-content mt-3">
-        <div
-          class="tab-pane active"
-          id="Statutes"
-          role="tabpanel"
-        >
-          <p class="card-text">
-            <iframe src="{{ asset('assets/docs/Status_VAT_France.pdf') }}" frameborder="0" width="100%" height="800px"></iframe>
-          </p>
-        </div>
 
-        <div class="tab-pane" id="Privacy-Policy" role="tabpanel">
+        <div class="tab-pane active" id="Privacy-Policy" role="tabpanel">
           <p class="card-text">
             @include('policies.privacy')
           </p>

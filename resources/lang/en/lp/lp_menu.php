@@ -17,7 +17,7 @@ return [
 
   'dashboard' => 'Dashboard',
 
-  'st_and_pol' => 'Statutes and Policies',
+  'st_and_pol' => 'Policies',
   'charts' => 'Charts',
   'pilot_tr' => 'Pilot Training',
   'atc_tr' => 'ATC Training',

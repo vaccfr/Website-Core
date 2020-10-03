@@ -17,7 +17,7 @@ return [
 
   'dashboard' => 'Tableau de bord',
 
-  'st_and_pol' => 'Statuts et Polices',
+  'st_and_pol' => 'Mentions légales',
   'charts' => 'Cartes Aériennes',
   'pilot_tr' => 'Training Pilote',
   'atc_tr' => 'Training ATC',

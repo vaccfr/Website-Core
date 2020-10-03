@@ -186,7 +186,7 @@ class MainController extends Controller
             return redirect()->back()->with('pop-error', trans('app/alerts.atc_req_fields_error'));
         }
 
-        Mail::to(config('vatfrance.staff_email'))->send(new NewContactRequestMail($user, request('message')));
+        Mail::to(config('vaccfr.staff_email'))->send(new NewContactRequestMail($user, request('message')));
 
         $newID = (new Snowflake)->id();        
         ContactForm::create([
@@ -247,7 +247,7 @@ class MainController extends Controller
 
         $eventData = ATCRequest::where('id', $newID)->first();
 
-        Mail::to(config('vatfrance.staff_email'))->send(new NewATCRequestMail($eventData));
+        Mail::to(config('vaccfr.staff_email'))->send(new NewATCRequestMail($eventData));
 
         return redirect()->route('landingpage.home.reqatc', app()->getLocale())->with('pop-success', trans('app/alerts.atcreq_success'));
     }

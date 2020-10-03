@@ -18,7 +18,7 @@
     <li>
       <div class="ATC_TEXT">
         <time>Premiers pas</time>
-        Pour devenir ATC chez VatFrance,vous devez d'abord vous crééer un compte VATSIM.
+        Pour devenir ATC dans la vACC France,vous devez d'abord vous crééer un compte VATSIM.
         Vous pourrez alors utiliser ce compte <a class="lol" href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" target="_blank" rel="noopener noreferrer">
           pour vous connecter</a> et faire votre demande de mentoring.
       </div>
@@ -43,7 +43,7 @@
       <li>
         <div class="ATC_TEXT">
           <time>Training</time>
-          Le mentor qui vous aura été assigné vous suivra tout le long de votre carrière contrôleur VATFrance - ou jusqu'au niveau auquel il est apte de vous former. <br>
+          Le mentor qui vous aura été assigné vous suivra tout le long de votre carrière contrôleur de la vACC France - ou jusqu'au niveau auquel il est apte de vous former. <br>
           <b>La durée d'une formation est variable : ceci peu aller de quelques semaines à quelques mois.</b>. Ce temps est nécessaire pour garantir les meilleurs standards de formation
           et pour nous assurer que vous pourrez proposer le meilleur service de contrôle possible.
         </div>
@@ -84,7 +84,7 @@
           <a class="lol" href="https://www.vatsim.net/join" target="_blank">Créez votre compte</a>  aujourd'hui avec VATSIM
           <a class="lol" href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" target="_blank" rel="noopener noreferrer">
             cliquez ici
-          </a> pour vous connecter sur votre compte VatFrance <br>
+          </a> pour vous connecter sur votre compte vACC France <br>
           Autres liens <br>
           - Notre <a class="lol" href="{{ route('discord.invite') }}" target="_blank">serveur Discord</a> <br>
           - Notre <a class="lol" href="{{ route('ts3.invite') }}">serveur Teamspeak</a>

@@ -32,8 +32,8 @@ class ListenNewATCBooking
         try {
             $from = DateTime::createFromFormat('d.m.Y H:i', $event->data['date']." ".$event->data['start_time']);
             $to = DateTime::createFromFormat('d.m.Y H:i', $event->data['date']." ".$event->data['end_time']);
-            $link = \Spatie\CalendarLinks\Link::create($event->data['position'].' - VatFrance ATC', $from, $to)
-                            ->description('VATFrance Booking ATC sur '.$event->data['position'].' - '.$event->data['date'].' @ '.$event->data['time'])
+            $link = \Spatie\CalendarLinks\Link::create($event->data['position'].' - French vACC ATC', $from, $to)
+                            ->description('French vACC Booking ATC sur '.$event->data['position'].' - '.$event->data['date'].' @ '.$event->data['time'])
                             ->address($event->data['position'].' - VATSIM');
             
             $calendarLinks = [

@@ -1,8 +1,8 @@
 <?php
 
 return [
-  'welcome_to_vatfrance' => 'Welcome to VATFrance',
-  'french_branch' => 'French branch of the VATSIM network',
+  'welcome_to_vatfrance' => 'Welcome to the French vACC',
+  'french_branch' => 'French division of the VATSIM network',
   'join_us' => 'Join us',
   'about_us' => 'About us',
   'stats' => 'Statistics',

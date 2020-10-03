@@ -4,7 +4,7 @@ return [
   // Left side
   'header_title' => ':FNAME\'s ATC Training Center',
   'welcome_title' => 'Welcome!',
-  'welcome_msg' => 'Welcome to the new ATC Training Center of Vatfrance!<br>
+  'welcome_msg' => 'Welcome to the new ATC Training Center of the French vACC!<br>
   This area of the site has been specially tailored by ATC mentors
   to make your journey through learning how to become a virtual ATC
   more pleasant and efficient.<br><br>

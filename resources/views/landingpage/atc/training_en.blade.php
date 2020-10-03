@@ -18,7 +18,7 @@
     <li>
       <div class="ATC_TEXT">
         <time>First Steps</time>
-        To start your ATC Training with VATFrance, you must first create a VATSIM account.
+        To start your ATC Training with the French vACC, you must first create a VATSIM account.
         You can then use this account to <a class="lol" href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" target="_blank" rel="noopener noreferrer">
           log into your account</a> and request your mentoring.
       </div>
@@ -43,7 +43,7 @@
       <li>
         <div class="ATC_TEXT">
           <time>Training</time>
-          Your mentor will guide you, in most cases, throughout your entire ATC career in VATFrance - or up to the level they are allowed to teach. <br>
+          Your mentor will guide you, in most cases, throughout your entire ATC career in the French vACC - or up to the level they are allowed to teach. <br>
           <b>Training can last between a few weeks to a few months for every single rank</b>. This time is necessary to guarantee the highest standard of teaching
           and to ensure you will provide the highest possible quality service with the best confidence.
         </div>
@@ -84,7 +84,7 @@
           <a class="lol" href="https://www.vatsim.net/join" target="_blank">Create your account</a>  today with VATSIM, then 
           <a class="lol" href="{{ route('auth.login', ['locale' => app()->getLocale(), 'redirflag' => 'false']) }}" target="_blank" rel="noopener noreferrer">
             click here
-          </a> to connect to your VATFrance account! <br>
+          </a> to connect to your French vACC account! <br>
           Other links: <br>
           - Our <a class="lol" href="{{ route('discord.invite') }}" target="_blank">Discord Server</a> <br>
           - Our <a class="lol" href="{{ route('ts3.invite') }}">Teamspeak3 Server</a>

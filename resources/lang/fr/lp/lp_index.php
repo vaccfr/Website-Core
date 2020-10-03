@@ -10,11 +10,7 @@ return [
 
   'online_atc_title' => 'Contrôleurs en ligne',
 
-  'director_text' => 'Soyez les bienvenus chez Vatfrance ! Nous avons le privilège d\'être accueillis par Vatsim.
-  Notre but est de vous initier au contrôle aérien. Si vous êtes pilotes, vous apprendrez la phraséologie,
-  qui vous permettra de voler dans un espace contrôlé.
-  Nous ne sommes qu\'une petite équipe constituée de passionnés de l\'aviation.
-  Au plaisir de vous rencontrer.',
+  'director_text' => 'Bienvenue sur le site de la vACC France!',
 
   'position' => 'Position',
   'name' => 'Nom (ID)',

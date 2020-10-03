@@ -36,9 +36,9 @@ class ATCMentorController extends Controller
         $myMentor = Mentor::where('id', auth()->user()->id)->first();
         $ranks = [];
 
-        foreach (array_keys(config('vatfrance.atc_ranks')) as $r) {
+        foreach (array_keys(config('vaccfr.atc_ranks')) as $r) {
             if (!in_array($myMentor->allowed_rank, $ranks)) {
-                array_push($ranks, config('vatfrance.atc_ranks')[$r]);
+                array_push($ranks, config('vaccfr.atc_ranks')[$r]);
             }
         }
 
@@ -103,7 +103,7 @@ class ATCMentorController extends Controller
 
         $user = User::where('id', $userid)->first();
         if (!is_null($user)) {
-            Mail::to(config('vatfrance.ATC_staff_email'))->send(new RequestRejectMail(
+            Mail::to(config('vaccfr.ATC_staff_email'))->send(new RequestRejectMail(
                 $user, [
                     'student' => $user->fname.' '.$user->lname.' - '.$user->vatsim_id,
                     'rejector' => auth()->user()->fname.' '.auth()->user()->lname,
@@ -129,7 +129,7 @@ class ATCMentorController extends Controller
 
     public function myStudents()
     {
-        $studySessions = config('vatfrance.student_progress_'.app()->getLocale());
+        $studySessions = config('vaccfr.student_progress_'.app()->getLocale());
         $progSteps = 100/(int)count($studySessions);
 
         $students = ATCStudent::where('mentor_id', auth()->user()->id)
