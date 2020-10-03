@@ -1,0 +1,12 @@
+https://vatsim.fr {
+    root * /var/www/vaccfr/public
+
+    php_fastcgi unix//run/php/php7.4-fpm.sock
+
+    encode gzip
+    file_server
+}
+
+https://www.vatsim.fr {
+    redir https://vatsim.fr
+}
