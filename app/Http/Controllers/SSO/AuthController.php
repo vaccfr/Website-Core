@@ -254,5 +254,6 @@ class AuthController extends Controller
         '1273992', // David P
         '1478229', // Reda
         '1371588', // Dominic
+        '1492152', // Loic
     ];
 }
