@@ -1,8 +1,8 @@
 <p align="center"><img src="https://raw.githubusercontent.com/VATFrance/VATFrance-Graphics-Standards-Manual/master/VATFrance_WIDE_ALT.png" width="auto"></p>
 
 <p align="center"><b>v.1.0</b><br>Official repository of the new French vACC Website<br>
-<a href="https://www.vatfrance.org/fr" target="_blank">https://vatfrance.org/fr</a> <i>(Version française)</i><br>
-<a href="https://www.vatfrance.org/gb" target="_blank">https://vatfrance.org/gb</a> <i>(English version)</i>
+<a href="https://www.vatsim.fr/fr" target="_blank">https://vatsim.fr/fr</a> <i>(Version française)</i><br>
+<a href="https://www.vatsim.fr/gb" target="_blank">https://vatsim.fr/gb</a> <i>(English version)</i>
 </p>
 
 ---
@@ -13,7 +13,8 @@
 
 This project came about in July / August of 2020 as a new version for the aging French vACC website. The goal of this project is to build a fully new front- and backend interface and logic for our division, with one key goal: simplicity and efficiency.
 
-This website will feature both a 'guest' landing area, as well as an authenticated member dashboard, available to anyone with a vatsim account.
+This website features both a 'guest' landing area, as well as an authenticated member dashboard, available to anyone with a vatsim account.
+The website is also fully integrated with the vACC Discord server, <a href="https://www.vatsim.fr/discord" target="_blank">which you may join by clicking here</a>.
 
 ### Dependencies
 
@@ -30,4 +31,16 @@ A special thank you to the following people:
 
 ### License
 
-The French vACC Website Core is licensed under the **---**. You are free to use code from the repository within the reigns of that license. 
+The French vACC Website Core is licensed under the **GNU GPL v3 License**. You are free to use code from the repository within the reigns of that license. 
+
+French vACC Website Core Copyright (C) 2020 French vACC
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/.
+
+This project is specifically built for the French vAcc which may deviate from the license as agreed with the author.
+
+All French vACC materials do not fall under this license, and are (c) French vACC 2020.
