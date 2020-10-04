@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Users;
 
+use App\Models\Users\BannedUser as UsersBannedUser;
 use App\Models\Users\DiscordData;
 use Closure;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,11 @@ class BannedUser
     {
         if (!Auth::check()) {
             return redirect()->back();
+        }
+        $userBan = UsersBannedUser::where('user_id', auth()->user()->id)->first();
+        if (!is_null($userBan)) {
+            Auth::logout();
+            return redirect()->route('landingpage.home', app()->getLocale())->with('toast-error', 'Your account has been restricted.');
         }
         $userDiscord = DiscordData::where('user_id', auth()->user()->id)->first();
         if (!is_null($userDiscord)) {

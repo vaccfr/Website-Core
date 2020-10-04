@@ -88,6 +88,11 @@ class User extends Authenticatable
         return $this->hasOne(DiscordData::class, 'user_id', 'id');
     }
 
+    public function ban()
+    {
+        return $this->hasOne(BannedUser::class, 'vatsim_id', 'vatsim_id');
+    }
+
     // Utility Functions
     
     public function fullname()
@@ -229,5 +234,14 @@ class User extends Authenticatable
     {
         $curr = UserSetting::where('vatsim_id', $this->vatsim_id)->first();
         return $curr['sidenav_collapsed'];
+    }
+
+    public function isBanned()
+    {
+        $ban = BannedUser::where('vatsim_id', $this->vatsim_id)->first();
+        if (!is_null($ban)) {
+            return true;
+        }
+        return false;
     }
 }

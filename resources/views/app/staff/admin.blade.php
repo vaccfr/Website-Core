@@ -118,7 +118,23 @@
                           </form>
                         </div>
                         <div class="col-sm-6">
-                          <button type="button" class="btn btn-block btn-warning btn-flat" disabled>{{__('app/admin/dashboard.restrict')}}</button>
+                          @if (is_null($m['ban']))
+                          <form action="{{ route('app.staff.block.add', ['locale' => app()->getLocale()]) }}" method="post">
+                            @csrf
+                            <input type="hidden" value="{{ $m['vatsim_id'] }}" name="cid">
+                            <button type="submit" class="btn btn-block btn-warning btn-flat">
+                              {{__('app/admin/dashboard.restrict')}}
+                            </button>
+                          </form>
+                          @else
+                          <form action="{{ route('app.staff.block.remove', ['locale' => app()->getLocale()]) }}" method="post">
+                            @csrf
+                            <input type="hidden" value="{{ $m['vatsim_id'] }}" name="cid">
+                            <button type="submit" class="btn btn-block btn-success btn-flat">
+                              {{__('app/admin/dashboard.unrestrict')}}
+                            </button>
+                          </form>
+                          @endif
                         </div>
                       </div>
                     </td>

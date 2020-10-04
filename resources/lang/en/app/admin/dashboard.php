@@ -18,6 +18,7 @@ return [
   'actions' => 'Actions',
   'edit' => 'Edit',
   'restrict' => 'Block',
+  'unrestrict' => 'Unblock',
 
   // Widgets
   'atc_members' => 'ATC Members',

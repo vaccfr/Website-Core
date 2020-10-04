@@ -26,7 +26,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $members = User::get();
+        $members = User::with('ban')->get();
         $memberCount = count($members);
         $atcCount = count(ATCRosterMember::get());
         $bookingCount = count(Booking::whereDate('start_date', Carbon::now()->format('Y-m-d'))->with('user')->get());
