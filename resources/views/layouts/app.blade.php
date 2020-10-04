@@ -172,7 +172,7 @@
 <script lang="javascript">
   Swal.fire({
     title: '{!!__("app/alerts.welcome_title")!!}',
-    text: '{!!__("app/alerts.welcome_text")!!}',
+    html: '{!!__("app/alerts.welcome_text")!!}',
     showCancelButton: false,
     showConfirmButton: true,
     confirmButtonText: '{!!__("app/alerts.goto_settings")!!}'
