@@ -86,7 +86,7 @@
 
     @yield('page-content')
 
-		{{-- @include('components.landingpage.footer') --}}
+		@include('components.landingpage.footer')
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>

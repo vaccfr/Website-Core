@@ -129,7 +129,7 @@ class AuthController extends Controller
             User::create([
                 'id' => $userid,
                 'vatsim_id' => $response->data->cid,
-                'email' => isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org',
+                'email' => isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatsim.fr',
                 'fname' => isset($response->data->personal->name_first) ? $response->data->personal->name_first : null,
                 'lname' => isset($response->data->personal->name_last) ? $response->data->personal->name_last : null,
                 'atc_rating' => $response->data->vatsim->rating->id,
@@ -152,7 +152,7 @@ class AuthController extends Controller
         } else {
             $user->id = $userid;
             $user->vatsim_id = $response->data->cid;
-            $user->email = isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatfrance.org';
+            $user->email = isset($response->data->personal->email) ? $response->data->personal->email : 'noemail@vatsim.fr';
             $user->fname = isset($response->data->personal->name_first) ? $response->data->personal->name_first : null;
             $user->lname = isset($response->data->personal->name_last) ? $response->data->personal->name_last : null;
             $user->atc_rating = $response->data->vatsim->rating->id;
