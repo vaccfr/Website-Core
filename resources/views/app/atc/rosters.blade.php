@@ -91,8 +91,8 @@
                   <th>{{__('app/atc/rosters.approved')}}</th>
                   <th>{{__('app/atc/rosters.authorised')}} LFPG TWR</th>
                   <th>{{__('app/atc/rosters.authorised')}} LFPG APP</th>
-                  <th>{{__('app/atc/rosters.authorised')}} LFMN TWR</th>
-                  <th>{{__('app/atc/rosters.authorised')}} LFMN APP</th>
+                  {{-- <th>{{__('app/atc/rosters.authorised')}} LFMN TWR</th>
+                  <th>{{__('app/atc/rosters.authorised')}} LFMN APP</th> --}}
                 </tr>
                 </thead>
                 <tbody>
@@ -126,7 +126,7 @@
                           <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
                         @endif
                       </td>
-                      <td>
+                      {{-- <td>
                         @if ($atc['appr_lfmn_twr'] == true)
                           <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
                         @else
@@ -139,7 +139,7 @@
                         @else
                           <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
                         @endif
-                      </td>
+                      </td> --}}
                     </tr>
                   @endforeach
                 </tbody>

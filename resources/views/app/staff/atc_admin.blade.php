@@ -188,8 +188,8 @@
                 <th>{{__('app/admin/atc_admin.approved')}}</th>
                 <th>{{__('app/admin/atc_admin.authorised')}} LFPG TWR</th>
                 <th>{{__('app/admin/atc_admin.authorised')}} LFPG APP</th>
-                <th>{{__('app/admin/atc_admin.authorised')}} LFMN TWR</th>
-                <th>{{__('app/admin/atc_admin.authorised')}} LFMN APP</th>
+                {{-- <th>{{__('app/admin/atc_admin.authorised')}} LFMN TWR</th>
+                <th>{{__('app/admin/atc_admin.authorised')}} LFMN APP</th> --}}
               </tr>
               </thead>
               <tbody>
@@ -235,7 +235,7 @@
                       </form>
                     @endif</td>
 
-                    <td>@if ($r['appr_lfmn_twr'] == true)
+                    {{-- <td>@if ($r['appr_lfmn_twr'] == true)
                       <form action="{{ route('app.staff.atcadmin.approval', app()->getLocale()) }}" method="POST">
                         @csrf
                         <input type="hidden" name="userid" value="{{ $r['id'] }}">
@@ -265,7 +265,7 @@
                         <input type="hidden" name="position" value="lfmn_app">
                         <button type="submit" class="btn btn-flat btn-success"><i class="fa fa-check"></i> {{__('app/admin/atc_admin.add')}}</button>
                       </form>
-                    @endif</td>
+                    @endif</td> --}}
                   </tr>
                 @endforeach
               </tbody>
