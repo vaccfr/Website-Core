@@ -117,10 +117,41 @@
                   </tr>
                   <tr>
                     <td>Instructor & Examiner Team</td>
-                    <td><a href="{{ route('app.atc.roster', app()->getLocale()) }}">View Team</a></td>
+                    <td>
+                      <button type="button" class="btn btn-flat btn-block btn-info" data-toggle="modal" data-target="#examiner_instructor_team">
+                        View team
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="examiner_instructor_team">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="modal-body p-0">
+                <table class="table table-striped">
+                  <thead>
+                    <th>Role</th>
+                    <th>Name & CID</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Examiner & Instructor</td>
+                      <td>F-X Obert (1086470)</td>
+                    </tr>
+                    <tr>
+                      <td>Examiner & Instructor</td>
+                      <td>Peter Paré (1267123)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_all.motiv_close')}}</button>
+              </div>
             </div>
           </div>
         </div>
@@ -168,10 +199,37 @@
                   </tr>
                   <tr>
                     <td>Marketing Support Team</td>
-                    <td><a href="#">View Team</a></td>
+                    <td>
+                      <button type="button" class="btn btn-flat btn-block btn-info" data-toggle="modal" data-target="#marketing_team">
+                        View team
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="marketing_team">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="modal-body p-0">
+                <table class="table table-striped">
+                  <thead>
+                    <th>Role</th>
+                    <th>Name & CID</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>(Vacant)</td>
+                      <td>(Vacant)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_all.motiv_close')}}</button>
+              </div>
             </div>
           </div>
         </div>
@@ -215,10 +273,37 @@
                 <tbody>
                   <tr>
                     <td>Digital Services Team</td>
-                    <td><a href="#">View Team</a></td>
+                    <td>
+                      <button type="button" class="btn btn-flat btn-block btn-info" data-toggle="modal" data-target="#digital_team">
+                        View team
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+          <div class="modal fade" id="digital_team">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+                <div class="modal-body p-0">
+                  <table class="table table-striped">
+                    <thead>
+                      <th>Role</th>
+                      <th>Name & CID</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Graphics & Web Design</td>
+                        <td>Reda Khermach (1478229)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/atc_all.motiv_close')}}</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
