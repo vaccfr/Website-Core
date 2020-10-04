@@ -38,10 +38,6 @@
           <p class="mt-4">
             {{__('lp/lp_index.director_text')}}
           </p>
-          <p class="text-right">
-            --- <br />
-            {{__('lp/lp_titles.vacc_director')}}
-          </p>
         </div>
         <div class="col-md-6">
           <h3 class="font-weight-medium mt-3">{{__('lp/lp_titles.atc_bookings')}}</h3>

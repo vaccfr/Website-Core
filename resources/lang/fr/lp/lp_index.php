@@ -10,7 +10,7 @@ return [
 
   'online_atc_title' => 'Contrôleurs en ligne',
 
-  'director_text' => 'Bienvenue sur le site de la vACC France!',
+  'director_text' => 'La vACC France est une communauté de pilotes et de contrôleurs virtuels sur VATSIM, lequel est un réseau de simulation de vol connectant pilotes et contrôleurs aériens. La vACC France propose un service de contrôle sur le territoire de la France métropolitaine, entraine les pilotes sur des thèmes comme la phraséologie, les procédures et particularités du vol en ligne. Nous assurons le contrôle aérien, en accord avec les procédures réelles, tout en dispensant les formations. Avant tout, nous sommes une communauté de passionnés d’aviation, qui échange et partage son savoir faire. Rejoignez nous dès à présent pour commencer votre carrière de pilote ou contrôleur virtuel!',
 
   'position' => 'Position',
   'name' => 'Nom (ID)',
