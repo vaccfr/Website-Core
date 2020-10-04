@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/VATFrance/VATFrance-Graphics-Standards-Manual/master/VATFrance_WIDE_ALT.png" width="auto"></p>
+<p align="center"><img src="https://vatsim.fr/media/img/VATFrance.png" width="auto"></p>
 
 <p align="center"><b>v.1.0</b><br>Official repository of the new French vACC Website<br>
 <a href="https://www.vatsim.fr/fr" target="_blank">https://vatsim.fr/fr</a> <i>(Version française)</i><br>
@@ -33,6 +33,7 @@ A special thank you to the following people:
 
 The French vACC Website Core is licensed under the **GNU GPL v3 License**. You are free to use code from the repository within the reigns of that license. 
 
+```
 French vACC Website Core Copyright (C) 2020 French vACC
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -44,3 +45,4 @@ You should have received a copy of the GNU General Public License along with thi
 This project is specifically built for the French vAcc which may deviate from the license as agreed with the author.
 
 All French vACC materials do not fall under this license, and are (c) French vACC 2020.
+```
