@@ -59,5 +59,13 @@ return [
   'atc_req_fields_error' => 'Une erreur est survenue. Verifiez les données du formulaire.',
   'atcreq_success' => 'Votre requête a été envoyée avec succès. Nous vous répondrons dès que possible.',
   'feedback_success' => 'Votre feedback a été envoyé avec succès. Merci pour votre aide!',
+  
+  // Menu alerts
+  'alert_title' => 'Type de compte',
+  'no_atc_text' => 'Votre compte <b>n\\\'est pas ATC</b>! Pour accéder à la section ATC, <b>veuillez vous rendre dans vos réglages et modifiez votre compte vers "ATC" our "Pilot & ATC"',
+  'no_pilot_text' => 'Votre compte <b>n\\\'est pas Pilote</b>! Pour accéder à la section Pilote, <b>veuillez vous rendre dans vos réglages et modifiez votre compte vers "Pilot" our "Pilot & ATC"',
+  'goto_settings' => 'Voir mes réglages',
 
+  'welcome_title' => 'Bienvenue sur le site de la vACC France!',
+  'welcome_text' => 'Pour votre première connection, veuillez vous rendre dans vos réglages et <b>modifiez votre type de compte pour refléter vos activités</b> (ex.: Pilote, ATC, ou Pilote & ATC).',
 ];

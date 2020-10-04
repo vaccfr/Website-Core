@@ -73,8 +73,8 @@
         </li>
 
         {{-- ATC Section of the menu --}}
-        @if (strpos(Auth::user()->account_type, 'ATC') !== False)
         <li class="nav-header">{{__('app/app_menus.atc_header')}}</li>
+        @if (strpos(Auth::user()->account_type, 'ATC') !== False)
         <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc/book')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-headphones"></i>
@@ -149,11 +149,29 @@
           </a>
         </li>
         @endif
+        @else
+        <li class="nav-item">
+          <a href="javascript:more_info_atc();" class="nav-link">
+            <i class="nav-icon fas fa-question"></i>
+            <p>Click for more info</p>
+          </a>
+        </li>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script lang="javascript">
+          function more_info_atc() {
+            Swal.fire({
+              title: '{!!__("app/alerts.alert_title")!!}',
+              html: '{!!__("app/alerts.no_atc_text")!!}',
+              icon: 'info',
+              footer: `<a href="{{ route('app.user.settings', app()->getLocale()) }}">{!!__("app/alerts.goto_settings")!!}</a>`
+            })
+          }
+        </script>
         @endif
 
         {{-- Pilot Section of the menu --}}
-        @if (strpos(Auth::user()->account_type, 'Pilot') !== False)
         <li class="nav-header">{{__('app/app_menus.pilots_header')}}</li>
+        @if (strpos(Auth::user()->account_type, 'Pilot') !== False)
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-paper-plane"></i>
@@ -189,6 +207,24 @@
             </li>
           </ul>
         </li> --}}
+        @else
+        <li class="nav-item">
+          <a href="javascript:more_info_pil();" class="nav-link">
+            <i class="nav-icon fas fa-question"></i>
+            <p>Click for more info</p>
+          </a>
+        </li>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script lang="javascript">
+          function more_info_pil() {
+            Swal.fire({
+              title: '{!!__("app/alerts.alert_title")!!}',
+              html: '{!!__("app/alerts.no_pilot_text")!!}',
+              icon: 'info',
+              footer: `<a href="{{ route('app.user.settings', app()->getLocale()) }}">{!!__("app/alerts.goto_settings")!!}</a>`
+            })
+          }
+        </script>
         @endif
 
         {{-- Staff section --}}

@@ -59,4 +59,13 @@ return [
   'atc_req_fields_error' => 'An error occured. Make sure you filled all the fields properly.',
   'atcreq_success' => 'Your request was submitted successfully. We will get back to you as soon as we can.',
   'feedback_success' => 'Your feedback was submitted successfully. Thank you for your help!',
+
+  // Menu alerts
+  'alert_title' => 'Account Type',
+  'no_atc_text' => 'Your account is <b>not set to ATC</b>! To access the ATC section, <b>go to your account settings and change your account type</b> to "ATC" or "Pilot & ATC"',
+  'no_pilot_text' => 'Your account is <b>not set to pilot</b>! To access the Pilot section, <b>go to your account settings and change your account type</b> to "pilot" or "Pilot & ATC"',
+  'goto_settings' => 'Go to my settings',
+
+  'welcome_title' => 'Welcome to the French vACC website!',
+  'welcome_text' => 'For your first login, please go to your settings and <b>change your account type to reflect your activities</b> (i.e.: Pilot, ATC, or ATC & Pilot).'
 ];

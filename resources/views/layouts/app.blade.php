@@ -171,11 +171,11 @@
 @if (Auth::user()->login_alert == true)
 <script lang="javascript">
   Swal.fire({
-    title: 'Bienvenue sur le nouveau site!',
-    text: 'Pour votre première connection, veuillez jeter un coup d\'oeil à vos réglages utilisateur!',
+    title: '{!!__("app/alerts.welcome_title")!!}',
+    text: '{!!__("app/alerts.welcome_text")!!}',
     showCancelButton: false,
     showConfirmButton: true,
-    confirmButtonText: 'Voir mes réglages'
+    confirmButtonText: '{!!__("app/alerts.goto_settings")!!}'
   }).then((result) => {
     if (result.value) {
       window.location.href="{{ route('app.user.settings', app()->getLocale()) }}"
