@@ -1,82 +1,81 @@
-<h3>Privacy Policy for French vACC</h3>
+<h3>Privacy Policy</h3>
 
-<p>At French vACC, accessible from https://new.vatfrance.org, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by French vACC and how we use it.</p>
+<p>vACC France built the vatsim.fr website and related services as a Free resource for members to use. This SERVICE is provided by vACC France at no cost and is intended for use as is.</p>
 
-<p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
+<p>This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.</p>
 
-<p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in French vACC. This policy is not applicable to any information collected offline or via channels other than this website.</p>
+<p>If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.</p>
 
-<h3>Consent</h3>
+<h4>Information Collection and Use</h4>
 
-<p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
-
-<h3>Information we collect</h3>
-
-<p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
-<p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
-<p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
-
-<h3>How we use your information</h3>
-
-<p>We use the information we collect in various ways, including to:</p>
-
+<p>For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to </p>
 <ul>
-<li>Provide, operate, and maintain our webste</li>
-<li>Improve, personalize, and expand our webste</li>
-<li>Understand and analyze how you use our webste</li>
-<li>Develop new products, services, features, and functionality</li>
-<li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the webste, and for marketing and promotional purposes</li>
-<li>Send you emails</li>
-<li>Find and prevent fraud</li>
+  <li>First Name</li>
+  <li>Last Name</li>
+  <li>Email address</li>
+  <li>VATSIM CID</li>
+  <li>Assigned VATSIM Region</li>
+  <li>Assigned VATSIM Sub-region</li>
+  <li>VATSIM ATC Rating</li>
+  <li>VATSIM Pilot Rating</li>
+  <li>Discord user-id</li>
+  <li>IP address</li>
 </ul>
 
-<h3>Log Files</h3>
+<p>The information that we request will be retained by us and used as described in this privacy policy. We obtain this information either directly from you or through our partners VATSIM. Please refer to the VATSIM privacy policy for further detail for what data VATSIM collects about you: <a href="https://www.vatsim.net/documents/privacy-policy">https://www.vatsim.net/documents/privacy-policy</a></p>
 
-<p>French vACC follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information. Our Privacy Policy was created with the help of the <a href="https://www.privacypolicygenerator.info">Privacy Policy Generator</a> and the <a href="https://www.privacypolicyonline.com/privacy-policy-generator/">Online Privacy Policy Generator</a>.</p>
+We collect personal data solely based on consent from you, as well as our legitimate interest.
 
-<h3>Cookies and Web Beacons</h3>
+<h4>Log Data</h4>
 
-<p>Like any other website, French vACC uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
+<p>We want to inform you that whenever you use our Service, in a case of an error on any of the website we collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.</p>
 
-<p>For more general information on cookies, please read <a href="https://www.cookieconsent.com/what-are-cookies/">"What Are Cookies"</a>.</p>
+<h4>Cookies</h4>
 
+<p>Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.</p>
 
+<p>This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.</p>
 
-<h3>Advertising Partners Privacy Policies</h3>
+<h4>Service Provider</h4>
 
-<P>You may consult this list to find the Privacy Policy for each of the advertising partners of French vACC.</p>
+<p>We may employ third-party companies and individuals due to the following reasons:</p>
+<ul>
+  <li>To facilitate our Service;</li>
+  <li>To provide the Service on our behalf;</li>
+  <li>To perform Service-related services; or</li>
+  <li>To assist us in analyzing how our Service is used.</li>
+</ul>
 
-<p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on French vACC, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
+<p>We want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.</p>
 
-<p>Note that French vACC has no access to or control over these cookies that are used by third-party advertisers.</p>
+<h4>Security</h4>
 
-<h3>Third Party Privacy Policies</h3>
+<p>We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.</p>
 
-<p>French vACC's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options. </p>
+<h4>Privacy Rights</h4>
 
-<p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
+<p>If you are a resident of the EEA, or the state of California, you have a certain number of rights vis-à-vis your personal data, such as the right to deletion, correction or objecting to the processing of your personal data. We will execute these rights promptly within the timeframes specified in law. To enforce any of your rights, please email <a href="mailto:support@vatsim.fr">support@vatsim.fr</a></p>
 
-<h3>CCPA Privacy Rights (Do Not Sell My Personal Information)</h3>
+<h4>Links to Other Sites</h4>
 
-<p>Under the CCPA, among other rights, California consumers have the right to:</p>
-<p>Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers.</p>
-<p>Request that a business delete any personal data about the consumer that a business has collected.</p>
-<p>Request that a business that sells a consumer's personal data, not sell the consumer's personal data.</p>
-<p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
+<p>This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by us. Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
 
-<h3>GDPR Data Protection Rights</h3>
+<h4>Children’s Privacy</h4>
 
-<p>We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
-<p>The right to access – You have the right to request copies of your personal data. We may charge you a small fee for this service.</p>
-<p>The right to rectification – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.</p>
-<p>The right to erasure – You have the right to request that we erase your personal data, under certain conditions.</p>
-<p>The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain conditions.</p>
-<p>The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.</p>
-<p>The right to data portability – You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.</p>
-<p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
+<p>These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to do necessary actions.</p>
 
-<h3>Children's Information</h3>
+<h4>Applicable law</h4>
 
-<p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
+<p>Notwithstanding conflicts of law provisions, the applicable law to this agreement is French law</p>
 
-<p>French vACC does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+<h4>Translation of this policy</h4>
+
+<p>Should any translation of this policy be made, the english version shall prevail in case of conflicts or doubts as to interpretation.</p>
+
+<h4>Changes to This Privacy Policy</h4>
+
+<p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. This policy is effective as of 2020-10-01</p>
+
+<h4>Contact Us</h4>
+
+<p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:support@vatsim.fr">support@vatsim.fr</a>.</p>

@@ -26,62 +26,68 @@
 @section('page-content')
   <!-- Page Content -->
 <section class="py-5">
-  <div class="card text-center">
-    <div class="card-header">
-      <ul
-        class="nav nav-tabs card-header-tabs"
-        id="bologna-list"
-        role="tablist"
-      >
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            href="#Privacy-Policy"
-            data-toggle="tab"
-            >Privacy Policy</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            href="#Policies"
-            data-toggle="tab"
-            >Policies</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            href="#Notams"
-            data-toggle="tab"
-            >Notams</a
-          >
-        </li>
-      </ul>
-    </div>
-    <div class="card-body">
-      <div class="tab-content mt-3">
-
-        <div class="tab-pane active" id="Privacy-Policy" role="tabpanel">
-          <p class="card-text">
-            @include('policies.privacy')
-          </p>
-        </div>
-
-        <div class="tab-pane" id="Policies" role="tabpanel">
-          <p class="card-text">
-            TBA
-          </p>
-        </div>
-
-        <div
-          class="tab-pane"
-          id="Notams"
-          role="tabpanel"
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <ul
+          class="nav nav-tabs card-header-tabs"
+          id="bologna-list"
+          role="tablist"
         >
-          <p class="card-text">
-            TBA
-          </p>
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              href="#Privacy-Policy"
+              data-toggle="tab"
+              >Privacy Policy</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#Policies"
+              data-toggle="tab"
+              >Policies</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#Notams"
+              data-toggle="tab"
+              >Notams</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <div class="tab-content mt-3">
+  
+          <div class="tab-pane active" id="Privacy-Policy" role="tabpanel">
+            <p class="card-text">
+              <div class="card">
+                <div class="card-body">
+                  @include('policies.privacy')
+                </div>
+              </div>
+            </p>
+          </div>
+  
+          <div class="tab-pane" id="Policies" role="tabpanel">
+            <p class="card-text">
+              TBA
+            </p>
+          </div>
+  
+          <div
+            class="tab-pane"
+            id="Notams"
+            role="tabpanel"
+          >
+            <p class="card-text">
+              TBA
+            </p>
+          </div>
         </div>
       </div>
     </div>
