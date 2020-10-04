@@ -60,7 +60,7 @@
             <li class="nav-item">
               <a href="{{ route('landingpage.home.policies', app()->getLocale()) }}" target="_blank" class="nav-link">
                 <i class="fas fa-scroll nav-icon"></i>
-                <p>{{__('app/app_menus.statutes')}}</p>
+                <p>{{__('app/app_menus.policies')}}</p>
               </a>
             </li>
             <li class="nav-item">
