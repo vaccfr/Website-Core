@@ -72,7 +72,7 @@ class BookingController extends Controller
         ->get();
 
         $mentoring = MentoringRequest::where('student_id', auth()->user()->id)->with('mentorUser')->first();
-        if (!is_null($mentoring)) {
+        if (!is_null($mentoring) && $mentoring->taken == true) {
             $isMentored = true;
             $mentorName = $mentoring->mentorUser->fname.' '.$mentoring->mentorUser->lname;
         } else {
