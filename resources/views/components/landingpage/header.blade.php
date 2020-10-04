@@ -78,6 +78,7 @@
             class="dropdown-menu dropdown-menu-right animate slideIn"
             aria-labelledby="navbarDropdownMenuLink"
           >
+            <a class="dropdown-item" href="{{ route('app.atc.roster', app()->getLocale()) }}">{{__('lp/lp_menu.atc_rosters')}}</a>
             <a class="dropdown-item" href="{{ route('landingpage.atc.training', app()->getLocale()) }}">{{__('lp/lp_menu.atc_tr')}}</a>
             <a class="dropdown-item" href="{{ route('landingpage.atc.visiting', app()->getLocale()) }}">{{__('lp/lp_menu.vis_contrl')}}</a>
           </div>

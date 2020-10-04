@@ -20,6 +20,7 @@ return [
   'st_and_pol' => 'Mentions légales',
   'charts' => 'Cartes Aériennes',
   'pilot_tr' => 'Training Pilote',
+  'atc_rosters' => 'Listes des Contrôleurs',
   'atc_tr' => 'Training ATC',
   'vis_contrl' => 'Contrôleurs Visiteurs',
   'contact_us' => 'Contactez-nous',

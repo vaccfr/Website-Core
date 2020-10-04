@@ -20,6 +20,7 @@ return [
   'st_and_pol' => 'Policies',
   'charts' => 'Charts',
   'pilot_tr' => 'Pilot Training',
+  'atc_rosters' => 'Controller Roster',
   'atc_tr' => 'ATC Training',
   'vis_contrl' => 'Visiting Controllers',
   'contact_us' => 'Contact us',
