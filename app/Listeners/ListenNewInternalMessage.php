@@ -36,7 +36,8 @@ class ListenNewInternalMessage
                 $useremail = $recipientUser->custom_email;
             }
 
-            Mail::to($useremail)->send(new InternalMessageMail($recipientUser, $event->data));
+            // EMAIL_STUFF_TO_REPAIR
+            // Mail::to($useremail)->send(new InternalMessageMail($recipientUser, $event->data));
         }
     }
 }

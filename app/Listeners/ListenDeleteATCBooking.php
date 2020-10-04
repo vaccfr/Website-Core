@@ -33,6 +33,7 @@ class ListenDeleteATCBooking
             $useremail = $event->user->custom_email;
         }
 
-        Mail::to($useremail)->send(new DeleteBookingMail($event->user, $event->data));
+        // EMAIL_STUFF_TO_REPAIR
+        // Mail::to($useremail)->send(new DeleteBookingMail($event->user, $event->data));
     }
 }
