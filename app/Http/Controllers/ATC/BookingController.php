@@ -221,7 +221,7 @@ class BookingController extends Controller
                     event(new EventDeleteATCBooking(Auth::user(), $dataToSend));
                 }
             } catch (\Throwable $th) {
-                dd($th);
+                // dd($th);
             }
         }
 

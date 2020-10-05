@@ -37,12 +37,12 @@ class AirportsController extends Controller
                                 'solo_rank' => $p['solo_rank'],
                             ]);
                         } catch(ErrorException $e) {
-                            dd($e);
+                            // dd($e);
                         }
                     }
                 }
             } catch(ErrorException $e) {
-                dd($e);
+                // dd($e);
             }
         }
         return redirect()->back()->with('toast-info', 'Airports imported');
