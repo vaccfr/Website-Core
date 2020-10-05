@@ -20,7 +20,7 @@
       <a href="#">Back to top</a>
     </p>
     <p>French vACC Website Core Copyright &copy; 2020 <a href="https://github.com/FrenchGap">@FrenchGap</a> licensed under GNU GPL v3 to the French vACC<br>
-      Remainder of content Copyright &copy; 2020 <a href="https://github.com/FrenchGap">French vACC</a><br>
+      Remainder of content Copyright &copy; 2020 <a href="https://github.com/vaccfr">French vACC</a><br>
       Header Image Copyright &copy; <a href="https://www.instagram.com/manu_h">@manu_h</a></p>
   </div>
 </footer>
