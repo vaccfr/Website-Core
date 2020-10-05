@@ -38,10 +38,10 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!--Jarallax-->
+    {{-- <!--Jarallax-->
     <script src="https://unpkg.com/jarallax@1/dist/jarallax.min.js"></script>
     <script src="https://unpkg.com/jarallax@1/dist/jarallax-video.min.js"></script>
-    <script src="https://unpkg.com/jarallax@1/dist/jarallax-element.min.js"></script>
+    <script src="https://unpkg.com/jarallax@1/dist/jarallax-element.min.js"></script> --}}
 
     <!-- Custom styles-->
     <link href="{{ asset('lp/css/main.css') }}" rel="stylesheet" />
