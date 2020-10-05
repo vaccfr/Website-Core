@@ -53,6 +53,6 @@ class ListenNewATCBooking
         }
 
         // EMAIL_STUFF_TO_REPAIR
-        // Mail::to($useremail)->send(new NewBookingMail($event->user, $event->data, $calendarLinks));
+        Mail::to($useremail)->send(new NewBookingMail($event->user, $event->data, $calendarLinks));
     }
 }

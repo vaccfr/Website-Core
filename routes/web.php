@@ -1,7 +1,9 @@
 <?php
 
 use App\Mail\Mentoring\NewAtcSessionMail;
+use App\Mail\Mentoring\NewRequestMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use RestCord\DiscordClient;
 
@@ -281,6 +283,13 @@ Route::group([
                 'date' => 'date_here',
                 'time' => 'start - end',
             ]);
+        });
+        Route::get('/mailme', function() {
+            // EMAIL_STUFF_TO_REPAIR
+            Mail::to("ppare.vatsim@gmail.com")->send(new NewRequestMail([
+                'sender' => "Peter PARE - 1267123",
+                'body' => "Test text",
+            ]));
         });
     });
 });

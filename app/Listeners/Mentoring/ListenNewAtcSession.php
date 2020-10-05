@@ -34,6 +34,6 @@ class ListenNewAtcSession
         }
 
         // EMAIL_STUFF_TO_REPAIR
-        // Mail::to($useremail)->send(new NewAtcSessionMail($event->user, $event->data));
+        Mail::to($useremail)->send(new NewAtcSessionMail($event->user, $event->data));
     }
 }

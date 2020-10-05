@@ -1,8 +1,8 @@
 <?php
 
 return [
-  'staff_email' => 'ppare.vatsim@gmail.com',
-  'ATC_staff_email' => 'ppare.vatsim@gmail.com',
+  'staff_email' => 'staff@vatsim.fr',
+  'ATC_staff_email' => 'atc@vatsim.fr',
   'usertypes' => [
     'Guest',
     'Pilot',

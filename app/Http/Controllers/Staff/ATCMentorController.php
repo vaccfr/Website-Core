@@ -104,26 +104,27 @@ class ATCMentorController extends Controller
         $user = User::where('id', $userid)->first();
         if (!is_null($user)) {
             // EMAIL_STUFF_TO_REPAIR
-            // Mail::to(config('vaccfr.ATC_staff_email'))->send(new RequestRejectMail(
-            //     $user, [
-            //         'student' => $user->fname.' '.$user->lname.' - '.$user->vatsim_id,
-            //         'rejector' => auth()->user()->fname.' '.auth()->user()->lname,
-            //         'body' => request('msgbody'),
-            //     ]
-            // ));
+            Mail::to(config('vaccfr.ATC_staff_email'))->send(new RequestRejectMail(
+                $user, [
+                    'student' => $user->fname.' '.$user->lname.' - '.$user->vatsim_id,
+                    'rejector' => auth()->user()->fname.' '.auth()->user()->lname,
+                    'body' => request('msgbody'),
+                ]
+            ));
 
             $useremail = $user->email;
             if (!is_null($user->custom_email)) {
                 $useremail = $user->custom_email;
             }
+            sleep(5);
             // EMAIL_STUFF_TO_REPAIR
-            // Mail::to($useremail)->send(new RequestRejectMail(
-            //     $user, [
-            //         'student' => $user->fname.' '.$user->lname.' - '.$user->vatsim_id,
-            //         'rejector' => auth()->user()->fname.' '.auth()->user()->lname,
-            //         'body' => request('msgbody'),
-            //     ]
-            // ));
+            Mail::to($useremail)->send(new RequestRejectMail(
+                $user, [
+                    'student' => $user->fname.' '.$user->lname.' - '.$user->vatsim_id,
+                    'rejector' => auth()->user()->fname.' '.auth()->user()->lname,
+                    'body' => request('msgbody'),
+                ]
+            ));
         }
 
         return redirect()->route('app.staff.atc.all', app()->getLocale())->with('toast-info', trans('app/alerts.training_rejected'));

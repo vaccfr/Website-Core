@@ -106,10 +106,10 @@ class PilotTrainingController extends Controller
             'vatsim_id' => auth()->user()->vatsim_id,
         ]);
 
-        // Mail::to(config('vaccfr.ATC_staff_email'))->send(new NewRequestMail([
-        //     'sender' => auth()->user()->fullname()." - ".auth()->user()->vatsim_id,
-        //     'body' => $request->get('reqmotivation'),
-        // ]));
+        Mail::to(config('vaccfr.ATC_staff_email'))->send(new NewRequestMail([
+            'sender' => auth()->user()->fullname()." - ".auth()->user()->vatsim_id,
+            'body' => $request->get('reqmotivation'),
+        ]));
 
         return redirect()->route('app.pilot.training', app()->getLocale())->with('pop-success', trans('app/alerts.success_application'));
     }

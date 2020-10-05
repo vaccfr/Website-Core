@@ -614,10 +614,11 @@ class AdminController extends Controller
         }
 
         // EMAIL_STUFF_TO_REPAIR
-        // Mail::to($useremail)
-        // ->send(new RespondContactMail($user, $contact->message, request('msgbody')));
-        // Mail::to(config('vaccfr.staff_email'))
-        // ->send(new RespondContactMail($user, $contact->message, request('msgbody')));
+        Mail::to($useremail)
+        ->send(new RespondContactMail($user, $contact->message, request('msgbody')));
+        sleep(5);
+        Mail::to(config('vaccfr.staff_email'))
+        ->send(new RespondContactMail($user, $contact->message, request('msgbody')));
 
         $contact->responded = true;
         $contact->save();

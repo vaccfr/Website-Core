@@ -144,11 +144,11 @@ class MainController extends Controller
         $occurence = date_create_from_format('Y-m-d H:i', request('date').' '.request('time'))->format('Y-m-d H:i:s');
 
         // EMAIL_STUFF_TO_REPAIR
-        // Mail::to($useremail)->send(new NewFeedbackMail($user, Auth::user(), [
-        //     'position' => request('position'),
-        //     'datetime' => $occurence,
-        //     'msg' => request('message'),
-        // ]));
+        Mail::to($useremail)->send(new NewFeedbackMail($user, Auth::user(), [
+            'position' => request('position'),
+            'datetime' => $occurence,
+            'msg' => request('message'),
+        ]));
 
         $newID = (new Snowflake)->id();
         FeedbackForm::create([
@@ -188,7 +188,7 @@ class MainController extends Controller
         }
 
         // EMAIL_STUFF_TO_REPAIR
-        // Mail::to(config('vaccfr.staff_email'))->send(new NewContactRequestMail($user, request('message')));
+        Mail::to(config('vaccfr.staff_email'))->send(new NewContactRequestMail($user, request('message')));
 
         $newID = (new Snowflake)->id();        
         ContactForm::create([
@@ -250,7 +250,7 @@ class MainController extends Controller
         $eventData = ATCRequest::where('id', $newID)->first();
 
         // EMAIL_STUFF_TO_REPAIR
-        // Mail::to(config('vaccfr.staff_email'))->send(new NewATCRequestMail($eventData));
+        Mail::to(config('vaccfr.staff_email'))->send(new NewATCRequestMail($eventData));
 
         return redirect()->route('landingpage.home.reqatc', app()->getLocale())->with('pop-success', trans('app/alerts.atcreq_success'));
     }
