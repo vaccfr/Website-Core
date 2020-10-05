@@ -471,7 +471,7 @@
         "frequency": "132.100",
         "type": "Controle",
         "rank": "C1",
-        "solo_rank": ""
+        "solo_rank": "S3"
       },
       {
         "code": "LFFF_U_CTR",
@@ -485,7 +485,7 @@
         "frequency": "128.870",
         "type": "Controle",
         "rank": "C1",
-        "solo_rank": ""
+        "solo_rank": "S3"
       }
     ]
   },
@@ -509,7 +509,7 @@
         "frequency": "128.320",
         "type": "Controle",
         "rank": "C1",
-        "solo_rank": ""
+        "solo_rank": "S3"
       },
       {
         "code": "LFMM_U_CTR",
@@ -1498,14 +1498,14 @@
         "frequency": "121.800",
         "type": "Sol",
         "rank": "S1",
-        "solo_rank": ""
+        "solo_rank": "S1"
       },
       {
         "code": "LFPG_S_TWR",
         "frequency": "120.900",
         "type": "Tour",
         "rank": "S2",
-        "solo_rank": ""
+        "solo_rank": "S1"
       },
       {
         "code": "LFPG_TWR",
