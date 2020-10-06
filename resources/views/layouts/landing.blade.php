@@ -19,7 +19,7 @@
     <title>{{ config('app.name') }} | @yield('page-title')</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/cookie-consent.css') }}" rel="stylesheet" />
 
     <!-- Custom fonts -->
@@ -38,13 +38,15 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+
     {{-- <!--Jarallax-->
     <script src="https://unpkg.com/jarallax@1/dist/jarallax.min.js"></script>
     <script src="https://unpkg.com/jarallax@1/dist/jarallax-video.min.js"></script>
     <script src="https://unpkg.com/jarallax@1/dist/jarallax-element.min.js"></script> --}}
 
     <!-- Custom styles-->
-    <link href="{{ asset('lp/css/main.css') }}" rel="stylesheet" />
+    <link href="{{ asset('lp/css/main.min.css') }}" rel="stylesheet" />
     <style type="text/css">
       ::-webkit-scrollbar {
         width: 8px;
@@ -106,8 +108,10 @@
       integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8="
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="{{ asset('lp/js/rotate_marker.js') }}"></script>
     <script>
       const Toast = Swal.mixin({
         toast: true,
@@ -124,65 +128,55 @@
       });
     </script>
   @endif
-  
+  <script lang="javascript">
   @if (session()->has("toast-error"))
-    <script lang="javascript">
       Toast.fire({
         icon: 'error',
         title: '{{ session("toast-error") }}'
       });
-    </script>
   @endif
   
   @if (session()->has("toast-info"))
-    <script lang="javascript">
       Toast.fire({
         icon: 'info',
         title: '{{ session("toast-info") }}'
       });
-    </script>
   @endif
   
   @if (session()->has("pop-success"))
-    <script lang="javascript">
       Swal.fire(
         'Success!',
         "{{ session('pop-success') }}",
         'success'
       )
-    </script>
   @endif
   
   @if (session()->has("pop-info"))
-    <script lang="javascript">
       Swal.fire(
         'Information',
         "{{ session('pop-info') }}",
         'info'
       )
-    </script>
   @endif
   
   @if (session()->has("pop-error"))
-    <script lang="javascript">
       Swal.fire(
         'Error!',
         "{{ session('pop-error') }}",
         'error'
       )
-    </script>
   @endif
 
   {{-- @if (true)
-    <script lang="javascript">
+    
       Toast.fire({
         icon: 'info',
         title: 'This website is under construction'
       });
-    </script>
-  @endif --}}
+    
+  @endif --}}</script>
 
-  @include('cookieConsent::index')
+  <!-- @include('cookieConsent::index') -->
   <script>
     $(document).ready(function () {
       $('.dropdown, .btn-group').hover(function () {
