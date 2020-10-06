@@ -148,7 +148,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="form_sponsors">Event Sponsors</label>
+                <label for="form_sponsors">Event Sponsors *</label>
                 <input
                   id="form_sponsors"
                   type="text"
@@ -160,7 +160,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="form_website">Event Website</label>
+                <label for="form_website">Event Website *</label>
                 <input
                   id="form_eventwebsite"
                   type="text"
