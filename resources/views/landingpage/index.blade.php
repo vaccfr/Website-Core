@@ -184,7 +184,8 @@
               <div id="map" style="height: calc(50vh - 120px)" class="mt-2">
                 <div style="position: absolute; top:0px; right: 0px; z-index: 500; background: rgba(0,0,0,0.5); color:white; font-size: 10px; padding: 3px;">Flights: <span>{{$livemap['planeCount']}}</span> / ATC: <span>{{$livemap['atcCount']}}</span></div>
                 <!--note for Peter: populate the X's with actual data danke-->
-                <script defer>
+                <script aync>
+                window.addEventListener("load", function(){
                   var map = L.map('map', {maxZoom: 19, minZoom: 2, worldCopyJump: true, zoomControl: false, dragging: true, attributionControl: false}).setView([46.7, 2.900333], 5);
                   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
                   subdomains: 'abcd',
@@ -294,6 +295,7 @@
                     ); 
                   
                 @endforeach
+                });
                 </script>
               </div>
             </main>
