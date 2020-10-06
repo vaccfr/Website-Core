@@ -33,6 +33,9 @@ Route::get('/lib', function() {
     return redirect('https://library.vatsim.fr');
 })->name('redirect.library');
 Route::get('/fb/{cid}', 'Landingpage\MainController@feedbackRedir')->name('redirect.feedback');
+Route::get('/roster', function() {
+    return redirect()->route('app.atc.roster', 'en');
+})->name('redirect.roster');
 
 // Landing page routes
 Route::group([
@@ -76,10 +79,15 @@ Route::group([
             Route::group(['middleware' => 'InboxFetcher'], function() {
                 Route::get('/', 'App\MainController@index')->name('app.index');
     
-                Route::get('/general/stafforg', 'App\MainController@staffOrg')->name('app.general.stafforg');
+                Route::group(['prefix' => 'general'], function() {
+                    Route::get('/', function () {
+                        return redirect()->route('app.general.stafforg', app()->getLocale());
+                    });
+                    Route::get('/org', 'App\MainController@staffOrg')->name('app.general.stafforg');
+                    Route::get('/stats', 'App\MainController@statsPage')->name('app.general.stats');
+                });
     
                 Route::group(['prefix' => '/user'], function() {
-                    Route::get('/', 'App\MainController@statsPage')->name('app.user.stats');
                     Route::get('/link-discord', 'App\DiscordController@link')->name('app.user.linkdiscord')->middleware('BANNEDUSER');
                     Route::get('/unlink-discord', 'App\DiscordController@unlink')->name('app.user.unlinkdiscord')->middleware('BANNEDUSER');
                     Route::get('/settings', 'App\MainController@usersettings')->name('app.user.settings');

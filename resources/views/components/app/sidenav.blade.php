@@ -36,12 +36,6 @@
             @endif
           </a>
         </li>
-        <li class="nav-item">
-          <a href="{{ route('app.user.stats', app()->getLocale()) }}" class="nav-link @if (Route::is('app.user.stats')) active @endif">
-            <i class="nav-icon fa fa-chart-bar"></i>
-            <p>{{__('app/app_menus.stats')}}</p>
-          </a>
-        </li>
         <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/general')) menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
@@ -55,6 +49,12 @@
               <a href="{{ route('app.general.stafforg', app()->getLocale()) }}" class="nav-link @if (Route::is('app.general.stafforg')) active @endif">
                 <i class="nav-icon fas fa-sitemap"></i>
                 <p>{{__('app/app_menus.staff_org')}}</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('app.general.stats', app()->getLocale()) }}" class="nav-link @if (Route::is('app.general.stats')) active @endif">
+                <i class="nav-icon fa fa-chart-bar"></i>
+                <p>{{__('app/app_menus.stats')}}</p>
               </a>
             </li>
             <li class="nav-item">
@@ -74,6 +74,12 @@
 
         {{-- ATC Section of the menu --}}
         <li class="nav-header">{{__('app/app_menus.atc_header')}}</li>
+        <li class="nav-item">
+          <a href="{{ route('app.atc.roster', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.roster')) active @endif">
+            <i class="nav-icon fa fa-users"></i>
+            <p>Rosters</p>
+          </a>
+        </li>
         @if (strpos(Auth::user()->account_type, 'ATC') !== False)
         <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc/book')) menu-open @endif">
           <a href="#" class="nav-link">
@@ -99,12 +105,6 @@
             </li>
             @endif
           </ul>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('app.atc.roster', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.roster')) active @endif">
-            <i class="nav-icon fa fa-users"></i>
-            <p>Rosters</p>
-          </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('app.atc.training', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.training')) active @endif">
