@@ -11,7 +11,8 @@ Vous pouvez consulter et éditer vos réservations <a href="{{ route('app.atc.my
 <br>
 
 Merci,<br>
-{{ config('app.name') }} le staff VatFrance
+{{ config('app.name') }} Staff team
+
 <br>
 <br>
 @if (!is_null($calendarLinks['ics']))

@@ -16,7 +16,7 @@ Lire le message
 @endcomponent
 
 Thanks,<br>
-{{ config('app.name') }}
+{{ config('app.name') }} Staff team
 
 @component('mail::subcopy')
   This email was generated automatically.

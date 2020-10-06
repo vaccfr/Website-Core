@@ -16,5 +16,5 @@ Join our Discord / Rejoignez notre Discord !
 @endcomponent
 
 Kind regards,<br>
-{{ config('app.name') }} Staff
+{{ config('app.name') }} Staff team
 @endcomponent

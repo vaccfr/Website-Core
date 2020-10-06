@@ -11,7 +11,7 @@ Voir ou Répondre à ce message
 @endcomponent
 
 Merci,<br>
-{{ config('app.name') }}
+{{ config('app.name') }} Staff team
 
 @component('mail::subcopy')
   Cet email vous a été envoyé automatiquement car vous faites partie du Staff.
