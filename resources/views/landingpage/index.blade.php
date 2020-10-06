@@ -26,9 +26,9 @@
 
 @section('page-content')
 <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-<script src="{{ asset('dashboard/jquery/jquery.min.js') }}"></script>
-<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+
+<!-- <script src="{{ asset('dashboard/jquery/jquery.min.js') }}"></script> -->
+
 <!-- Page Content -->
   <div class="container-fluid py-4">
     <div class="container">
@@ -356,7 +356,7 @@
                 <img class="card-img-top" src="@if ($e['has_image'] == true)
                     {{config('app.url')}}/{{$e['image_url']}}
                 @else
-                    {{asset('media/img/placeholders/events_placeholder_noimg.png')}}
+                    {{asset('media/img/placeholders/events_placeholder_noimg.jpg')}}
                 @endif" alt="Card image cap">
               </a>
               <div class="card-body">
