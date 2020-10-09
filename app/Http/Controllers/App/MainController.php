@@ -172,7 +172,7 @@ class MainController extends Controller
             $mostControlled = "N/A";
         }
 
-        return view('app.general.stats', [
+        return view('app.user.stats', [
             'sessions' => $sessions,
             'atcTimes' => $times['atc'],
             'pilotTimes' => $times['pilot'],

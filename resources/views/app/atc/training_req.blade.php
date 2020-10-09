@@ -47,11 +47,12 @@
                     <label for="reqposition">{{__('app/atc/atc_training_center_req.choose_pos') }}</label>
                     <select class="form-control" name="reqposition" id="reqposition">
                       <option value="" disabled selected>{{__('app/atc/atc_training_center_req.select') }}...</option>
-                      @foreach ($platforms as $p)
+                      {{-- @foreach ($platforms as $p)
                         @if (!in_array($p['icao'], $excl) && $p['airport'] != "CENTRE"))
                           <option value="{{ $p['icao'] }}">{{ $p['icao'] }} ({{ $p['city'] }} {{ $p['airport'] }})</option>
                         @endif
-                      @endforeach
+                      @endforeach --}}
+                      <option value="LFMN">LFMN (Nice Côte d'Azur)</option>
                     </select>
                   </div>
                   <div class="form-group">

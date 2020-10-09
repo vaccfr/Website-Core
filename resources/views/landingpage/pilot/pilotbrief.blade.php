@@ -27,145 +27,33 @@
         <h1>Aerodrome Charts</h1>
       </div>
       <div class="col-md-12">
-        <form class="formsearch" action="">
-          <input class="inputsearch" type="search" placeholder="LFPG" />
-          <i class="fa fa-search"></i>
+        <form class="formsearch" id="icaosearch" action="{{ route('landingpage.pilot.charts.fetch', app()->getLocale()) }}" method="POST">
+          @csrf
+          <input class="inputsearch" type="search" placeholder="LFPG" name="icao" />
+          <i class="fa fa-search" id="btnicon"></i>
         </form>
       </div>
     </div>
   </div>
 </section>
+<script>
+  var form = document.getElementById("icaosearch");
+
+  document.getElementById("btnicon").addEventListener("click", function () {
+    form.submit();
+  });
+</script>
 @endsection
 
 @section('page-content')
-<div class="card chartcard shadow">
-  <a
-    data-toggle="collapse"
-    data-target="#drop"
-    class="card-block stretched-link text-decoration-none"
-    href="#"
-  ></a>
-  <h3>LFPG / Paris Charles de Gaulle</h3>
-</div>
-<div id="drop" class="collapse table-responsive">
-  <table class="table table-charts table-borderless mx-auto w-auto">
-    <thead>
-      <tr>
-        <th scope="col">Effective date</th>
-        <th scope="col">Name</th>
-        <th scope="col">Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row ">10 SEP 2020</th>
-        <td>OACI</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">10 SEP 2020</th>
-        <td>IAC</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">10 SEP 2020</th>
-        <td>SID STAR</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="card chartcard shadow">
-  <a
-    data-toggle="collapse"
-    data-target="#drop2"
-    class="card-block stretched-link text-decoration-none"
-    href="#"
-  ></a>
-  <h3>LFMN / Nice Côte d'Azur</h3>
-</div>
-<div id="drop2" class="collapse table-responsive">
-  <table class="table table-charts table-borderless mx-auto w-auto">
-    <thead>
-      <tr>
-        <th scope="col">Effective date</th>
-        <th scope="col">Name</th>
-        <th scope="col">Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row ">10 SEP 2020</th>
-        <td>OACI</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">10 SEP 2020</th>
-        <td>IAC</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">10 SEP 2020</th>
-        <td>SID STAR</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="card chartcard shadow">
-  <a
-    data-toggle="collapse"
-    data-target="#drop3"
-    class="card-block stretched-link text-decoration-none"
-    href="#"
-  ></a>
-  <h3>LFSB / EuroAirport Basel Mulhouse Freiburg</h3>
-</div>
-<div id="drop3" class="collapse table-responsive">
-  <table class="table table-charts table-borderless mx-auto w-auto">
-    <thead>
-      <tr>
-        <th scope="col">Effective date</th>
-        <th scope="col">Name</th>
-        <th scope="col">Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row ">10 SEP 2020</th>
-        <td>OACI</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">10 SEP 2020</th>
-        <td>IAC</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">10 SEP 2020</th>
-        <td>SID STAR</td>
-        <td>
-          <a href="#"><i class="fas fa-download"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid">
+  @if ($hasCharts)
+    <iframe
+      src="https://chartfox.org/api/interface/charts/LFMN?token=317CB5565DD1CC52B787F4113F6C3"
+      frameborder="0"
+      height="1200px"
+      width="100%"
+    ></iframe>
+  @endif
 </div>
 @endsection
