@@ -197,6 +197,14 @@
                     iconSize: [20, 20],
                     iconAnchor: [10, 10],
                   });
+
+                  var red_icon = L.icon({
+                    iconUrl: "{{ asset('lp/atcmap/plane_red.png') }}",
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10],
+                  });
+
+                  red_icon.options.iconSize = [15, 15];
     
                   var TWR = L.icon({
                     iconUrl: "{{ asset('lp/atcmap/TWR.png') }}",
@@ -244,12 +252,27 @@
                   L.polygon(lfmmLatLong, firDesign).addTo(map);
                 @endif
 
-                @foreach ($livemap['planes'] as $op)
+                @foreach ($livemap['planesFR'] as $op)
                   
                     // This part creates a plane icon on the map
                     L.marker(
                       ["{{ $op['lat'] }}", "{{ $op['lon'] }}"], 
                       {rotationAngle: "{{ $op['hdg'] }}", icon: icon} 
+                    )
+                    .addTo(map)
+                    .bindTooltip( 
+                      "<div style='font-size: 90%'><strong>{{ $op['callsign'] }}</strong> - " + "{{ $op['dep'] }}" + "/" + "{{ $op['arr'] }}" + "<br>" + "{{ $op['gspd'] }}" + "kts @ " + "{{ $op['alt'] }}" + "ft</div>", 
+                      {offset: [10,0], direction: 'right'}
+                    );
+
+                @endforeach
+
+                @foreach ($livemap['planesOver'] as $op)
+                  
+                    // This part creates a plane icon on the map
+                    L.marker(
+                      ["{{ $op['lat'] }}", "{{ $op['lon'] }}"], 
+                      {rotationAngle: "{{ $op['hdg'] }}", icon: red_icon} 
                     )
                     .addTo(map)
                     .bindTooltip( 
@@ -298,6 +321,7 @@
                 });
                 </script>
               </div>
+              <p class="text-muted">{{__('lp/lp_index.map_descriptor')}}</p>
             </main>
           </div>
         </div>

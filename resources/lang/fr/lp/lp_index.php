@@ -18,5 +18,7 @@ return [
   'rating' => 'Grade',
   'livesince' => 'Depuis',
 
+  'map_descriptor' => 'Les avions bleus volent depuis ou vers un aéroport français. Les avions rouges survolent uniquement.',
+
   'ann_event_title' => 'Annonces & Evènements',
 ];

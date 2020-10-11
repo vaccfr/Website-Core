@@ -18,5 +18,7 @@ return [
   'rating' => 'Rating',
   'livesince' => 'Live Since',
 
+  'map_descriptor' => 'Planes in blue are flying in or out of a French airport. Red planes are overflights.',
+
   'ann_event_title' => 'Announcements & Events',
 ];

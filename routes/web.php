@@ -293,12 +293,12 @@ Route::group([
                 'time' => 'start - end',
             ]);
         });
-        Route::get('/mailme', function() {
-            // EMAIL_STUFF_TO_REPAIR
-            Mail::to("ppare.vatsim@gmail.com")->send(new NewRequestMail([
-                'sender' => "Peter PARE - 1267123",
-                'body' => "Test text",
-            ]));
+        Route::get('/coord/{lon}/{lat}', function($locale, $lon, $lat) {
+            $vertices_x = array(-7.50, 9, 10.1, -7.50);
+            $vertices_y = array(51, 51, 40.1, 40.6);
+            $point_polygon = count($vertices_x);
+            $longitude_x = $lon;
+            $latitude_y = $lat;
         });
     });
 });

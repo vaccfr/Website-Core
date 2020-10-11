@@ -197,7 +197,8 @@ class VatsimDataController extends Controller
                 $lfmm = false;
                 $twrs = [];
                 $appr = [];
-                $planes = [];
+                $planesFR = [];
+                $planesOver = [];
                 $planeCount = 0;
                 $atcCount = 0;
                 foreach ($response['clients'] as $p) {
@@ -214,7 +215,28 @@ class VatsimDataController extends Controller
                                 'alt' => $p['altitude'],
                                 'gspd' => $p['groundspeed'],
                             ];
-                            array_push($planes, $add);
+                            array_push($planesFR, $add);
+                        } else {
+                            $vertices_x = array(-7.50, 9, 10.1, -7.50);
+                            $vertices_y = array(51, 51, 40.1, 40.6);
+                            $point_polygon = count($vertices_x);
+                            $longitude_x = $p['longitude'];
+                            $latitude_y = $p['latitude'];
+
+                            if ($this->is_in_polygon($point_polygon, $vertices_x, $vertices_y, $longitude_x, $latitude_y)) {
+                                $planeCount++;
+                                $add = [
+                                    'callsign' => $p['callsign'],
+                                    'hdg' => $p['heading'],
+                                    'lat' => $p['latitude'],
+                                    'lon' => $p['longitude'],
+                                    'dep' => $p['planned_depairport'],
+                                    'arr' => $p['planned_destairport'],
+                                    'alt' => $p['altitude'],
+                                    'gspd' => $p['groundspeed'],
+                                ];
+                                array_push($planesOver, $add);
+                            }
                         }
                     } elseif ($p['clienttype'] == "ATC") {
                         if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && config('vaccfr.atc_ranks')[$p['rating']] !== "OBS") {
@@ -261,7 +283,8 @@ class VatsimDataController extends Controller
                 }
         
                 $data = [
-                    'planes' => $planes,
+                    'planesFR' => $planesFR,
+                    'planesOver' => $planesOver,
                     'appr' => $appr,
                     'twr' => $twrs,
                     'lfff' => $lfff,
@@ -275,7 +298,8 @@ class VatsimDataController extends Controller
 
             } catch(Throwable $e) {
                 $data = [
-                    'planes' => null,
+                    'planesFR' => null,
+                    'planesOver' => null,
                     'appr' => null,
                     'twr' => null,
                     'lfff' => false,
@@ -292,5 +316,16 @@ class VatsimDataController extends Controller
         }
 
         return $data;
+    }
+
+    public function is_in_polygon($points_polygon, $vertices_x, $vertices_y, $longitude_x, $latitude_y)
+    {
+        $i = $j = $c = 0;
+        for ($i = 0, $j = $points_polygon-1 ; $i < $points_polygon; $j = $i++) {
+            if ( (($vertices_y[$i] > $latitude_y != ($vertices_y[$j] > $latitude_y)) &&
+            ($longitude_x < ($vertices_x[$j] - $vertices_x[$i]) * ($latitude_y - $vertices_y[$i]) / ($vertices_y[$j] - $vertices_y[$i]) + $vertices_x[$i]) ) ) 
+                $c = !$c;
+        }
+        return $c;
     }
 }
