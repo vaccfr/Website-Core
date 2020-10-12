@@ -26,7 +26,7 @@ class MainController extends Controller
 
         $eventList = Event::orderBy('start_date', 'ASC')
         ->whereDate('start_date', '>=', Carbon::now()->format('Y-m-d'))
-        ->whereDate('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d'))
+        // ->whereDate('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d'))
         ->get();
 
         $newslist = News::orderBy('created_at', 'DESC')
@@ -35,7 +35,6 @@ class MainController extends Controller
         ->get();
 
         return view('app.user.index', [
-            'news' => [],
             'events' => $eventList,
             'bookings' => $bookingsToday,
             'news' => $newslist,

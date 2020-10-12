@@ -52,7 +52,7 @@ class MainController extends Controller
 
         $eventList = Event::orderBy('start_date', 'ASC')
         ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
-        ->where('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d H:i:s'))
+        // ->where('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d H:i:s'))
         ->get();
 
         return view('landingpage.index', [
