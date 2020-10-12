@@ -10,6 +10,7 @@ class PilotChartsController extends Controller
 {
     public function index(Request $request)
     {
+        return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
         if (is_null($request->ICAO)) {
             return view('landingpage.pilot.pilotbrief', [
                 'hasCharts' => false,
@@ -29,11 +30,11 @@ class PilotChartsController extends Controller
             'embed' => $response,
         ]);
 
-        // return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
     }
 
     public function fetch(Request $request)
     {
+        return redirect()->back()->with('toast-info', trans('app/alerts.page_unavailable'));
         if (is_null($request->icao)) {
             return redirect()->back()->with('toast-error', 'No ICAO provided');
         }
