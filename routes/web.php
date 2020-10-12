@@ -191,6 +191,7 @@ Route::group([
                     Route::get('/', function () {
                         return redirect()->route('app.index', app()->getLocale());
                     });
+                    Route::get('/calendar', 'Staff\AdminController@calendarPage')->name('app.staff.calendar');
                     Route::group(['prefix' => '/admin', 'middleware' => 'EXECSTAFF'], function() {
                         Route::get('/', 'Staff\AdminController@index')->name('app.staff.admin');
                         Route::get('/edit', 'Staff\AdminController@editUser')->name('app.staff.admin.edit');

@@ -629,4 +629,9 @@ class AdminController extends Controller
     {
         return view('app.staff.faqmaker');
     }
+
+    public function calendarPage()
+    {
+        return view('app.staff.calendar');
+    }
 }
