@@ -37,6 +37,28 @@
     </div>
   </div>
 </div>
+@foreach ($events as $e)
+  <div class="modal fade" id="event_{{$e['id']}}_atcevent">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{$e['title']}}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="{{config('app.url')}}{{$e['image_url']}}" alt="">
+          {{$e['description']}}
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/news.cancel')}}</button>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -45,16 +67,18 @@
       firstDay: 1,
 
       events: [
+        // ATC & vACC events
+        @foreach ($events as $e)
         {
-          title: 'All Day Event',
-          start: '2020-10-24T08:00:00Z',
-          end: '2020-10-25T10:00:00Z',
-          uniqueID: 'TEST123'
+          title: '{{$e["title"]}}',
+          start: '{{$e["start_date"]}}',
+          end: '{{$e["end_date"]}}',
+          uniqueID: '{{$e["id"]}}_atcevent'
         },
+        @endforeach
       ],
       eventClick: function(info) {
-        console.log(info);
-        alert('Event: ' + info.event.extendedProps.uniqueID);
+        $('#event_' + info.event.extendedProps.uniqueID).modal('show');
       }
     });
     calendar.render();

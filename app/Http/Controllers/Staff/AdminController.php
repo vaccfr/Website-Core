@@ -13,6 +13,7 @@ use App\Models\ATC\Mentor;
 use App\Models\ATC\MentoringRequest;
 use App\Models\ATC\SoloApproval;
 use App\Models\General\ContactForm;
+use App\Models\General\Event;
 use App\Models\General\FeedbackForm;
 use App\Models\Pilot\PilotMentor;
 use App\Models\Users\User;
@@ -632,6 +633,9 @@ class AdminController extends Controller
 
     public function calendarPage()
     {
-        return view('app.staff.calendar');
+        $allEvents = Event::get();
+        return view('app.staff.calendar', [
+            'events' => $allEvents,
+        ]);
     }
 }

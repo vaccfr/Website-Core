@@ -227,7 +227,6 @@ class EventsManagerController extends Controller
         ]);
 
         if ($validator->fails()) {
-            dd($validator->errors());
             return redirect()->back()->with('toast-error', 'Image is invalid.');
         } else {
             $imgName = Str::random(50);
