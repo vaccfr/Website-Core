@@ -51,7 +51,7 @@ class MainController extends Controller
         $livemap = app(VatsimDataController::class)->livemapDataGenerator();
 
         $eventList = Event::orderBy('start_date', 'ASC')
-        ->where('start_date', '>=', Carbon::now()->format('Y-m-d H:i:s'))
+        ->where('start_date', '>=', Carbon::now()->format('Y-m-d'))
         // ->where('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d H:i:s'))
         ->get();
 
