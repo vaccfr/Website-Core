@@ -2,6 +2,7 @@
 
 return [
   'home' => 'Home',
+  'calendar' => 'Calendar',
   'mail' => 'Pigeon Voyageur &trade;',
   'forum' => 'Forum',
   'events' => 'Events',

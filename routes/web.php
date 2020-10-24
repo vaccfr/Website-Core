@@ -79,6 +79,7 @@ Route::group([
         Route::group(['middleware' => 'BANNEDUSER'], function() {
             Route::group(['middleware' => 'InboxFetcher'], function() {
                 Route::get('/', 'App\MainController@index')->name('app.index');
+                Route::get('/calendar', 'App\MainController@calendarPage')->name('app.calendar');
     
                 Route::group(['prefix' => 'general'], function() {
                     Route::get('/', function () {
@@ -191,7 +192,6 @@ Route::group([
                     Route::get('/', function () {
                         return redirect()->route('app.index', app()->getLocale());
                     });
-                    Route::get('/calendar', 'Staff\AdminController@calendarPage')->name('app.staff.calendar');
                     Route::group(['prefix' => '/admin', 'middleware' => 'EXECSTAFF'], function() {
                         Route::get('/', 'Staff\AdminController@index')->name('app.staff.admin');
                         Route::get('/edit', 'Staff\AdminController@editUser')->name('app.staff.admin.edit');

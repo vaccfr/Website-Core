@@ -22,4 +22,7 @@ return [
   'b_pos' => 'Position',
   'b_time' => 'Heure',
   'b_who' => 'Qui',
+  
+  // Calendar
+  'c_header' => 'Calendrier vACC France',
 ];

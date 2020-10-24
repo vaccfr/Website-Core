@@ -2,6 +2,7 @@
 
 return [
   'home' => 'Portail',
+  'calendar' => 'Calendrier',
   'mail' => 'Pigeon Voyageur &trade;',
   'forum' => 'Forum',
   'events' => 'Évènements',

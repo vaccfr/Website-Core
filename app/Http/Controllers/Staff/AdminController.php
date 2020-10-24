@@ -630,12 +630,4 @@ class AdminController extends Controller
     {
         return view('app.staff.faqmaker');
     }
-
-    public function calendarPage()
-    {
-        $allEvents = Event::get();
-        return view('app.staff.calendar', [
-            'events' => $allEvents,
-        ]);
-    }
 }

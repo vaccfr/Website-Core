@@ -184,4 +184,12 @@ class MainController extends Controller
     {
         return view('app.general.org');
     }
+
+    public function calendarPage()
+    {
+        $allEvents = Event::get();
+        return view('app.calendar', [
+            'events' => $allEvents,
+        ]);
+    }
 }

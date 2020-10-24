@@ -28,6 +28,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('app.calendar', app()->getLocale()) }}" class="nav-link @if (Route::is('app.calendar')) active @endif">
+            <i class="nav-icon fa fa-calendar-alt"></i>
+            <p>{{__('app/app_menus.calendar')}}</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('app.inmsg.inbox', app()->getLocale()) }}" class="nav-link @if (str_contains(url()->current(), '/app/pigeon-voyageur')) active @endif">
             <i class="nav-icon fa fa-envelope-open"></i>
             <p>{!!__('app/app_menus.mail')!!}</p>

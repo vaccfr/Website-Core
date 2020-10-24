@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Staff Calendar
+  Calendar
 @endsection
 
 @section('page-header')
@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Staff Calendar</h1>
+          <h1>{{__('app/user/index.c_header')}}</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -18,15 +18,12 @@
 @endsection
 
 @section('page-content')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js" integrity="sha256-mMw9aRRFx9TK/L0dn25GKxH/WH7rtFTp+P9Uma+2+zc=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{asset('dashboard/fullcalendar/lib/main.min.css')}}">
+<script src="{{asset('dashboard/fullcalendar/lib/main.min.js')}}"></script>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <div class="card card-dark elevation-3">
-        <div class="card-header">
-          <h3 class="card-title">Staff Calendar</h3>
-        </div>
+      <div class="card card-dark card-outline elevation-3">
         <div class="card-body p-0">
           <div id="calendar"></div>
         </div>
@@ -53,7 +50,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/news.cancel')}}</button>
-          <button type="submit" class="btn btn-success">Submit</button>
+          {{-- <button type="submit" class="btn btn-success">Submit</button> --}}
         </div>
       </div>
     </div>
@@ -65,6 +62,7 @@
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       firstDay: 1,
+      height: 650,
 
       events: [
         // ATC & vACC events
@@ -79,6 +77,11 @@
       ],
       eventClick: function(info) {
         $('#event_' + info.event.extendedProps.uniqueID).modal('show');
+      },
+      eventTimeFormat: {
+        hour: 'numeric',
+        minute: '2-digit',
+        meridiem: false
       }
     });
     calendar.render();
