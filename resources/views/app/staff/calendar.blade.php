@@ -36,7 +36,7 @@
 </div>
 @foreach ($events as $e)
   <div class="modal fade" id="event_{{$e['id']}}_atcevent">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">{{$e['title']}}</h4>
@@ -45,12 +45,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
-              <img src="{{config('app.url')}}{{$e['image_url']}}" alt="">
-            </div>
+          <img src="{{config('app.url')}}{{$e['image_url']}}" alt="Image for event: {{$e['title']}}" class="img-fluid">
+          <div class="form-group">
+            <label for="event_description">{{__('app/staff/events.nev_description')}}</label>
+            <textarea name="event_description" id="event_description" rows="10" class="form-control" readonly>{{$e['description']}}</textarea>
           </div>
-          {{$e['description']}}
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/news.cancel')}}</button>
