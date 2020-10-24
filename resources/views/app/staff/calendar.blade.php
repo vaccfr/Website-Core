@@ -22,10 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js" integrity="sha256-mMw9aRRFx9TK/L0dn25GKxH/WH7rtFTp+P9Uma+2+zc=" crossorigin="anonymous"></script>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3">
-
-    </div>
-    <div class="col-md-9">
+    <div class="col-md-12">
       <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">Staff Calendar</h3>
@@ -48,7 +45,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <img src="{{config('app.url')}}{{$e['image_url']}}" alt="">
+          <div class="container-fluid">
+            <div class="row">
+              <img src="{{config('app.url')}}{{$e['image_url']}}" alt="">
+            </div>
+          </div>
           {{$e['description']}}
         </div>
         <div class="modal-footer justify-content-between">
