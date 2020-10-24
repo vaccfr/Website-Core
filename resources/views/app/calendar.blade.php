@@ -79,8 +79,9 @@
         $('#event_' + info.event.extendedProps.uniqueID).modal('show');
       },
       eventTimeFormat: {
-        hour: 'numeric',
+        hour: '2-digit',
         minute: '2-digit',
+	hour12: false,
         meridiem: false
       }
     });
