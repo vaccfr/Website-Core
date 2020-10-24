@@ -146,6 +146,10 @@
                       <td>Examiner & Instructor</td>
                       <td>Peter Paré (1267123)</td>
                     </tr>
+                    <tr>
+                      <td>Examiner & Instructor</td>
+                      <td>David Petit (1273992)</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
