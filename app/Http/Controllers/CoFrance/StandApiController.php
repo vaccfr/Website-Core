@@ -68,7 +68,7 @@ class StandApiController extends Controller
         }
         $prefilter_stands = StandApiData::where('icao', request('arr'))
                             // ->where('schengen', $is_schengen)
-                            ->where('wtc', '<=', $this->wtc_conversion[request('wtc')])
+                            ->where('wtc', '>=', $this->wtc_conversion[request('wtc')])
                             ->get();
         $filtered_stands = [];
         foreach ($prefilter_stands as $idx => $v) {
