@@ -286,6 +286,7 @@ Route::group([
     // DEV ROUTES
     Route::group(['prefix' => '/devactions', 'middleware' => 'ADMIN'], function() {
         Route::get('/importAirports', 'ATC\AirportsController@retrieveFromJson');
+        Route::get('/stands/{icao}', 'CoFrance\StandApiController@retrieveFromJson');
         Route::get('/email', function(Request $request) {
             return new NewAtcSessionMail($request->user(), [
                 'mentor_fname' => "Peter",
