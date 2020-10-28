@@ -165,6 +165,42 @@ class VatsimDataController extends Controller
         return $clients;
     }
 
+    public function getOnlinePilots()
+    {
+        $url = "http://cluster.data.vatsim.net/vatsim-data.json";
+
+        if (app(CacheController::class)->checkCache('onlinepilotsall', false)) {
+            $clients = app(CacheController::class)->getCache('onlinepilotsall', false);
+        } else {
+            try {
+                $response = (new Client)->get($url, [
+                    'header' => [
+                        'Accept' => 'application/json',
+                    ]
+                ]);
+                $response = json_decode((string) $response->getBody(), true);
+                $clients = [];
+                foreach ($response['clients'] as $c) {
+                    if ($c['clienttype'] == "PILOT") {
+                        $add = [
+                            'callsign' => $c['callsign'],
+                            'name' => $c['realname'],
+                            'lat' => $c['latitude'],
+                            'lon' => $c['longitude'],
+                        ];
+                        array_push($clients, $add);
+                    }
+                }
+
+            } catch(Throwable $e) {
+                $clients = [];
+            }
+            
+            app(CacheController::class)->putCache('onlinepilotsall', $clients, 150, false);
+        }
+        return $clients;
+    }
+
     public function getOnlineATCCount()
     {
         if (app(CacheController::class)->checkCache('onlineatccount', false)) {

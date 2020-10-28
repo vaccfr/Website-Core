@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CoFrance;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\CoFrance\StandApiData;
 use Illuminate\Http\Request;
 use Yosymfony\Toml\TomlBuilder;
@@ -49,6 +50,16 @@ class StandApiController extends Controller
 
     public function query(Request $request)
     {
+        $tb = new TomlBuilder();
+        $result = $tb
+        ->addTable('request')
+        ->addValue('code', 200)
+        ->addValue('type', 'success')
+        ->getTomlString();
+
+        $result .= "\n";
+        $result .= "[data]\n";
+        
         $icaos = [];
         $allStands = StandApiData::get();
         foreach ($allStands as $i => $v) {
@@ -57,14 +68,16 @@ class StandApiController extends Controller
             }
         }
         if (!in_array($request->arr, $icaos)) {
-            return "ICAO not served";
+            $result .= 'error = ICAO not served';
+            return response($result, 200)->header('Content-Type', 'text/plain');
         }
         $is_schengen = false;
         if (in_array(substr(request('dep'), 0, 2), $this->schengen)) {
             $is_schengen = true;
         }
         if (!array_key_exists(request('wtc'), $this->wtc_conversion)) {
-            return "WTC not found";
+            $result .= 'error = WTC not found';
+            return response($result, 200)->header('Content-Type', 'text/plain');
         }
         $prefilter_stands = StandApiData::where('icao', request('arr'))
                             // ->where('schengen', $is_schengen)
@@ -82,8 +95,42 @@ class StandApiController extends Controller
                 array_push($filtered_stands, $filtered_data);
             }
         }
-        return $filtered_stands;
-        return $request;
+        if (count($filtered_stands) == 0) {
+            $result .= 'error = No stands found';
+            return response($result, 200)->header('Content-Type', 'text/plain');
+        }
+        $onlinePilots = app(VatsimDataController::class)->getOnlinePilots();
+        $final_stands = [];
+        foreach ($filtered_stands as $idxs => $vs) {
+            foreach ($onlinePilots as $idxp => $vp) {
+                if (!$this->getCoordDistance($vs['lat'], $vs['lon'], $vp['lat'], $vp['lon']) < 0.05) {
+                    array_push($final_stands, $vs);
+                }
+            }
+        }
+        if (count($final_stands) == 0) {
+            $result .= 'error = No stands found';
+            return response($result, 200)->header('Content-Type', 'text/plain');
+        }
+        $chosen = $final_stands[rand(0,count($final_stands))];
+        $result .= 'stand = '.$chosen['number'];
+        $result .= "\n".'lat = '.$chosen['lat'];
+        $result .= "\n".'lon = '.$chosen['lon'];
+        return response($result, 200)->header('Content-Type', 'text/plain');
+    }
+
+    private function getCoordDistance($lat1, $lon1, $lat2, $lon2)
+    {
+        if (($lat1 == $lat2) && ($lon1 == $lon2)) {
+            return 0;
+        }
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        // return ($miles * 0.8684); // Nautical miles
+        return ($miles * 1.609344); // Kilometers 
     }
 
     public function retrieveFromJson($locale, $icao)
