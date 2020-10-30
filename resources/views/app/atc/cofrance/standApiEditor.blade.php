@@ -53,11 +53,19 @@
         <div class="card-header">
           <h3 class="card-title">{{$data[0]['icao']}}</h3>
         </div>
+        <?php
+        $wtc_equivalences = [
+          1 => "Light",
+          2 => "Medium",
+          3 => "Heavy",
+          4 => "Super / Jumbo",
+        ]
+        ?>
         <div class="card-body">
           <table
             id="{{$data[0]['icao']}}_stands"
             class="table table-bordered table-hover"
-            data-order='[[ 1, "desc" ]]'>
+            data-order='[[ 0, "asc" ]]'>
             <thead>
             <tr>
               <th>Stand</th>
@@ -70,8 +78,74 @@
                 <tr>
                   <td>{{$d['stand']}}</td>
                   <td>{{$d['lat']}} / {{$d['lon']}}</td>
-                  <td><a href="#" class="btn btn-success btn-block elevation-1" data-target="#edit_stand_{{$d['stand']}}" data-toggle="modal">Edit {{$d['stand']}}</a></td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-success btn-block elevation-1"
+                      data-toggle="modal"
+                      data-target="#editor-{{$loop->index}}"
+                    >
+                      Edit {{$d['stand']}}
+                    </button>
+                  </td>
                 </tr>
+                <div class="modal fade" id="editor-{{$loop->index}}">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Edit stand {{$d['stand']}}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form action="{{route('app.atc.cofrance.stands.edit', app()->getLocale())}}" method="post">
+                        @csrf
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label for="coordinates-lat">Latitude</label>
+                            <input type="text" class="form-control" id="coordinates-lat" name="coordinates-lat" placeholder="Latitude" value="{{$d['lat']}}">
+                          </div>
+                          <div class="form-group">
+                            <label for="coordinates-lon">Longitude</label>
+                            <input type="text" class="form-control" id="coordinates-lon" name="coordinates-lon" placeholder="Longitude" value="{{$d['lon']}}">
+                          </div>
+                          <div class="form-group">
+                            <label for="companies">Companies</label>
+                            <input type="text" class="form-control" id="companies" name="companies" placeholder="Companies" value="{{$d['companies']}}">
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Wake Turbulence Category</label>
+                                <select class="form-control" name="wtcvalue">
+                                    <option selected value="{{$d['wtc']}}">{{$wtc_equivalences[$d['wtc']]}}</option>
+                                    @foreach ($wtc_equivalences as $wtce)
+                                    @if ($loop->index+1 != $d['wtc'])
+                                    <option value="{{$loop->index+1}}">{{$wtc_equivalences[$loop->index+1]}}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Aircraft Types</label>
+                                <select class="form-control" disabled>
+                                    <option selected value="">Coming soon</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <input type="hidden" name="standid" value="{{$d['id']}}">
+                        <div class="modal-footer justify-content-between">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/atc/atc_training_center.close')}}</button>
+                          <button type="submit" class="btn btn-success">Submit Data</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               @endforeach
             </tbody>
           </table>
@@ -85,7 +159,7 @@
     <script src="{{ asset('dashboard/adminlte/dist/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
       $("#{{$data[0]['icao']}}_stands").DataTable({
-        "paging": false,
+        "paging": true,
         "lengthChange": true,
         "searching": true,
         "ordering": true,

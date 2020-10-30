@@ -163,6 +163,7 @@ Route::group([
                         Route::post('/storeconfig', 'CoFrance\CoFranceController@storeConfig')->name('app.atc.cofrance.storeconfig');
 
                         Route::get('/stands', 'CoFrance\StandApiController@editorDashboard')->name('app.atc.cofrance.stands');
+                        Route::post('/stands/edit', 'CoFrance\StandApiController@standEditor')->name('app.atc.cofrance.stands.edit');
                     });
                 });
     

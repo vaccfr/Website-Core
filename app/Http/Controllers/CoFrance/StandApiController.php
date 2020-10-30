@@ -48,6 +48,24 @@ class StandApiController extends Controller
         ]);
     }
 
+    public function standEditor(Request $request)
+    {
+        $stand = StandApiData::where('id', request('standid'))->first();
+        if (is_null($stand)) {
+            return redirect()->back()->with('toast-error', 'Error occured with request');
+        }
+        $stand->lat = request('coordinates-lat');
+        $stand->lon = request('coordinates-lon');
+        $stand->companies = request('companies');
+        $stand->wtc = request('wtcvalue');
+        $stand->save();
+
+        return redirect()->route('app.atc.cofrance.stands', [
+            'locale' => app()->getLocale(),
+            'icao' => $stand->icao,
+        ])->with('toast-success', 'Stand "'.$stand->stand.'" edited with success!');
+    }
+
     public function active(Request $request)
     {
         $icaos = [];
