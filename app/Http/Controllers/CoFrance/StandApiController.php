@@ -69,7 +69,7 @@ class StandApiController extends Controller
             $result .= "\n";
             $result .= "[data]\n";
             $result .= 'error = ICAO not served';
-            return response($result, 200)->header('Content-Type', 'text/plain');
+            return response($result, 404)->header('Content-Type', 'text/plain');
         }
         $is_schengen = false;
         if (in_array(substr(request('dep'), 0, 2), $this->schengen)) {
@@ -85,7 +85,7 @@ class StandApiController extends Controller
             $result .= "\n";
             $result .= "[data]\n";
             $result .= 'error = WTC not found';
-            return response($result, 200)->header('Content-Type', 'text/plain');
+            return response($result, 404)->header('Content-Type', 'text/plain');
         }
         $prefilter_stands = StandApiData::where('icao', request('arr'))
                             // ->where('schengen', $is_schengen)
@@ -113,7 +113,7 @@ class StandApiController extends Controller
             $result .= "\n";
             $result .= "[data]\n";
             $result .= 'error = No stands found';
-            return response($result, 200)->header('Content-Type', 'text/plain');
+            return response($result, 404)->header('Content-Type', 'text/plain');
         }
         $onlinePilots = app(VatsimDataController::class)->getOnlinePilots();
         $final_stands = [];
@@ -134,7 +134,7 @@ class StandApiController extends Controller
             $result .= "\n";
             $result .= "[data]\n";
             $result .= 'error = No stands found';
-            return response($result, 200)->header('Content-Type', 'text/plain');
+            return response($result, 404)->header('Content-Type', 'text/plain');
         }
         $chosen = $final_stands[rand(0,count($final_stands))];
         $result = $tb
