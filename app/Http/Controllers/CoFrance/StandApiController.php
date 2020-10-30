@@ -27,7 +27,25 @@ class StandApiController extends Controller
 
     public function editorDashboard(Request $request)
     {
-        return view('app.atc.cofrance.standApiEditor');
+        $icaos = [];
+        $standsDataFiltered = [];
+
+        foreach (StandApiData::get() as $idx => $v) {
+            if (!in_array($v['icao'], $icaos)) {
+                array_push($icaos, $v['icao']);
+            }
+        }
+
+        if (!is_null(request('icao')) && in_array(strtoupper(request('icao')), $icaos)) {
+            foreach (StandApiData::where('icao', strtoupper(request('icao')))->get() as $d) {
+                array_push($standsDataFiltered, $d);
+            }
+        }
+
+        return view('app.atc.cofrance.standApiEditor', [
+            "icaos" => $icaos,
+            "data" => $standsDataFiltered,
+        ]);
     }
 
     public function active(Request $request)
