@@ -122,7 +122,7 @@ Route::group([
                     'prefix' => '/atc',
                 ], function() {
                     Route::get('/', function () {
-                        return redirect()->route('app.index', app()->getLocale());
+                        return redirect()->route('app.atc.roster', app()->getLocale());
                     });
                     Route::get('/roster', 'ATC\ATCPagesController@atcRoster')->name('app.atc.roster');
                     
@@ -158,9 +158,11 @@ Route::group([
                         'prefix' => '/cofrance',
                         'middleware' => 'BETATESTER',
                     ], function() {
-                        Route::get('/dashboard', 'CoFrance\CoFranceController@dashboard')->name('app.atc.cofrance.dashboard');
+                        Route::get('/', 'CoFrance\CoFranceController@dashboard')->name('app.atc.cofrance.dashboard');
                         Route::post('/newtoken', 'CoFrance\CoFranceController@createToken')->name('app.atc.cofrance.newtoken');
                         Route::post('/storeconfig', 'CoFrance\CoFranceController@storeConfig')->name('app.atc.cofrance.storeconfig');
+
+                        Route::get('/stands', 'CoFrance\StandApiController@editorDashboard')->name('app.atc.cofrance.stands');
                     });
                 });
     

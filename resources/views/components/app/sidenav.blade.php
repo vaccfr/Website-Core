@@ -148,11 +148,28 @@
           </ul>
         </li>
         @if (Auth::user()->isBetaTester() == true)
-        <li class="nav-item">
-          <a href="{{ route('app.atc.cofrance.dashboard', app()->getLocale()) }}" class="nav-link @if (str_contains(url()->current(), '/app/atc/cofrance/dashboard')) active @endif">
+        <li class="nav-item has-treeview @if (str_contains(url()->current(), '/app/atc/cofrance')) menu-open @endif">
+          <a href="#" class="nav-link">
             <i class="nav-icon fa fa-plug"></i>
-            <p>CoFrance (Beta)</p>
+            <p>
+              CoFrance Panel
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('app.atc.cofrance.dashboard', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.cofrance.dashboard')) active @endif">
+                <i class="nav-icon fa fa-plug"></i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('app.atc.cofrance.stands', app()->getLocale()) }}" class="nav-link @if (Route::is('app.atc.cofrance.stands')) active @endif">
+                <i class="nav-icon fas fa-tools"></i>
+                <p>Stand API Editor</p>
+              </a>
+            </li>
+          </ul>
         </li>
         @endif
         @else

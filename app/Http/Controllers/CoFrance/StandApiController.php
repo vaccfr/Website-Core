@@ -25,6 +25,11 @@ class StandApiController extends Controller
         "EF", "EN", "ES", "EL", "BI",
     ];
 
+    public function editorDashboard(Request $request)
+    {
+        return view('app.atc.cofrance.standApiEditor');
+    }
+
     public function active(Request $request)
     {
         $icaos = [];
