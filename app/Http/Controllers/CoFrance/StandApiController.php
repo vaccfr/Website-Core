@@ -104,16 +104,26 @@ class StandApiController extends Controller
             }
         }
         if (count($filtered_stands) == 0) {
-            $result = $tb
-            ->addTable('request')
-            ->addValue('code', 404)
-            ->addValue('type', 'error')
-            ->getTomlString();
+            $sendError = true;
+            if (request('arr') == "LFPG") {
+                $lfpgBinStands = $this->getLFPGBinStands();
+                if ($lfpgBinStands['is'] == true) {
+                    $sendError = false;
+                    $filtered_stands = $lfpgBinStands['data'];
+                }
+            }
+            if ($sendError == true) {
+                $result = $tb
+                ->addTable('request')
+                ->addValue('code', 404)
+                ->addValue('type', 'error')
+                ->getTomlString();
 
-            $result .= "\n";
-            $result .= "[data]\n";
-            $result .= 'error = No stands found';
-            return response($result, 404)->header('Content-Type', 'text/plain');
+                $result .= "\n";
+                $result .= "[data]\n";
+                $result .= 'error = No stands found';
+                return response($result, 404)->header('Content-Type', 'text/plain');
+            }
         }
         $onlinePilots = app(VatsimDataController::class)->getOnlinePilots();
         $final_stands = [];
@@ -149,6 +159,32 @@ class StandApiController extends Controller
         $result .= "\n".'lat = '.$chosen['lat'];
         $result .= "\n".'lon = '.$chosen['lon'];
         return response($result, 200)->header('Content-Type', 'text/plain');
+    }
+
+    private function getLFPGBinStands()
+    {
+        $prefilter_stands = StandApiData::where('icao', 'LFPG')
+                            ->where('stand', 'like', 'Q%')
+                            ->get();
+        $filtered_stands = [];
+        foreach ($prefilter_stands as $idx => $v) {
+            $filtered_data = [
+                "number" => $v->stand,
+                "lat" => $v->lat,
+                "lon" => $v->lon,
+            ];
+            array_push($filtered_stands, $filtered_data);
+        }
+        if (count($filtered_stands) == 0) {
+            return [
+                'is' => false,
+                'data' => [],
+            ];
+        }
+        return [
+            'is' => true,
+            'data' => $filtered_stands,
+        ];
     }
 
     private function getCoordDistance($lat1, $lon1, $lat2, $lon2)
