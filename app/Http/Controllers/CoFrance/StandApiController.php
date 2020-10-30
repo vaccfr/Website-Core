@@ -51,14 +51,6 @@ class StandApiController extends Controller
     public function query(Request $request)
     {
         $tb = new TomlBuilder();
-        $result = $tb
-        ->addTable('request')
-        ->addValue('code', 200)
-        ->addValue('type', 'success')
-        ->getTomlString();
-
-        $result .= "\n";
-        $result .= "[data]\n";
         
         $icaos = [];
         $allStands = StandApiData::get();
@@ -68,6 +60,14 @@ class StandApiController extends Controller
             }
         }
         if (!in_array($request->arr, $icaos)) {
+            $result = $tb
+            ->addTable('request')
+            ->addValue('code', 404)
+            ->addValue('type', 'error')
+            ->getTomlString();
+
+            $result .= "\n";
+            $result .= "[data]\n";
             $result .= 'error = ICAO not served';
             return response($result, 200)->header('Content-Type', 'text/plain');
         }
@@ -76,6 +76,14 @@ class StandApiController extends Controller
             $is_schengen = true;
         }
         if (!array_key_exists(request('wtc'), $this->wtc_conversion)) {
+            $result = $tb
+            ->addTable('request')
+            ->addValue('code', 404)
+            ->addValue('type', 'error')
+            ->getTomlString();
+
+            $result .= "\n";
+            $result .= "[data]\n";
             $result .= 'error = WTC not found';
             return response($result, 200)->header('Content-Type', 'text/plain');
         }
@@ -96,6 +104,14 @@ class StandApiController extends Controller
             }
         }
         if (count($filtered_stands) == 0) {
+            $result = $tb
+            ->addTable('request')
+            ->addValue('code', 404)
+            ->addValue('type', 'error')
+            ->getTomlString();
+
+            $result .= "\n";
+            $result .= "[data]\n";
             $result .= 'error = No stands found';
             return response($result, 200)->header('Content-Type', 'text/plain');
         }
@@ -109,10 +125,26 @@ class StandApiController extends Controller
             }
         }
         if (count($final_stands) == 0) {
+            $result = $tb
+            ->addTable('request')
+            ->addValue('code', 404)
+            ->addValue('type', 'error')
+            ->getTomlString();
+
+            $result .= "\n";
+            $result .= "[data]\n";
             $result .= 'error = No stands found';
             return response($result, 200)->header('Content-Type', 'text/plain');
         }
         $chosen = $final_stands[rand(0,count($final_stands))];
+        $result = $tb
+        ->addTable('request')
+        ->addValue('code', 200)
+        ->addValue('type', 'success')
+        ->getTomlString();
+
+        $result .= "\n";
+        $result .= "[data]\n";
         $result .= 'stand = '.$chosen['number'];
         $result .= "\n".'lat = '.$chosen['lat'];
         $result .= "\n".'lon = '.$chosen['lon'];
