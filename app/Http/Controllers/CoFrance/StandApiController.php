@@ -85,6 +85,7 @@ class StandApiController extends Controller
             }
         }
 
+        $stand->stand = request('standnumber');
         $stand->usage = implode(',', $stand_user_values);
         $stand->lat = request('coordinates-lat');
         $stand->lon = request('coordinates-lon');
@@ -96,6 +97,49 @@ class StandApiController extends Controller
             'locale' => app()->getLocale(),
             'icao' => $stand->icao,
         ])->with('toast-success', 'Stand "'.$stand->stand.'" edited with success!');
+    }
+
+    public function createStand(Request $request)
+    {
+        $stand = StandApiData::where('icao', request('airporticao'))->where('stand', request('standnumber'))->first();
+        if (!is_null($stand)) {
+            return redirect()->back()->with('toast-error', 'Error occured: a similar stand already exists');
+        }
+
+        $stand_user_values = [];
+        foreach ($this->stand_users as $idx => $val) {
+            if (request('su_'.array_keys($this->stand_users, $val)[0]) == "on") {
+                array_push($stand_user_values, array_keys($this->stand_users, $val)[0]);
+            }
+        }
+
+        $stand = new StandApiData();
+        $stand->icao = request('airporticao');
+        $stand->stand = request('standnumber');
+        $stand->usage = implode(',', $stand_user_values);
+        $stand->lat = request('coordinates-lat');
+        $stand->lon = request('coordinates-lon');
+        $stand->companies = request('companies');
+        $stand->wtc = request('wtcvalue');
+        $stand->save();
+
+        return redirect()->route('app.atc.cofrance.stands', [
+            'locale' => app()->getLocale(),
+            'icao' => $stand->icao,
+        ])->with('toast-success', 'Stand "'.$stand->stand.'" created with success!');
+    }
+
+    public function deleteStand(Request $request)
+    {
+        $stand = StandApiData::where('id', request('stand'))->first();
+        if (is_null($stand)) {
+            return redirect()->back()->with('toast-error', 'Error occured: stand not found');
+        }
+        $stand->delete();
+        return redirect()->route('app.atc.cofrance.stands', [
+            'locale' => app()->getLocale(),
+            'icao' => $stand->icao,
+        ])->with('toast-success', 'Stand "'.$stand->stand.'" deleted with success!');
     }
 
     public function active(Request $request)
