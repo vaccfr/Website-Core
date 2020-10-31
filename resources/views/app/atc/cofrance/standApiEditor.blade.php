@@ -22,7 +22,7 @@
 @section('page-content')
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">
@@ -46,9 +46,31 @@
           </table>
         </div>
       </div>
+      <div class="card card-dark elevation-3">
+        <div class="card-header">
+          <h3 class="card-title">Functions</h3>
+        </div>
+        <div class="card-body p-0">
+          <table class="table">
+            <thead></thead>
+            <tbody>
+              <tr>
+                <td>
+                  <button type="button" class="btn btn-success btn-block elevation-1">New Stand @if (!is_null($currentIcao)) for {{$currentIcao}} @endif</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="button" class="btn btn-danger btn-block elevation-1">Delete Stand @if (!is_null($currentIcao)) in {{$currentIcao}} @endif</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
     @if (count($data) > 0)
-    <div class="col-md-9">
+    <div class="col-md-10">
       <div class="card card-dark elevation-3">
         <div class="card-header">
           <h3 class="card-title">{{$data[0]['icao']}}</h3>
@@ -70,6 +92,7 @@
             <tr>
               <th>Stand</th>
               <th>Lat/Lon</th>
+              <th>Companies</th>
               <th>Edit</th>
             </tr>
             </thead>
@@ -78,6 +101,7 @@
                 <tr>
                   <td>{{$d['stand']}}</td>
                   <td>{{$d['lat']}} / {{$d['lon']}}</td>
+                  <td>{{$d['companies']}}</td>
                   <td>
                     <button
                       type="button"
