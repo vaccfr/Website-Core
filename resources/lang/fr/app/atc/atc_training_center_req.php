@@ -28,7 +28,8 @@ return [
 
   //NOREGION
   'err_noregion' => 'Vous devez être affilié à la région française de Vatsim avant de pouvoir faire une demande de mentoring.<br>
-  Vous pouvez vous affilier en visitant le <a href="https://members.vateud.net/" target="_blank">gestionnaire personnel de VATEUD</a>',
+  Vous pouvez vous affilier en visitant le <a href="https://members.vateud.net/" target="_blank">gestionnaire personnel de VATEUD</a><br><br>
+  Si vous avez déjà modifié votre région, veuillez vous déconnecter et reconnecter sur ce site pour mettre vos données à jour!',
 
   //APPLIED
   'err_applied' => 'Votre demande a bien été prise en compte et nous reviendrons bientôt vers vous. Merci pour votre patience.',
