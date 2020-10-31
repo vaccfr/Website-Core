@@ -56,12 +56,12 @@
             <tbody>
               <tr>
                 <td>
-                  <button type="button" class="btn btn-success btn-block elevation-1">New Stand @if (!is_null($currentIcao)) for {{$currentIcao}} @endif</button>
+                  <button disabled type="button" class="btn btn-success btn-block elevation-1">New Stand @if (!is_null($currentIcao)) for {{$currentIcao}} @endif</button>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <button type="button" class="btn btn-danger btn-block elevation-1">Delete Stand @if (!is_null($currentIcao)) in {{$currentIcao}} @endif</button>
+                  <button disabled type="button" class="btn btn-danger btn-block elevation-1">Delete Stand @if (!is_null($currentIcao)) in {{$currentIcao}} @endif</button>
                 </td>
               </tr>
             </tbody>
