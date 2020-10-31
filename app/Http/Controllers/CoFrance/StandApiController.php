@@ -17,12 +17,30 @@ class StandApiController extends Controller
         "J" => 4,
     ];
 
+    protected $wtc_equivalences = [
+        1 => "Light",
+        2 => "Medium",
+        3 => "Heavy",
+        4 => "Super / Jumbo",
+    ];
+
     protected $schengen = [
         "LP", "LE", "LF", "LS", "LI",
         "LG", "LM", "EB", "EI", "EH",
         "ED", "EP", "LZ", "LO", "LH",
         "LJ", "LK", "EY", "EV", "EE",
         "EF", "EN", "ES", "EL", "BI",
+    ];
+
+    protected $stand_users = [
+        "A" => "airliners/commuter aircraft",
+        "B" => "business/corporate aircraft",
+        "C" => "cargo aircraft",
+        "H" => "helicopters",
+        "I" => "military helicopters",
+        "M" => "military aircraft",
+        "P" => "private aircraft",
+        "T" => "military tanker/transport aircraft",
     ];
 
     public function editorDashboard(Request $request)
@@ -48,6 +66,8 @@ class StandApiController extends Controller
             "currentIcao" => $curr_icao,
             "icaos" => $icaos,
             "data" => $standsDataFiltered,
+            "wtc_equivalences" => $this->wtc_equivalences,
+            "stand_users" => $this->stand_users,
         ]);
     }
 
@@ -57,6 +77,15 @@ class StandApiController extends Controller
         if (is_null($stand)) {
             return redirect()->back()->with('toast-error', 'Error occured with request');
         }
+        
+        $stand_user_values = [];
+        foreach ($this->stand_users as $idx => $val) {
+            if (request('su_'.array_keys($this->stand_users, $val)[0]) == "on") {
+                array_push($stand_user_values, array_keys($this->stand_users, $val)[0]);
+            }
+        }
+
+        $stand->usage = implode(',', $stand_user_values);
         $stand->lat = request('coordinates-lat');
         $stand->lon = request('coordinates-lon');
         $stand->companies = request('companies');
@@ -173,7 +202,7 @@ class StandApiController extends Controller
         $final_stands = [];
         foreach ($filtered_stands as $idxs => $vs) {
             foreach ($onlinePilots as $idxp => $vp) {
-                if (!$this->getCoordDistance($vs['lat'], $vs['lon'], $vp['lat'], $vp['lon']) < 0.05) {
+                if (!$this->getCoordDistance($vs['lat'], $vs['lon'], $vp['lat'], $vp['lon']) < 0.02) {
                     array_push($final_stands, $vs);
                 }
             }

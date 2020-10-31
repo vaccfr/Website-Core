@@ -75,14 +75,6 @@
         <div class="card-header">
           <h3 class="card-title">{{$data[0]['icao']}}</h3>
         </div>
-        <?php
-        $wtc_equivalences = [
-          1 => "Light",
-          2 => "Medium",
-          3 => "Heavy",
-          4 => "Super / Jumbo",
-        ]
-        ?>
         <div class="card-body">
           <table
             id="{{$data[0]['icao']}}_stands"
@@ -91,17 +83,25 @@
             <thead>
             <tr>
               <th>Stand</th>
-              <th>Lat/Lon</th>
               <th>Companies</th>
+              <th>WTC</th>
+              <th>Users</th>
               <th>Edit</th>
             </tr>
             </thead>
             <tbody>
               @foreach ($data as $d)
                 <tr>
+                  <?php
+                  $final_usage_list = [];
+                  foreach (explode(',', $d->usage) as $val) {
+                      array_push($final_usage_list, $stand_users[$val]);
+                  }
+                  ?>
                   <td>{{$d['stand']}}</td>
-                  <td>{{$d['lat']}} / {{$d['lon']}}</td>
                   <td>{{$d['companies']}}</td>
+                  <td>{{$wtc_equivalences[$d['wtc']]}} (and below)</td>
+                  <td>{{implode(', ', $final_usage_list)}}</td>
                   <td>
                     <button
                       type="button"
@@ -138,7 +138,7 @@
                             <input type="text" class="form-control" id="companies" name="companies" placeholder="Companies" value="{{$d['companies']}}">
                           </div>
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 border-right">
                               <div class="form-group">
                                 <label>Wake Turbulence Category</label>
                                 <select class="form-control" name="wtcvalue">
@@ -152,12 +152,17 @@
                               </div>
                             </div>
                             <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Aircraft Types</label>
-                                <select class="form-control" disabled>
-                                    <option selected value="">Coming soon</option>
-                                </select>
+                              <label>Aircraft Types</label>
+                              @foreach ($stand_users as $su)
+                              <div class="form-check">
+                                <input 
+                                  @if (in_array(array_keys($stand_users, $su)[0], explode(',', $d->usage))) checked @endif
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  name="su_{{array_keys($stand_users, $su)[0]}}">
+                                <label class="form-check-label">{{$su}}</label>
                               </div>
+                              @endforeach
                             </div>
                           </div>
                         </div>
