@@ -181,6 +181,26 @@
           </table>
         </div>
       </div>
+      <div class="card card-dark elevation-3">
+        <div class="card-header">
+          <h3 class="card-title">
+            Useful tools
+          </h3>
+        </div>
+        <div class="card-body p-0">
+          <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a href="https://www.rapidtables.com/convert/number/degrees-minutes-seconds-to-degrees.html" target="_blank" class="btn btn-block btn-info elevation-1">Degrees-Minute-Second to Decimal Degrees</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
     @if (count($data) > 0)
     <div class="col-md-10">

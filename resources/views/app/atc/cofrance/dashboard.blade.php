@@ -42,6 +42,7 @@
         </div>
       </div>
     </div>
+    @if (Auth::user()->isAdmin() == true)
     <div class="col-md-8">
       <div class="card card-dark">
         <div class="card-header">
@@ -61,6 +62,7 @@
         </form>
       </div>
     </div>
+    @endif
   </div>
 </div>
 @endsection
