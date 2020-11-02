@@ -83,7 +83,17 @@ class StandApiController extends Controller
                 array_push($stand_wtc_values, array_keys($this->wtc_conversion, $val)[0]);
             }
         }
+        $standIsOpen = false;
+        if (request('opentoggle'.$stand->id) == "on") {
+            $standIsOpen = true;
+        }
+        $standIsSchengen = false;
+        if (request('schengentoggle'.$stand->id) == "on") {
+            $standIsSchengen = true;
+        }
 
+        $stand->is_open = $standIsOpen;
+        $stand->schengen = $standIsSchengen;
         $stand->stand = request('standnumber');
         $stand->usage = implode(',', $stand_user_values);
         $stand->lat = request('coordinates-lat');
@@ -117,7 +127,15 @@ class StandApiController extends Controller
                 array_push($stand_wtc_values, array_keys($this->wtc_conversion, $val)[0]);
             }
         }
-
+        $standIsOpen = false;
+        if (request('opentoggle') == "on") {
+            $standIsOpen = true;
+        }
+        $standIsSchengen = false;
+        if (request('schengentoggle') == "on") {
+            $standIsSchengen = true;
+        }
+        
         $stand = new StandApiData();
         $stand->icao = request('airporticao');
         $stand->stand = request('standnumber');
@@ -126,6 +144,8 @@ class StandApiController extends Controller
         $stand->lon = request('coordinates-lon');
         $stand->companies = request('companies');
         $stand->wtc = implode(',', $stand_wtc_values);
+        $stand->is_open = $standIsOpen;
+        $stand->schengen = $standIsSchengen;
         $stand->save();
 
         return redirect()->route('app.atc.cofrance.stands', [
@@ -388,5 +408,6 @@ class StandApiController extends Controller
                 dd($stand, $wtc);
             }
         }
+        return redirect()->route('app.atc.cofrance.stands', app()->getLocale())->with('toast-success', 'Loaded stands from '.$icao.'.json');
     }
 }

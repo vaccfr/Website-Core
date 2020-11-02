@@ -104,6 +104,24 @@
                           <input type="text" class="form-control" id="companies" name="companies" placeholder="Companies">
                         </div>
                         <div class="row">
+                          <div class="col-md-6 border-right border-bottom">
+                            <div class="form-group">
+                              <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                <input type="checkbox" class="custom-control-input" id="schengentoggle" name="schengentoggle">
+                                <label class="custom-control-label" for="schengentoggle">Schengen Stand?</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6 border-bottom">
+                            <div class="form-group">
+                              <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                <input type="checkbox" class="custom-control-input" id="opentoggle" name="opentoggle">
+                                <label class="custom-control-label" for="opentoggle">Stand Open / Closed</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mt-2">
                           <div class="col-md-6 border-right">
                             <div class="form-group">
                               <label>Wake Turbulence Category</label>
@@ -223,6 +241,8 @@
               <th>Companies</th>
               <th>WTC</th>
               <th>Users</th>
+              <th>Schengen</th>
+              <th>Open</th>
               <th>Edit</th>
             </tr>
             </thead>
@@ -240,9 +260,23 @@
                   }
                   ?>
                   <td>{{$d['stand']}}</td>
-                  <td>{{$d['companies']}}</td>
+                  <td style="word-break:break-all;">{{$d['companies']}}</td>
                   <td>{{implode(', ', $final_wtc_list)}}</td>
                   <td>{{implode(', ', $final_usage_list)}}</td>
+                  <td>
+                    @if ($d['schengen'] == true)
+                    <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
+                    @else
+                    <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
+                    @endif
+                  </td>
+                  <td>
+                    @if ($d['is_open'] == true)
+                    <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
+                    @else
+                    <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
+                    @endif
+                  </td>
                   <td>
                     <button
                       type="button"
@@ -293,6 +327,24 @@
                             <input type="text" class="form-control" id="companies" name="companies" placeholder="Companies" value="{{$d['companies']}}">
                           </div>
                           <div class="row">
+                            <div class="col-md-6 border-right border-bottom">
+                              <div class="form-group">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                  <input @if ($d->schengen == true) checked @endif type="checkbox" class="custom-control-input" id="schengentoggle{{$d['id']}}" name="schengentoggle{{$d['id']}}">
+                                  <label class="custom-control-label" for="schengentoggle{{$d['id']}}">Schengen Stand?</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6 border-bottom">
+                              <div class="form-group">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                  <input @if ($d->is_open == true) checked @endif type="checkbox" class="custom-control-input" id="opentoggle{{$d['id']}}" name="opentoggle{{$d['id']}}">
+                                  <label class="custom-control-label" for="opentoggle{{$d['id']}}">Stand Open / Closed</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mt-2">
                             <div class="col-md-6 border-right">
                               <div class="form-group">
                                 <label>Wake Turbulence Category</label>
