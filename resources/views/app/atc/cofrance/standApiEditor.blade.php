@@ -1,5 +1,3 @@
-{{-- This page is a template for other webapp pages --}}
-
 @extends('layouts.app')
 
 @section('page-title')
@@ -12,7 +10,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Stand API Editor</h1>
+          <h1>Stand API Editor - Stands</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -209,6 +207,11 @@
                 </td>
               </tr>
               @endif
+              <tr>
+                <td>
+                  <a href="{{route('app.atc.cofrance.stands', ['locale' => app()->getLocale(), 'airlines' => true])}}" class="btn btn-info btn-block elevation-1">Airline View</a>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

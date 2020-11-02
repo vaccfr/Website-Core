@@ -61,6 +61,21 @@ class StandApiController extends Controller
             $curr_icao = strtoupper(request('icao'));
         }
 
+        if (!is_null(request('airlines'))) {
+            $selectedAirline = null;
+            $relevantAirports = null;
+            if (!is_null(request('airline'))) {
+                $selectedAirline = request('airline');
+                $relevantAirports = $this->getAirportsForAirline(request('airline'));
+            }
+            $allAirlines = $this->getAirlines();
+            return view('app.atc.cofrance.standApi_airlines', [
+                "airlinesList" => $allAirlines,
+                "selectedAirline" => $selectedAirline,
+                "relevantAirports" => $relevantAirports,
+            ]);
+        }
+
         return view('app.atc.cofrance.standApiEditor', [
             "currentIcao" => $curr_icao,
             "icaos" => $icaos,
@@ -69,6 +84,34 @@ class StandApiController extends Controller
             "stand_users" => $this->stand_users,
             'priority_selectors' => $this->priority_selectors,
         ]);
+    }
+
+    private function getAirlines()
+    {
+        $allStands = StandApiData::get();
+        $airlineList = [];
+        foreach ($allStands as $idx => $val) {
+            foreach (explode(',', $val->companies) as $i => $v) {
+                if (strlen($v) != 0 && !in_array($v, $airlineList)) {
+                    array_push($airlineList, $v);
+                }
+            }
+        }
+        sort($airlineList);
+        return $airlineList;
+    }
+
+    private function getAirportsForAirline($airline)
+    {
+        $allStands = StandApiData::get();
+        $airportsList = [];
+        foreach ($allStands as $idx => $val) {
+            if (in_array($airline, explode(',', $val->companies)) && !in_array($val->icao, $airportsList)) {
+                array_push($airportsList, $val->icao);
+            }
+        }
+        sort($airportsList);
+        return $airportsList;
     }
 
     public function standEditor(Request $request)
