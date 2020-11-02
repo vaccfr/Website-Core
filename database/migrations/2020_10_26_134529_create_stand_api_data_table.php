@@ -17,12 +17,14 @@ class CreateStandApiDataTable extends Migration
             $table->id();
             $table->string('icao');
             $table->string('stand');
-            $table->integer('wtc')->default(2); // L=1, M=2, H=3, J=4
+            $table->string('wtc')->default('M');
             $table->boolean('schengen')->default(false);
             $table->double('lat', 8, 6);
             $table->double('lon', 8, 6);
             $table->longText('companies')->nullable();
             $table->string('usage')->default('A');
+            $table->integer('priority')->default(1);
+            $table->boolean('is_open')->default(true);
             $table->timestamps();
         });
     }

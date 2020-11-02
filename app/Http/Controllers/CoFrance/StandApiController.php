@@ -11,17 +11,10 @@ use Yosymfony\Toml\TomlBuilder;
 class StandApiController extends Controller
 {
     protected $wtc_conversion = [
-        "L" => 1,
-        "M" => 2,
-        "H" => 3,
-        "J" => 4,
-    ];
-
-    protected $wtc_equivalences = [
-        1 => "Light",
-        2 => "Medium",
-        3 => "Heavy",
-        4 => "Super / Jumbo",
+        "L" => "Light",
+        "M" => "Medium",
+        "H" => "Heavy",
+        "J" => "Super / Jumbo",
     ];
 
     protected $schengen = [
@@ -66,7 +59,7 @@ class StandApiController extends Controller
             "currentIcao" => $curr_icao,
             "icaos" => $icaos,
             "data" => $standsDataFiltered,
-            "wtc_equivalences" => $this->wtc_equivalences,
+            "wtc_conversion" => $this->wtc_conversion,
             "stand_users" => $this->stand_users,
         ]);
     }
@@ -84,13 +77,19 @@ class StandApiController extends Controller
                 array_push($stand_user_values, array_keys($this->stand_users, $val)[0]);
             }
         }
+        $stand_wtc_values = [];
+        foreach ($this->wtc_conversion as $idx => $val) {
+            if (request('swtc_'.array_keys($this->wtc_conversion, $val)[0]) == "on") {
+                array_push($stand_wtc_values, array_keys($this->wtc_conversion, $val)[0]);
+            }
+        }
 
         $stand->stand = request('standnumber');
         $stand->usage = implode(',', $stand_user_values);
         $stand->lat = request('coordinates-lat');
         $stand->lon = request('coordinates-lon');
         $stand->companies = request('companies');
-        $stand->wtc = request('wtcvalue');
+        $stand->wtc = implode(',', $stand_wtc_values);
         $stand->save();
 
         return redirect()->route('app.atc.cofrance.stands', [
@@ -112,6 +111,12 @@ class StandApiController extends Controller
                 array_push($stand_user_values, array_keys($this->stand_users, $val)[0]);
             }
         }
+        $stand_wtc_values = [];
+        foreach ($this->wtc_conversion as $idx => $val) {
+            if (request('swtc_'.array_keys($this->wtc_conversion, $val)[0]) == "on") {
+                array_push($stand_wtc_values, array_keys($this->wtc_conversion, $val)[0]);
+            }
+        }
 
         $stand = new StandApiData();
         $stand->icao = request('airporticao');
@@ -120,7 +125,7 @@ class StandApiController extends Controller
         $stand->lat = request('coordinates-lat');
         $stand->lon = request('coordinates-lon');
         $stand->companies = request('companies');
-        $stand->wtc = request('wtcvalue');
+        $stand->wtc = implode(',', $stand_wtc_values);
         $stand->save();
 
         return redirect()->route('app.atc.cofrance.stands', [
@@ -339,17 +344,9 @@ class StandApiController extends Controller
                 $usage = implode(',', $stand['usage']);
             }
             if (count($stand['wtc']) == 0) {
-                $wtc = 2;
+                $wtc = 'M';
             } else {
-                if (in_array("J", $stand['wtc'])) {
-                    $wtc = 4;
-                } elseif (in_array("H", $stand['wtc'])) {
-                    $wtc = 3;
-                } elseif (in_array("M", $stand['wtc'])) {
-                    $wtc = 2;
-                } elseif (in_array("L", $stand['wtc'])) {
-                    $wtc = 1;
-                }
+                $wtc = implode(',', $stand['wtc']);
             }
             try {
                 StandApiData::create([
@@ -361,6 +358,7 @@ class StandApiController extends Controller
                     'lon' => $stand['lon'],
                     'companies' => $companies,
                     'usage' => $usage,
+                    'priority' => $stand['priority'],
                 ]);
             } catch (\Throwable $th) {
                 dd($stand, $wtc);

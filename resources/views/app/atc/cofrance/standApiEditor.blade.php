@@ -107,11 +107,15 @@
                           <div class="col-md-6 border-right">
                             <div class="form-group">
                               <label>Wake Turbulence Category</label>
-                              <select class="form-control" name="wtcvalue">
-                                @foreach ($wtc_equivalences as $wtce)
-                                <option value="{{$loop->index+1}}">{{$wtc_equivalences[$loop->index+1]}}</option>
-                                @endforeach
-                              </select>
+                              @foreach ($wtc_conversion as $wtce)
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  name="swtc_{{array_keys($wtc_conversion, $wtce)[0]}}">
+                                <label class="form-check-label">{{$wtce}}</label>
+                              </div>
+                              @endforeach
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -230,10 +234,14 @@
                   foreach (explode(',', $d->usage) as $val) {
                       array_push($final_usage_list, $stand_users[$val]);
                   }
+                  $final_wtc_list = [];
+                  foreach (explode(',', $d->wtc) as $val) {
+                    array_push($final_wtc_list, $wtc_conversion[$val]);
+                  }
                   ?>
                   <td>{{$d['stand']}}</td>
                   <td>{{$d['companies']}}</td>
-                  <td>{{$wtc_equivalences[$d['wtc']]}} (and below)</td>
+                  <td>{{implode(', ', $final_wtc_list)}}</td>
                   <td>{{implode(', ', $final_usage_list)}}</td>
                   <td>
                     <button
@@ -288,14 +296,16 @@
                             <div class="col-md-6 border-right">
                               <div class="form-group">
                                 <label>Wake Turbulence Category</label>
-                                <select class="form-control" name="wtcvalue">
-                                    <option selected value="{{$d['wtc']}}">{{$wtc_equivalences[$d['wtc']]}}</option>
-                                    @foreach ($wtc_equivalences as $wtce)
-                                    @if ($loop->index+1 != $d['wtc'])
-                                    <option value="{{$loop->index+1}}">{{$wtc_equivalences[$loop->index+1]}}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
+                                @foreach ($wtc_conversion as $wtce)
+                                <div class="form-check">
+                                  <input
+                                    @if (in_array(array_keys($wtc_conversion, $wtce)[0], explode(',', $d->wtc))) checked @endif
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="swtc_{{array_keys($wtc_conversion, $wtce)[0]}}">
+                                  <label class="form-check-label">{{$wtce}}</label>
+                                </div>
+                                @endforeach
                               </div>
                             </div>
                             <div class="col-md-6">
