@@ -65,6 +65,7 @@ class StandApiController extends Controller
             $selectedAirline = null;
             $relevantAirports = null;
             $selectedAirport = null;
+            $relevantStands = null;
             if (!is_null(request('airline'))) {
                 $selectedAirline = request('airline');
                 $relevantAirports = $this->getAirportsForAirline(request('airline'));
@@ -72,12 +73,14 @@ class StandApiController extends Controller
             $allAirlines = $this->getAirlines();
             if (!is_null(request('airport'))) {
                 $selectedAirport = request('airport');
+                $relevantStands = $this->getAirlineStand($selectedAirport, $selectedAirline);
             }
             return view('app.atc.cofrance.standApi_airlines', [
                 "airlinesList" => $allAirlines,
                 "selectedAirline" => $selectedAirline,
                 "relevantAirports" => $relevantAirports,
                 "selectedAirport" => $selectedAirport,
+                "relevantStands" => $relevantStands,
             ]);
         }
 
@@ -117,6 +120,28 @@ class StandApiController extends Controller
         }
         sort($airportsList);
         return $airportsList;
+    }
+
+    private function getAirlineStand($airport, $airline)
+    {
+        $allStands = StandApiData::where('icao', $airport)->get();
+        $standsList = [];
+        $notStandsList = [];
+        foreach ($allStands as $s) {
+            if (in_array($airline, explode(',', $s->companies))) {
+                array_push($standsList, [
+                    "stand" => $s->stand
+                ]);
+            } else {
+                array_push($notStandsList, [
+                    "stand" => $s->stand
+                ]);
+            }
+        }
+        return [
+            "is" => $standsList,
+            "isnot" => $notStandsList,
+        ];
     }
 
     public function standEditor(Request $request)
