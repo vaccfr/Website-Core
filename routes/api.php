@@ -33,8 +33,13 @@ Route::group(['prefix' => '/cfr'], function() {
   Route::group(['middleware' => 'COFRANCEAPI'], function() {
     Route::get('/checktoken', 'CoFrance\CoFranceController@checkToken');
   });
+
   Route::group(['prefix' => '/stand'], function() {
     Route::get('/', 'CoFrance\StandApiController@active');
     Route::post('/query', 'CoFrance\StandApiController@query');
+  });
+
+  Route::group(['prefix' => '/ssr'], function() {
+    Route::get('/', 'CoFrance\SSRApiController@query');
   });
 });
