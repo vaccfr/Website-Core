@@ -35,7 +35,11 @@ class SSRApiController extends Controller
             }
         }
         
-        $result = $finalCodes[rand(0,count($finalCodes)-1)];
+        if (count($finalCodes) > 0) {
+            $result = $finalCodes[0];
+        } else {
+            $result = $codes[rand(0,count($codes)-1)];
+        }
         return response($result, 200)->header('Content-Type', 'text/plain');
     }
 
