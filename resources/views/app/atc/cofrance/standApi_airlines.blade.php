@@ -34,36 +34,6 @@
                   <a href="{{route('app.atc.cofrance.stands', app()->getLocale())}}" class="btn btn-info btn-block elevation-1">Stands View</a>
                 </td>
               </tr>
-              @if (!is_null($selectedAirline))
-              <tr>
-                <td>
-                  <a href="{{route('app.atc.cofrance.stands', [
-                    'locale' => app()->getLocale(),
-                    'airlines' => true,
-                  ])}}" class="btn btn-warning btn-block elevation-1">Reset</a>
-                </td>
-              </tr>
-              @endif
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card card-dark elevation-3">
-        <div class="card-header">
-          <h3 class="card-title">
-            Useful tools
-          </h3>
-        </div>
-        <div class="card-body p-0">
-          <table class="table">
-            <thead>
-            </thead>
-            <tbody>
-              {{-- <tr>
-                <td>
-                  <a href="https://www.rapidtables.com/convert/number/degrees-minutes-seconds-to-degrees.html" target="_blank" class="btn btn-block btn-info elevation-1">Degrees-Minute-Second to Decimal Degrees</a>
-                </td>
-              </tr> --}}
             </tbody>
           </table>
         </div>
@@ -74,12 +44,12 @@
             @if (is_null($selectedAirline)) Available Airlines @else Selected Airline @endif
           </h3>
         </div>
-        <div class="card-body @if (is_null($selectedAirline)) p-0 @endif" style="max-height: 400px; overflow-y: auto;">
-          @if (is_null($selectedAirline))
+        <div class="card-body p-0" style="max-height: 400px; overflow-y: auto;">
           <table class="table">
             <thead>
             </thead>
             <tbody>
+              @if (is_null($selectedAirline))
               @foreach ($airlinesList as $a)
               <tr>
                 <td><a href="{{route('app.atc.cofrance.stands', [
@@ -89,23 +59,31 @@
                 ])}}">{{$a}}</a></td>
               </tr>
               @endforeach
+              @else
+              <tr>
+                <td>
+                  <a href="{{route('app.atc.cofrance.stands', [
+                    'locale' => app()->getLocale(),
+                    'airlines' => true,
+                  ])}}" class="btn btn-danger btn-block elevation-1">{{$selectedAirline}}</a>
+                </td>
+              </tr>
+              @endif
             </tbody>
           </table>
-          @else
-          <b>{{$selectedAirline}}</b>
-          @endif
         </div>
       </div>
       @if (!is_null($selectedAirline))
       <div class="card card-dark elevation-3">
         <div class="card-header">
-          <h3 class="card-title">Relevant Airports</h3>
+          <h3 class="card-title">@if (is_null($selectedAirport)) Relevant Airports @else Selected Airport @endif</h3>
         </div>
         <div class="card-body p-0">
           <table class="table">
             <thead>
             </thead>
             <tbody>
+              @if (is_null($selectedAirport))
               @foreach ($relevantAirports as $a)
               <tr>
                 <td><a href="{{route('app.atc.cofrance.stands', [
@@ -116,6 +94,17 @@
                 ])}}">{{$a}}</a></td>
               </tr>
               @endforeach
+              @else
+              <tr>
+                <td>
+                  <a href="{{route('app.atc.cofrance.stands', [
+                    'locale' => app()->getLocale(),
+                    'airlines' => true,
+                    'airline' => $selectedAirline,
+                  ])}}" class="btn btn-danger btn-block elevation-1">{{$selectedAirport}}</a>
+                </td>
+              </tr>
+              @endif
             </tbody>
           </table>
         </div>
@@ -123,7 +112,18 @@
       @endif
     </div>
     <div class="col-md-10">
-
+      @if (!is_null($selectedAirline) && !is_null($selectedAirport))
+      <div class="card card-dark elevation-3">
+        <div class="card-header">
+          <h3 class="card-title">
+            Airline: {{$selectedAirline}} | Airport: {{$selectedAirport}}
+          </h3>
+        </div>
+        <div class="card-body">
+          <i>(Work in progress)</i>
+        </div>
+      </div>
+      @endif
     </div>
   </div>
 </div>

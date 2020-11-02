@@ -64,15 +64,20 @@ class StandApiController extends Controller
         if (!is_null(request('airlines'))) {
             $selectedAirline = null;
             $relevantAirports = null;
+            $selectedAirport = null;
             if (!is_null(request('airline'))) {
                 $selectedAirline = request('airline');
                 $relevantAirports = $this->getAirportsForAirline(request('airline'));
             }
             $allAirlines = $this->getAirlines();
+            if (!is_null(request('airport'))) {
+                $selectedAirport = request('airport');
+            }
             return view('app.atc.cofrance.standApi_airlines', [
                 "airlinesList" => $allAirlines,
                 "selectedAirline" => $selectedAirline,
                 "relevantAirports" => $relevantAirports,
+                "selectedAirport" => $selectedAirport,
             ]);
         }
 

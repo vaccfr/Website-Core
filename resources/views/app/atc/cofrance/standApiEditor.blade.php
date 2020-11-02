@@ -23,29 +23,6 @@
     <div class="col-md-2">
       <div class="card card-dark elevation-3">
         <div class="card-header">
-          <h3 class="card-title">
-            Available Airports
-          </h3>
-        </div>
-        <div class="card-body p-0">
-          <table class="table">
-            <thead>
-            </thead>
-            <tbody>
-              @foreach ($icaos as $i)
-              <tr>
-                <td><a href="{{route('app.atc.cofrance.stands', [
-                  'locale' => app()->getLocale(),
-                  'icao' => $i,
-                ])}}">{{$i}}</a></td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card card-dark elevation-3">
-        <div class="card-header">
           <h3 class="card-title">Functions</h3>
         </div>
         <div class="card-body p-0">
@@ -201,17 +178,47 @@
                   </div>
                 </div>
               </div>
-              <tr>
-                <td>
-                  <a href="{{route('app.atc.cofrance.stands', app()->getLocale())}}" class="btn btn-warning btn-block elevation-1">Reset</a>
-                </td>
-              </tr>
               @endif
               <tr>
                 <td>
                   <a href="{{route('app.atc.cofrance.stands', ['locale' => app()->getLocale(), 'airlines' => true])}}" class="btn btn-info btn-block elevation-1">Airline View</a>
                 </td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card card-dark elevation-3">
+        <div class="card-header">
+          <h3 class="card-title">
+            @if (is_null($currentIcao))
+            Available Airports
+            @else
+            Selected Airport
+            @endif
+          </h3>
+        </div>
+        <div class="card-body p-0">
+          <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+              @if (is_null($currentIcao))
+              @foreach ($icaos as $i)
+              <tr>
+                <td><a href="{{route('app.atc.cofrance.stands', [
+                  'locale' => app()->getLocale(),
+                  'icao' => $i,
+                ])}}">{{$i}}</a></td>
+              </tr>
+              @endforeach
+              @else
+              <tr>
+                <td>
+                  <a href="{{route('app.atc.cofrance.stands', app()->getLocale())}}" class="btn btn-danger btn-block elevation-1">{{$currentIcao}}</a>
+                </td>
+              </tr>
+              @endif
             </tbody>
           </table>
         </div>
