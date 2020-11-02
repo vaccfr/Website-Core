@@ -211,21 +211,28 @@ class StandApiController extends Controller
             return response($result, 404)->header('Content-Type', 'text/plain');
         }
         $prefilter_stands = StandApiData::where('icao', request('arr'))
-                            // ->where('schengen', $is_schengen)
-                            ->where('wtc', '>=', $this->wtc_conversion[request('wtc')])
+                            ->where('schengen', $is_schengen)
                             ->get();
+        $wtc_filtered_stands = [];
+        foreach ($prefilter_stands as $val) {
+            if (in_array(request('wtc'), explode(',', $val->wtc))) {
+                array_push($wtc_filtered_stands, $val);
+            }
+        }
         $filtered_stands = [];
-        foreach ($prefilter_stands as $idx => $v) {
+        foreach ($wtc_filtered_stands as $idx => $v) {
             $companies = explode(',', $v->companies);
-            if (in_array(substr(request('callsign'), 0, 3), $companies)) {
+            if (in_array(substr(request('callsign'), 0, 3), $companies) && $v->is_open == true) {
                 $filtered_data = [
                     "number" => $v->stand,
                     "lat" => $v->lat,
                     "lon" => $v->lon,
+                    "priority" => $v->priority,
                 ];
                 array_push($filtered_stands, $filtered_data);
             }
         }
+
         if (count($filtered_stands) == 0) {
             $sendError = true;
             if (request('arr') == "LFPG") {
@@ -269,7 +276,22 @@ class StandApiController extends Controller
             $result .= 'error = No stands found';
             return response($result, 404)->header('Content-Type', 'text/plain');
         }
-        $chosen = $final_stands[rand(0,count($final_stands))];
+
+        // Priority management
+        $highest_priority = 1;
+        foreach ($final_stands as $val) {
+            if ($val['priority'] > $highest_priority) {
+                $highest_priority = $val['priority'];
+            }
+        }
+        $final_prioritised_stands = [];
+        foreach ($final_stands as $idx => $val) {
+            if ($val['priority'] == $highest_priority) {
+                array_push($final_prioritised_stands, $val);
+            }
+        }
+    
+        $chosen = $final_prioritised_stands[rand(0,count($final_prioritised_stands))];
         $result = $tb
         ->addTable('request')
         ->addValue('code', 200)
@@ -281,6 +303,7 @@ class StandApiController extends Controller
         $result .= 'stand = "'.$chosen['number'].'"';
         $result .= "\n".'lat = '.$chosen['lat'];
         $result .= "\n".'lon = '.$chosen['lon'];
+        $result .= "\n".'priority = '.$chosen['priority'];
         return response($result, 200)->header('Content-Type', 'text/plain');
     }
 
@@ -295,6 +318,7 @@ class StandApiController extends Controller
                 "number" => $v->stand,
                 "lat" => $v->lat,
                 "lon" => $v->lon,
+                "priority" => $v->priority,
             ];
             array_push($filtered_stands, $filtered_data);
         }
