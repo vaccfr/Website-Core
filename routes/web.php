@@ -2,6 +2,7 @@
 
 use App\Mail\Mentoring\NewAtcSessionMail;
 use App\Mail\Mentoring\NewRequestMail;
+use App\Models\Data\SystemLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -310,6 +311,13 @@ Route::group([
             $point_polygon = count($vertices_x);
             $longitude_x = $lon;
             $latitude_y = $lat;
+        });
+        Route::get('/delweblogs', function() {
+            $logs = SystemLog::all();
+            foreach ($logs as $l) {
+                $l->delete();
+            }
+            return redirect()->back()->with('toast-success', 'Logs deleted');
         });
     });
 });
