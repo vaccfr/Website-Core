@@ -187,6 +187,7 @@ class VatsimDataController extends Controller
                             'name' => $c['realname'],
                             'lat' => $c['latitude'],
                             'lon' => $c['longitude'],
+                            'ssr' => $c['transponder'],
                         ];
                         array_push($clients, $add);
                     }

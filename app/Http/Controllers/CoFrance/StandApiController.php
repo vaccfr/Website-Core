@@ -399,7 +399,7 @@ class StandApiController extends Controller
             }
         }
     
-        $chosen = $final_prioritised_stands[rand(0,count($final_prioritised_stands))];
+        $chosen = $final_prioritised_stands[rand(0,count($final_prioritised_stands)-1)];
         $result = $tb
         ->addTable('request')
         ->addValue('code', 200)
