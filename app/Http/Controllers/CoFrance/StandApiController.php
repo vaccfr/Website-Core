@@ -36,6 +36,12 @@ class StandApiController extends Controller
         "T" => "military tanker/transport aircraft",
     ];
 
+    protected $priority_selectors = [
+        1 => "Low",
+        2 => "Medium",
+        3 => "High",
+    ];
+
     public function editorDashboard(Request $request)
     {
         $curr_icao = null;
@@ -61,6 +67,7 @@ class StandApiController extends Controller
             "data" => $standsDataFiltered,
             "wtc_conversion" => $this->wtc_conversion,
             "stand_users" => $this->stand_users,
+            'priority_selectors' => $this->priority_selectors,
         ]);
     }
 
@@ -91,6 +98,9 @@ class StandApiController extends Controller
         if (request('schengentoggle'.$stand->id) == "on") {
             $standIsSchengen = true;
         }
+        if (!in_array((int)request('priorityselect'), [1, 2, 3])) {
+            return redirect()->back()->with('toast-error', 'Error occured: priority selection invalid');
+        }
 
         $stand->is_open = $standIsOpen;
         $stand->schengen = $standIsSchengen;
@@ -100,6 +110,7 @@ class StandApiController extends Controller
         $stand->lon = request('coordinates-lon');
         $stand->companies = request('companies');
         $stand->wtc = implode(',', $stand_wtc_values);
+        $stand->priority = (int)request('priorityselect');
         $stand->save();
 
         return redirect()->route('app.atc.cofrance.stands', [
@@ -135,6 +146,9 @@ class StandApiController extends Controller
         if (request('schengentoggle') == "on") {
             $standIsSchengen = true;
         }
+        if (!in_array((int)request('priorityselect'), [1, 2, 3])) {
+            return redirect()->back()->with('toast-error', 'Error occured: priority selection invalid');
+        }
         
         $stand = new StandApiData();
         $stand->icao = request('airporticao');
@@ -146,6 +160,7 @@ class StandApiController extends Controller
         $stand->wtc = implode(',', $stand_wtc_values);
         $stand->is_open = $standIsOpen;
         $stand->schengen = $standIsSchengen;
+        $stand->priority = (int)request('priorityselect');
         $stand->save();
 
         return redirect()->route('app.atc.cofrance.stands', [

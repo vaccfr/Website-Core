@@ -104,7 +104,7 @@
                           <input type="text" class="form-control" id="companies" name="companies" placeholder="Companies">
                         </div>
                         <div class="row">
-                          <div class="col-md-6 border-right border-bottom">
+                          <div class="col-md-4 border-right border-bottom">
                             <div class="form-group">
                               <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                 <input type="checkbox" class="custom-control-input" id="schengentoggle" name="schengentoggle">
@@ -112,12 +112,22 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-md-6 border-bottom">
+                          <div class="col-md-4 border-right border-bottom">
                             <div class="form-group">
                               <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                 <input type="checkbox" class="custom-control-input" id="opentoggle" name="opentoggle">
                                 <label class="custom-control-label" for="opentoggle">Stand Open / Closed</label>
                               </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 border-bottom">
+                            <div class="form-group">
+                              <label>Selection Priority</label>
+                              <select class="form-control" id="priorityselect" name="priorityselect">
+                                <option selected value="3">3 (High)</option>
+                                <option value="2">2 (Medium)</option>
+                                <option value="1">1 (Low)</option>
+                              </select>
                             </div>
                           </div>
                         </div>
@@ -327,7 +337,7 @@
                             <input type="text" class="form-control" id="companies" name="companies" placeholder="Companies" value="{{$d['companies']}}">
                           </div>
                           <div class="row">
-                            <div class="col-md-6 border-right border-bottom">
+                            <div class="col-md-4 border-right border-bottom">
                               <div class="form-group">
                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                   <input @if ($d->schengen == true) checked @endif type="checkbox" class="custom-control-input" id="schengentoggle{{$d['id']}}" name="schengentoggle{{$d['id']}}">
@@ -335,12 +345,23 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6 border-bottom">
+                            <div class="col-md-4 border-right border-bottom">
                               <div class="form-group">
                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                   <input @if ($d->is_open == true) checked @endif type="checkbox" class="custom-control-input" id="opentoggle{{$d['id']}}" name="opentoggle{{$d['id']}}">
                                   <label class="custom-control-label" for="opentoggle{{$d['id']}}">Stand Open / Closed</label>
                                 </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4 border-bottom">
+                              <div class="form-group">
+                                <label>Selection Priority</label>
+                                <select class="form-control" id="priorityselect" name="priorityselect">
+                                  <option selected value="{{$d->priority}}">{{$d->priority}} ({{$priority_selectors[$d->priority]}})</option>
+                                  @if ($d->priority != 3)<option value="3">3 (High)</option>@endif
+                                  @if ($d->priority != 2)<option value="2">2 (Medium)</option>@endif
+                                  @if ($d->priority != 1)<option value="1">1 (Low)</option>@endif
+                                </select>
                               </div>
                             </div>
                           </div>
