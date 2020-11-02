@@ -70,6 +70,16 @@
                 {{__('app/admin/useredit.not_approved')}}
               @endif</a>
             </li>
+            @if (Auth::user()->isAdmin() == true)
+            <li class="list-group-item">
+              <b>Beta Tester Status</b> <a href="{{route('app.staff.admin.edit.betastatus', ['locale' => app()->getLocale(), 'cid' => $user->vatsim_id])}}"
+                class="float-right btn btn-flat @if ($user->is_betatester == true) btn-danger @else btn-success @endif">@if ($user->is_betatester == true)
+                Remove
+              @else
+                Give
+              @endif</a>
+            </li>
+            @endif
           </ul>
         </div>
         <!-- /.card-body -->

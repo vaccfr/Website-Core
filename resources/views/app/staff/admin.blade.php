@@ -73,6 +73,7 @@
                 <th>{{__('app/admin/dashboard.atc_rank')}}</th>
                 <th>{{__('app/admin/dashboard.pil_rank')}}</th>
                 <th>{{__('app/admin/dashboard.last_login')}}</th>
+                @if (Auth::user()->isAdmin()) <th>Beta Tester</th> @endif
                 <th>{{__('app/admin/dashboard.actions')}}</th>
               </tr>
               </thead>
@@ -107,6 +108,15 @@
                     <td>{{ $m['atc_rating_short'] }}</td>
                     <td>P{{ $m['pilot_rating'] }}</td>
                     <td>{{ $m['last_login'] }}</td>
+                    @if (Auth::user()->isAdmin())
+                    <td>
+                      @if($m['is_betatester'] == true)
+                        <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
+                      @else
+                        <span class="badge bg-danger"><i class="fa fa-times"></i> {{__('app/global.no')}}</span>
+                      @endif
+                    </td> 
+                    @endif
                     <td>
                       <div class="row">
                         <div class="col-sm-6">

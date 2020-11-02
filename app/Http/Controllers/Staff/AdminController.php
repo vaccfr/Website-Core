@@ -42,6 +42,9 @@ class AdminController extends Controller
 
     public function editUser(Request $request)
     {
+        if (is_null(request('cid'))) {
+            return redirect()->route('app.staff.admin', app()->getLocale());
+        }
         $user = User::where('vatsim_id', $request->get('cid'))->with('discord')->firstOrFail();
 
         if ($user->subdiv_id == "FRA") {
@@ -415,6 +418,23 @@ class AdminController extends Controller
             'locale' => app()->getLocale(),
             'cid' => $currentUser->vatsim_id,
         ])->with('toast-info', trans('app/alerts.staff_edited'));
+    }
+
+    public function editBetaTester(Request $request)
+    {
+        if (is_null(request('cid'))) {
+            return redirect()->back()->with('toast-error', 'Error occured editing beta status');
+        }
+        $user = User::where('vatsim_id', request('cid'))->first();
+        if (is_null($user)) {
+            return redirect()->back()->with('toast-error', 'Error occured editing beta status');
+        }
+        $user->is_betatester = !$user->is_betatester;
+        $user->save();
+        return redirect()->route('app.staff.admin.edit', [
+            'locale' => app()->getLocale(),
+            'cid' => $user->vatsim_id,
+        ])->with('toast-info', 'Beta status edited');
     }
 
     public function atcAdmin()
