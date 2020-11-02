@@ -273,7 +273,7 @@ class StandApiController extends Controller
 
         $result .= "\n";
         $result .= "[data]\n";
-        $result .= 'stand = '.$chosen['number'];
+        $result .= 'stand = "'.$chosen['number'].'"';
         $result .= "\n".'lat = '.$chosen['lat'];
         $result .= "\n".'lon = '.$chosen['lon'];
         return response($result, 200)->header('Content-Type', 'text/plain');

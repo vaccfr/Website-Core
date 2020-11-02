@@ -35,6 +35,6 @@ Route::group(['prefix' => '/cfr'], function() {
   });
   Route::group(['prefix' => '/stand'], function() {
     Route::get('/', 'CoFrance\StandApiController@active');
-    Route::get('/query', 'CoFrance\StandApiController@query');
+    Route::post('/query', 'CoFrance\StandApiController@query');
   });
 });
