@@ -20,6 +20,8 @@
 @section('page-content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
@@ -34,8 +36,8 @@
             <div class="card-body">
               <div class="form-group">
                 <label>{{__('app/atc/atc_mybookings.pos_label')}}</label>
-                <select class="form-control" id="position-select" name="positionselect">
-                  <option value="" disabled selected>{{__('app/atc/atc_mybookings.pos_select')}}</option>
+                <select class="form-control selectPosition" id="position-select" name="positionselect">
+                  <option value=""></option>
                   @foreach ($positions as $p)
                     @if (count($p['positions']) > 0)
                       <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
@@ -197,6 +199,9 @@
         "emptyTable": "Pas de bookings trouvés"
       }
     });
+    $('.selectPosition').select2({
+      placeholder: "{{__('app/atc/atc_mybookings.pos_select')}}"
+    })
   </script>
   <script>
     d = new Date();
