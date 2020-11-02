@@ -160,7 +160,8 @@ class StandApiController extends Controller
 
         $result .= "\n";
         $result .= "[data]\n";
-        $result .= 'icaos = '.implode(',', $icaos);
+        $result .= 'icaos = ["'.implode('", "', $icaos).'"]';
+        // $result .= 'icaos = '.implode(',', $icaos);
 
         return response($result, 200)->header('Content-Type', 'text/plain');
     }
