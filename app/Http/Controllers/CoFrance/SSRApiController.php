@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CoFrance;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SSRApiController extends Controller
 {
@@ -36,10 +37,20 @@ class SSRApiController extends Controller
         }
         
         if (count($finalCodes) > 0) {
-            $result = $finalCodes[0];
+            $foundValidCode = false;
+            $cycleCode = 0;
+            while ($foundValidCode == false) {
+                if ($this->cacheChecker($finalCodes[$cycleCode]) == false) {
+                    $foundValidCode = true;
+                    $result = $finalCodes[$cycleCode];
+                } else {
+                    $cycleCode++;
+                }
+            }
         } else {
             $result = $codes[rand(0,count($codes)-1)];
         }
+
         return response($result, 200)->header('Content-Type', 'text/plain');
     }
 
@@ -65,5 +76,15 @@ class SSRApiController extends Controller
             $i++;
         }
         return $codes;
+    }
+
+    private function cacheChecker($ssr)
+    {
+        if (Cache::store('database')->has("ssr_cache_".$ssr)) {
+            return true;
+        } else {
+            Cache::store('database')->put("ssr_cache_".$ssr, true, 900);
+            return false;
+        }
     }
 }
