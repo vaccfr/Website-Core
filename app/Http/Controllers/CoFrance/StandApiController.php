@@ -128,13 +128,29 @@ class StandApiController extends Controller
         $standsList = [];
         $notStandsList = [];
         foreach ($allStands as $s) {
+            $final_usage_list = [];
+            foreach (explode(',', $s->usage) as $val) {
+                array_push($final_usage_list, $this->stand_users[$val]);
+            }
+            $final_wtc_list = [];
+            foreach (explode(',', $s->wtc) as $val) {
+            array_push($final_wtc_list, $this->wtc_conversion[$val]);
+            }
             if (in_array($airline, explode(',', $s->companies))) {
                 array_push($standsList, [
-                    "stand" => $s->stand
+                    "stand" => $s->stand,
+                    "wtc" => implode(', ', $final_wtc_list),
+                    "usage" => implode(', ', $final_usage_list),
+                    "schengen" => $s->schengen,
+                    "open" => $s->is_open,
                 ]);
             } else {
                 array_push($notStandsList, [
-                    "stand" => $s->stand
+                    "stand" => $s->stand,
+                    "wtc" => implode(', ', $final_wtc_list),
+                    "usage" => implode(', ', $final_usage_list),
+                    "schengen" => $s->schengen,
+                    "open" => $s->is_open,
                 ]);
             }
         }
@@ -142,6 +158,45 @@ class StandApiController extends Controller
             "is" => $standsList,
             "isnot" => $notStandsList,
         ];
+    }
+
+    public function saveCompanyStands(Request $request)
+    {
+        $toggledStands = [];
+        $currComp = request('selectedcomp');
+        foreach (array_keys($request->all()) as $r) {
+            if (substr($r, 0, 6) == "toggle") {
+                array_push($toggledStands, explode('_', $r)[2]);
+            }
+        }
+
+        $allStands = StandApiData::where('icao', request('selectedairp'))->get();
+        if (is_null($allStands)) {
+            return redirect()->back()->with('toast-error', 'ICAO not found');
+        }
+        foreach ($allStands as $s) {
+            $companies = explode(',', $s->companies);
+
+            // Case where a new stand is toggled for a company
+            if (!in_array($currComp, $companies) && in_array($s->stand, $toggledStands)) {
+                array_push($companies, $currComp);
+                $s->companies = implode(',', $companies);
+                $s->save();
+            }
+            // Case where stand untoggled for a company
+            elseif (in_array($currComp, $companies) && !in_array($s->stand, $toggledStands)) {
+                unset($companies[array_search($currComp, $companies)]);
+                $s->companies = implode(',', $companies);
+                $s->save();
+            }
+        }
+
+        return redirect()->route('app.atc.cofrance.stands', [
+            'locale' => app()->getLocale(),
+            'airlines' => true,
+            'airline' => $currComp,
+            'airport' => request('selectedairp'),
+        ])->with('toast-success', 'Stands of "'.$currComp.'" edited with success!');
     }
 
     public function standEditor(Request $request)

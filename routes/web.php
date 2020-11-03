@@ -167,6 +167,7 @@ Route::group([
                         Route::post('/stands/edit', 'CoFrance\StandApiController@standEditor')->name('app.atc.cofrance.stands.edit');
                         Route::post('/stands/create', 'CoFrance\StandApiController@createStand')->name('app.atc.cofrance.stands.create');
                         Route::post('/stands/delete', 'CoFrance\StandApiController@deleteStand')->name('app.atc.cofrance.stands.delete');
+                        Route::post('/stands/editbyairline', 'CoFrance\StandApiController@saveCompanyStands')->name('app.atc.cofrance.stands.editbyairline');
                     });
                 });
     
