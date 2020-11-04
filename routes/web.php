@@ -38,6 +38,10 @@ Route::get('/roster', function() {
     return redirect()->route('app.atc.roster', 'en');
 })->name('redirect.roster');
 
+Route::get('/brief/lfpg', function() {
+    return redirect(asset('/assets/docs/briefs/vaccfr_LFPG_pilotbrief_v1.pdf'));
+});
+
 // Landing page routes
 Route::group([
     'middleware' => 'setlocale',
