@@ -22,7 +22,7 @@ class AirportsController extends Controller
                     'fir' => null,
                     'city' => $a['city'],
                     'airport' => $a['airport'],
-                    'atis_frequency' => $a['atis'],
+                    'atis_frequency' => $a['atis_frequency'],
                 ]);
                 $current = Airport::where('icao', $a['icao'])->first();
                 if (count($a['positions']) > 0) {
@@ -31,7 +31,7 @@ class AirportsController extends Controller
                             ATCStation::create([
                                 'airport_id' => $current->id,
                                 'code' => $p['code'],
-                                'type' => $p['type'],
+                                'callsign' => $p['callsign'],
                                 'frequency' => $p['frequency'],
                                 'rank' => $p['rank'],
                                 'solo_rank' => $p['solo_rank'],
@@ -42,7 +42,7 @@ class AirportsController extends Controller
                     }
                 }
             } catch(ErrorException $e) {
-                // dd($e);
+                dd($e);
             }
         }
         return redirect()->back()->with('toast-info', 'Airports imported');

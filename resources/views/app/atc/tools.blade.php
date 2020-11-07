@@ -123,7 +123,7 @@
                   @foreach ($a['positions'] as $p)
                   <tr>
                     <td>{{$p['code']}}</td>
-                    <td>{{$a['city']}} {{$a['airport']}}</td>
+                    <td>{{$p['callsign']}}</td>
                     <td>{{$p['type']}}</td>
                     <td>{{$p['frequency']}}</td>
                   </tr>

@@ -17,7 +17,7 @@ class CreateATCStationsTable extends Migration
             $table->id();
             $table->integer('airport_id');
             $table->string('code');
-            $table->string('type')->nullable();
+            $table->string('callsign')->nullable();
             $table->string('frequency');
             $table->string('rank');
             $table->string('solo_rank');

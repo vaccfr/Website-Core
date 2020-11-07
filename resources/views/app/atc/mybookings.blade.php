@@ -42,7 +42,7 @@
                     @if (count($p['positions']) > 0)
                       <optgroup label="{{ $p['city'] }} {{ $p['airport'] }}"></optgroup>
                       @foreach ($p['positions'] as $s)
-                        <option value="{{ $s['code'] }}">{{ $s['code'] }}</option>
+                        <option value="{{ $s['code'] }}">{{ $s['code'] }} ({{ $s['callsign'] }})</option>
                       @endforeach
                       <optgroup label=""></optgroup>
                     @endif
