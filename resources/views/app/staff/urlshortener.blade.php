@@ -78,8 +78,9 @@
             data-order="[[ 0, 'asc' ]]">
             <thead>
               <tr>
+                <th>Final URL</th>
                 <th>Short</th>
-                <th>URL</th>
+                <th>Target URL</th>
                 <th>Author</th>
                 <th>Action</th>
               </tr>
@@ -87,8 +88,9 @@
             <tbody>
               @foreach ($urls as $u)
               <tr>
+                <td><a href="{{config('app.url')}}/r/{{$u['short']}}" target="_blank">{{config('app.url')}}/r/{{$u['short']}}</a></td>
                 <td>{{$u['short']}}</td>
-                <td>{{$u['url']}}</td>
+                <td><a href="{{$u['url']}}" target="_blank">{{$u['url']}}</a></td>
                 <td>{{$u['author']['fname']}} {{$u['author']['lname']}} ({{$u['author']['vatsim_id']}})</td>
                 <td>
                   <div class="row">
