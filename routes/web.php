@@ -42,6 +42,8 @@ Route::get('/brief/lfpg', function() {
     return redirect(asset('/assets/docs/briefs/vaccfr_LFPG_pilotbrief_v1.pdf'));
 });
 
+Route::get('/r/{short}', 'DataHandlers\UrlShortenerController@fetch')->name('url.shortener');
+
 // Landing page routes
 Route::group([
     'middleware' => 'setlocale',
@@ -219,6 +221,11 @@ Route::group([
                         Route::post('/atcadmin/approval', 'Staff\AdminController@approveSpecialPosition')->name('app.staff.atcadmin.approval');
                         Route::post('/atcadmin/delsolo', 'Staff\AdminController@delSolo')->name('app.staff.atcadmin.delsolo');
                         Route::post('/atcadmin/delapplication', 'Staff\AdminController@delApplication')->name('app.staff.atcadmin.delapplication');
+
+                        Route::get('/urlshortener', 'DataHandlers\UrlShortenerController@index')->name('app.staff.urlshortener');
+                        Route::post('/urlshortener/make', 'DataHandlers\UrlShortenerController@make')->name('app.staff.urlshortener.make');
+                        Route::post('/urlshortener/edit', 'DataHandlers\UrlShortenerController@edit')->name('app.staff.urlshortener.edit');
+                        Route::post('/urlshortener/delete', 'DataHandlers\UrlShortenerController@delete')->name('app.staff.urlshortener.delete');
 
                         Route::group(['middleware' => 'ADMIN'], function() {
                             Route::post('/edit/staffstatus', 'Staff\AdminController@editUserFormStaff')->name('app.staff.admin.edit.staffstatus');
