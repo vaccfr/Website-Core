@@ -265,20 +265,26 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ route('app.staff.admin', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.admin')) active @endif">
-                    <i class="nav-icon far fa-circle"></i>
+                    <i class="nav-icon fa fa-database"></i>
                     <p>Dashboard</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('app.staff.atcadmin', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.atcadmin')) active @endif">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fa fa-database nav-icon"></i>
                     <p>ATC Admin</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('app.staff.cofbmanager', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.cofbmanager')) active @endif">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fa fa-mail-bulk nav-icon"></i>
                     <p>Contact & Feedback</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('app.staff.urlshortener', app()->getLocale()) }}" class="nav-link @if (Route::is('app.staff.urlshortener')) active @endif">
+                    <i class="fa fa-link nav-icon"></i>
+                    <p>URL Shortener</p>
                   </a>
                 </li>
                 <li class="nav-item">
