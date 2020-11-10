@@ -39,7 +39,7 @@ Route::get('/roster', function() {
 })->name('redirect.roster');
 
 Route::get('/brief/lfpg', function() {
-    return redirect(asset('/assets/docs/briefs/vaccfr_LFPG_pilotbrief_v1.pdf'));
+    return redirect(asset('/assets/docs/briefs/vaccfr_LFPG_pilotbrief_v1_5.pdf'));
 });
 
 Route::get('/r/{short}', 'DataHandlers\UrlShortenerController@fetch')->name('url.shortener');
