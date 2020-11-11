@@ -378,6 +378,9 @@
               </div>
             </div>
             @endforeach
+            @if (Auth::user()->isAdmin())
+              {{dd(array_chunk($eventsList, 3))}}
+            @endif
           </div>
         </div>
       </div>
