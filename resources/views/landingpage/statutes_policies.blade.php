@@ -75,7 +75,14 @@
   
           <div class="tab-pane" id="Policies" role="tabpanel">
             <p class="card-text">
-              TBA
+              <div class="card">
+                <div class="card-body">
+                  <ul>
+                    <li><a href="{{ asset('/assets/docs/circulaires/circulaire_provisoire_01_2020.pdf') }}" target="_blank">Circulaire Provisoire 01/2020</a></li>
+                    <li><a href="{{  asset('/assets/docs/circulaires/circulaire_provisoire_02_2020.pdf') }}" target="_blank">Circulaire Provisoire 02/2020</a></li>
+                  </ul>
+                </div>
+              </div>
             </p>
           </div>
   
