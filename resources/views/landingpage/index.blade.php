@@ -380,7 +380,7 @@
             @endforeach
           </div> --}}
           @foreach ($eventsList as $el)
-          <div class="row">
+          <div class="row mt-3">
             @foreach ($el as $e)
             <div class="col-sm-4">
               <div class="card">
