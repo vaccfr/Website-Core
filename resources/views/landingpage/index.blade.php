@@ -362,7 +362,7 @@
         </div>
         <div class="container-fluid py-4">
           <h3 class="mt-3  mb-3">{{__('lp/lp_index.ann_event_title')}}</h3>
-          <div class="card-columns">
+          {{-- <div class="card-columns">
             @foreach ($eventsList as $e)
             <div class="card">
               <a href="{{ $e['url'] }}" target="_blank">
@@ -378,7 +378,28 @@
               </div>
             </div>
             @endforeach
+          </div> --}}
+          @foreach ($eventsList as $el)
+          <div class="row">
+            @foreach ($el as $e)
+            <div class="col-sm-4">
+              <div class="card">
+                <a href="{{ $e['url'] }}" target="_blank">
+                  <img class="card-img-top" src="@if ($e['has_image'] == true)
+                      {{config('app.url')}}/{{$e['image_url']}}
+                  @else
+                      {{asset('media/img/placeholders/events_placeholder_noimg.jpg')}}
+                  @endif" alt="Card image cap">
+                </a>
+                <div class="card-body">
+                  <h4 class="card-title">{{$e['title']}} <br> {{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('d.m.Y')}} | {{date_create_from_format('Y-m-d H:i:s', $e['start_date'])->format('H:i')}}z - {{date_create_from_format('Y-m-d H:i:s', $e['end_date'])->format('H:i')}}z</h4>
+                  <p class="card-text">{!!nl2br($e['description'])!!}</p>
+                </div>
+              </div>
+            </div>
+            @endforeach
           </div>
+          @endforeach
         </div>
       </div>
     </div>

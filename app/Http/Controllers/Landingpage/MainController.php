@@ -53,7 +53,8 @@ class MainController extends Controller
         $eventList = Event::orderBy('start_date', 'ASC')
         ->where('start_date', '>=', Carbon::now()->format('Y-m-d'))
         // ->where('start_date', '<=', Carbon::now()->addDays(7)->format('Y-m-d H:i:s'))
-        ->get();
+        ->get()->toArray();
+        $eventList = array_chunk($eventList, 3);
 
         return view('landingpage.index', [
             'book0' => $bookingsToday,
