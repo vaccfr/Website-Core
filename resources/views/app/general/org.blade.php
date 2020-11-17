@@ -202,6 +202,10 @@
                     <td>(Vacant) - ACCFR41</td>
                   </tr>
                   <tr>
+                    <td>Media & Social Manager</td>
+                    <td>Loïc Mabille - ACCFR42</td>
+                  </tr>
+                  <tr>
                     <td>Marketing Support Team</td>
                     <td>
                       <button type="button" class="btn btn-flat btn-block btn-info" data-toggle="modal" data-target="#marketing_team">
