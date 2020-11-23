@@ -112,7 +112,7 @@ class AtisController extends Controller
         
         $ta = intval($ta);
 
-        $tl = (1013-intval($qnh))*$this->feet_per_hpa+$ta;
+        $tl = abs(1013-intval($qnh))*$this->feet_per_hpa+$ta;
         $tl = ceil( $tl / 1000 ) * 1000;
 
         return "Transition level ".$this->enunciate("".$tl/100).". ";
