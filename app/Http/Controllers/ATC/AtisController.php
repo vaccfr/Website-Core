@@ -298,7 +298,7 @@ class AtisController extends Controller
         $atis_text .= $this->getRunways($deprwy, $arrrwy);
         $atis_text .= $this->getApproach($app);
         $atis_text .= $this->getDepartures($dep);
-        $atis_text .= $this->getTransitionLevel($d->getPressure()->getValue(), $request->input('ta', 5000));
+        $atis_text .= $this->getTransitionLevel($d->getPressure()->getValue(), $request->input('ta', '5000'));
 
         // Additional information
         $atis_text .= $this->getAutomatedAdditionalInformation($d->getIcao(), $arrrwy);
