@@ -1,4 +1,4 @@
-<p align="center"><img src="https://vatsim.fr/media/img/FrenchvACC_BBG_2.png" width="auto"></p>
+<p align="center"><img src="https://i.imgur.com/n17WHdO.png" width="auto"></p>
 
 <p align="center"><b>v.1.5</b><br>Official repository of the new French vACC Website<br>
 <a href="https://www.vatsim.fr/fr" target="_blank">https://vatsim.fr/fr</a> <i>(Version française)</i><br>
