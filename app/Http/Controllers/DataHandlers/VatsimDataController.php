@@ -244,8 +244,8 @@ class VatsimDataController extends Controller
                             'hdg' => $p['heading'],
                             'lat' => $p['latitude'],
                             'lon' => $p['longitude'],
-                            'dep' => $p['planned_depairport'],
-                            'arr' => $p['planned_destairport'],
+                            'dep' => $p['departure'],
+                            'arr' => $p['arrival'],
                             'alt' => $p['altitude'],
                             'gspd' => $p['groundspeed'],
                         ];
@@ -264,8 +264,8 @@ class VatsimDataController extends Controller
                                 'hdg' => $p['heading'],
                                 'lat' => $p['latitude'],
                                 'lon' => $p['longitude'],
-                                'dep' => $p['planned_depairport'],
-                                'arr' => $p['planned_destairport'],
+                                'dep' => $p['departure'],
+                                'arr' => $p['arrival'],
                                 'alt' => $p['altitude'],
                                 'gspd' => $p['groundspeed'],
                             ];
@@ -274,7 +274,7 @@ class VatsimDataController extends Controller
                     }
                 }
                 foreach ($response['controllers'] as $p) {
-                    if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && config('vaccfr.atc_ranks')[$p['rating']] !== "OBS") {
+                    if (substr($p['callsign'], 0, 2) == "LF" && config('vaccfr.atc_ranks')[$p['rating']] !== "OBS") {
                         if (substr($p['callsign'], -4) == "_APP") {
                             $atcCount++;
                             $add = [
