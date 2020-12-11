@@ -142,11 +142,11 @@ class VatsimDataController extends Controller
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
                 $clients = [];
-                foreach ($response['clients'] as $c) {
-                    if ($c['clienttype'] == "ATC" && substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) !== "_ATIS" && config('vaccfr.atc_ranks')[$c['rating']] !== "OBS") {
+                foreach ($response['controllers'] as $c) {
+                    if (substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) !== "_ATIS" && config('vaccfr.atc_ranks')[$c['rating']] !== "OBS") {
                         $add = [
                             'callsign' => $c['callsign'],
-                            'name' => $c['realname'],
+                            'name' => $c['name'],
                             'livesince' => date_format(date_create($c['time_logon']), 'H:i'),
                             'rating' => config('vaccfr.atc_ranks')[$c['rating']],
                         ];
@@ -180,17 +180,15 @@ class VatsimDataController extends Controller
                 ]);
                 $response = json_decode((string) $response->getBody(), true);
                 $clients = [];
-                foreach ($response['clients'] as $c) {
-                    if ($c['clienttype'] == "PILOT") {
-                        $add = [
-                            'callsign' => $c['callsign'],
-                            'name' => $c['realname'],
-                            'lat' => $c['latitude'],
-                            'lon' => $c['longitude'],
-                            'ssr' => $c['transponder'],
-                        ];
-                        array_push($clients, $add);
-                    }
+                foreach ($response['pilots'] as $c) {
+                    $add = [
+                        'callsign' => $c['callsign'],
+                        'name' => $c['name'],
+                        'lat' => $c['latitude'],
+                        'lon' => $c['longitude'],
+                        'ssr' => $c['transponder'],
+                    ];
+                    array_push($clients, $add);
                 }
 
             } catch(Throwable $e) {
@@ -238,9 +236,28 @@ class VatsimDataController extends Controller
                 $planesOver = [];
                 $planeCount = 0;
                 $atcCount = 0;
-                foreach ($response['clients'] as $p) {
-                    if ($p['clienttype'] == "PILOT") {
-                        if (substr($p['planned_depairport'], 0, 2) == "LF" || substr($p['planned_destairport'], 0, 2) == "LF") {
+                foreach ($response['pilots'] as $p) {
+                    if (substr($p['planned_depairport'], 0, 2) == "LF" || substr($p['planned_destairport'], 0, 2) == "LF") {
+                        $planeCount++;
+                        $add = [
+                            'callsign' => $p['callsign'],
+                            'hdg' => $p['heading'],
+                            'lat' => $p['latitude'],
+                            'lon' => $p['longitude'],
+                            'dep' => $p['planned_depairport'],
+                            'arr' => $p['planned_destairport'],
+                            'alt' => $p['altitude'],
+                            'gspd' => $p['groundspeed'],
+                        ];
+                        array_push($planesFR, $add);
+                    } else {
+                        $vertices_x = array(-7.50, 9, 10.1, -7.50);
+                        $vertices_y = array(51, 51, 40.1, 40.6);
+                        $point_polygon = count($vertices_x);
+                        $longitude_x = $p['longitude'];
+                        $latitude_y = $p['latitude'];
+
+                        if ($this->is_in_polygon($point_polygon, $vertices_x, $vertices_y, $longitude_x, $latitude_y)) {
                             $planeCount++;
                             $add = [
                                 'callsign' => $p['callsign'],
@@ -252,68 +269,48 @@ class VatsimDataController extends Controller
                                 'alt' => $p['altitude'],
                                 'gspd' => $p['groundspeed'],
                             ];
-                            array_push($planesFR, $add);
-                        } else {
-                            $vertices_x = array(-7.50, 9, 10.1, -7.50);
-                            $vertices_y = array(51, 51, 40.1, 40.6);
-                            $point_polygon = count($vertices_x);
-                            $longitude_x = $p['longitude'];
-                            $latitude_y = $p['latitude'];
-
-                            if ($this->is_in_polygon($point_polygon, $vertices_x, $vertices_y, $longitude_x, $latitude_y)) {
-                                $planeCount++;
-                                $add = [
-                                    'callsign' => $p['callsign'],
-                                    'hdg' => $p['heading'],
-                                    'lat' => $p['latitude'],
-                                    'lon' => $p['longitude'],
-                                    'dep' => $p['planned_depairport'],
-                                    'arr' => $p['planned_destairport'],
-                                    'alt' => $p['altitude'],
-                                    'gspd' => $p['groundspeed'],
-                                ];
-                                array_push($planesOver, $add);
-                            }
+                            array_push($planesOver, $add);
                         }
-                    } elseif ($p['clienttype'] == "ATC") {
-                        if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && config('vaccfr.atc_ranks')[$p['rating']] !== "OBS") {
-                            if (substr($p['callsign'], -4) == "_APP") {
-                                $atcCount++;
-                                $add = [
-                                    'callsign' => $p['callsign'],
-                                    'lat' => $p['latitude'],
-                                    'lon' => $p['longitude'],
-                                    'freq' => $p['frequency'],
-                                ];
-                                array_push($appr, $add);
-                            }
+                    }
+                }
+                foreach ($response['controllers'] as $p) {
+                    if ($p['clienttype'] == "ATC" && substr($p['callsign'], 0, 2) == "LF" && config('vaccfr.atc_ranks')[$p['rating']] !== "OBS") {
+                        if (substr($p['callsign'], -4) == "_APP") {
+                            $atcCount++;
+                            $add = [
+                                'callsign' => $p['callsign'],
+                                'lat' => $p['latitude'],
+                                'lon' => $p['longitude'],
+                                'freq' => $p['frequency'],
+                            ];
+                            array_push($appr, $add);
+                        }
 
-                            if (substr($p['callsign'], -4) == "_TWR") {
-                                $atcCount++;
-                                $add = [
-                                    'callsign' => $p['callsign'],
-                                    'lat' => $p['latitude'],
-                                    'lon' => $p['longitude'],
-                                    'freq' => $p['frequency'],
-                                ];
-                                array_push($twrs, $add);
+                        if (substr($p['callsign'], -4) == "_TWR") {
+                            $atcCount++;
+                            $add = [
+                                'callsign' => $p['callsign'],
+                                'lat' => $p['latitude'],
+                                'lon' => $p['longitude'],
+                                'freq' => $p['frequency'],
+                            ];
+                            array_push($twrs, $add);
+                        }
+                        if (substr($p['callsign'], -4) == "_CTR") {
+                            if (substr($p['callsign'], 0, 4) === "LFFF") {
+                                $lfff = true;
                             }
-                            if (substr($p['callsign'], -4) == "_CTR") {
-                                if (substr($p['callsign'], 0, 4) === "LFFF") {
-                                    $lfff = true;
-                                }
-                                if (substr($p['callsign'], 0, 4) === "LFRR") {
-                                    $lfrr = true;
-                                }
-                                if (substr($p['callsign'], 0, 4) === "LFEE") {
-                                    $lfee = true;
-                                }
-                                if (substr($p['callsign'], 0, 4) === "LFBB") {
-                                    $lfbb = true;
-                                }
-                                if (substr($p['callsign'], 0, 4) === "LFMM") {
-                                    $lfmm = true;
-                                }
+                            if (substr($p['callsign'], 0, 4) === "LFRR") {
+                                $lfrr = true;
+                            }
+                            if (substr($p['callsign'], 0, 4) === "LFEE") {
+                                $lfee = true;
+                            }
+                            if (substr($p['callsign'], 0, 4) === "LFBB") {
+                                $lfbb = true;
+                            }
+                            if (substr($p['callsign'], 0, 4) === "LFMM") {
+                                $lfmm = true;
                             }
                         }
                     }
