@@ -237,39 +237,41 @@ class VatsimDataController extends Controller
                 $planeCount = 0;
                 $atcCount = 0;
                 foreach ($response['pilots'] as $p) {
-                    if (substr($p['planned_depairport'], 0, 2) == "LF" || substr($p['planned_destairport'], 0, 2) == "LF") {
-                        $planeCount++;
-                        $add = [
-                            'callsign' => $p['callsign'],
-                            'hdg' => $p['heading'],
-                            'lat' => $p['latitude'],
-                            'lon' => $p['longitude'],
-                            'dep' => $p['departure'],
-                            'arr' => $p['arrival'],
-                            'alt' => $p['altitude'],
-                            'gspd' => $p['groundspeed'],
-                        ];
-                        array_push($planesFR, $add);
-                    } else {
-                        $vertices_x = array(-7.50, 9, 10.1, -7.50);
-                        $vertices_y = array(51, 51, 40.1, 40.6);
-                        $point_polygon = count($vertices_x);
-                        $longitude_x = $p['longitude'];
-                        $latitude_y = $p['latitude'];
-
-                        if ($this->is_in_polygon($point_polygon, $vertices_x, $vertices_y, $longitude_x, $latitude_y)) {
+                    if (!is_null($p['flight_plan'])) {
+                        if (substr($p['flight_plan']['departure'], 0, 2) == "LF" || substr($p['flight_plan']['arrival'], 0, 2) == "LF") {
                             $planeCount++;
                             $add = [
                                 'callsign' => $p['callsign'],
                                 'hdg' => $p['heading'],
                                 'lat' => $p['latitude'],
                                 'lon' => $p['longitude'],
-                                'dep' => $p['departure'],
-                                'arr' => $p['arrival'],
+                                'dep' => $p['flight_plan']['departure'],
+                                'arr' => $p['flight_plan']['arrival'],
                                 'alt' => $p['altitude'],
                                 'gspd' => $p['groundspeed'],
                             ];
-                            array_push($planesOver, $add);
+                            array_push($planesFR, $add);
+                        } else {
+                            $vertices_x = array(-7.50, 9, 10.1, -7.50);
+                            $vertices_y = array(51, 51, 40.1, 40.6);
+                            $point_polygon = count($vertices_x);
+                            $longitude_x = $p['longitude'];
+                            $latitude_y = $p['latitude'];
+
+                            if ($this->is_in_polygon($point_polygon, $vertices_x, $vertices_y, $longitude_x, $latitude_y)) {
+                                $planeCount++;
+                                $add = [
+                                    'callsign' => $p['callsign'],
+                                    'hdg' => $p['heading'],
+                                    'lat' => $p['latitude'],
+                                    'lon' => $p['longitude'],
+                                    'dep' => $p['flight_plan']['departure'],
+                                    'arr' => $p['flight_plan']['arrival'],
+                                    'alt' => $p['altitude'],
+                                    'gspd' => $p['groundspeed'],
+                                ];
+                                array_push($planesOver, $add);
+                            }
                         }
                     }
                 }
@@ -279,8 +281,8 @@ class VatsimDataController extends Controller
                             $atcCount++;
                             $add = [
                                 'callsign' => $p['callsign'],
-                                'lat' => $p['latitude'],
-                                'lon' => $p['longitude'],
+                                'lat' => 0,
+                                'lon' => 0,
                                 'freq' => $p['frequency'],
                             ];
                             array_push($appr, $add);
@@ -290,8 +292,8 @@ class VatsimDataController extends Controller
                             $atcCount++;
                             $add = [
                                 'callsign' => $p['callsign'],
-                                'lat' => $p['latitude'],
-                                'lon' => $p['longitude'],
+                                'lat' => 0,
+                                'lon' => 0,
                                 'freq' => $p['frequency'],
                             ];
                             array_push($twrs, $add);
