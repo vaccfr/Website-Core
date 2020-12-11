@@ -128,7 +128,7 @@ class VatsimDataController extends Controller
     
     public function getOnlineATC()
     {
-        $url = "http://cluster.data.vatsim.net/vatsim-data.json";
+        $url = "https://data.vatsim.net/v3/vatsim-data.json";
 
         if (app(CacheController::class)->checkCache('onlineatc', false)) {
             $clients = app(CacheController::class)->getCache('onlineatc', false);
@@ -167,7 +167,7 @@ class VatsimDataController extends Controller
 
     public function getOnlinePilots()
     {
-        $url = "http://cluster.data.vatsim.net/vatsim-data.json";
+        $url = "https://data.vatsim.net/v3/vatsim-data.json";
 
         if (app(CacheController::class)->checkCache('onlinepilotsall', false)) {
             $clients = app(CacheController::class)->getCache('onlinepilotsall', false);
@@ -215,7 +215,7 @@ class VatsimDataController extends Controller
 
     public function livemapDataGenerator()
     {
-        $url = "http://cluster.data.vatsim.net/vatsim-data.json";
+        $url = "https://data.vatsim.net/v3/vatsim-data.json";
 
         if (app(CacheController::class)->checkCache('livemap', false)) {
             $data = app(CacheController::class)->getCache('livemap', false);
