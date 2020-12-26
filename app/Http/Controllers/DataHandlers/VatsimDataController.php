@@ -147,8 +147,8 @@ class VatsimDataController extends Controller
                         $add = [
                             'callsign' => $c['callsign'],
                             'name' => $c['name'],
-                            'livesince' => date_format(date_create($c['logon_time']), 'H:i'),
-                            'rating' => config('vaccfr.atc_ranks')[$c['rating']],
+                            'livesince' => '',
+                            'rating' => '',
                         ];
                         array_push($clients, $add);
                         $onlineATC++;
