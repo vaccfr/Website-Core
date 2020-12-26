@@ -100,6 +100,7 @@
           </div>
         </div>
       </div>
+      @if 69 > 34
       <div class="col-md-6">
         <div class="card card-dark elevation-3">
           <div class="card-header">
@@ -157,6 +158,7 @@
           });
         </script>
       </div>
+      @endif
     </div>
   </div>
 @endsection
