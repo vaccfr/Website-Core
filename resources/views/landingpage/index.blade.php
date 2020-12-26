@@ -105,7 +105,7 @@
                       <tr>
                         <th scope="row">{{$b['position']}}</th>
                         <td @if ($b['training'] == true) style="color: blueviolet;" @endif>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}</td>
+                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}Z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}Z</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                       </tr>
                       @endforeach
@@ -132,7 +132,7 @@
                       <tr>
                         <th scope="row">{{$b['position']}}</th>
                         <td @if ($b['training'] == true) style="color: blueviolet;" @endif>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}</td>
+                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}Z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}Z</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                       </tr>
                       @endforeach
@@ -159,7 +159,7 @@
                       <tr>
                         <th scope="row">{{$b['position']}}</th>
                         <td @if ($b['training'] == true) style="color: blueviolet;" @endif>{{$b['user']['fname']}} {{$b['user']['lname']}} ({{$b['vatsim_id']}})</td>
-                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}</td>
+                        <td>{{date_create_from_format('Y-m-d H:i:s', $b['start_date'])->format('H:i') }}Z - {{ date_create_from_format('Y-m-d H:i:s', $b['end_date'])->format('H:i') }}Z</td>
                         <td>{{$b['user']['atc_rating_short']}}</td>
                       </tr>
                       @endforeach
@@ -331,7 +331,7 @@
             <li>
               <div class="card shadow-none blue-grey lighten-5 p-3">
                 <div class="d-flex flex-row justify-content-between align-items-center mb-1 text-center">
-                  @if (count($atconline) == 0)
+                  @if ($onlineatccount == 0)
                     <p style="vertical-align: middle; text-align: center;">{{__('lp/lp_index.noatc')}}</p>
                   @else
                   <table class="table table-borderless">
@@ -348,7 +348,7 @@
                         <tr>
                           <th class="position" scope="row">{{$a['callsign']}}</th>
                           <td>{{$a['name']}}</td>
-                          <td>{{$a['livesince']}}z</td>
+                          <td>{{$a['livesince']}}Z</td>
                           <td>{{$a['rating']}}</td>
                         </tr>
                       @endforeach

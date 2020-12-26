@@ -143,11 +143,11 @@ class VatsimDataController extends Controller
                 $response = json_decode((string) $response->getBody(), true);
                 $clients = [];
                 foreach ($response['controllers'] as $c) {
-                    if (substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) !== "_ATIS" && config('vaccfr.atc_ranks')[$c['rating']] !== "OBS") {
+                    if (substr($c['callsign'], 0, 2) == "LF" && substr($c['callsign'], -5) != "_ATIS" && intval($c['rating']) != 0) {
                         $add = [
                             'callsign' => $c['callsign'],
                             'name' => $c['name'],
-                            'livesince' => date_format(date_create($c['time_logon']), 'H:i'),
+                            'livesince' => date_format(date_create($c['logon_time']), 'H:i'),
                             'rating' => config('vaccfr.atc_ranks')[$c['rating']],
                         ];
                         array_push($clients, $add);
