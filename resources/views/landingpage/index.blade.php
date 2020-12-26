@@ -331,7 +331,7 @@
             <li>
               <div class="card shadow-none blue-grey lighten-5 p-3">
                 <div class="d-flex flex-row justify-content-between align-items-center mb-1 text-center">
-                  @if ($onlineatccount == 0)
+                  @if (count($atconline) == 0)
                     <p style="vertical-align: middle; text-align: center;">{{__('lp/lp_index.noatc')}}</p>
                   @else
                   <table class="table table-borderless">
