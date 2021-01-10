@@ -280,13 +280,23 @@
                   @foreach ($soloApproved as $solo)
                   @if ($solo['user']['atc_rating_short'] == "S3")
                   <tr>
-                    <td>{{ $solo['user']['vatsim_id'] }}</td>
-                    <td>{{ $solo['user']['fname'] }} {{ $solo['user']['lname'] }}</td>
-                    <td>{{ $solo['user']['atc_rating_short'] }}</td>
-                    <td>{{ $solo['position'] }}</td>
-                    <td>{{ $solo['start_date'] }}</td>
-                    <td>{{ $solo['end_date'] }}</td>
-                    <!-- <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td> -->
+                    <?php
+                    try {
+                      ?>
+                      <td>{{ $solo['user']['vatsim_id'] }}</td>
+                      <td>{{ $solo['user']['fname'] }} {{ $solo['user']['lname'] }}</td>
+                      <td>{{ $solo['user']['atc_rating_short'] }}</td>
+                      <td>{{ $solo['position'] }}</td>
+                      <td>{{ $solo['start_date'] }}</td>
+                      <td>{{ $solo['end_date'] }}</td>
+                      <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
+                      <?php
+                    } catch (\Throwable $th) {
+                      ?>
+                      <td>{{ $solo['user']['vatsim_id'] }}</td>
+                      <?php
+                    }
+                    ?>
                     <td>
                       @if (\Illuminate\Support\Carbon::now()->format('d.m.Y') > \Illuminate\Support\Carbon::parse($solo['end_date'])->format('d.m.Y'))
                         <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
