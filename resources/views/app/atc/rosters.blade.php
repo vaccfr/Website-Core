@@ -286,7 +286,7 @@
                     <td>{{ $solo['position'] }}</td>
                     <td>{{ $solo['start_date'] }}</td>
                     <td>{{ $solo['end_date'] }}</td>
-                    <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td>
+                    <!-- <td>{{ $solo['mentor']['user']['fname'] }} {{ $solo['mentor']['user']['lname'] }}</td> -->
                     <td>
                       @if (\Illuminate\Support\Carbon::now()->format('d.m.Y') > \Illuminate\Support\Carbon::parse($solo['end_date'])->format('d.m.Y'))
                         <span class="badge bg-success"><i class="fa fa-check"></i> {{__('app/global.yes')}}</span>
