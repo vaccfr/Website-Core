@@ -95,7 +95,8 @@
           title: '{{$e["title"]}}',
           start: '{{$e["start_date"]}}',
           end: '{{$e["end_date"]}}',
-          uniqueID: '{{$e["id"]}}_calendarevent'
+          uniqueID: '{{$e["id"]}}_calendarevent',
+          color: 'blue'
         },
         @endforeach
         // Mentoring sessions for ATC
@@ -104,7 +105,8 @@
           title: '{{$m["title"]}}',
           start: '{{$m["start_date"]}}',
           end: '{{$m["end_date"]}}',
-          uniqueID: '{{$m["id"]}}_calendarevent'
+          uniqueID: '{{$m["id"]}}_calendarevent',
+          color: 'green'
         },
         @endforeach
       ],
