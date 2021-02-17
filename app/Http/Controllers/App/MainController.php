@@ -201,7 +201,6 @@ class MainController extends Controller
                 'mentorUser' => $ms['mentorUser'],
             ]);
         }
-        dd($allMentoringSessionsCleaned);
         return view('app.calendar', [
             'events' => $allEvents,
             'mentorings' => $allMentoringSessionsCleaned,
