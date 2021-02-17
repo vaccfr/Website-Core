@@ -19,7 +19,7 @@ class TrainingSession extends Model
 
     public function student()
     {
-        return $this->hasOne(User::class, 'student_id', 'id');
+        return $this->hasOne(User::class, 'id', 'student_id');
     }
     
     public function mentor()
