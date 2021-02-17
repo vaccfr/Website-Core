@@ -69,9 +69,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="event_description">{{__('app/staff/events.nev_description')}}</label>
-            <textarea name="event_description" id="event_description" rows="10" class="form-control" readonly>
-              Mentoring session on {{$m['position']}} for {{$m['student']['fname']}} {{$m['student']['vatsim_id']}} (Mentor: {{$m['mentorUser']['fname']}} {{$m['mentorUser']['vatsim_id']}})
-            </textarea>
+            <textarea name="event_description" id="event_description" rows="10" class="form-control" readonly>Mentoring session on {{$m['position']}} for {{$m['student']['fname']}} {{$m['student']['vatsim_id']}} (Mentor: {{$m['mentorUser']['fname']}} {{$m['mentorUser']['vatsim_id']}})</textarea>
           </div>
         </div>
         <div class="modal-footer justify-content-between">
