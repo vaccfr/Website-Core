@@ -195,6 +195,7 @@ class MainController extends Controller
             array_push($allMentoringSessionsCleaned, [
                 'id' => $ms['id'],
                 'title' => 'Mentoring '.$ms['position'],
+                'position' => $ms['position'],
                 'start_date' => date_create_from_format('d.m.Y H:i', $ms['date'].''.$ms['start_time'])->format('Y-m-d H:i:s'),
                 'end_date' => date_create_from_format('d.m.Y H:i', $ms['date'].''.$ms['end_time'])->format('Y-m-d H:i:s'),
                 'student' => $ms['student'],
