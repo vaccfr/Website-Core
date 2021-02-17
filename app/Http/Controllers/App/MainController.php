@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataHandlers\Utilities;
 use App\Http\Controllers\DataHandlers\VatsimDataController;
 use App\Models\ATC\Booking;
+use App\Models\ATC\TrainingSession;
 use App\Models\General\Event;
 use App\Models\General\News;
 use App\Models\Users\User;
@@ -188,8 +189,22 @@ class MainController extends Controller
     public function calendarPage()
     {
         $allEvents = Event::get();
+        $allMentoringSessions = TrainingSession::with('student')->with('mentorUser')->get();
+        $allMentoringSessionsCleaned = [];
+        foreach ($allMentoringSessions as $ms) {
+            array_push($allMentoringSessionsCleaned, [
+                'id' => $ms['id'],
+                'title' => 'Mentoring '.$ms['position'],
+                'start_date' => date_create_from_format('d.m.Y H:i', $ms['date'].''.$ms['start_time'])->format('Y-m-d H:i:s'),
+                'end_date' => date_create_from_format('d.m.Y H:i', $ms['date'].''.$ms['end_time'])->format('Y-m-d H:i:s'),
+                'student' => $ms['student'],
+                'mentorUser' => $ms['mentorUser'],
+            ]);
+        }
+        dd($allMentoringSessionsCleaned);
         return view('app.calendar', [
             'events' => $allEvents,
+            'mentorings' => $allMentoringSessionsCleaned,
         ]);
     }
 }

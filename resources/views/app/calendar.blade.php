@@ -32,7 +32,7 @@
   </div>
 </div>
 @foreach ($events as $e)
-  <div class="modal fade" id="event_{{$e['id']}}_atcevent">
+  <div class="modal fade" id="event_{{$e['id']}}_calendarevent">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -46,6 +46,32 @@
           <div class="form-group">
             <label for="event_description">{{__('app/staff/events.nev_description')}}</label>
             <textarea name="event_description" id="event_description" rows="10" class="form-control" readonly>{{$e['description']}}</textarea>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{__('app/staff/news.cancel')}}</button>
+          {{-- <button type="submit" class="btn btn-success">Submit</button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
+@foreach ($mentorings as $m)
+  <div class="modal fade" id="event_{{$m['id']}}_calendarevent">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{$m['title']}}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="{{__('app/staff/atc_mine.close')}}">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="event_description">{{__('app/staff/events.nev_description')}}</label>
+            <textarea name="event_description" id="event_description" rows="10" class="form-control" readonly>
+              Mentoring session on {{$m['position']}} for {{$m['student']['fname']}} {{$m['student']['vatsim_id']}} (Mentor: {{$m['mentorUser']['fname']}} {{$m['mentorUser']['vatsim_id']}})
+            </textarea>
           </div>
         </div>
         <div class="modal-footer justify-content-between">
@@ -71,7 +97,16 @@
           title: '{{$e["title"]}}',
           start: '{{$e["start_date"]}}',
           end: '{{$e["end_date"]}}',
-          uniqueID: '{{$e["id"]}}_atcevent'
+          uniqueID: '{{$e["id"]}}_calendarevent'
+        },
+        @endforeach
+        // Mentoring sessions for ATC
+        @foreach ($mentorings as $m)
+        {
+          title: '{{$m["title"]}}',
+          start: '{{$m["start_date"]}}',
+          end: '{{$m["end_date"]}}',
+          uniqueID: '{{$m["id"]}}_calendarevent'
         },
         @endforeach
       ],
