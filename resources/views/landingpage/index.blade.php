@@ -252,20 +252,22 @@
                   L.polygon(lfmmLatLong, firDesign).addTo(map);
                 @endif
 
+                @if ($livemap['planesFR'])
                 @foreach ($livemap['planesFR'] as $op)
-                  
-                    // This part creates a plane icon on the map
-                    L.marker(
-                      ["{{ $op['lat'] }}", "{{ $op['lon'] }}"], 
-                      {rotationAngle: "{{ $op['hdg'] }}", icon: icon} 
-                    )
-                    .addTo(map)
-                    .bindTooltip( 
-                      "<div style='font-size: 90%'><strong>{{ $op['callsign'] }}</strong> - " + "{{ $op['dep'] }}" + "/" + "{{ $op['arr'] }}" + "<br>" + "{{ $op['gspd'] }}" + "kts @ " + "{{ $op['alt'] }}" + "ft</div>", 
-                      {offset: [10,0], direction: 'right'}
-                    );
+                    
+                  // This part creates a plane icon on the map
+                  L.marker(
+                    ["{{ $op['lat'] }}", "{{ $op['lon'] }}"], 
+                    {rotationAngle: "{{ $op['hdg'] }}", icon: icon} 
+                  )
+                  .addTo(map)
+                  .bindTooltip( 
+                    "<div style='font-size: 90%'><strong>{{ $op['callsign'] }}</strong> - " + "{{ $op['dep'] }}" + "/" + "{{ $op['arr'] }}" + "<br>" + "{{ $op['gspd'] }}" + "kts @ " + "{{ $op['alt'] }}" + "ft</div>", 
+                    {offset: [10,0], direction: 'right'}
+                  );
 
                 @endforeach
+                @endif
 
                 @foreach ($livemap['planesOver'] as $op)
                   
