@@ -336,9 +336,10 @@
             <table
               id="mentoring_requests"
               class="table table-bordered table-hover"
-              data-order='[[ 2, "desc" ]]'>
+              data-order='[[ 0, "desc" ]]'>
               <thead>
               <tr>
+		<th>Date</th>
                 <th>{{__('app/admin/atc_admin.cid')}}</th>
                 <th>{{__('app/admin/atc_admin.name')}}</th>
                 <th>{{__('app/admin/atc_admin.rating')}}</th>
@@ -352,6 +353,7 @@
               <tbody>
                 @foreach ($apps as $a)
                   <tr>
+                    <td>{{ $a['created_at'] }}</td>
                     <td>{{ $a['user']['vatsim_id'] }}</td>
                     <td>{{ $a['user']['fname'] }} {{ $a['user']['lname'] }}</td>
                     <td>{{ $a['user']['atc_rating_short'] }}</td>
