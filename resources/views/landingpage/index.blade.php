@@ -268,7 +268,8 @@
 
                 @endforeach
                 @endif
-
+                
+                @if ($livemap['planesOver'])
                 @foreach ($livemap['planesOver'] as $op)
                   
                     // This part creates a plane icon on the map
@@ -283,7 +284,9 @@
                     );
 
                 @endforeach
+                @endif
 
+                @if ($livemap['appr'])
                 @foreach ($livemap['appr'] as $app)
 
                     // This part creates an approach position circle on the map
@@ -305,7 +308,9 @@
                     );
 
                 @endforeach
+                @endif
 
+                @if ($livemap['twr'])
                 @foreach ($livemap['twr'] as $twr)
 
                     // This part creates a tower object on the map
@@ -320,6 +325,7 @@
                     ); 
                   
                 @endforeach
+                @endif
                 });
                 </script>
               </div>
