@@ -32,7 +32,7 @@ Pigeon Voyageur | Inbox
                   <form id="msg_id_{{ $d['id'] }}" action="{{ route('app.inmsg.read', ['locale' => app()->getLocale()]) }}" method="get">
                     <input type="hidden" value="{{ $d['id'] }}" name="msgid">
                     <a href="javascript:$('#msg_id_{{ $d['id'] }}').submit();">
-                      {{ $d['sender']['fname'] }} {{ $d['sender']['lname'] }}
+                      {{ $d['recipient']['fname'] }} {{ $d['recipient']['lname'] }}
                     </a>
                   </form>
                 </td>
