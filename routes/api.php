@@ -52,7 +52,7 @@ Route::group(['prefix' => '/vops'], function() {
     $bookings = Booking::whereDate('start_date', '>=', Carbon::now())
     ->with('user')
     ->with(['user' => function($query) {
-      return $query->select('vatsim_id', 'fname', 'lname');
+      return $query->select('vatsim_id', 'fname', 'lname', 'atc_rating', 'atc_rating_short', 'atc_rating_long');
     }])
     ->orderBy('start_date', 'ASC')
     ->get();
