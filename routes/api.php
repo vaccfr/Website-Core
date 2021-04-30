@@ -49,7 +49,7 @@ Route::group(['prefix' => '/cfr'], function() {
 // vOPS Routes
 Route::group(['prefix' => '/vops'], function() {
   Route::get('/bookings', function() {
-    $bookings = Booking::whereDate('start_date', '>', Carbon::now()->format('Y-m-d'))
+    $bookings = Booking::whereDate('start_date', '>=', Carbon::now())
     ->with('user')
     ->orderBy('start_date', 'ASC')
     ->get();
