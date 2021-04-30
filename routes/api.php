@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\ATC\Booking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,5 +43,15 @@ Route::group(['prefix' => '/cfr'], function() {
 
   Route::group(['prefix' => '/ssr'], function() {
     Route::get('/', 'CoFrance\SSRApiController@query');
+  });
+});
+
+// vOPS Routes
+Route::group(['prefix' => '/vops'], function() {
+  Route::get('/bookings', function() {
+    $bookings = Booking::whereDate('start_date', '>', Carbon::now()->format('Y-m-d'))
+    ->with('user')
+    ->orderBy('start_date', 'ASC')
+    ->get();
   });
 });
