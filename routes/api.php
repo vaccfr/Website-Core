@@ -53,5 +53,9 @@ Route::group(['prefix' => '/vops'], function() {
     ->with('user')
     ->orderBy('start_date', 'ASC')
     ->get();
+    
+    return response([
+      "bookings" => $bookings
+    ], 200);
   });
 });
